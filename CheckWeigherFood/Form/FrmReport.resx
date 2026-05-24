@@ -121,21 +121,20 @@
   <data name="btnPreview.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAVtJREFUSEvlloFRwzAMRRmhG8AGZQPYoGxQNugIHSUjdARG6AgdgRHCf4rEOY4C
-        Sa8JcLy7f7FlRT+O7aZ3P0rbtk/ScSHt3KZDgUZamibMdl1/ecKQKa/C/zR8k+jfUtQ0MsOjBW8INbvS
-        f8FQ41tpT56LI7X14RTPMwYBkRoqfpDOlpFzkfae3kPx6YbqP0iZEbHPzVCA8b3fbqg/zVBtzChQcpI2
-        nhI5xEp6pmp/b6jrRqrNLj7GOmKCrLCu9VvgXnswXScZlrGAzVI/yLtEjDWuGdSiP2aYrduzxCesZix+
-        ruvTHzPMZsgsmA2zCuzVScy+ZtYMszWMJ46NguwM6jpYb2n6GoLaY7u03IE8GLES7pm3SwP1M1PgDI6d
-        z+vOYYnirFFmHGB08PQeis83DDT+KL2Q53ol5sMpnmcMAuJLw2ugZlf6lxiu8sXPfiUWwQxB7RX+CLfN
-        BwBjQVdJ8MpsAAAAAElFTkSuQmCC
+        JQAAFiUBSVIk8AAAAS5JREFUSEvllv8NgjAQhRnBDXQD3UA3wA10A0ZgFEZwBEdgBEZwhGceacn5OAg/
+        BEn8kv5ztPf12kNMkl8C4AwgX2ikKiuwPEWUpfpkKaKQJa/CfwqfTofNHczZKcxD434Nm78V2JwQwBHA
+        zRwXX6mjzrNMEgLIAJRmnlJxI7qOjBICOHSIGGuawUDxXnIMEwYZE1geAHYyhzHLh3SQkEkdWRWe8R4p
+        4agTO6fAtfXGhgptLMJm0Y28Qox3rLRy9Ql1x+QSPmFKV7zU/H1Cr0JWwWpYVaQ+ulC90srVJ9SjI3HH
+        sVE46nfQmTvuDk1iTdQ0itnY/C41kz0p4Tvo3TNj095DS7gjTxyhKNN1ZJIwAuAE4BrWcNwZ03mWWcIp
+        bE64yhff+5VYBFv2Kn+E3wBjQVcZj623AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnReport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACQAAAAlCAYAAAAqXEs9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAIdJREFUWEft0kEKgCAQhWFvUjftqB1BXbksBB8USGrONATvh7cIhL7FOMZYJe/9
-        mlJayqdtGRNC2PPMURfMUWaHqmDsUA8Y7DtUBwbTRw1gMD3UCwwmj5rAYHIoAQw2jxLEYDo3FWPcKj+7
-        Lb8pz/UjqBVBrQhqRRD7bT23Mrqp2yKIMaaecych1yh2AsNyjgAAAABJRU5ErkJggg==
+        JQAAFiUBSVIk8AAAAINJREFUWEft0kEKgCAQhWFvUjftqB1BZ+WyGCgok9RmdAjeD28jhd9C5xBCz7z3
+        c4xxSs9NYkwIYeWZoy6Y7ZgdKoOxQ71gxqMqMONQDZj+qA+YfigBRh+lgNFDKWLOyVG5iGjJXHYbf5P+
+        1y2ASgFUCqBSAKHfVvNWWid6WwAhhAa0AyHXKHaZJlJ4AAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

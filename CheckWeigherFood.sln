@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckWeigherFood", "CheckWeigherFood\CheckWeigherFood.csproj", "{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "i-Soft.Database", "Database\i-Soft.Database.csproj", "{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

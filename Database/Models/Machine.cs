@@ -14,6 +14,7 @@ namespace Database.Models
     public int? Port { get; set; }
     public int? Timeout { get; set; }
     public int? TimeCheckConnect { get; set; }
+    public int? SampleTime { get; set; }
 
 
     #region Mapping
