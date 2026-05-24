@@ -260,12 +260,6 @@
   <ItemGroup>
     <Compile Include="Controls\AppCoreBackEnd.cs" />
     <Compile Include="Controls\AppCoreUI.cs" />
-    <Compile Include="Controls\DataBase.cs" />
-    <Compile Include="Controls\GenericRepository.cs" />
-    <Compile Include="Controls\ResponsitoryDatalog.cs" />
-    <Compile Include="Controls\ResponsitoryLine.cs" />
-    <Compile Include="Controls\ResponsitoryMasterData.cs" />
-    <Compile Include="Controls\ResponsitoryUser.cs" />
     <Compile Include="eNum\eNumUI.cs" />
     <Compile Include="eNum\eRegisterPLC.cs" />
     <Compile Include="FrmChild\FrmAutoReport.cs">
@@ -341,16 +335,6 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="InitChart\DataChart.cs" />
-    <Compile Include="DB\Models\BaseModel.cs" />
-    <Compile Include="DB\Models\DataExcelImport.cs" />
-    <Compile Include="DB\Models\Datalog.cs" />
-    <Compile Include="DB\Models\DataReject.cs" />
-    <Compile Include="DB\Models\DbStore.cs" />
-    <Compile Include="DB\Models\Line.cs" />
-    <Compile Include="DB\Models\ListDataLogs.cs" />
-    <Compile Include="DB\Models\MasterData.cs" />
-    <Compile Include="DB\Models\Synthetic.cs" />
-    <Compile Include="DB\Models\User.cs" />
     <Compile Include="PLC\FunstionPLC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrmChild\ReComboboxFGs.cs">
