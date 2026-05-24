@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = IoTClient
+build_property.ProjectDir = C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

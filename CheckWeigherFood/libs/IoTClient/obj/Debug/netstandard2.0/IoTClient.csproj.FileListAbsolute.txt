@@ -1,0 +1,35 @@
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\bin\Debug\netstandard2.0\IoTClient.deps.json
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\bin\Debug\netstandard2.0\IoTClient.dll
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\bin\Debug\netstandard2.0\IoTClient.pdb
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\bin\Debug\netstandard2.0\IoTClient.xml
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.AssemblyReference.cache
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfoInputs.cache
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfo.cs
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.CoreCompileInputs.cache
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.dll
+C:\Users\19146\OneDrive\Máy tính\UCC-QC-Line2\libs\IoTClient-master\IoTClient\obj\Debug\netstandard2.0\IoTClient.pdb
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.deps.json
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.dll
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.pdb
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.xml
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.AssemblyReference.cache
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.GeneratedMSBuildEditorConfig.editorconfig
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfoInputs.cache
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfo.cs
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.CoreCompileInputs.cache
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.sourcelink.json
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.dll
+D:\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.pdb
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.deps.json
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.dll
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.pdb
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\bin\Debug\netstandard2.0\IoTClient.xml
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.sourcelink.json
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.dll
+C:\Users\Administrator\Desktop\Project\Unilever\UCC\Food\UCC-Kawwa-CheckweightFood\src\CheckWeigherFood\libs\IoTClient\obj\Debug\netstandard2.0\IoTClient.pdb

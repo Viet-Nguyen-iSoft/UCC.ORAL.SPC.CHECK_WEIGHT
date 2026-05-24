@@ -1,0 +1,13 @@
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\bin\Release\net6.0\HelperManager.deps.json
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\bin\Release\net6.0\HelperManager.dll
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\bin\Release\net6.0\HelperManager.pdb
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.sourcelink.json
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.dll
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\refint\HelperManager.dll
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\HelperManager.pdb
+C:\Users\Administrator\Desktop\Project\HoangSonFood\HSF.WL.Desktop\HelperManager\obj\Release\net6.0\ref\HelperManager.dll
