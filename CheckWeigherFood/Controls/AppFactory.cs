@@ -40,5 +40,16 @@ namespace CheckWeigherFood.Controls
       var context = new PgDbContext();
       return new TareSettingService(context);
     }
+    public static DatalogService CreateDatalogService()
+    {
+      var context = new PgDbContext();
+      return new DatalogService(context);
+    }
+
+    public static MachineService CreateMachineService()
+    {
+      var context = new PgDbContext();
+      return new MachineService(context);
+    }
   }
 }

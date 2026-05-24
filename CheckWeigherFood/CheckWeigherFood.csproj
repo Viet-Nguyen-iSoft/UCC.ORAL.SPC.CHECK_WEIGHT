@@ -248,6 +248,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AppCollectData.cs" />
     <Compile Include="Controls\AppCoreBackEnd.cs" />
     <Compile Include="Controls\AppCoreDb.cs" />
     <Compile Include="Controls\AppCoreUI.cs" />

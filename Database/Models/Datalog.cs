@@ -14,6 +14,10 @@ namespace Database.Models
     public double TareCarton { get; set; }
 
 
+    public string NameEmployeeOP { get; set; }
+    public string NameEmployeeQC { get; set; }
+    public string NameEmployeeShiftLeader { get; set; }
+
     #region Mapping
     [ForeignKey(nameof(EmployeeOPId))]
     public long? EmployeeOPId { get; set; }

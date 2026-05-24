@@ -81,11 +81,12 @@ namespace CheckWeigherFood.Controls
       //LogActiveAppToFileLog("Open App");
     }
 
-
+    public List<Datalog> _datalogsInShiftCurrent = new List<Datalog>();
     public OperationSetting _operationSettingCurrent { get; set; }
     public AppConfig _appConfig { get; set; }
     public Product _productCurrent { get; set; }
     public TareSetting _tareSettingCurrent { get; set; }
+    public Machine _machineCurrent { get; set; }
     private async Task InitLoadDataStartApp()
     {
       _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
@@ -96,10 +97,68 @@ namespace CheckWeigherFood.Controls
         _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
       }
       _tareSettingCurrent = await _tareSettingService.GetFirstDataAsync();
+      _machineCurrent = await _machineService.GetFirstlDataAsync();
+
+      var shift = GetCurrentShift(DateTime.Now);
+      DateTime startUtc = shift.StartTime.ToUniversalTime();
+      DateTime endUtc = shift.EndTime.ToUniversalTime();
+      _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(startUtc, endUtc);
     }
 
 
-    
+    public static ShiftInfo GetCurrentShift(DateTime now)
+    {
+      DateTime today = now.Date;
+
+      DateTime shift1Start = today.AddHours(6);   // 06:00
+      DateTime shift1End = today.AddHours(14);    // 14:00
+
+      DateTime shift2Start = today.AddHours(14);  // 14:00
+      DateTime shift2End = today.AddHours(22);    // 22:00
+
+      // Ca 1
+      if (now >= shift1Start && now < shift1End)
+      {
+        return new ShiftInfo
+        {
+          Shift = 1,
+          StartTime = shift1Start,
+          EndTime = shift1End.AddSeconds(-1)
+        };
+      }
+
+      // Ca 2
+      if (now >= shift2Start && now < shift2End)
+      {
+        return new ShiftInfo
+        {
+          Shift = 2,
+          StartTime = shift2Start,
+          EndTime = shift2End.AddSeconds(-1)
+        };
+      }
+
+      // Ca 3
+      // 22:00 -> 05:59 hôm sau
+      if (now.Hour >= 22)
+      {
+        return new ShiftInfo
+        {
+          Shift = 3,
+          StartTime = today.AddHours(22),
+          EndTime = today.AddDays(1).AddHours(6).AddSeconds(-1)
+        };
+      }
+      else
+      {
+        return new ShiftInfo
+        {
+          Shift = 3,
+          StartTime = today.AddDays(-1).AddHours(22),
+          EndTime = today.AddHours(6).AddSeconds(-1)
+        };
+      }
+    }
 
 
 
@@ -787,5 +846,14 @@ namespace CheckWeigherFood.Controls
       File.AppendAllText(NameFileLog, contentLog);
     }
 
+  }
+
+  public class ShiftInfo
+  {
+    public int Shift { get; set; }
+
+    public DateTime StartTime { get; set; }
+
+    public DateTime EndTime { get; set; }
   }
 }

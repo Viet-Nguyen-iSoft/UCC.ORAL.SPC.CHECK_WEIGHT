@@ -14,12 +14,16 @@ namespace CheckWeigherFood.Controls
     private AppConfigService _appConfigService { get; set; }
     private ProductService _productService { get; set; }
     private TareSettingService _tareSettingService { get; set; }
+    private DatalogService _datalogService { get; set; }
+    private MachineService _machineService { get; set; }
     private void ResgisterService()
     {
       _operationSettingService = AppFactory.CreateOperationSettingService();
       _appConfigService = AppFactory.CreateAppConfigService();
       _productService = AppFactory.CreateProductService();
       _tareSettingService = AppFactory.CreateTareSettingService();
+      _datalogService = AppFactory.CreateDatalogService();
+      _machineService = AppFactory.CreateMachineService();
     }
 
     public async Task UpdateAppConfig(AppConfig appConfig)

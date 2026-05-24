@@ -153,13 +153,17 @@
     <Compile Include="Models\TareSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respository\GenericRepository.cs" />
+    <Compile Include="Respository\RepositoryMachine.cs" />
     <Compile Include="Respository\RepositoryAppConfig.cs" />
+    <Compile Include="Respository\RepositoryDatalog.cs" />
     <Compile Include="Respository\RepositoryEmployee.cs" />
     <Compile Include="Respository\RepositoryOperationSetting.cs" />
     <Compile Include="Respository\RepositoryProduct.cs" />
     <Compile Include="Respository\RepositoryTareSetting.cs" />
     <Compile Include="Service\AppConfigService.cs" />
+    <Compile Include="Service\DatalogService.cs" />
     <Compile Include="Service\EmployeeService.cs" />
+    <Compile Include="Service\MachineService.cs" />
     <Compile Include="Service\OperationSettingService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\TareSettingService.cs" />

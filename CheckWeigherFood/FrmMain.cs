@@ -118,7 +118,6 @@ namespace CheckWeigherFood
     {
       this.btnDashBoard.ForeColor = NoSelect;
       this.btnMasterData.ForeColor = NoSelect;
-      this.btnSynthetic.ForeColor = NoSelect;
       this.btnReport.ForeColor = NoSelect;
       this.btnSetting.ForeColor = NoSelect;
 
@@ -131,10 +130,6 @@ namespace CheckWeigherFood
         case AppModulSupport.MasterData:
           this.btnMasterData.ForeColor = Select;
           OpenChildForm(AppModulSupport.MasterData, FrmMasterData.Instance);
-          break;
-        case AppModulSupport.Synthetic:
-          this.btnSynthetic.ForeColor = Select;
-          OpenChildForm(AppModulSupport.Synthetic, FrmSynthetic.Instance);
           break;
         case AppModulSupport.Report:
           this.btnReport.ForeColor = Select;
@@ -217,6 +212,10 @@ namespace CheckWeigherFood
       AppCore.Ins.RandomData();
     }
 
-    
+
+    private void label4_Click(object sender, EventArgs e)
+    {
+      AppCore.Ins.RandomDataWeight();
+    }
   }
 }
