@@ -72,63 +72,10 @@
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Sqlite, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Sqlite.Core.3.1.8\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.3.1.6\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.3.1.18\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.18\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Design.3.1.8\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.18\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.Sqlite, Version=3.1.8.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.Sqlite.Core.3.1.8\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.18\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.18\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyModel, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.3.1.6\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.18\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -262,70 +209,70 @@
     <Compile Include="Controls\AppCoreUI.cs" />
     <Compile Include="eNum\eNumUI.cs" />
     <Compile Include="eNum\eRegisterPLC.cs" />
-    <Compile Include="FrmChild\FrmAutoReport.cs">
+    <Compile Include="Form\FrmAutoReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmAutoReport.Designer.cs">
+    <Compile Include="Form\FrmAutoReport.Designer.cs">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmConfirm.cs">
+    <Compile Include="Form\FrmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmConfirm.Designer.cs">
+    <Compile Include="Form\FrmConfirm.Designer.cs">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmDashboard.cs">
+    <Compile Include="Form\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmDashboard.Designer.cs">
+    <Compile Include="Form\FrmDashboard.Designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmInformation.cs">
+    <Compile Include="Form\FrmInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmInformation.Designer.cs">
+    <Compile Include="Form\FrmInformation.Designer.cs">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmLoading.cs">
+    <Compile Include="Form\FrmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmLoading.Designer.cs">
+    <Compile Include="Form\FrmLoading.Designer.cs">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmMasterData.cs">
+    <Compile Include="Form\FrmMasterData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmMasterData.Designer.cs">
+    <Compile Include="Form\FrmMasterData.Designer.cs">
       <DependentUpon>FrmMasterData.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmReport.cs">
+    <Compile Include="Form\FrmReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmReport.Designer.cs">
+    <Compile Include="Form\FrmReport.Designer.cs">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmSetting.cs">
+    <Compile Include="Form\FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmSetting.Designer.cs">
+    <Compile Include="Form\FrmSetting.Designer.cs">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\FrmSynthetic.cs">
+    <Compile Include="Form\FrmSynthetic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmChild\FrmSynthetic.Designer.cs">
+    <Compile Include="Form\FrmSynthetic.Designer.cs">
       <DependentUpon>FrmSynthetic.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\ReCombobox.cs">
+    <Compile Include="Form\ReCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmChild\ReCombobox.Designer.cs">
+    <Compile Include="Form\ReCombobox.Designer.cs">
       <DependentUpon>ReCombobox.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\UCTextBox4.cs">
+    <Compile Include="Form\UCTextBox4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmChild\UCTextBox4.Designer.cs">
+    <Compile Include="Form\UCTextBox4.Designer.cs">
       <DependentUpon>UCTextBox4.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
@@ -337,22 +284,22 @@
     <Compile Include="InitChart\DataChart.cs" />
     <Compile Include="PLC\FunstionPLC.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="FrmChild\ReComboboxFGs.cs">
+    <Compile Include="Form\ReComboboxFGs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmChild\ReComboboxFGs.Designer.cs">
+    <Compile Include="Form\ReComboboxFGs.Designer.cs">
       <DependentUpon>ReComboboxFGs.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\UCTextbox3.cs">
+    <Compile Include="Form\UCTextbox3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmChild\UCTextbox3.Designer.cs">
+    <Compile Include="Form\UCTextbox3.Designer.cs">
       <DependentUpon>UCTextbox3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmChild\UCTextDateTime.cs">
+    <Compile Include="Form\UCTextDateTime.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmChild\UCTextDateTime.Designer.cs">
+    <Compile Include="Form\UCTextDateTime.Designer.cs">
       <DependentUpon>UCTextDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="RJControl\RJTextBox.cs">
@@ -361,43 +308,49 @@
     <Compile Include="RJControl\RJTextBox.Designer.cs">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmChild\FrmAutoReport.resx">
+    <Compile Include="UC\UcInformationDataSumary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcInformationDataSumary.Designer.cs">
+      <DependentUpon>UcInformationDataSumary.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form\FrmAutoReport.resx">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmConfirm.resx">
+    <EmbeddedResource Include="Form\FrmConfirm.resx">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmDashboard.resx">
+    <EmbeddedResource Include="Form\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmInformation.resx">
+    <EmbeddedResource Include="Form\FrmInformation.resx">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmLoading.resx">
+    <EmbeddedResource Include="Form\FrmLoading.resx">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmMasterData.resx">
+    <EmbeddedResource Include="Form\FrmMasterData.resx">
       <DependentUpon>FrmMasterData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmReport.resx">
+    <EmbeddedResource Include="Form\FrmReport.resx">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmSetting.resx">
+    <EmbeddedResource Include="Form\FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\FrmSynthetic.resx">
+    <EmbeddedResource Include="Form\FrmSynthetic.resx">
       <DependentUpon>FrmSynthetic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\ReCombobox.resx">
+    <EmbeddedResource Include="Form\ReCombobox.resx">
       <DependentUpon>ReCombobox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\ReComboboxFGs.resx">
+    <EmbeddedResource Include="Form\ReComboboxFGs.resx">
       <DependentUpon>ReComboboxFGs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\UCTextbox3.resx">
+    <EmbeddedResource Include="Form\UCTextbox3.resx">
       <DependentUpon>UCTextbox3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmChild\UCTextBox4.resx">
+    <EmbeddedResource Include="Form\UCTextBox4.resx">
       <DependentUpon>UCTextBox4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
@@ -412,13 +365,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmChild\UCTextDateTime.resx">
+    <EmbeddedResource Include="Form\UCTextDateTime.resx">
       <DependentUpon>UCTextDateTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RJControl\RJTextBox.resx">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include=".env" />
+    <EmbeddedResource Include="UC\UcInformationDataSumary.resx">
+      <DependentUpon>UcInformationDataSumary.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include=".env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -435,9 +393,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Information\" />
+    <Folder Include="Popup\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoCW.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\i-Soft.Database.csproj">
+      <Project>{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}</Project>
+      <Name>i-Soft.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.2\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
