@@ -9,5 +9,6 @@ namespace Database.Models
   public class AppConfig : BaseModel
   {
     public string PathReport { get; set; }
+    public long ProductId { get; set; }
   }
 }

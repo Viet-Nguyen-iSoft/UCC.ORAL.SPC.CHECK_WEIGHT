@@ -139,23 +139,31 @@
     <Compile Include="DbContexts\CommonDbContext.cs" />
     <Compile Include="DbContexts\ModelBuilderExtensions.cs" />
     <Compile Include="DbContexts\PgDbContext.cs" />
+    <Compile Include="DtoHelper\HelperDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Models\AppConfig.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Datalog.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\OperationSetting.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Tare.cs" />
+    <Compile Include="Models\TareSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Respository\GenericRepository.cs" />
+    <Compile Include="Respository\RepositoryEmployee.cs" />
+    <Compile Include="Respository\RepositoryOperationSetting.cs" />
+    <Compile Include="Respository\RepositoryProduct.cs" />
+    <Compile Include="Service\EmployeeService.cs" />
+    <Compile Include="Service\OperationSettingService.cs" />
+    <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Respository\" />
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

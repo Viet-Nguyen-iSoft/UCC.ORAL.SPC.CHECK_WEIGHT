@@ -76,6 +76,49 @@
       <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.3.1.6\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.18.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory">
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Database\bin\Debug\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -207,72 +250,79 @@
   <ItemGroup>
     <Compile Include="Controls\AppCoreBackEnd.cs" />
     <Compile Include="Controls\AppCoreUI.cs" />
+    <Compile Include="Controls\AppFactory.cs" />
     <Compile Include="eNum\eNumUI.cs" />
     <Compile Include="eNum\eRegisterPLC.cs" />
-    <Compile Include="Form\FrmAutoReport.cs">
+    <Compile Include="FormUI\FrmAutoReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmAutoReport.Designer.cs">
+    <Compile Include="FormUI\FrmAutoReport.Designer.cs">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmConfirm.cs">
+    <Compile Include="FormUI\FrmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmConfirm.Designer.cs">
+    <Compile Include="FormUI\FrmConfirm.Designer.cs">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmDashboard.cs">
+    <Compile Include="FormUI\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmDashboard.Designer.cs">
+    <Compile Include="FormUI\FrmDashboard.Designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmInformation.cs">
+    <Compile Include="FormUI\FrmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmInformation.Designer.cs">
+    <Compile Include="FormUI\FrmEmployee.Designer.cs">
+      <DependentUpon>FrmEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUI\FrmInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUI\FrmInformation.Designer.cs">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmLoading.cs">
+    <Compile Include="FormUI\FrmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmLoading.Designer.cs">
+    <Compile Include="FormUI\FrmLoading.Designer.cs">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmMasterData.cs">
+    <Compile Include="FormUI\FrmMasterData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmMasterData.Designer.cs">
+    <Compile Include="FormUI\FrmMasterData.Designer.cs">
       <DependentUpon>FrmMasterData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmReport.cs">
+    <Compile Include="FormUI\FrmReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmReport.Designer.cs">
+    <Compile Include="FormUI\FrmReport.Designer.cs">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmSetting.cs">
+    <Compile Include="FormUI\FrmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmSetting.Designer.cs">
+    <Compile Include="FormUI\FrmSetting.Designer.cs">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FrmSynthetic.cs">
+    <Compile Include="FormUI\FrmSynthetic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FrmSynthetic.Designer.cs">
+    <Compile Include="FormUI\FrmSynthetic.Designer.cs">
       <DependentUpon>FrmSynthetic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\ReCombobox.cs">
+    <Compile Include="FormUI\ReCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\ReCombobox.Designer.cs">
+    <Compile Include="FormUI\ReCombobox.Designer.cs">
       <DependentUpon>ReCombobox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\UCTextBox4.cs">
+    <Compile Include="FormUI\UCTextBox4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\UCTextBox4.Designer.cs">
+    <Compile Include="FormUI\UCTextBox4.Designer.cs">
       <DependentUpon>UCTextBox4.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
@@ -283,24 +333,42 @@
     </Compile>
     <Compile Include="InitChart\DataChart.cs" />
     <Compile Include="PLC\FunstionPLC.cs" />
+    <Compile Include="Popup\PopupAddNewEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupAddNewEmployee.Designer.cs">
+      <DependentUpon>PopupAddNewEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\PopupChangeOperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupChangeOperator.Designer.cs">
+      <DependentUpon>PopupChangeOperator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Form\ReComboboxFGs.cs">
+    <Compile Include="FormUI\ReComboboxFGs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\ReComboboxFGs.Designer.cs">
+    <Compile Include="FormUI\ReComboboxFGs.Designer.cs">
       <DependentUpon>ReComboboxFGs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\UCTextbox3.cs">
+    <Compile Include="FormUI\UCTextbox3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\UCTextbox3.Designer.cs">
+    <Compile Include="FormUI\UCTextbox3.Designer.cs">
       <DependentUpon>UCTextbox3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\UCTextDateTime.cs">
+    <Compile Include="FormUI\UCTextDateTime.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form\UCTextDateTime.Designer.cs">
+    <Compile Include="FormUI\UCTextDateTime.Designer.cs">
       <DependentUpon>UCTextDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RJControl\ElipseControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RJControl\RJButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="RJControl\RJTextBox.cs">
       <SubType>UserControl</SubType>
@@ -308,53 +376,86 @@
     <Compile Include="RJControl\RJTextBox.Designer.cs">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UcChartPie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcChartPie.Designer.cs">
+      <DependentUpon>UcChartPie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UcData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcData.Designer.cs">
+      <DependentUpon>UcData.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UcInformationDataSumary.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC\UcInformationDataSumary.Designer.cs">
       <DependentUpon>UcInformationDataSumary.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form\FrmAutoReport.resx">
+    <Compile Include="UC\UcInformationLoss.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcInformationLoss.Designer.cs">
+      <DependentUpon>UcInformationLoss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UcTextBoxData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcTextBoxData.Designer.cs">
+      <DependentUpon>UcTextBoxData.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormUI\FrmAutoReport.resx">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmConfirm.resx">
+    <EmbeddedResource Include="FormUI\FrmConfirm.resx">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmDashboard.resx">
+    <EmbeddedResource Include="FormUI\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmInformation.resx">
+    <EmbeddedResource Include="FormUI\FrmEmployee.resx">
+      <DependentUpon>FrmEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUI\FrmInformation.resx">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmLoading.resx">
+    <EmbeddedResource Include="FormUI\FrmLoading.resx">
       <DependentUpon>FrmLoading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmMasterData.resx">
+    <EmbeddedResource Include="FormUI\FrmMasterData.resx">
       <DependentUpon>FrmMasterData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmReport.resx">
+    <EmbeddedResource Include="FormUI\FrmReport.resx">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmSetting.resx">
+    <EmbeddedResource Include="FormUI\FrmSetting.resx">
       <DependentUpon>FrmSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FrmSynthetic.resx">
+    <EmbeddedResource Include="FormUI\FrmSynthetic.resx">
       <DependentUpon>FrmSynthetic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\ReCombobox.resx">
+    <EmbeddedResource Include="FormUI\ReCombobox.resx">
       <DependentUpon>ReCombobox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\ReComboboxFGs.resx">
+    <EmbeddedResource Include="FormUI\ReComboboxFGs.resx">
       <DependentUpon>ReComboboxFGs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\UCTextbox3.resx">
+    <EmbeddedResource Include="FormUI\UCTextbox3.resx">
       <DependentUpon>UCTextbox3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\UCTextBox4.resx">
+    <EmbeddedResource Include="FormUI\UCTextBox4.resx">
       <DependentUpon>UCTextBox4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupAddNewEmployee.resx">
+      <DependentUpon>PopupAddNewEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupChangeOperator.resx">
+      <DependentUpon>PopupChangeOperator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -365,14 +466,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form\UCTextDateTime.resx">
+    <EmbeddedResource Include="FormUI\UCTextDateTime.resx">
       <DependentUpon>UCTextDateTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RJControl\RJTextBox.resx">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UcChartPie.resx">
+      <DependentUpon>UcChartPie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UcData.resx">
+      <DependentUpon>UcData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UcInformationDataSumary.resx">
       <DependentUpon>UcInformationDataSumary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UcInformationLoss.resx">
+      <DependentUpon>UcInformationLoss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UcTextBoxData.resx">
+      <DependentUpon>UcTextBoxData.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".env">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -393,7 +506,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Information\" />
-    <Folder Include="Popup\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logoCW.ico" />

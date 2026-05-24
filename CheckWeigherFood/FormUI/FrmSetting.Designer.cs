@@ -404,7 +404,7 @@
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.68964F));
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.31036F));
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-      this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+      this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
       this.tableLayoutPanel75.Controls.Add(this.btnSaveQuality, 3, 0);
       this.tableLayoutPanel75.Controls.Add(this.txtSettingQuality, 2, 0);
       this.tableLayoutPanel75.Controls.Add(this.tableLayoutPanel76, 0, 0);
@@ -426,7 +426,7 @@
       this.btnSaveQuality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(151)))), ((int)(((byte)(206)))));
       this.btnSaveQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSaveQuality.ForeColor = System.Drawing.Color.White;
-      this.btnSaveQuality.Location = new System.Drawing.Point(625, 10);
+      this.btnSaveQuality.Location = new System.Drawing.Point(622, 10);
       this.btnSaveQuality.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.btnSaveQuality.Name = "btnSaveQuality";
       this.btnSaveQuality.Size = new System.Drawing.Size(66, 40);
@@ -439,7 +439,7 @@
       // 
       this.txtSettingQuality.Dock = System.Windows.Forms.DockStyle.Fill;
       this.txtSettingQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.txtSettingQuality.Location = new System.Drawing.Point(501, 12);
+      this.txtSettingQuality.Location = new System.Drawing.Point(498, 12);
       this.txtSettingQuality.Margin = new System.Windows.Forms.Padding(5, 12, 5, 12);
       this.txtSettingQuality.Multiline = true;
       this.txtSettingQuality.Name = "txtSettingQuality";
@@ -502,7 +502,7 @@
       this.dateTimePickerQuality.Location = new System.Drawing.Point(190, 14);
       this.dateTimePickerQuality.Margin = new System.Windows.Forms.Padding(0, 14, 0, 0);
       this.dateTimePickerQuality.Name = "dateTimePickerQuality";
-      this.dateTimePickerQuality.Size = new System.Drawing.Size(306, 29);
+      this.dateTimePickerQuality.Size = new System.Drawing.Size(303, 29);
       this.dateTimePickerQuality.TabIndex = 9;
       this.dateTimePickerQuality.ValueChanged += new System.EventHandler(this.dateTimePickerQuality_ValueChanged);
       // 
@@ -547,7 +547,7 @@
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.68965F));
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.31035F));
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-      this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
+      this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
       this.tableLayoutPanel72.Controls.Add(this.btnSaveSafe, 3, 0);
       this.tableLayoutPanel72.Controls.Add(this.txtSettingSafe, 2, 0);
       this.tableLayoutPanel72.Controls.Add(this.tableLayoutPanel73, 0, 0);
@@ -569,7 +569,7 @@
       this.btnSaveSafe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(151)))), ((int)(((byte)(206)))));
       this.btnSaveSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSaveSafe.ForeColor = System.Drawing.Color.White;
-      this.btnSaveSafe.Location = new System.Drawing.Point(625, 10);
+      this.btnSaveSafe.Location = new System.Drawing.Point(622, 10);
       this.btnSaveSafe.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.btnSaveSafe.Name = "btnSaveSafe";
       this.btnSaveSafe.Size = new System.Drawing.Size(66, 40);
@@ -582,7 +582,7 @@
       // 
       this.txtSettingSafe.Dock = System.Windows.Forms.DockStyle.Fill;
       this.txtSettingSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.txtSettingSafe.Location = new System.Drawing.Point(501, 12);
+      this.txtSettingSafe.Location = new System.Drawing.Point(498, 12);
       this.txtSettingSafe.Margin = new System.Windows.Forms.Padding(5, 12, 5, 12);
       this.txtSettingSafe.Multiline = true;
       this.txtSettingSafe.Name = "txtSettingSafe";
@@ -645,7 +645,7 @@
       this.dateTimePickerSafe.Location = new System.Drawing.Point(190, 14);
       this.dateTimePickerSafe.Margin = new System.Windows.Forms.Padding(0, 14, 0, 0);
       this.dateTimePickerSafe.Name = "dateTimePickerSafe";
-      this.dateTimePickerSafe.Size = new System.Drawing.Size(306, 29);
+      this.dateTimePickerSafe.Size = new System.Drawing.Size(303, 29);
       this.dateTimePickerSafe.TabIndex = 9;
       this.dateTimePickerSafe.ValueChanged += new System.EventHandler(this.dateTimePickerSafe_ValueChanged);
       // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckWeigherFood.RJControl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,22 @@ namespace CheckWeigherFood.UC
     public UcData()
     {
       InitializeComponent();
+      CustomUI();
+    }
+
+    private void CustomUI()
+    {
+      ElipseControl elipseControl0 = new ElipseControl();
+      elipseControl0.TargetControl = this;
+      elipseControl0.CornerRadius = 20;
+
+      ElipseControl elipseControl1 = new ElipseControl();
+      elipseControl1.TargetControl = tableLayoutPanel1;
+      elipseControl1.CornerRadius = 20;
+
+      ElipseControl elipseControl2 = new ElipseControl();
+      elipseControl2.TargetControl = lbData;
+      elipseControl2.CornerRadius = 20;
     }
   }
 }

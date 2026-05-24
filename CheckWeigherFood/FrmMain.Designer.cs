@@ -56,9 +56,9 @@
       this.label2 = new System.Windows.Forms.Label();
       this.lbPage = new System.Windows.Forms.Label();
       this.btnMenu = new System.Windows.Forms.Button();
-      this.statusPLC = new System.Windows.Forms.Label();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+      this.btnEmployee = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       this.tableLayoutPanel6.SuspendLayout();
@@ -90,7 +90,7 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.087009F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.91299F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(1868, 981);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(1868, 1005);
       this.tableLayoutPanel1.TabIndex = 1;
       // 
       // tableLayoutPanel2
@@ -103,12 +103,12 @@
       this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 2, 0);
       this.tableLayoutPanel2.Controls.Add(this.panelMenu, 0, 0);
       this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 64);
+      this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 65);
       this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel2.Name = "tableLayoutPanel2";
       this.tableLayoutPanel2.RowCount = 1;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(1868, 917);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(1868, 940);
       this.tableLayoutPanel2.TabIndex = 1;
       // 
       // tableLayoutPanel6
@@ -125,7 +125,7 @@
       this.tableLayoutPanel6.RowCount = 1;
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 917F));
-      this.tableLayoutPanel6.Size = new System.Drawing.Size(1673, 917);
+      this.tableLayoutPanel6.Size = new System.Drawing.Size(1673, 940);
       this.tableLayoutPanel6.TabIndex = 1;
       // 
       // panelMain
@@ -135,7 +135,7 @@
       this.panelMain.Location = new System.Drawing.Point(0, 0);
       this.panelMain.Margin = new System.Windows.Forms.Padding(0);
       this.panelMain.Name = "panelMain";
-      this.panelMain.Size = new System.Drawing.Size(1663, 917);
+      this.panelMain.Size = new System.Drawing.Size(1663, 940);
       this.panelMain.TabIndex = 2;
       // 
       // panelMenu
@@ -144,6 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(17)))), ((int)(((byte)(70)))));
+      this.panelMenu.Controls.Add(this.btnEmployee);
       this.panelMenu.Controls.Add(this.panel7);
       this.panelMenu.Controls.Add(this.picLogoVule);
       this.panelMenu.Controls.Add(this.btnSetting);
@@ -160,7 +161,7 @@
       this.panelMenu.Margin = new System.Windows.Forms.Padding(0);
       this.panelMenu.Name = "panelMenu";
       this.panelMenu.Padding = new System.Windows.Forms.Padding(10, 8, 10, 0);
-      this.panelMenu.Size = new System.Drawing.Size(190, 917);
+      this.panelMenu.Size = new System.Drawing.Size(190, 940);
       this.panelMenu.TabIndex = 0;
       // 
       // panel7
@@ -175,7 +176,7 @@
       // 
       this.picLogoVule.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.picLogoVule.Image = ((System.Drawing.Image)(resources.GetObject("picLogoVule.Image")));
-      this.picLogoVule.Location = new System.Drawing.Point(10, 837);
+      this.picLogoVule.Location = new System.Drawing.Point(10, 860);
       this.picLogoVule.Margin = new System.Windows.Forms.Padding(0);
       this.picLogoVule.Name = "picLogoVule";
       this.picLogoVule.Size = new System.Drawing.Size(170, 80);
@@ -360,7 +361,7 @@
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
       this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel3.Size = new System.Drawing.Size(1868, 59);
+      this.tableLayoutPanel3.Size = new System.Drawing.Size(1868, 60);
       this.tableLayoutPanel3.TabIndex = 2;
       // 
       // label4
@@ -373,7 +374,7 @@
       this.label4.ForeColor = System.Drawing.Color.White;
       this.label4.Location = new System.Drawing.Point(732, 0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(884, 59);
+      this.label4.Size = new System.Drawing.Size(884, 60);
       this.label4.TabIndex = 6;
       this.label4.Text = "KAWASHIMA2";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -388,7 +389,7 @@
       this.picLogo.Margin = new System.Windows.Forms.Padding(0);
       this.picLogo.Name = "picLogo";
       this.picLogo.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-      this.picLogo.Size = new System.Drawing.Size(130, 59);
+      this.picLogo.Size = new System.Drawing.Size(130, 60);
       this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picLogo.TabIndex = 1;
       this.picLogo.TabStop = false;
@@ -403,7 +404,7 @@
       this.pictureBox3.Location = new System.Drawing.Point(1619, 0);
       this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
       this.pictureBox3.Name = "pictureBox3";
-      this.pictureBox3.Size = new System.Drawing.Size(67, 59);
+      this.pictureBox3.Size = new System.Drawing.Size(67, 60);
       this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.pictureBox3.TabIndex = 2;
       this.pictureBox3.TabStop = false;
@@ -418,7 +419,7 @@
       this.label1.ForeColor = System.Drawing.Color.White;
       this.label1.Location = new System.Drawing.Point(1689, 0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(176, 59);
+      this.label1.Size = new System.Drawing.Size(176, 60);
       this.label1.TabIndex = 3;
       this.label1.Text = "NUTRITION";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -440,7 +441,7 @@
       this.tableLayoutPanel4.RowCount = 2;
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54F));
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46F));
-      this.tableLayoutPanel4.Size = new System.Drawing.Size(524, 59);
+      this.tableLayoutPanel4.Size = new System.Drawing.Size(524, 60);
       this.tableLayoutPanel4.TabIndex = 4;
       // 
       // label2
@@ -452,7 +453,7 @@
       this.label2.ForeColor = System.Drawing.Color.White;
       this.label2.Location = new System.Drawing.Point(3, 0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(497, 31);
+      this.label2.Size = new System.Drawing.Size(497, 32);
       this.label2.TabIndex = 0;
       this.label2.Text = "DASHBOARD MONITORING WEIGH";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -465,7 +466,7 @@
       this.lbPage.AutoSize = true;
       this.lbPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-      this.lbPage.Location = new System.Drawing.Point(5, 31);
+      this.lbPage.Location = new System.Drawing.Point(5, 32);
       this.lbPage.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
       this.lbPage.Name = "lbPage";
       this.lbPage.Size = new System.Drawing.Size(283, 28);
@@ -482,30 +483,10 @@
       this.btnMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnMenu.Image")));
       this.btnMenu.Location = new System.Drawing.Point(3, 3);
       this.btnMenu.Name = "btnMenu";
-      this.btnMenu.Size = new System.Drawing.Size(69, 53);
+      this.btnMenu.Size = new System.Drawing.Size(69, 54);
       this.btnMenu.TabIndex = 5;
       this.btnMenu.UseVisualStyleBackColor = false;
       this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
-      // 
-      // statusPLC
-      // 
-      this.statusPLC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.statusPLC.AutoSize = true;
-      this.statusPLC.BackColor = System.Drawing.Color.DarkOrange;
-      this.statusPLC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.statusPLC.ForeColor = System.Drawing.Color.White;
-      this.statusPLC.Image = ((System.Drawing.Image)(resources.GetObject("statusPLC.Image")));
-      this.statusPLC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.statusPLC.Location = new System.Drawing.Point(5, 986);
-      this.statusPLC.Margin = new System.Windows.Forms.Padding(0);
-      this.statusPLC.Name = "statusPLC";
-      this.statusPLC.Padding = new System.Windows.Forms.Padding(850, 0, 0, 0);
-      this.statusPLC.Size = new System.Drawing.Size(1868, 24);
-      this.statusPLC.TabIndex = 0;
-      this.statusPLC.Text = "     Mất kết nối PLC";
-      this.statusPLC.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // tableLayoutPanel5
       // 
@@ -535,17 +516,36 @@
       this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
       this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-      this.tableLayoutPanel7.Controls.Add(this.statusPLC, 1, 2);
       this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel1, 1, 1);
       this.tableLayoutPanel7.Location = new System.Drawing.Point(13, 13);
       this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-      this.tableLayoutPanel7.RowCount = 4;
+      this.tableLayoutPanel7.RowCount = 3;
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel7.Size = new System.Drawing.Size(1878, 1015);
       this.tableLayoutPanel7.TabIndex = 2;
+      // 
+      // btnEmployee
+      // 
+      this.btnEmployee.BackColor = System.Drawing.Color.Transparent;
+      this.btnEmployee.Dock = System.Windows.Forms.DockStyle.Top;
+      this.btnEmployee.FlatAppearance.BorderSize = 0;
+      this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnEmployee.ForeColor = System.Drawing.Color.White;
+      this.btnEmployee.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployee.Image")));
+      this.btnEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnEmployee.Location = new System.Drawing.Point(10, 330);
+      this.btnEmployee.Name = "btnEmployee";
+      this.btnEmployee.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+      this.btnEmployee.Size = new System.Drawing.Size(170, 51);
+      this.btnEmployee.TabIndex = 19;
+      this.btnEmployee.Text = "          NHÂN VIÊN";
+      this.btnEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnEmployee.UseVisualStyleBackColor = false;
+      this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
       // 
       // FrmMain
       // 
@@ -570,7 +570,6 @@
       this.tableLayoutPanel4.PerformLayout();
       this.tableLayoutPanel5.ResumeLayout(false);
       this.tableLayoutPanel7.ResumeLayout(false);
-      this.tableLayoutPanel7.PerformLayout();
       this.ResumeLayout(false);
 
     }
@@ -580,7 +579,6 @@
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-    private System.Windows.Forms.Label statusPLC;
     private System.Windows.Forms.Panel panelMain;
     private System.Windows.Forms.Panel panelMenu;
     private System.Windows.Forms.Button btnSetting;
@@ -607,6 +605,7 @@
     private System.Windows.Forms.PictureBox picLogoVule;
     private System.Windows.Forms.Panel panel7;
     private System.Windows.Forms.Panel panel6;
+    private System.Windows.Forms.Button btnEmployee;
   }
 }
 

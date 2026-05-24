@@ -1,5 +1,7 @@
 ﻿using CheckWeigherFood.Controls;
 using CheckWeigherFood.InitChart;
+using CheckWeigherFood.Popup;
+using CheckWeigherFood.RJControl;
 using Database.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -33,13 +35,7 @@ namespace CheckWeigherFood.FrmChild
     public FrmDashboard()
     {
       InitializeComponent();
-
-      ucTextBoxDate.TextAlign();
-      ucTextBoxTime.TextAlign();
-      ucTextBoxShift.TextAlign();
-
-      lbTLTBDB.TextAlign();
-      lbOWDB.TextAlign();
+      CustomUI();
     }
     #region Singleton parttern
     private static FrmDashboard _Instance = null;
@@ -55,6 +51,34 @@ namespace CheckWeigherFood.FrmChild
       }
     }
     #endregion
+
+
+    private void CustomUI()
+    {
+      ElipseControl elipseControl0 = new ElipseControl();
+      elipseControl0.TargetControl = tableLayoutPanel20;
+      elipseControl0.CornerRadius = 20;
+
+      ElipseControl elipseControl1 = new ElipseControl();
+      elipseControl1.TargetControl = tableLayoutPanel23;
+      elipseControl1.CornerRadius = 20;
+
+      ElipseControl elipseControl2 = new ElipseControl();
+      elipseControl2.TargetControl = tableLayoutPanel1;
+      elipseControl2.CornerRadius = 20;
+
+      ElipseControl elipseControl3 = new ElipseControl();
+      elipseControl3.TargetControl = tableLayoutPanel3;
+      elipseControl3.CornerRadius = 20;
+
+    }
+
+
+
+
+
+
+
 
     private int ShiftId = 0;
     private int ProductId = 0;
@@ -101,23 +125,23 @@ namespace CheckWeigherFood.FrmChild
       UpdateInforProduct();
       LoadInfoLine();
 
-      var SelectIndexChangeFGs = new Action(() => { ComboboxSelectIndexChangeFGs(); });
-      this.reComboboxFGs.SetTag(SelectIndexChangeFGs);
+      //var SelectIndexChangeFGs = new Action(() => { ComboboxSelectIndexChangeFGs(); });
+      //this.reComboboxFGs.SetTag(SelectIndexChangeFGs);
 
 
-      var SelectIndexChangeOP = new Action(() => { ComboboxSelectIndexChangeOP(); });
-      this.reComboboxOP.SetTag(SelectIndexChangeOP);
+      //var SelectIndexChangeOP = new Action(() => { ComboboxSelectIndexChangeOP(); });
+      //this.reComboboxOP.SetTag(SelectIndexChangeOP);
 
-      var SelectIndexChangeQC = new Action(() => { ComboboxSelectIndexChangeQC(); });
-      this.reComboboxQC.SetTag(SelectIndexChangeQC);
+      //var SelectIndexChangeQC = new Action(() => { ComboboxSelectIndexChangeQC(); });
+      //this.reComboboxQC.SetTag(SelectIndexChangeQC);
 
-      var SelectIndexChangeTC = new Action(() => { ComboboxSelectIndexChangeTC(); });
-      this.reComboboxTC.SetTag(SelectIndexChangeTC);
+      //var SelectIndexChangeTC = new Action(() => { ComboboxSelectIndexChangeTC(); });
+      //this.reComboboxTC.SetTag(SelectIndexChangeTC);
 
 
-      this.txtCntIn.TextAlign();
-      this.txtCntOut.TextAlign();
-      this.txtCntReject.TextAlign();
+      //this.txtCntIn.TextAlign();
+      //this.txtCntOut.TextAlign();
+      //this.txtCntReject.TextAlign();
     }
 
     private void Ins_OnSendAutoReport()
@@ -187,25 +211,25 @@ namespace CheckWeigherFood.FrmChild
     }
     private async void ComboboxSelectIndexChangeQC()
     {
-      if (OnSendSaveQC != null)
-        OnSendSaveQC(this, reComboboxQC.SetValue.Trim());
+      //if (OnSendSaveQC != null)
+      //  OnSendSaveQC(this, reComboboxQC.SetValue.Trim());
       //await AppCore.Ins.ClearActiveUser("QC");
       //await AppCore.Ins.ActiveUser(reComboboxQC.SetValue.Trim(), "QC");
 
       AppCore.Ins.ReloadUser();
 
-      AppCore.Ins.LogActiveAppToFileLog("Thay đổi tên QC:" + reComboboxQC.SetValue.Trim());
+      //AppCore.Ins.LogActiveAppToFileLog("Thay đổi tên QC:" + reComboboxQC.SetValue.Trim());
     }
     private async void ComboboxSelectIndexChangeTC()
     {
-      if (OnSendSaveTC != null)
-        OnSendSaveTC(this, reComboboxTC.SetValue.Trim());
-      //await AppCore.Ins.ClearActiveUser("TC");
-      //await AppCore.Ins.ActiveUser(reComboboxTC.SetValue.Trim(), "TC");
+      //if (OnSendSaveTC != null)
+      //  OnSendSaveTC(this, reComboboxTC.SetValue.Trim());
+      ////await AppCore.Ins.ClearActiveUser("TC");
+      ////await AppCore.Ins.ActiveUser(reComboboxTC.SetValue.Trim(), "TC");
 
-      AppCore.Ins.ReloadUser();
+      //AppCore.Ins.ReloadUser();
 
-      AppCore.Ins.LogActiveAppToFileLog("Thay đổi tên TC:" + reComboboxTC.SetValue.Trim());
+      //AppCore.Ins.LogActiveAppToFileLog("Thay đổi tên TC:" + reComboboxTC.SetValue.Trim());
     }
 
 
@@ -267,7 +291,7 @@ namespace CheckWeigherFood.FrmChild
       finally
       {
         ResetDashboard();
-        AppCore.Ins.LogActiveAppToFileLog("Thay đổi sản phẩm:" + this.reComboboxFGs.SelectedItem);
+        //AppCore.Ins.LogActiveAppToFileLog("Thay đổi sản phẩm:" + this.reComboboxFGs.SelectedItem);
       }
     }
 
@@ -345,17 +369,17 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      this.reComboboxOP.ClearCb();
-      this.reComboboxQC.ClearCb();
-      this.reComboboxTC.ClearCb();
+      //this.reComboboxOP.ClearCb();
+      //this.reComboboxQC.ClearCb();
+      //this.reComboboxTC.ClearCb();
 
-      this.ucTextBoxLoBB.Texts = "";
-      Properties.Settings.Default.LoBB = "";
-      Properties.Settings.Default.Save();
-      if (OnSendSaveLoBB != null)
-      {
-        OnSendSaveLoBB(this, this.ucTextBoxLoBB.Texts);
-      }
+      //this.ucTextBoxLoBB.Texts = "";
+      //Properties.Settings.Default.LoBB = "";
+      //Properties.Settings.Default.Save();
+      //if (OnSendSaveLoBB != null)
+      //{
+      //  OnSendSaveLoBB(this, this.ucTextBoxLoBB.Texts);
+      //}
     }
 
 
@@ -379,9 +403,9 @@ namespace CheckWeigherFood.FrmChild
         DateTime dt = DateTime.Now;
         ShiftId = GetShiftByHour(dt.Hour);
 
-        this.ucTextBoxDate.Texts = dt.ToString("dd / MM / yyyy");
-        this.ucTextBoxTime.Texts = dt.ToString("HH : mm : ss");
-        this.ucTextBoxShift.Texts = $"Shift {ShiftId}";
+        //this.ucTextBoxDate.Texts = dt.ToString("dd / MM / yyyy");
+        //this.ucTextBoxTime.Texts = dt.ToString("HH : mm : ss");
+        //this.ucTextBoxShift.Texts = $"Shift {ShiftId}";
 
 
         WarningUser();
@@ -412,49 +436,49 @@ namespace CheckWeigherFood.FrmChild
 
 
 
-      if (reComboboxOP.SelectedItem == "")
-      {
-        lbWarningOP.Visible = isVisible;
-      }
-      else
-      {
-        lbWarningOP.Visible = false;
-      }
+      //if (reComboboxOP.SelectedItem == "")
+      //{
+      //  lbWarningOP.Visible = isVisible;
+      //}
+      //else
+      //{
+      //  lbWarningOP.Visible = false;
+      //}
 
-      if (reComboboxQC.SelectedItem == "")
-      {
-        lbWarningQC.Visible = isVisible;
-      }
-      else
-      {
-        lbWarningQC.Visible = false;
-      }
+      //if (reComboboxQC.SelectedItem == "")
+      //{
+      //  lbWarningQC.Visible = isVisible;
+      //}
+      //else
+      //{
+      //  lbWarningQC.Visible = false;
+      //}
 
-      if (reComboboxTC.SelectedItem == "")
-      {
-        lbWarningTC.Visible = isVisible;
-      }
-      else
-      {
-        lbWarningTC.Visible = false;
-      }
+      //if (reComboboxTC.SelectedItem == "")
+      //{
+      //  lbWarningTC.Visible = isVisible;
+      //}
+      //else
+      //{
+      //  lbWarningTC.Visible = false;
+      //}
 
 
-      if (ucTextBoxLoBB.Texts.Trim() == "" || isLoBBSendPLC == false)
-      {
-        this.lbLOBBE.Visible = isVisible;
-        this.lbLOBBVN.Visible = isVisible;
-        this.lbLOBBE.ForeColor = Color.Yellow;
-        this.lbLOBBVN.ForeColor = Color.Yellow;
-        this.isLoBBSendPLC = false;
-      }
-      else
-      {
-        this.lbLOBBE.Visible = true;
-        this.lbLOBBVN.Visible = true;
-        this.lbLOBBE.ForeColor = Color.White;
-        this.lbLOBBVN.ForeColor = Color.White;
-      }
+      //if (ucTextBoxLoBB.Texts.Trim() == "" || isLoBBSendPLC == false)
+      //{
+      //  this.lbLOBBE.Visible = isVisible;
+      //  this.lbLOBBVN.Visible = isVisible;
+      //  this.lbLOBBE.ForeColor = Color.Yellow;
+      //  this.lbLOBBVN.ForeColor = Color.Yellow;
+      //  this.isLoBBSendPLC = false;
+      //}
+      //else
+      //{
+      //  this.lbLOBBE.Visible = true;
+      //  this.lbLOBBVN.Visible = true;
+      //  this.lbLOBBE.ForeColor = Color.White;
+      //  this.lbLOBBVN.ForeColor = Color.White;
+      //}
 
     }
 
@@ -630,7 +654,7 @@ namespace CheckWeigherFood.FrmChild
       {
         if (AppCore.Ins.datalogsDB == null || AppCore.Ins.datalogsDB.Count == 0)
         {
-          ResetDashBoard();
+          //ResetDashBoard();
           return;
         }
 
@@ -718,15 +742,15 @@ namespace CheckWeigherFood.FrmChild
       //this.lbResult.BackColor = (Mean < ProductTarget) ? Color.Red : Color.FromArgb(40, 167, 68);
       //this.lbResult.Text = (Mean < ProductTarget) ? "FAIL" : "PASS";
 
-      this.txtCntIn.Texts = CntIn.ToString();
-      this.txtCntOut.Texts = CntOut.ToString();
-      this.txtCntReject.Texts = CntReject.ToString();
+      //this.txtCntIn.Texts = CntIn.ToString();
+      //this.txtCntOut.Texts = CntOut.ToString();
+      //this.txtCntReject.Texts = CntReject.ToString();
 
       if (isUpdateChart)
       {
         _dataChart.AddChartControlDashboard(chartControl, valueNetPass, dataTimeData, ProductMax, ProductUpperControl, ProductTarget, ProductLowerControl, ProductMin, MaxValue);
         _dataChart.AddChartHistogram(chartHistogram, valueNetPass, ProductMax, ProductUpperControl, Mean, Std, ProductLowerControl, ProductMin, MinValue, MaxValue, ProductTarget);
-        _dataChart.SetDataChartPie(chartPie, NumbersOk, NumbersOver, NumbersReject);
+        //_dataChart.SetDataChartPie(chartPie, NumbersOk, NumbersOver, NumbersReject);
       }
       //UpdateDataReject(dataRejects);
 
@@ -810,20 +834,66 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnSendLoBB_Click(object sender, EventArgs e)
     {
-      if (Properties.Settings.Default.LoBB != ucTextBoxLoBB.Texts)
+      //if (Properties.Settings.Default.LoBB != ucTextBoxLoBB.Texts)
+      //{
+      //  if (OnSendSaveLoBB != null)
+      //  {
+      //    OnSendSaveLoBB(this, this.ucTextBoxLoBB.Texts);
+      //  }
+      //  Properties.Settings.Default.LoBB = this.ucTextBoxLoBB.Texts;
+      //  Properties.Settings.Default.Save();
+      //  isLoBBSendPLC = true;
+      //}
+
+      //new FrmInformation().ShowMessage($"Lô bao bì: {this.ucTextBoxLoBB.Texts} đã được thay đổi !", eImage.Information);
+      //AppCore.Ins.LogActiveAppToFileLog($"Thay đổi lô BB: {this.ucTextBoxLoBB.Texts}");
+    }
+
+    private void label3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label9_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void btnChangeOperator_Click(object sender, EventArgs e)
+    {
+      PopupChangeOperator popupChangeOperator = new PopupChangeOperator();
+      popupChangeOperator.OnSelectedEmployees += PopupChangeOperator_OnSelectedEmployees;
+      popupChangeOperator.ShowDialog();
+    }
+
+    private void PopupChangeOperator_OnSelectedEmployees(Employee arg1, Employee arg2, Employee arg3)
+    {
+      //Save cài đặt
+      OperationSetting operationSetting = new OperationSetting();
+      operationSetting.OP = arg1.FullName;
+      operationSetting.QC = arg2.FullName;
+      operationSetting.ShiftLeader = arg3.FullName;
+
+
+      ShowInforOperator(arg1, arg2, arg3);
+
+      
+    }
+    private void ShowInforOperator(Employee op, Employee qc, Employee shiftleader)
+    {
+      if (this.InvokeRequired)
       {
-        if (OnSendSaveLoBB != null)
-        {
-          OnSendSaveLoBB(this, this.ucTextBoxLoBB.Texts);
-        }
-        Properties.Settings.Default.LoBB = this.ucTextBoxLoBB.Texts;
-        Properties.Settings.Default.Save();
-        isLoBBSendPLC = true;
+        this.Invoke(new Action(() => { ShowInforOperator(op, qc, shiftleader); }));
+        return;
       }
 
-      new FrmInformation().ShowMessage($"Lô bao bì: {this.ucTextBoxLoBB.Texts} đã được thay đổi !", eImage.Information);
-      AppCore.Ins.LogActiveAppToFileLog($"Thay đổi lô BB: {this.ucTextBoxLoBB.Texts}");
+
+      lbOP.ValueStr = op.FullName;
+      lbQC.ValueStr = qc.FullName;
+      lbShiftLeader.ValueStr = shiftleader.FullName;
     }
+
+
 
   }
 }

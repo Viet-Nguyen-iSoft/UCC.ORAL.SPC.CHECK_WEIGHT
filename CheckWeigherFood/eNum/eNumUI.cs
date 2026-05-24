@@ -15,6 +15,7 @@ namespace CheckWeigherFood.eNum
       Synthetic,
       Report,
       Setting,
+      Employee,
       Synchronized,
     }
 

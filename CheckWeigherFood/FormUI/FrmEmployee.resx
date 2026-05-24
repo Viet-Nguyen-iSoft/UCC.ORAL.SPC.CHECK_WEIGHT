@@ -117,39 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnExport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACQAAAAlCAYAAAAqXEs9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAIdJREFUWEft0kEKgCAQhWFvUjftqB1BXbksBB8USGrONATvh7cIhL7FOMZYJe/9
-        mlJayqdtGRNC2PPMURfMUWaHqmDsUA8Y7DtUBwbTRw1gMD3UCwwmj5rAYHIoAQw2jxLEYDo3FWPcKj+7
-        Lb8pz/UjqBVBrQhqRRD7bT23Mrqp2yKIMaaecych1yh2AsNyjgAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnImportExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABYAAAAbCAYAAAB4Kn/lAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAJNJREFUSEvtkm0KgCAQRLtJ3cSjebSOZk7jCoLp+kEQ+WB/5M48yNpexzln/NjK
-        mBDXE4o1bIjrQYndIkscWeLIs9gvDwQyc/qpgUyuu4scD7NI3wIHPB8ifzVYcN9F+UMiwFwTur8DQeZV
-        6KQCCuwVaZMKKLKfpU8qQEBPwphUgIi+mzlSAcLp0p8Q7m429mtiZy/MO1n+Fuh3EgAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <data name="btnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAQ9JREFUWEftl+sNgkAQhOlMO9AOLMUSKMFSKIlXAXqTjGQ9DlnIcDHmJvl+EHfn
-        hsAeZ1VUdJTGcTz1fX9XMAzDjbb7FEweXdc9lSAY7bcp3M0lZahgVyg0GZMG13tAr/GZwG9cyiea7Ws2
-        sj4xm3xzBAJu71yBgGv6cgZy+f90oIB8yiyo47LLolnSQE0JtEYJtMZRgTCJNftWJ8uiDtQGndk2iaeF
-        NqpNIg2EhdkyEw53qZ4YZaCG5YtCTdQzQxbIYxRq6lSvRRmoZvminD5/+sgAXly2zOQ9l0sDBdrUpHHC
-        8o+94X1EwUus3xi9e4iCb3vZh0Jy+R/FGKzB5XwKn4UrH4Wc1CenqEijqnoBb3MYicfRy9YAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>181, 17</value>
-  </metadata>
 </root>

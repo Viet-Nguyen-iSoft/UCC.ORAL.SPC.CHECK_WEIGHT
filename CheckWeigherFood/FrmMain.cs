@@ -1,4 +1,5 @@
 ﻿using CheckWeigherFood.Controls;
+using CheckWeigherFood.FormUI;
 using CheckWeigherFood.FrmChild;
 using System;
 using System.Collections.Generic;
@@ -108,9 +109,9 @@ namespace CheckWeigherFood
       ChangeButton(AppModulSupport.Setting);
     }
 
-    private void btnSYNCHRONIZ_Click(object sender, EventArgs e)
+    private void btnEmployee_Click(object sender, EventArgs e)
     {
-      ChangeButton(AppModulSupport.Synchronized);
+      ChangeButton(AppModulSupport.Employee);
     }
 
     public void ChangeButton(AppModulSupport button)
@@ -143,6 +144,10 @@ namespace CheckWeigherFood
           this.btnSetting.ForeColor = Select;
           OpenChildForm(AppModulSupport.Setting, FrmSetting.Instance);
           break;
+        case AppModulSupport.Employee:
+          this.btnSetting.ForeColor = Select;
+          OpenChildForm(AppModulSupport.Employee, FrmEmployee.Instance);
+          break;
 
       }
     }
@@ -169,16 +174,16 @@ namespace CheckWeigherFood
 
     private void Ins_OnSendStatus(object sender, bool isConnect)
     {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          Ins_OnSendStatus(sender, isConnect);
-        }));
-        return;
-      }
+      //if (this.InvokeRequired)
+      //{
+      //  this.Invoke(new Action(() =>
+      //  {
+      //    Ins_OnSendStatus(sender, isConnect);
+      //  }));
+      //  return;
+      //}
 
-      this.statusPLC.Visible = !isConnect;
+      //this.statusPLC.Visible = !isConnect;
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -211,5 +216,7 @@ namespace CheckWeigherFood
     {
       AppCore.Ins.RandomData();
     }
+
+    
   }
 }
