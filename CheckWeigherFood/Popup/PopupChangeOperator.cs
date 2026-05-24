@@ -29,8 +29,6 @@ namespace CheckWeigherFood.Popup
       this.Shown += PopupChangeOperator_Shown;
     }
 
-    
-
     private EmployeeService _employeeService { get; set; }
     private void RegisterService()
     {

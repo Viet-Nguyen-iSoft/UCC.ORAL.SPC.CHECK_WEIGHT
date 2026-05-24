@@ -28,5 +28,19 @@ namespace Database.Respository
         throw ex;
       }
     }
+
+    public async Task<Product> GetDataByIdAsync(long id)
+    {
+      try
+      {
+        return await this.Context.Set<Product>()
+                            .Where(x => x.Id == id)
+                            .FirstOrDefaultAsync();
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
   }
 }

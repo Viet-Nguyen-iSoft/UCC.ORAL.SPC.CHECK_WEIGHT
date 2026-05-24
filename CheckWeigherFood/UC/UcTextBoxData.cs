@@ -36,5 +36,13 @@ namespace CheckWeigherFood.UC
       elipseControl1.TargetControl = lbData;
       elipseControl1.CornerRadius = 20;
     }
+
+    public void SetLabelAlign(ContentAlignment alignment)
+    {
+      if (lbData == null)
+        return;
+
+      lbData.TextAlign = alignment;
+    }
   }
 }

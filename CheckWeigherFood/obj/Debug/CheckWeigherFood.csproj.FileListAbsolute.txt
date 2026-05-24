@@ -1214,3 +1214,5 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.FormUI.FrmEmployee.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupAddNewEmployee.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeOperator.resources
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeFGs.resources
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeTareAndLot.resources

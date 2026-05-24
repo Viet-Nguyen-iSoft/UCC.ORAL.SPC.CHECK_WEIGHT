@@ -22,5 +22,17 @@ namespace CheckWeigherFood.Controls
       var context = new PgDbContext();
       return new EmployeeService(context);
     }
+
+    public static OperationSettingService CreateOperationSettingService()
+    {
+      var context = new PgDbContext();
+      return new OperationSettingService(context);
+    }
+
+    public static AppConfigService CreateAppConfigService()
+    {
+      var context = new PgDbContext();
+      return new AppConfigService(context);
+    }
   }
 }

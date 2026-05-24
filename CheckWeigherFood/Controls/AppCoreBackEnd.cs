@@ -2,6 +2,7 @@
 using CheckWeigherFood.PLC;
 using Database.DbContexts;
 using Database.Models;
+using Database.Service;
 using IoTClient.Clients.PLC;
 using IoTClient.Enums;
 using System;
@@ -55,6 +56,9 @@ namespace CheckWeigherFood.Controls
       //Load data dưới DB
       LoadDataLine().Wait();
 
+      ResgisterService();
+      InitLoadDataStartApp().Wait();
+
       //Init PLC
       Init_PLC();
 
@@ -76,6 +80,27 @@ namespace CheckWeigherFood.Controls
 
       //LogActiveAppToFileLog("Open App");
     }
+
+
+    public OperationSetting _operationSettingCurrent { get; set; }
+    public AppConfig _appConfig { get; set; }
+    public Product _productCurrent { get; set; }
+    private async Task InitLoadDataStartApp()
+    {
+      _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
+      _appConfig = await _appConfigService.GetFirstlDataAsync();
+
+      if (_appConfig?.ProductId > 0)
+      {
+        _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
+      }  
+      
+    }
+
+
+    
+
+
 
     private void SetDataStartApp()
     {

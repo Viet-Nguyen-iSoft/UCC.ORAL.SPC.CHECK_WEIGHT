@@ -3,12 +3,14 @@ using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
 using CheckWeigherFood.RJControl;
 using Database.Models;
+using Database.Service;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CheckWeigherFood.eNum.eNumUI;
 
@@ -36,6 +38,7 @@ namespace CheckWeigherFood.FrmChild
     {
       InitializeComponent();
       CustomUI();
+      RegisterService();
     }
     #region Singleton parttern
     private static FrmDashboard _Instance = null;
@@ -74,7 +77,11 @@ namespace CheckWeigherFood.FrmChild
     }
 
 
-
+    private OperationSettingService _operationSettingService { get; set; }
+    private void RegisterService()
+    {
+      _operationSettingService = AppFactory.CreateOperationSettingService();
+    }
 
 
 
@@ -142,6 +149,12 @@ namespace CheckWeigherFood.FrmChild
       //this.txtCntIn.TextAlign();
       //this.txtCntOut.TextAlign();
       //this.txtCntReject.TextAlign();
+
+      ShowInforOperator(AppCore.Ins._operationSettingCurrent.OP, 
+        AppCore.Ins._operationSettingCurrent.QC,
+        AppCore.Ins._operationSettingCurrent.ShiftLeader);
+
+      ShowInforProduct(AppCore.Ins._productCurrent);
     }
 
     private void Ins_OnSendAutoReport()
@@ -866,20 +879,20 @@ namespace CheckWeigherFood.FrmChild
       popupChangeOperator.ShowDialog();
     }
 
-    private void PopupChangeOperator_OnSelectedEmployees(Employee arg1, Employee arg2, Employee arg3)
+    private async void PopupChangeOperator_OnSelectedEmployees(Employee arg1, Employee arg2, Employee arg3)
     {
       //Save cài đặt
       OperationSetting operationSetting = new OperationSetting();
       operationSetting.OP = arg1.FullName;
       operationSetting.QC = arg2.FullName;
       operationSetting.ShiftLeader = arg3.FullName;
+      operationSetting.CreatedAt = DateTime.UtcNow;
+      AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
 
-
-      ShowInforOperator(arg1, arg2, arg3);
-
-      
+      ShowInforOperator(arg1.FullName, arg2.FullName, arg3.FullName);
     }
-    private void ShowInforOperator(Employee op, Employee qc, Employee shiftleader)
+
+    private void ShowInforOperator(string op, string qc, string shiftleader)
     {
       if (this.InvokeRequired)
       {
@@ -887,13 +900,44 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-
-      lbOP.ValueStr = op.FullName;
-      lbQC.ValueStr = qc.FullName;
-      lbShiftLeader.ValueStr = shiftleader.FullName;
+      lbOP.ValueStr = op;
+      lbQC.ValueStr = qc;
+      lbShiftLeader.ValueStr = shiftleader;
     }
 
+    private void btnChangeOver_Click(object sender, EventArgs e)
+    {
+      PopupChangeFGs popupChangeFGs = new PopupChangeFGs();
+      popupChangeFGs.OnSelectedProduct += PopupChangeFGs_OnSelectedProduct;
+      popupChangeFGs.ShowDialog();
+    }
 
+    private async void PopupChangeFGs_OnSelectedProduct(Product obj)
+    {
+      AppCore.Ins._productCurrent = obj;
+      AppCore.Ins._appConfig.ProductId = obj.Id;
+      AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
+      await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
 
+      ShowInforProduct(obj);
+    }
+
+    private void ShowInforProduct(Product product)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforProduct(product); }));
+        return;
+      }
+
+      lbFGs.ValueStr = product?.Code??string.Empty;
+      lbNameProduct.ValueStr = product?.Description ?? string.Empty;
+    }
+
+    private void btnSettingTareAndLot_Click(object sender, EventArgs e)
+    {
+      PopupChangeTareAndLot  popupChangeTareAndLot = new PopupChangeTareAndLot();
+      popupChangeTareAndLot.ShowDialog();
+    }
   }
 }

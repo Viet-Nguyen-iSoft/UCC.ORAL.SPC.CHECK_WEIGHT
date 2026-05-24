@@ -36,6 +36,22 @@ namespace Database.Service
       }
     }
 
+    public async Task<Product> GetDataByIdAsync(long Id)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          _repositoryProduct = new RepositoryProduct(db);
+          return await _repositoryProduct.GetDataByIdAsync(Id);
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+      }
+    }
+
     public async Task AddRangeAsync(List<Product> products)
     {
       using (var db = new PgDbContext())

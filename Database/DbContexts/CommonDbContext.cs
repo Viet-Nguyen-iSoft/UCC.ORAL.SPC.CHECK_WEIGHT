@@ -17,7 +17,8 @@ namespace Database.DbContexts
     public virtual DbSet<Employee> Employees { get; set; }
     public virtual DbSet<Machine> Machines { get; set; }
     public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<Tare> Tares { get; set; }
+    public virtual DbSet<TareSetting> TareSettings { get; set; }
+    public virtual DbSet<OperationSetting> OperationSettings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

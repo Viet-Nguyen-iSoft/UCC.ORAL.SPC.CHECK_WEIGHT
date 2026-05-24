@@ -249,6 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\AppCoreBackEnd.cs" />
+    <Compile Include="Controls\AppCoreDb.cs" />
     <Compile Include="Controls\AppCoreUI.cs" />
     <Compile Include="Controls\AppFactory.cs" />
     <Compile Include="eNum\eNumUI.cs" />
@@ -339,11 +340,23 @@
     <Compile Include="Popup\PopupAddNewEmployee.Designer.cs">
       <DependentUpon>PopupAddNewEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popup\PopupChangeFGs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupChangeFGs.Designer.cs">
+      <DependentUpon>PopupChangeFGs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popup\PopupChangeOperator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Popup\PopupChangeOperator.Designer.cs">
       <DependentUpon>PopupChangeOperator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Popup\PopupChangeTareAndLot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupChangeTareAndLot.Designer.cs">
+      <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="FormUI\ReComboboxFGs.cs">
@@ -454,8 +467,14 @@
     <EmbeddedResource Include="Popup\PopupAddNewEmployee.resx">
       <DependentUpon>PopupAddNewEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupChangeFGs.resx">
+      <DependentUpon>PopupChangeFGs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Popup\PopupChangeOperator.resx">
       <DependentUpon>PopupChangeOperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupChangeTareAndLot.resx">
+      <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
