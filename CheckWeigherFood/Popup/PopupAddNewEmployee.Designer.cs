@@ -60,12 +60,12 @@
       this.tableLayoutPanel1.RowCount = 7;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(546, 228);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(546, 273);
       this.tableLayoutPanel1.TabIndex = 3;
       // 
       // tableLayoutPanel3
@@ -78,7 +78,7 @@
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.cbbGroup, 1, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(10, 80);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(10, 100);
       this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
@@ -159,12 +159,12 @@
       this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.txtName.BackColor = System.Drawing.SystemColors.Window;
       this.txtName.BorderColor = System.Drawing.Color.Black;
-      this.txtName.BorderFocusColor = System.Drawing.Color.HotPink;
+      this.txtName.BorderFocusColor = System.Drawing.Color.Black;
       this.txtName.BorderRadius = 5;
       this.txtName.BorderSize = 2;
-      this.txtName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.txtName.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-      this.txtName.Location = new System.Drawing.Point(104, 9);
+      this.txtName.Location = new System.Drawing.Point(104, 6);
       this.txtName.Margin = new System.Windows.Forms.Padding(4);
       this.txtName.Multiline = false;
       this.txtName.Name = "txtName";
@@ -172,7 +172,7 @@
       this.txtName.PasswordChar = false;
       this.txtName.PlaceholderColor = System.Drawing.Color.DarkGray;
       this.txtName.PlaceholderText = "";
-      this.txtName.Size = new System.Drawing.Size(418, 42);
+      this.txtName.Size = new System.Drawing.Size(418, 48);
       this.txtName.TabIndex = 26;
       this.txtName.Texts = "";
       this.txtName.UnderlinedStyle = false;
@@ -193,7 +193,7 @@
       this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel4.Controls.Add(this.btnAdd, 1, 0);
       this.tableLayoutPanel4.Controls.Add(this.btnExit, 3, 0);
-      this.tableLayoutPanel4.Location = new System.Drawing.Point(10, 158);
+      this.tableLayoutPanel4.Location = new System.Drawing.Point(10, 203);
       this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel4.Name = "tableLayoutPanel4";
       this.tableLayoutPanel4.RowCount = 1;
@@ -247,7 +247,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(546, 228);
+      this.ClientSize = new System.Drawing.Size(546, 273);
       this.ControlBox = false;
       this.Controls.Add(this.tableLayoutPanel1);
       this.Name = "PopupAddNewEmployee";

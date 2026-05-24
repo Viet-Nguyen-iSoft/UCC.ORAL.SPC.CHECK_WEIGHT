@@ -482,7 +482,7 @@ namespace CheckWeigherFood.FrmChild
             product.WeightOnPack = item.WeightOnPack;
             product.Unit = item.Unit;
             product.USL = item.USL;
-            product.UCL = item.USL;
+            product.UCL = item.UCL;
             product.Target = item.Target;
             product.LCL = item.LCL;
             product.LSL = item.LSL;

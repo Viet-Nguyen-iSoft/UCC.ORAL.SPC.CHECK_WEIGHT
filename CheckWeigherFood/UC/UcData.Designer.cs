@@ -77,12 +77,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lbData.AutoSize = true;
       this.lbData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(102)))), ((int)(((byte)(125)))));
-      this.lbData.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbData.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbData.ForeColor = System.Drawing.Color.White;
       this.lbData.Location = new System.Drawing.Point(13, 59);
       this.lbData.Name = "lbData";
       this.lbData.Size = new System.Drawing.Size(349, 80);
       this.lbData.TabIndex = 1;
+      this.lbData.Text = "00.00";
       this.lbData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // UcData

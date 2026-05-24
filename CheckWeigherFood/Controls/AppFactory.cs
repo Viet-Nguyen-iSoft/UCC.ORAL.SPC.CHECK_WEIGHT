@@ -34,5 +34,11 @@ namespace CheckWeigherFood.Controls
       var context = new PgDbContext();
       return new AppConfigService(context);
     }
+
+    public static TareSettingService CreateTareSettingService()
+    {
+      var context = new PgDbContext();
+      return new TareSettingService(context);
+    }
   }
 }

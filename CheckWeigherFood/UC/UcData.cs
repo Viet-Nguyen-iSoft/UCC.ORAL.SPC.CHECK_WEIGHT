@@ -33,5 +33,21 @@ namespace CheckWeigherFood.UC
       elipseControl2.TargetControl = lbData;
       elipseControl2.CornerRadius = 20;
     }
+
+    public string ValueTilte
+    {
+      set
+      {
+        lbTitle.Text = value;
+      }
+    }
+
+    public string ValueData
+    {
+      set
+      {
+        lbData.Text = value;
+      }
+    }
   }
 }

@@ -85,6 +85,7 @@ namespace CheckWeigherFood.Controls
     public OperationSetting _operationSettingCurrent { get; set; }
     public AppConfig _appConfig { get; set; }
     public Product _productCurrent { get; set; }
+    public TareSetting _tareSettingCurrent { get; set; }
     private async Task InitLoadDataStartApp()
     {
       _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
@@ -93,8 +94,8 @@ namespace CheckWeigherFood.Controls
       if (_appConfig?.ProductId > 0)
       {
         _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
-      }  
-      
+      }
+      _tareSettingCurrent = await _tareSettingService.GetFirstDataAsync();
     }
 
 

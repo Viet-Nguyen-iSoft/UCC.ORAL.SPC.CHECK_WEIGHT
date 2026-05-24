@@ -1,4 +1,5 @@
 ﻿using CheckWeigherFood.InitChart;
+using Database.Models;
 using DocumentFormat.OpenXml.Math;
 using Irony.Parsing;
 using System;
@@ -38,6 +39,25 @@ namespace CheckWeigherFood.UC
       this.lbMax.Text = "0";
       this.lbCp.Text = "0";
       this.lbCpk.Text = "0";
+    }
+
+    public void SetInforProduct(Product product)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          ResetDashBoard();
+        }));
+        return;
+      }
+
+      this.lbT.Text = $"{product.T}";
+      this.lbUpper.Text = $"{product.USL}";
+      this.lbUpperControl.Text = $"{product.UCL}";
+      this.lbTarget.Text = $"{product.Target}";
+      this.lbLowerControl.Text = $"{product.LCL}";
+      this.lbLower.Text = $"{product.LSL}";
     }
   }
 }

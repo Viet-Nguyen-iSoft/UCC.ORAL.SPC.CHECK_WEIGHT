@@ -74,6 +74,12 @@ namespace CheckWeigherFood.FrmChild
       elipseControl3.TargetControl = tableLayoutPanel3;
       elipseControl3.CornerRadius = 20;
 
+      ElipseControl elipseControl4 = new ElipseControl();
+      elipseControl4.TargetControl = tableLayoutPanel7;
+      elipseControl4.CornerRadius = 20;
+
+      lbOverWeight.ValueTilte = "OW (%)";
+      lbTLTB.ValueTilte = "TL trung bình (g)";
     }
 
 
@@ -155,6 +161,7 @@ namespace CheckWeigherFood.FrmChild
         AppCore.Ins._operationSettingCurrent.ShiftLeader);
 
       ShowInforProduct(AppCore.Ins._productCurrent);
+      ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent);
     }
 
     private void Ins_OnSendAutoReport()
@@ -932,12 +939,32 @@ namespace CheckWeigherFood.FrmChild
 
       lbFGs.ValueStr = product?.Code??string.Empty;
       lbNameProduct.ValueStr = product?.Description ?? string.Empty;
+      ucInformationDataSumary1.SetInforProduct(product);
     }
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
     {
-      PopupChangeTareAndLot  popupChangeTareAndLot = new PopupChangeTareAndLot();
+      PopupChangeTareAndLot  popupChangeTareAndLot = new PopupChangeTareAndLot(AppCore.Ins._tareSettingCurrent);
+      popupChangeTareAndLot.OnChangeTareSetting += PopupChangeTareAndLot_OnChangeTareSetting;
       popupChangeTareAndLot.ShowDialog();
+    }
+
+    private void PopupChangeTareAndLot_OnChangeTareSetting(TareSetting obj)
+    {
+      ShowInforLotAndTare(obj);
+    }
+
+    private void ShowInforLotAndTare(TareSetting tareSetting)
+    { 
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforLotAndTare(tareSetting); }));
+        return;
+      }
+
+      lbLot.ValueStr = tareSetting?.Lot ?? string.Empty;
+      lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
+      lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
     }
   }
 }

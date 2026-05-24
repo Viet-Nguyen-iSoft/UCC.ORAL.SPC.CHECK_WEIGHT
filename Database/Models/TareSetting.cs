@@ -12,10 +12,11 @@ namespace Database.Models
   {
     public double? Tube { get; set; }
     public double? Carton { get; set; }
+    public string Lot { get; set; }
 
 
     #region Mapping
-   
+
     #endregion
   }
 }
