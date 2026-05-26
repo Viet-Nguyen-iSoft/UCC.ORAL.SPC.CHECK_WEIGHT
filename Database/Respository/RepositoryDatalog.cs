@@ -17,13 +17,14 @@ namespace Database.Respository
 
     }
 
-    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to)
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId)
     {
       try
       {
         return await this.Context.Set<Datalog>()
              .Where(x =>
                  x.DeletedFlag == false &&
+                 x.ProductId == productId &&
                  x.CreatedAt >= from &&
                  x.CreatedAt <= to)
              .ToListAsync();

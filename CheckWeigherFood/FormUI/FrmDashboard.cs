@@ -2,17 +2,15 @@
 using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
 using CheckWeigherFood.RJControl;
+using Database.DTO;
 using Database.Models;
 using Database.Service;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CheckWeigherFood.eNum.eNumUI;
+using static Database.Enum;
 
 namespace CheckWeigherFood.FrmChild
 {
@@ -80,6 +78,7 @@ namespace CheckWeigherFood.FrmChild
 
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
+      ucInformationLoss1.ValueTitle = "Thông tin loss";
     }
 
 
@@ -97,7 +96,6 @@ namespace CheckWeigherFood.FrmChild
     private int ProductId = 0;
 
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
-    private System.Timers.Timer timer_DateTime_App = new System.Timers.Timer();
 
 
     private double ProductMin = 0;
@@ -131,10 +129,6 @@ namespace CheckWeigherFood.FrmChild
       timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
       timer_UpdateUI.Start();
 
-      timer_DateTime_App.Interval = 900;
-      timer_DateTime_App.Elapsed += Timer_DateTime_App_Elapsed; ;
-      timer_DateTime_App.Start();
-
       UpdateInforProduct();
       LoadInfoLine();
 
@@ -156,11 +150,11 @@ namespace CheckWeigherFood.FrmChild
       //this.txtCntOut.TextAlign();
       //this.txtCntReject.TextAlign();
 
-      ShowInforOperator(AppCore.Ins._operationSettingCurrent.OP, 
-        AppCore.Ins._operationSettingCurrent.QC,
-        AppCore.Ins._operationSettingCurrent.ShiftLeader);
+      ShowInforOperator(AppCore.Ins._operationSettingCurrent?.OP,
+        AppCore.Ins._operationSettingCurrent?.QC,
+        AppCore.Ins._operationSettingCurrent?.ShiftLeader);
 
-      ShowInforProduct(AppCore.Ins._productCurrent);
+      ShowInforProduct(AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
       ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent);
     }
 
@@ -402,43 +396,6 @@ namespace CheckWeigherFood.FrmChild
       //}
     }
 
-
-    //MasterData masterDataCurrent = new MasterData();
-
-    private void Timer_DateTime_App_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          Timer_DateTime_App_Elapsed(sender, e);
-        }));
-        return;
-      }
-
-
-      timer_DateTime_App.Stop();
-      try
-      {
-        DateTime dt = DateTime.Now;
-        ShiftId = GetShiftByHour(dt.Hour);
-
-        //this.ucTextBoxDate.Texts = dt.ToString("dd / MM / yyyy");
-        //this.ucTextBoxTime.Texts = dt.ToString("HH : mm : ss");
-        //this.ucTextBoxShift.Texts = $"Shift {ShiftId}";
-
-
-        WarningUser();
-
-      }
-      catch (Exception)
-      {
-      }
-      finally
-      { timer_DateTime_App.Start(); }
-    }
-
-
     private bool isVisible = false;
     private bool isLoBBSendPLC = true;
     private void WarningUser()
@@ -667,39 +624,46 @@ namespace CheckWeigherFood.FrmChild
 
 
     private List<Datalog> list = new List<Datalog>();
+    private List<DataRejectDTO> reject = new List<DataRejectDTO>();
+    private SumaryDTO sumaryDTO = new SumaryDTO();
 
     private void LoadDataDashBoard()
     {
       try
       {
-        if (AppCore.Ins.datalogsDB == null || AppCore.Ins.datalogsDB.Count == 0)
+        if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent.Count == 0)
         {
           //ResetDashBoard();
           return;
         }
 
-        //list = AppCore.Ins.datalogsDB;
-        //valueNetPass = list.Where(s => s.Status == "Ok" || s.Status == "Over").Select(x => x.Net).ToList();
-        //valueNetOk = list.Where(s => s.Status == "Ok").Select(x => x.Net).ToList();
-        //valueNetOver = list.Where(s => s.Status == "Over").Select(x => x.Net).ToList();
-        //valueNetReject = list.Where(s => s.Status == "Reject").ToList();
-        //dataTimeData = list.Where(s => s.Status == "Ok" || s.Status == "Over").Select(x => x.CreatedAt.ToString()).ToList();
+        var list = AppCore.Ins._datalogsInShiftCurrent;
+        valueNetPass = list.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).Select(x => x.Net).ToList();
+        valueNetOk = list.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).Select(x => x.Net).ToList();
+        valueNetOver = list.Where(s => s.EnumStatusRecord == EnumStatusRecord.Over).Select(x => x.Net).ToList();
+        valueNetReject = list.Where(s => s.EnumStatusRecord == EnumStatusRecord.Reject).ToList();
+        dataTimeData = list.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).Select(x => x.CreatedAt.ToString()).ToList();
 
-        //dataRejects = new List<DataReject>();
-        //foreach (var data in valueNetReject)
-        //{
-        //  DataReject dataReject = new DataReject();
-        //  dataReject.DateTime = (DateTime)data.CreatedAt;
-        //  dataReject.FGs = ProductFGs;
-        //  dataReject.Actual = data.Net;
-        //  dataReject.Target = ProductTarget;
-        //  dataRejects.Add(dataReject);
-        //}
+        reject = new List<DataRejectDTO>();
+        double target = AppCore.Ins._productCurrent?.Target ?? 0.0 +
+          AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0 +
+          AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0;
+        foreach (var data in valueNetReject)
+        {
+          DataRejectDTO dataReject = new DataRejectDTO();
+          dataReject.DateTime = (DateTime)data.CreatedAt;
+          dataReject.FGs = AppCore.Ins._productCurrent.Code;
+          dataReject.Actual = data.Net;
+          dataReject.Target = target;
+          reject.Add(dataReject);
+        }
 
+        //
+        sumaryDTO = SumaryDTOData(list);
 
-        //NumbersOk = (double)valueNetOk.Count;
-        //NumbersOver = (double)valueNetOver.Count;
-        //NumbersReject = (double)valueNetReject.Count;
+        NumbersOk = (double)valueNetOk.Count;
+        NumbersOver = (double)valueNetOver.Count;
+        NumbersReject = (double)valueNetReject.Count;
 
         //CntIn = list.Count();
         //CntOut = valueNetPass.Count();
@@ -718,11 +682,8 @@ namespace CheckWeigherFood.FrmChild
         //OW = (ProductTarget != 0) ? Math.Round(((Mean - ProductTarget) / ProductTarget) * 100, 2) : 0;
         //OW = (Mean == 0) ? 0 : OW;
 
-        //if (OnSendKawaTV != null)
-        //  OnSendKawaTV(this, (ulong)(OW * 100), (ulong)valueNetPass.Count());
 
-        //UpdateDataUI(true);
-
+        UpdateDataUI(true);
       }
       catch (Exception ex)
       {
@@ -733,8 +694,36 @@ namespace CheckWeigherFood.FrmChild
       }
     }
 
-    
 
+    private SumaryDTO SumaryDTOData(List<Datalog> datalogs)
+    {
+      SumaryDTO sumaryDTO = new SumaryDTO();
+      var listDataOk = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).Select(x => x.Net).ToList();
+
+      NumbersOk = (double)valueNetOk.Count;
+      NumbersOver = (double)valueNetOver.Count;
+      NumbersReject = (double)valueNetReject.Count;
+
+      CntIn = list.Count();
+      CntOut = valueNetPass.Count();
+      CntReject = (int)NumbersReject;
+
+      sumaryDTO.Sample = listDataOk.Count;
+      sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(listDataOk);
+
+      double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(listDataOk);
+      sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : listDataOk.Min();
+      sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : listDataOk.Max();
+
+      sumaryDTO.Cp = (Std != 0) ? Math.Round(((MaxValue - MinValue) / (6 * Std)), 3) : 0;
+      double hcpk = (Std != 0) ? ((MaxValue - Mean) / (3 * Std)) : 0;
+      double lcpk = (Std != 0) ? ((Mean - MinValue) / (3 * Std)) : 0;
+      sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
+      sumaryDTO.OW = (ProductTarget != 0) ? Math.Round(((Mean - ProductTarget) / ProductTarget) * 100, 2) : 0;
+      sumaryDTO.OW = (Mean == 0) ? 0 : OW;
+      sumaryDTO.Stdev = Std;
+      return sumaryDTO;
+    }
 
 
 
@@ -768,58 +757,99 @@ namespace CheckWeigherFood.FrmChild
 
       if (isUpdateChart)
       {
+        ProductMax = (AppCore.Ins._productCurrent?.USL ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0);
+        ProductUpperControl = (AppCore.Ins._productCurrent?.UCL ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0);
+        ProductTarget = (AppCore.Ins._productCurrent?.Target ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0);
+        ProductLowerControl = (AppCore.Ins._productCurrent?.LCL ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0);
+        ProductMin = (AppCore.Ins._productCurrent?.LSL ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0) +
+         (AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0);
+
+
         _dataChart.AddChartControlDashboard(chartControl, valueNetPass, dataTimeData, ProductMax, ProductUpperControl, ProductTarget, ProductLowerControl, ProductMin, MaxValue);
-        _dataChart.AddChartHistogram(chartHistogram, valueNetPass, ProductMax, ProductUpperControl, Mean, Std, ProductLowerControl, ProductMin, MinValue, MaxValue, ProductTarget);
-        //_dataChart.SetDataChartPie(chartPie, NumbersOk, NumbersOver, NumbersReject);
+        _dataChart.AddChartHistogram(chartHistogram, valueNetPass, ProductMax, ProductUpperControl, sumaryDTO.Mean, sumaryDTO.Stdev, ProductLowerControl, ProductMin, sumaryDTO.Min, sumaryDTO.Max, ProductTarget);
+        ucChartPie1.SetDataChartPie(NumbersOk, NumbersOver, NumbersReject);
       }
-      //UpdateDataReject(dataRejects);
 
-
+      ucInformationDataSumary1.SetSumaryDTO(sumaryDTO);
+      SetDataOW_Mean(sumaryDTO);
+      UpdateDataReject(reject);
     }
 
 
     private int numberRejectLast = 0;
-    //private void UpdateDataReject(List<DataReject> dataRejects)
-    //{
-    //  try
-    //  {
-    //    if (this.InvokeRequired)
-    //    {
-    //      this.Invoke(new Action(() =>
-    //      {
-    //        UpdateDataReject(dataRejects);
-    //      }));
-    //      return;
-    //    }
+    private void UpdateDataReject(List<DataRejectDTO> dataRejects)
+    {
+      try
+      {
+        if (this.InvokeRequired)
+        {
+          this.Invoke(new Action(() =>
+          {
+            UpdateDataReject(dataRejects);
+          }));
+          return;
+        }
 
-    //    if (dataRejects == null)
-    //    {
-    //      dgvReject.Rows.Clear();
-    //      return;
-    //    }
+        if (dataRejects == null)
+        {
+          dgvReject.Rows.Clear();
+          return;
+        }
 
-    //    if (numberRejectLast != dataRejects.Count)
-    //    {
-    //      dataRejects = dataRejects.OrderByDescending(x => x.DateTime).ToList();
-    //      dgvReject.Rows.Clear();
-    //      foreach (var item in dataRejects)
-    //      {
-    //        int indexOfFirstSpace = item.DateTime.ToString().IndexOf(' ');
-    //        string timeOnly = item.DateTime.ToString().Substring(indexOfFirstSpace + 1);
+        if (numberRejectLast != dataRejects.Count)
+        {
+          dataRejects = dataRejects.OrderByDescending(x => x.DateTime).ToList();
+          dgvReject.Rows.Clear();
+          foreach (var item in dataRejects)
+          {
+            int indexOfFirstSpace = item.DateTime.ToString().IndexOf(' ');
+            string timeOnly = item.DateTime.ToString().Substring(indexOfFirstSpace + 1);
 
-    //        dgvReject.Rows.Add(timeOnly, item.FGs, item.Actual, item.Target);
-    //      }
-    //      numberRejectLast = dataRejects.Count();
-    //    }
+            dgvReject.Rows.Add(timeOnly, item.FGs, item.Actual, item.Target);
+          }
+          numberRejectLast = dataRejects.Count();
+
+          ucInformationLoss1.ValueReject = numberRejectLast.ToString();
+        }
 
 
-    //  }
-    //  catch (Exception ex)
-    //  {
-    //    Console.WriteLine(ex.Message);
-    //  }
-    //}
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+      }
+    }
 
+    private void SetDataOW_Mean(SumaryDTO sumaryDTO)
+    {
+      try
+      {
+        if (this.InvokeRequired)
+        {
+          this.Invoke(new Action(() =>
+          {
+            SetDataOW_Mean(sumaryDTO);
+          }));
+          return;
+        }
+
+        lbOverWeight.ValueData = sumaryDTO.OW.ToString();
+        lbTLTB.ValueData = sumaryDTO.Mean.ToString();
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+      }
+    }
 
 
     #region Cal Tính toán Mean, Std
@@ -926,25 +956,25 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
       await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
 
-      ShowInforProduct(obj);
+      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
-    private void ShowInforProduct(Product product)
+    private void ShowInforProduct(Product product, double tube, double carton)
     {
       if (this.InvokeRequired)
       {
-        this.Invoke(new Action(() => { ShowInforProduct(product); }));
+        this.Invoke(new Action(() => { ShowInforProduct(product, tube, carton); }));
         return;
       }
 
-      lbFGs.ValueStr = product?.Code??string.Empty;
+      lbFGs.ValueStr = product?.Code ?? string.Empty;
       lbNameProduct.ValueStr = product?.Description ?? string.Empty;
-      ucInformationDataSumary1.SetInforProduct(product);
+      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
     {
-      PopupChangeTareAndLot  popupChangeTareAndLot = new PopupChangeTareAndLot(AppCore.Ins._tareSettingCurrent);
+      PopupChangeTareAndLot popupChangeTareAndLot = new PopupChangeTareAndLot(AppCore.Ins._tareSettingCurrent);
       popupChangeTareAndLot.OnChangeTareSetting += PopupChangeTareAndLot_OnChangeTareSetting;
       popupChangeTareAndLot.ShowDialog();
     }
@@ -955,7 +985,7 @@ namespace CheckWeigherFood.FrmChild
     }
 
     private void ShowInforLotAndTare(TareSetting tareSetting)
-    { 
+    {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() => { ShowInforLotAndTare(tareSetting); }));

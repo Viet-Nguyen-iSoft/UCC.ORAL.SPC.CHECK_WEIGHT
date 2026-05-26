@@ -1216,3 +1216,5 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeOperator.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeFGs.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeTareAndLot.resources
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debug\NModbus4.dll
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debug\NModbus4.xml

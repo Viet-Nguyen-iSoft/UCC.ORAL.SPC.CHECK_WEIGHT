@@ -92,17 +92,18 @@ namespace CheckWeigherFood.Controls
       _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
       _appConfig = await _appConfigService.GetFirstlDataAsync();
 
-      if (_appConfig?.ProductId > 0)
-      {
-        _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
-      }
       _tareSettingCurrent = await _tareSettingService.GetFirstDataAsync();
       _machineCurrent = await _machineService.GetFirstlDataAsync();
 
-      var shift = GetCurrentShift(DateTime.Now);
-      DateTime startUtc = shift.StartTime.ToUniversalTime();
-      DateTime endUtc = shift.EndTime.ToUniversalTime();
-      _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(startUtc, endUtc);
+      if (_appConfig?.ProductId > 0)
+      {
+        _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
+
+        var shift = GetCurrentShift(DateTime.Now);
+        DateTime startUtc = shift.StartTime.ToUniversalTime();
+        DateTime endUtc = shift.EndTime.ToUniversalTime();
+        _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(startUtc, endUtc, _productCurrent.Id);
+      }
     }
 
 

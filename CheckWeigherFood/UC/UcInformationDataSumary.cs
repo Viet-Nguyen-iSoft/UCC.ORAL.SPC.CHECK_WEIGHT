@@ -1,4 +1,5 @@
 ﻿using CheckWeigherFood.InitChart;
+using Database.DTO;
 using Database.Models;
 using DocumentFormat.OpenXml.Math;
 using Irony.Parsing;
@@ -41,23 +42,50 @@ namespace CheckWeigherFood.UC
       this.lbCpk.Text = "0";
     }
 
-    public void SetInforProduct(Product product)
+    public void SetInforProduct(Product product, double tube, double carton)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          ResetDashBoard();
+          SetInforProduct(product, tube, carton);
         }));
         return;
       }
 
-      this.lbT.Text = $"{product.T}";
-      this.lbUpper.Text = $"{product.USL}";
-      this.lbUpperControl.Text = $"{product.UCL}";
-      this.lbTarget.Text = $"{product.Target}";
-      this.lbLowerControl.Text = $"{product.LCL}";
-      this.lbLower.Text = $"{product.LSL}";
+      if (product!=null)
+      {
+        this.lbT.Text = $"{product.T }";
+        this.lbUpper.Text = $"{product.USL + tube + carton}";
+        this.lbUpperControl.Text = $"{product.UCL + tube + carton}";
+        this.lbTarget.Text = $"{product.Target + tube + carton}";
+        this.lbLowerControl.Text = $"{product.LCL + tube + carton}";
+        this.lbLower.Text = $"{product.LSL + tube + carton}";
+      }  
+      
+    }
+
+    public void SetSumaryDTO(SumaryDTO sumaryDTO)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetSumaryDTO(sumaryDTO);
+        }));
+        return;
+      }
+
+      if (sumaryDTO != null)
+      {
+        this.lbMax.Text = $"{sumaryDTO.Max}";
+        this.lbMin.Text = $"{sumaryDTO.Min}";
+        this.lbXtb.Text = $"{sumaryDTO.Mean}";
+        this.lbCp.Text = $"{sumaryDTO.Cp}";
+        this.lbCpk.Text = $"{sumaryDTO.Cpk}";
+        this.lbSample.Text = $"{sumaryDTO.Sample}";
+      }
+
     }
   }
 }

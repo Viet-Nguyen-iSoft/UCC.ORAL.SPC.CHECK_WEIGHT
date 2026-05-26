@@ -140,8 +140,10 @@
     <Compile Include="DbContexts\ModelBuilderExtensions.cs" />
     <Compile Include="DbContexts\PgDbContext.cs" />
     <Compile Include="DtoHelper\HelperDTO.cs" />
+    <Compile Include="DTO\DataRejectDTO.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="DTO\SumaryDTO.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Models\AppConfig.cs" />
     <Compile Include="Models\BaseModel.cs" />

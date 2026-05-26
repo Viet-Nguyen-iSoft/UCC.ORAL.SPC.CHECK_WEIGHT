@@ -404,7 +404,7 @@
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.68964F));
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.31036F));
       this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-      this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+      this.tableLayoutPanel75.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 16F));
       this.tableLayoutPanel75.Controls.Add(this.btnSaveQuality, 3, 0);
       this.tableLayoutPanel75.Controls.Add(this.txtSettingQuality, 2, 0);
       this.tableLayoutPanel75.Controls.Add(this.tableLayoutPanel76, 0, 0);
@@ -426,7 +426,7 @@
       this.btnSaveQuality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(151)))), ((int)(((byte)(206)))));
       this.btnSaveQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSaveQuality.ForeColor = System.Drawing.Color.White;
-      this.btnSaveQuality.Location = new System.Drawing.Point(622, 10);
+      this.btnSaveQuality.Location = new System.Drawing.Point(621, 10);
       this.btnSaveQuality.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.btnSaveQuality.Name = "btnSaveQuality";
       this.btnSaveQuality.Size = new System.Drawing.Size(66, 40);
@@ -443,7 +443,7 @@
       this.txtSettingQuality.Margin = new System.Windows.Forms.Padding(5, 12, 5, 12);
       this.txtSettingQuality.Multiline = true;
       this.txtSettingQuality.Name = "txtSettingQuality";
-      this.txtSettingQuality.Size = new System.Drawing.Size(116, 36);
+      this.txtSettingQuality.Size = new System.Drawing.Size(115, 36);
       this.txtSettingQuality.TabIndex = 8;
       this.txtSettingQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
@@ -547,7 +547,7 @@
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.68965F));
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.31035F));
       this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-      this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+      this.tableLayoutPanel72.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 16F));
       this.tableLayoutPanel72.Controls.Add(this.btnSaveSafe, 3, 0);
       this.tableLayoutPanel72.Controls.Add(this.txtSettingSafe, 2, 0);
       this.tableLayoutPanel72.Controls.Add(this.tableLayoutPanel73, 0, 0);
@@ -569,7 +569,7 @@
       this.btnSaveSafe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(151)))), ((int)(((byte)(206)))));
       this.btnSaveSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSaveSafe.ForeColor = System.Drawing.Color.White;
-      this.btnSaveSafe.Location = new System.Drawing.Point(622, 10);
+      this.btnSaveSafe.Location = new System.Drawing.Point(621, 10);
       this.btnSaveSafe.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.btnSaveSafe.Name = "btnSaveSafe";
       this.btnSaveSafe.Size = new System.Drawing.Size(66, 40);
@@ -586,7 +586,7 @@
       this.txtSettingSafe.Margin = new System.Windows.Forms.Padding(5, 12, 5, 12);
       this.txtSettingSafe.Multiline = true;
       this.txtSettingSafe.Name = "txtSettingSafe";
-      this.txtSettingSafe.Size = new System.Drawing.Size(116, 36);
+      this.txtSettingSafe.Size = new System.Drawing.Size(115, 36);
       this.txtSettingSafe.TabIndex = 8;
       this.txtSettingSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 

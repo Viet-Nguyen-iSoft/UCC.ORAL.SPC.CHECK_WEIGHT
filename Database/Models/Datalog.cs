@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Database.Enum;
 
 namespace Database.Models
 {
@@ -13,6 +14,7 @@ namespace Database.Models
     public double TareTube { get; set; }
     public double TareCarton { get; set; }
 
+    public EnumStatusRecord EnumStatusRecord { get; set; }
 
     public string NameEmployeeOP { get; set; }
     public string NameEmployeeQC { get; set; }

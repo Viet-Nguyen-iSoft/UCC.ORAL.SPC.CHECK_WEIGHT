@@ -48,6 +48,7 @@
       this.btnDashBoard = new System.Windows.Forms.Button();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.label4 = new System.Windows.Forms.Label();
+      this.picLogo = new System.Windows.Forms.PictureBox();
       this.pictureBox3 = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       this.label2 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
       this.btnMenu = new System.Windows.Forms.Button();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-      this.picLogo = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       this.tableLayoutPanel6.SuspendLayout();
@@ -63,11 +63,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.picLogoVule)).BeginInit();
       this.panel5.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
       this.tableLayoutPanel4.SuspendLayout();
       this.tableLayoutPanel5.SuspendLayout();
       this.tableLayoutPanel7.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -364,6 +364,21 @@
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       this.label4.Click += new System.EventHandler(this.label4_Click);
       // 
+      // picLogo
+      // 
+      this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.picLogo.Location = new System.Drawing.Point(79, 0);
+      this.picLogo.Margin = new System.Windows.Forms.Padding(0);
+      this.picLogo.Name = "picLogo";
+      this.picLogo.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+      this.picLogo.Size = new System.Drawing.Size(115, 60);
+      this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picLogo.TabIndex = 1;
+      this.picLogo.TabStop = false;
+      this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+      // 
       // pictureBox3
       // 
       this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -480,21 +495,6 @@
       this.tableLayoutPanel7.Size = new System.Drawing.Size(1878, 1015);
       this.tableLayoutPanel7.TabIndex = 2;
       // 
-      // picLogo
-      // 
-      this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.picLogo.Location = new System.Drawing.Point(79, 0);
-      this.picLogo.Margin = new System.Windows.Forms.Padding(0);
-      this.picLogo.Name = "picLogo";
-      this.picLogo.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-      this.picLogo.Size = new System.Drawing.Size(115, 60);
-      this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picLogo.TabIndex = 1;
-      this.picLogo.TabStop = false;
-      this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
-      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,7 +502,7 @@
       this.ClientSize = new System.Drawing.Size(1904, 1041);
       this.Controls.Add(this.tableLayoutPanel5);
       this.Name = "FrmMain";
-      this.Text = "Form1";
+      this.ShowIcon = false;
       this.Load += new System.EventHandler(this.FrmMain_Load);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
@@ -512,12 +512,12 @@
       this.panel5.ResumeLayout(false);
       this.tableLayoutPanel3.ResumeLayout(false);
       this.tableLayoutPanel3.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
       this.tableLayoutPanel4.ResumeLayout(false);
       this.tableLayoutPanel4.PerformLayout();
       this.tableLayoutPanel5.ResumeLayout(false);
       this.tableLayoutPanel7.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
       this.ResumeLayout(false);
 
     }

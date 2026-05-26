@@ -24,5 +24,21 @@ namespace Database
       ShiftLeader = 3,
 
     }
+
+    public enum EnumStatusRecord
+    {
+      [Description("N/A")]
+      None = 0,
+
+      [Description("Vận hành máy")]
+      Accept = 1,
+
+      [Description("Chất lượng")]
+      Over = 2,
+
+      [Description("Trưởng ca")]
+      Reject = 3,
+
+    }
   }
 }

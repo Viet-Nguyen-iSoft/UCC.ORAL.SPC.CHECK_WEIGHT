@@ -21,14 +21,14 @@ namespace Database.Service
       _repositoryDatalog = new RepositoryDatalog(_context);
     }
 
-    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to)
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId)
     {
       using (var db = new PgDbContext())
       {
         try
         {
           _repositoryDatalog = new RepositoryDatalog(db);
-          return await _repositoryDatalog.GetAllDataByTimeAsync(from, to);
+          return await _repositoryDatalog.GetAllDataByTimeAsync(from, to, productId);
         }
         catch (Exception ex)
         {
@@ -37,7 +37,7 @@ namespace Database.Service
       }
     }
 
-    public async Task AddAsync(Datalog datalog)
+    public async Task<bool> AddAsync(Datalog datalog)
     {
       using (var db = new PgDbContext())
       {
@@ -49,11 +49,12 @@ namespace Database.Service
           await _repositoryDatalog.AddAsync(datalog);
           await db.SaveChangesAsync();
           db.Database.CommitTransaction();
+          return true;
         }
         catch (Exception ex)
         {
           db.Database.RollbackTransaction();
-          throw ex;
+          return false;
         }
       }
     }

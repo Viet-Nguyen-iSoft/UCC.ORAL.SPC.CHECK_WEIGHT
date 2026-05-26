@@ -32,32 +32,32 @@ namespace CheckWeigherFood.UC
     }
 
     #region Chart Pie
-    public void SetDataChartPie(Chart nameChart, double valueOK, double valueOver, double valueReject)
+    public void SetDataChartPie(double valueOK, double valueOver, double valueReject)
     {
       double total = valueOK + valueOver + valueReject;
-      nameChart.Series[0].Points.Clear();
+      chartPie.Series[0].Points.Clear();
       try
       {
         if (valueOK == 0 && valueOver == 0 && valueReject == 0)
         {
-          nameChart.Series[0].Points.AddXY($"No Data", 100);
-          nameChart.Series[0].Points[0].Color = Color.Gray;
-          nameChart.Series[0].Points[0].LabelForeColor = Color.White;
+          chartPie.Series[0].Points.AddXY($"No Data", 100);
+          chartPie.Series[0].Points[0].Color = Color.Gray;
+          chartPie.Series[0].Points[0].LabelForeColor = Color.White;
           return;
         }
         if (valueOK > 0)
         {
-          nameChart.Series[0].Points.AddXY($"{Math.Round(valueOK * 100 / total, 2)} %", valueOK);
+          chartPie.Series[0].Points.AddXY($"{Math.Round(valueOK * 100 / total, 2)} %", valueOK);
           //nameChart.Series[0].Points.AddXY($"", valueOK);
         }
         if (valueOver > 0)
         {
-          nameChart.Series[0].Points.AddXY($"{Math.Round(valueOver * 100 / total, 2)} %", valueOver);
+          chartPie.Series[0].Points.AddXY($"{Math.Round(valueOver * 100 / total, 2)} %", valueOver);
           //nameChart.Series[0].Points.AddXY($"", valueOver);
         }
         if (valueReject > 0)
         {
-          nameChart.Series[0].Points.AddXY($"{Math.Round(valueReject * 100 / total, 2)} %", valueReject);
+          chartPie.Series[0].Points.AddXY($"{Math.Round(valueReject * 100 / total, 2)} %", valueReject);
           //nameChart.Series[0].Points.AddXY($"", valueReject);
         }
 
@@ -69,61 +69,61 @@ namespace CheckWeigherFood.UC
       {
         if (valueOK > 0 && valueOver > 0 && valueReject > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
-          nameChart.Series[0].Points[1].Color = Color.FromArgb(255, 128, 0); // Cam
-          nameChart.Series[0].Points[2].Color = Color.Red; // ĐỎ
-          nameChart.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[2].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
-          nameChart.Series[0].Points[1].LabelForeColor = Color.Transparent;
-          nameChart.Series[0].Points[2].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
+          chartPie.Series[0].Points[1].Color = Color.FromArgb(255, 128, 0); // Cam
+          chartPie.Series[0].Points[2].Color = Color.Red; // ĐỎ
+          chartPie.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[2].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[1].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[2].LabelForeColor = Color.Transparent;
         }
 
         else if (valueOK > 0 && valueOver > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
-          nameChart.Series[0].Points[1].Color = Color.FromArgb(255, 128, 0); // Cam
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
+          chartPie.Series[0].Points[1].Color = Color.FromArgb(255, 128, 0); // Cam
 
-          nameChart.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
-          nameChart.Series[0].Points[1].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[1].LabelForeColor = Color.Transparent;
         }
         else if (valueOK > 0 && valueReject > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
-          nameChart.Series[0].Points[1].Color = Color.Red; // ĐỎ
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
+          chartPie.Series[0].Points[1].Color = Color.Red; // ĐỎ
 
-          nameChart.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
-          nameChart.Series[0].Points[1].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[1].LabelForeColor = Color.Transparent;
         }
         else if (valueOver > 0 && valueReject > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(255, 128, 0); // Cam
-          nameChart.Series[0].Points[1].Color = Color.Red; // ĐỎ
-          nameChart.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
-          nameChart.Series[0].Points[1].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(255, 128, 0); // Cam
+          chartPie.Series[0].Points[1].Color = Color.Red; // ĐỎ
+          chartPie.Series[0].Points[0].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[1].Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[1].LabelForeColor = Color.Transparent;
         }
 
         else if (valueOK > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(0, 192, 0); //Xanh
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
         }
         else if (valueOver > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.FromArgb(255, 128, 0); // Cam
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Color = Color.FromArgb(255, 128, 0); // Cam
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
         }
         else if (valueReject > 0)
         {
-          nameChart.Series[0].Points[0].Color = Color.Red; // ĐỎ
-          nameChart.Series[0].Points[0].LabelForeColor = Color.Transparent;
+          chartPie.Series[0].Points[0].Color = Color.Red; // ĐỎ
+          chartPie.Series[0].Points[0].LabelForeColor = Color.Transparent;
         }
 
 
