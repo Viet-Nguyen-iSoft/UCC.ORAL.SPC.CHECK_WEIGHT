@@ -115,6 +115,10 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
+      if (productDTOs?.Count()>0)
+      {
+        productDTOs = productDTOs.OrderBy(x=>x.Code).ToList();
+      }  
 
       dgvDataProducts.DataSource = productDTOs;
 

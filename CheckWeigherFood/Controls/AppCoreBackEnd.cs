@@ -62,8 +62,9 @@ namespace CheckWeigherFood.Controls
       InitLoadDataStartApp().Wait();
 
       //Init PLC
-      Init_PLC();
+      //Init_PLC();
 
+      Init_OPC_UA();
 
       //Đăng kí sự kiện thao tác trong UI
       InitEvent();
@@ -890,6 +891,21 @@ namespace CheckWeigherFood.Controls
       sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
 
       sumaryDTO.OW = (target != 0) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
+
+      //Kết quả
+      //if (sumaryDTO.Mean >= LSL && sumaryDTO.Sample > 0)
+      //{
+      //  sumaryDTO.EnumResult = EnumResult.Success;
+      //}
+      //if (sumaryDTO.Mean < LSL && sumaryDTO.Sample > 0)
+      //{
+      //  sumaryDTO.EnumResult = EnumResult.Fail;
+      //}  
+      //else
+      //{
+      //  sumaryDTO.EnumResult = EnumResult.None;
+      //}
+      sumaryDTO.EnumResult = EnumResult.Success;
 
       return sumaryDTO;
     }

@@ -155,9 +155,24 @@ namespace CheckWeigherFood
       this.btnDashBoard.PerformClick();
       AppCore.Ins.OnSendStatus += Ins_OnSendStatus;
 
-      //AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1; 
+      //AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
+      //
+      AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
     }
 
+    private void Ins_OnSendValueWeight(double value, bool success, string ok)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          Ins_OnSendValueWeight(value, success, ok);
+        }));
+        return;
+      }
+
+      label2.Text = value.ToString() + "--" + ok;
+    }
     //private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
     //{
     //  FrmAutoReport report = new FrmAutoReport(shiftId, productId);
@@ -165,7 +180,6 @@ namespace CheckWeigherFood
     //  report.ShowDialog();
     //}
 
-  
 
     private void Ins_OnSendStatus(object sender, bool isConnect)
     {

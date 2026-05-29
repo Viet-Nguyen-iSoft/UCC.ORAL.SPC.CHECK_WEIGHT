@@ -65,7 +65,11 @@ namespace CheckWeigherFood.FormUI
       _employees = await LoadData(enumType);
       var dto = HelperDTO.ConvertEmployeeDTO(_employees);
       ShowDgv(dto);
+
+      
     }
+
+   
 
     private async void btnSearch_Click(object sender, EventArgs e)
     {

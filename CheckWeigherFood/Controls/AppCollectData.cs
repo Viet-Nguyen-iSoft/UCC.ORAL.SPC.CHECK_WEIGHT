@@ -2,9 +2,13 @@
 using Database.Models;
 using Database.Service;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Opc.Ua;
+using OpcUaHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using static Database.Enum;
@@ -13,6 +17,142 @@ namespace CheckWeigherFood.Controls
 {
   public partial class AppCore
   {
+    public delegate void SendValueWeight(double value, bool success, string ok);
+    public event SendValueWeight OnSendValueWeight;
+    /// 
+    //OPC -UA
+    private OpcUaClient opcClient = new OpcUaClient();
+    private string opcUrl = $"opc.tcp://10.157.120.23:49320";
+
+    public System.Timers.Timer timer_read_opc_ua = new System.Timers.Timer();
+    public System.Timers.Timer timer_check_connect = new System.Timers.Timer();
+    private void Init_OPC_UA()
+    {
+      opcUrl = $"opc.tcp://10.157.120.23:49320";
+
+      timer_read_opc_ua.Interval = 200;
+      timer_read_opc_ua.Elapsed += Timer_read_opc_ua_Elapsed;
+      timer_read_opc_ua.Start();
+
+      timer_check_connect.Interval = 1000;
+      timer_check_connect.Elapsed += Timer_check_connect_Elapsed;
+      timer_check_connect.Start();
+    }
+
+    private void Timer_check_connect_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+      try
+      {
+        timer_read_opc_ua.Stop();
+
+        if (opcClient.Connected == false)
+        {
+          opcClient = new OpcUaClient();
+          //UserIdentity userIdentity = new UserIdentity("admin", "admin");
+          UserIdentity userIdentity = new UserIdentity();
+          opcClient.UserIdentity = new UserIdentity(new AnonymousIdentityToken());
+          opcClient = new OpcUaClient();
+          opcClient.ConnectComplete += OpcClient_ConnectComplete;
+          opcClient.UserIdentity = userIdentity;
+          opcClient.ConnectServer(opcUrl);
+        } 
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timer_read_opc_ua.Start();
+      }
+    }
+
+    private double previous = 0;
+    private bool firstApp = true;
+    private async void Timer_read_opc_ua_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+      try
+      {
+        timer_read_opc_ua.Stop();
+
+        ////UserIdentity userIdentity = new UserIdentity("admin", "admin");
+        //UserIdentity userIdentity = new UserIdentity();
+        //opcClient.UserIdentity = new UserIdentity(new AnonymousIdentityToken());
+        //opcClient = new OpcUaClient();
+        //opcClient.ConnectComplete += OpcClient_ConnectComplete;
+        //opcClient.UserIdentity = userIdentity;
+        //opcClient.ConnectServer(opcUrl);
+        if (opcClient.Connected)
+        {
+          string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+          var value_temp = opcClient.ReadNode(nodeId_temp);
+          double value = Convert.ToDouble(value_temp.Value);
+          value = Math.Round(value/100.0, 2);
+
+          if (value!= previous)
+          {
+            previous = value;
+
+            OnSendValueWeight?.Invoke(value, true, "ok data");
+
+            double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
+            if (value > 0 && firstApp == false)
+            {
+              await SaveDatalog(value);
+            }  
+              
+          }  
+        }
+        else
+        {
+          //OnSendStatusSMC?.Invoke(false);
+          OnSendValueWeight?.Invoke(0.0, false, "Mất kết nối");
+        }
+
+        firstApp = false;
+      }
+      catch (Exception ex)
+      {
+        OnSendValueWeight?.Invoke(0.0, false, ex.ToString());
+      }
+      finally
+      {
+        timer_read_opc_ua.Start();
+      }
+    }
+
+
+    private void OpcClient_ConnectComplete(object sender, EventArgs e)
+    {
+      //try
+      //{
+      //  if (opcClient.Connected)
+      //  {
+      //    string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+      //    var value_temp = opcClient.ReadNode(nodeId_temp);
+
+      //    double value = Convert.ToDouble(value_temp.Value);
+
+      //    OnSendValueWeight?.Invoke(value, true, "ok");
+
+      //    opcClient.Disconnect();
+      //  }
+      //  else
+      //  {
+      //    //OnSendStatusSMC?.Invoke(false);
+      //    OnSendValueWeight?.Invoke(0.0, false, "Mất kết nối");
+      //  }
+      //}
+      //catch (Exception ex)
+      //{
+      //  OnSendValueWeight?.Invoke(0.0, false, ex.ToString());
+      //}
+    }
+
+
+    /// <summary>
+    /// //
+    /// </summary>
     private ModbusTcpService _modbus;
     private void InitModbus(string ip, int port)
     {

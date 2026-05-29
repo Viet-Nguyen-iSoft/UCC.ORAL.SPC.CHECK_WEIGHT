@@ -360,7 +360,7 @@
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(1114, 60);
       this.label4.TabIndex = 6;
-      this.label4.Text = "ORAL  PACKING";
+      this.label4.Text = "ORAL  PACKING - CHECK WEIGHT LINE 4       ";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       this.label4.Click += new System.EventHandler(this.label4_Click);
       // 

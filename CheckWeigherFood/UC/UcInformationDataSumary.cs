@@ -84,6 +84,25 @@ namespace CheckWeigherFood.UC
         this.lbCp.Text = $"{sumaryDTO.Cp}";
         this.lbCpk.Text = $"{sumaryDTO.Cpk}";
         this.lbSample.Text = $"{sumaryDTO.Sample}";
+
+
+        switch (sumaryDTO.EnumResult)
+        {
+          case EnumResult.None:
+            lbResult.Text = "N/A";
+            lbResult.BackColor = Color.Gray;
+            break;
+          case EnumResult.Success:
+            lbResult.Text = "ĐẠT";
+            lbResult.BackColor = Color.DarkGreen;
+            break;
+          case EnumResult.Fail:
+            lbResult.Text = "KHÔNG ĐẠT";
+            lbResult.BackColor = Color.Red;
+            break;
+          default:
+            break;
+        }
       }
 
     }
