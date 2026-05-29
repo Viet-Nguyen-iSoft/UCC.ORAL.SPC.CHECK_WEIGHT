@@ -155,15 +155,15 @@ namespace CheckWeigherFood
       this.btnDashBoard.PerformClick();
       AppCore.Ins.OnSendStatus += Ins_OnSendStatus;
 
-      AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1; 
+      //AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1; 
     }
 
-    private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
-    {
-      FrmAutoReport report = new FrmAutoReport(shiftId, productId);
-      report.BringToFront();
-      report.ShowDialog();
-    }
+    //private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
+    //{
+    //  FrmAutoReport report = new FrmAutoReport(shiftId, productId);
+    //  report.BringToFront();
+    //  report.ShowDialog();
+    //}
 
   
 

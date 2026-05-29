@@ -33,11 +33,11 @@
       this.label1 = new System.Windows.Forms.Label();
       this.cbbQC = new System.Windows.Forms.ComboBox();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      this.cbbOP = new System.Windows.Forms.ComboBox();
       this.label2 = new System.Windows.Forms.Label();
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       this.btnConfirm = new CheckWeigherFood.RJControl.RJButton();
       this.btnExit = new CheckWeigherFood.RJControl.RJButton();
-      this.cbbOP = new System.Windows.Forms.ComboBox();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.label3 = new System.Windows.Forms.Label();
       this.cbbShiftLeader = new System.Windows.Forms.ComboBox();
@@ -140,6 +140,18 @@
       this.tableLayoutPanel2.Size = new System.Drawing.Size(644, 60);
       this.tableLayoutPanel2.TabIndex = 7;
       // 
+      // cbbOP
+      // 
+      this.cbbOP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.cbbOP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cbbOP.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.cbbOP.FormattingEnabled = true;
+      this.cbbOP.Location = new System.Drawing.Point(168, 10);
+      this.cbbOP.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+      this.cbbOP.Name = "cbbOP";
+      this.cbbOP.Size = new System.Drawing.Size(468, 39);
+      this.cbbOP.TabIndex = 27;
+      // 
       // label2
       // 
       this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -221,18 +233,7 @@
       this.btnExit.Text = "Thoát";
       this.btnExit.TextColor = System.Drawing.Color.White;
       this.btnExit.UseVisualStyleBackColor = false;
-      // 
-      // cbbOP
-      // 
-      this.cbbOP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.cbbOP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.cbbOP.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cbbOP.FormattingEnabled = true;
-      this.cbbOP.Location = new System.Drawing.Point(168, 10);
-      this.cbbOP.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
-      this.cbbOP.Name = "cbbOP";
-      this.cbbOP.Size = new System.Drawing.Size(468, 39);
-      this.cbbOP.TabIndex = 27;
+      this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
       // 
       // tableLayoutPanel5
       // 

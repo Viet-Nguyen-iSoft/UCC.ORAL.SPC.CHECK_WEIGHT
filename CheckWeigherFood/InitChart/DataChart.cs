@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Database.DTO;
+using DocumentFormat.OpenXml.Drawing;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
+using Chart = System.Windows.Forms.DataVisualization.Charting.Chart;
 
 namespace CheckWeigherFood.InitChart
 {
@@ -135,10 +139,12 @@ namespace CheckWeigherFood.InitChart
 
     }
 
-    public void AddChartControlDashboard(Chart chartName, List<double> dataY, List<string> dataX, double up2T, double up1T, double target, double lo1T, double lo2T, double max)
+    public void AddChartControlDashboard(Chart chartName, SumaryDTO sumaryDTO, List<string> dataX, double max)
     {
       try
       {
+        List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
+
         if (dataX == null || dataY == null || dataX.Count == 0 || dataY.Count == 0)
         {
           chartName.Series[0].Points.Clear();
@@ -151,8 +157,8 @@ namespace CheckWeigherFood.InitChart
         }
 
 
-        chartName.ChartAreas[0].AxisY.Maximum = (max < up2T) ? up2T + 5 : up2T * 1.01;
-        chartName.ChartAreas[0].AxisY.Minimum = lo2T - 5;
+        chartName.ChartAreas[0].AxisY.Maximum = (max < sumaryDTO.USL) ? sumaryDTO.USL + 5 : sumaryDTO.USL * 1.01;
+        chartName.ChartAreas[0].AxisY.Minimum = sumaryDTO.LSL - 5;
 
         chartName.Series[0].Points.Clear();
         chartName.Series[1].Points.Clear();
@@ -168,20 +174,20 @@ namespace CheckWeigherFood.InitChart
         }
 
 
-        chartName.Series[1].Points.AddXY(0, up2T);
-        chartName.Series[1].Points.AddXY(dataX.Count() - 1, up2T);
+        chartName.Series[1].Points.AddXY(0, sumaryDTO.USL);
+        chartName.Series[1].Points.AddXY(dataX.Count() - 1, sumaryDTO.USL);
 
-        chartName.Series[2].Points.AddXY(0, up1T);
-        chartName.Series[2].Points.AddXY(dataX.Count() - 1, up1T);
+        chartName.Series[2].Points.AddXY(0, sumaryDTO.UCL);
+        chartName.Series[2].Points.AddXY(dataX.Count() - 1, sumaryDTO.UCL);
 
-        chartName.Series[3].Points.AddXY(0, target);
-        chartName.Series[3].Points.AddXY(dataX.Count() - 1, target);
+        chartName.Series[3].Points.AddXY(0, sumaryDTO.Target);
+        chartName.Series[3].Points.AddXY(dataX.Count() - 1, sumaryDTO.Target);
 
-        chartName.Series[4].Points.AddXY(0, lo1T);
-        chartName.Series[4].Points.AddXY(dataX.Count() - 1, lo1T);
+        chartName.Series[4].Points.AddXY(0, sumaryDTO.LCL);
+        chartName.Series[4].Points.AddXY(dataX.Count() - 1, sumaryDTO.LCL);
 
-        chartName.Series[5].Points.AddXY(0, lo2T);
-        chartName.Series[5].Points.AddXY(dataX.Count() - 1, lo2T);
+        chartName.Series[5].Points.AddXY(0, sumaryDTO.LSL);
+        chartName.Series[5].Points.AddXY(dataX.Count() - 1, sumaryDTO.LSL);
 
         List<int> selectedPoints = GetEquallySpacedPoints(chartName.Series[0].Points.Count(), 10);
         chartName.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
@@ -277,11 +283,13 @@ namespace CheckWeigherFood.InitChart
 
 
     #region Chart Histogram
-    public void AddChartHistogram(Chart nameChart, List<double> dataWeigher, double up2T, double up1T, double mean, double std, double lo1T, double lo2T, double min, double max, double target)
+    public void AddChartHistogram(Chart nameChart, SumaryDTO sumaryDTO)
     {
       try
       {
-        if (dataWeigher == null)
+        List<double> dataWeigher = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
+
+        if (dataWeigher.Count()<=0)
         {
           nameChart.Series[0].Points.Clear();
           nameChart.Series[1].Points.Clear();
@@ -293,15 +301,16 @@ namespace CheckWeigherFood.InitChart
           nameChart.Series[7].Points.Clear();
           return;
         }
+
         List<double> histogramValueNet = dataWeigher.OrderBy(x => x).ToList();
-        histogramValueNet = histogramValueNet.Where(x => x < (up2T * 1.01)).ToList();
-        max = (max > up2T) ? (up2T * 1.01) : max;
+        histogramValueNet = histogramValueNet.Where(x => x < (sumaryDTO.USL * 1.01)).ToList();
+        sumaryDTO.Max = (sumaryDTO.Max > sumaryDTO.USL) ? (sumaryDTO.USL * 1.01) : sumaryDTO.Max;
 
         double DonViNhoNhatChoPhep = 0.1;
         int numbersCol = (int)Math.Round(Math.Sqrt(histogramValueNet.Count), MidpointRounding.AwayFromZero);
 
-        double widthCol = (max - min) / numbersCol;
-        double valueStart = min - 0.5 * DonViNhoNhatChoPhep;
+        double widthCol = (sumaryDTO.Max - sumaryDTO.Min) / numbersCol;
+        double valueStart = sumaryDTO.Min - 0.5 * DonViNhoNhatChoPhep;
 
         double[] arrayDataStartCol = new double[numbersCol + 1];
         double[] arrayDataCenterCol = new double[numbersCol + 1];
@@ -324,8 +333,8 @@ namespace CheckWeigherFood.InitChart
 
         for (int i = 0; i < histogramValueNet.Count; i++)
         {
-          arrayNormalDensityProbabilityFunction[i] = CalNormalDensityProbabilityFunction(histogramValueNet[i], mean, std);
-          arrayZ[i] = (histogramValueNet[i] - mean) / std;
+          arrayNormalDensityProbabilityFunction[i] = CalNormalDensityProbabilityFunction(histogramValueNet[i], sumaryDTO.Mean, sumaryDTO.Stdev);
+          arrayZ[i] = sumaryDTO.Stdev != 0 ? (histogramValueNet[i] - sumaryDTO.Mean) / sumaryDTO.Stdev : 0.0;
         }
 
         int sum = 0;
@@ -353,39 +362,39 @@ namespace CheckWeigherFood.InitChart
 
 
         // Lower2T
-        nameChart.Series[1].Points.AddXY(lo2T, 0);
-        nameChart.Series[1].Points.AddXY(lo2T, arrayFrequency.Max() * 1.1);
+        nameChart.Series[1].Points.AddXY(sumaryDTO.USL, 0);
+        nameChart.Series[1].Points.AddXY(sumaryDTO.USL, arrayFrequency.Max() * 1.1);
 
         // Lower1T
-        nameChart.Series[2].Points.AddXY(lo1T, 0);
-        nameChart.Series[2].Points.AddXY(lo1T, arrayFrequency.Max() * 1.1);
+        nameChart.Series[2].Points.AddXY(sumaryDTO.UCL, 0);
+        nameChart.Series[2].Points.AddXY(sumaryDTO.UCL, arrayFrequency.Max() * 1.1);
 
         // Méan
-        nameChart.Series[3].Points.AddXY(mean, 0);
-        nameChart.Series[3].Points.AddXY(mean, arrayFrequency.Max() * 1.1);
+        nameChart.Series[3].Points.AddXY(sumaryDTO.Mean, 0);
+        nameChart.Series[3].Points.AddXY(sumaryDTO.Mean, arrayFrequency.Max() * 1.1);
 
         // Lower1T
-        nameChart.Series[4].Points.AddXY(up1T, 0);
-        nameChart.Series[4].Points.AddXY(up1T, arrayFrequency.Max() * 1.1);
+        nameChart.Series[4].Points.AddXY(sumaryDTO.UCL, 0);
+        nameChart.Series[4].Points.AddXY(sumaryDTO.UCL, arrayFrequency.Max() * 1.1);
 
         // Lower1T
-        nameChart.Series[5].Points.AddXY(up2T, 0);
-        nameChart.Series[5].Points.AddXY(up2T, arrayFrequency.Max() * 1.1);
+        nameChart.Series[5].Points.AddXY(sumaryDTO.USL, 0);
+        nameChart.Series[5].Points.AddXY(sumaryDTO.USL, arrayFrequency.Max() * 1.1);
 
         // Target
-        nameChart.Series[7].Points.AddXY(target, 0);
-        nameChart.Series[7].Points.AddXY(target, arrayFrequency.Max() * 1.2);
+        nameChart.Series[7].Points.AddXY(sumaryDTO.Target, 0);
+        nameChart.Series[7].Points.AddXY(sumaryDTO.Target, arrayFrequency.Max() * 1.2);
 
         // Vẽ Chart Bell
         List<double> arrayBell_X = new List<double>();
         List<double> arrayBell_Y = new List<double>();
 
-        double topBell = (std != 0) ? (1 / (2 * Math.PI)) * Math.Exp(-Math.Pow(mean - mean, 2) / (2 * std)) : 0;
+        double topBell = (sumaryDTO.Stdev != 0) ? (1 / (2 * Math.PI)) * Math.Exp(-Math.Pow(sumaryDTO.Mean - sumaryDTO.Mean, 2) / (2 * sumaryDTO.Stdev)) : 0;
         double YY = (topBell != 0) ? Math.Round(arrayFrequency.Max() / topBell, 2) : 0;
 
         for (double i = histogramValueNet.Min(); i <= histogramValueNet.Max(); i += 0.1)
         {
-          double y = (std != 0) ? (1 / (2 * Math.PI)) * Math.Exp(-Math.Pow(i - mean, 2) / (2 * std)) : 0;
+          double y = (sumaryDTO.Stdev != 0) ? (1 / (2 * Math.PI)) * Math.Exp(-Math.Pow(i - sumaryDTO.Mean, 2) / (2 * sumaryDTO.Stdev)) : 0;
           arrayBell_Y.Add(Math.Round(y * YY, 2));
           arrayBell_X.Add(i);
         }
@@ -397,11 +406,12 @@ namespace CheckWeigherFood.InitChart
 
 
         //nameChart.ChartAreas[0].AxisX.Minimum = min - 5;
-        nameChart.ChartAreas[0].AxisX.Minimum = (min < lo2T) ? min - 5 : lo2T - 5;
-        nameChart.ChartAreas[0].AxisX.Maximum = max + 5;
+        nameChart.ChartAreas[0].AxisX.Minimum = (sumaryDTO.Min < sumaryDTO.LSL) ? sumaryDTO.Min - 5 : sumaryDTO.LSL - 5;
+        nameChart.ChartAreas[0].AxisX.Maximum = sumaryDTO.Max + 5;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
+        Debug.WriteLine(ex.Message);
       }
 
     }

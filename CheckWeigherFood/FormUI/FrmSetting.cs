@@ -16,13 +16,6 @@ namespace CheckWeigherFood.FrmChild
     public delegate void SendSavePLC(object sender, string PLCIP, int Port);
     public event SendSavePLC OnSendSavePLC;
 
-    public delegate void SendAddOP();
-    public event SendAddOP OnSendAddOP;
-    public delegate void SendAddQC();
-    public event SendAddQC OnSendAddQC;
-    public delegate void SendAddTC();
-    public event SendAddTC OnSendAddTC;
-
     public delegate void SendSavePathReport(object sender, string path);
     public event SendSavePathReport OnSendSavePathReport;
 

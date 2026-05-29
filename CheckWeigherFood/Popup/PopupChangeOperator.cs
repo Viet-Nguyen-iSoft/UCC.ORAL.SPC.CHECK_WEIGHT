@@ -26,7 +26,6 @@ namespace CheckWeigherFood.Popup
       RegisterService();
 
       this.Load += PopupChangeOperator_Load;
-      this.Shown += PopupChangeOperator_Shown;
     }
 
     private EmployeeService _employeeService { get; set; }
@@ -41,10 +40,6 @@ namespace CheckWeigherFood.Popup
     {
       _employeeList = await LoadData(EnumTypeEmployee.None);
 
-    }
-
-    private void PopupChangeOperator_Shown(object sender, EventArgs e)
-    {
       var op = _employeeList?.Where(x => x.EnumTypeEmployee == EnumTypeEmployee.OP).ToList();
       ShowCbb(cbbOP, op);
 
@@ -81,6 +76,11 @@ namespace CheckWeigherFood.Popup
 
       OnSelectedEmployees?.Invoke(empOP, empQC, empShiftLeader);
 
+      this.Close();
+    }
+
+    private void btnExit_Click(object sender, EventArgs e)
+    {
       this.Close();
     }
   }

@@ -175,7 +175,7 @@ namespace CheckWeigherFood.FrmChild
       this.lbResult_report.Text = "PASS";
 
       _dataChart.AddChartControl(chartControl, null, null, 0, 0, 0, 0, 0, 0);
-      _dataChart.AddChartHistogram(chartHistogram, null, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      _dataChart.AddChartHistogram(chartHistogram, null);
       _dataChart.SetDataChartPie(chartPie, 0, 0, 0);
       dgvData.DataSource = null;
     }

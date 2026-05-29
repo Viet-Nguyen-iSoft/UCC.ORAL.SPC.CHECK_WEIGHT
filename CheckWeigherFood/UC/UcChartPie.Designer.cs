@@ -28,16 +28,16 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+      this.label25 = new System.Windows.Forms.Label();
       this.tableLayoutPanel41 = new System.Windows.Forms.TableLayoutPanel();
       this.label63 = new System.Windows.Forms.Label();
       this.label71 = new System.Windows.Forms.Label();
       this.label72 = new System.Windows.Forms.Label();
       this.chartPie = new System.Windows.Forms.DataVisualization.Charting.Chart();
-      this.label25 = new System.Windows.Forms.Label();
       this.tableLayoutPanel21.SuspendLayout();
       this.tableLayoutPanel41.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartPie)).BeginInit();
@@ -61,6 +61,23 @@
       this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
       this.tableLayoutPanel21.Size = new System.Drawing.Size(446, 333);
       this.tableLayoutPanel21.TabIndex = 3;
+      // 
+      // label25
+      // 
+      this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label25.AutoSize = true;
+      this.label25.BackColor = System.Drawing.Color.Transparent;
+      this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label25.ForeColor = System.Drawing.Color.White;
+      this.label25.Location = new System.Drawing.Point(5, 0);
+      this.label25.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+      this.label25.Name = "label25";
+      this.label25.Size = new System.Drawing.Size(441, 40);
+      this.label25.TabIndex = 11;
+      this.label25.Text = "Biểu đồ tỉ lệ";
+      this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // tableLayoutPanel41
       // 
@@ -137,44 +154,27 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.chartPie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
       this.chartPie.BorderlineColor = System.Drawing.Color.Transparent;
-      chartArea2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
-      chartArea2.Name = "ChartArea1";
-      this.chartPie.ChartAreas.Add(chartArea2);
-      legend2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
-      legend2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      legend2.ForeColor = System.Drawing.Color.White;
-      legend2.IsTextAutoFit = false;
-      legend2.Name = "Legend1";
-      this.chartPie.Legends.Add(legend2);
+      chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+      chartArea1.Name = "ChartArea1";
+      this.chartPie.ChartAreas.Add(chartArea1);
+      legend1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(25)))), ((int)(((byte)(67)))));
+      legend1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      legend1.ForeColor = System.Drawing.Color.White;
+      legend1.IsTextAutoFit = false;
+      legend1.Name = "Legend1";
+      this.chartPie.Legends.Add(legend1);
       this.chartPie.Location = new System.Drawing.Point(0, 40);
       this.chartPie.Margin = new System.Windows.Forms.Padding(0);
       this.chartPie.Name = "chartPie";
-      series2.ChartArea = "ChartArea1";
-      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-      series2.CustomProperties = "PieStartAngle=270";
-      series2.Legend = "Legend1";
-      series2.Name = "Series1";
-      this.chartPie.Series.Add(series2);
+      series1.ChartArea = "ChartArea1";
+      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+      series1.CustomProperties = "PieStartAngle=270";
+      series1.Legend = "Legend1";
+      series1.Name = "Series1";
+      this.chartPie.Series.Add(series1);
       this.chartPie.Size = new System.Drawing.Size(446, 258);
       this.chartPie.TabIndex = 1;
       this.chartPie.Text = "chart1";
-      // 
-      // label25
-      // 
-      this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label25.AutoSize = true;
-      this.label25.BackColor = System.Drawing.Color.Transparent;
-      this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label25.ForeColor = System.Drawing.Color.White;
-      this.label25.Location = new System.Drawing.Point(5, 0);
-      this.label25.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-      this.label25.Name = "label25";
-      this.label25.Size = new System.Drawing.Size(441, 40);
-      this.label25.TabIndex = 11;
-      this.label25.Text = "Biểu đồ tỉ lệ";
-      this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // UcChartPie
       // 

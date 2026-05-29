@@ -30,27 +30,27 @@ namespace CheckWeigherFood.UC
       elipseControl1.CornerRadius = 20;
 
       ElipseControl elipseControl2 = new ElipseControl();
-      elipseControl2.TargetControl = lbReject;
+      elipseControl2.TargetControl = lbLossOW;
       elipseControl2.CornerRadius = 20;
 
       ElipseControl elipseControl3 = new ElipseControl();
-      elipseControl3.TargetControl = lbLoss;
+      elipseControl3.TargetControl = lbLossReject;
       elipseControl3.CornerRadius = 20;
     }
 
-    public string ValueReject
+    public string ValueLossOW
     {
       set
       {
-        lbReject.Text = value;
+        lbLossOW.Text = value;
       }
     }
 
-    public string ValueLoss
+    public string ValueLossReject
     {
       set
       {
-        lbLoss.Text = value;
+        lbLossReject.Text = value;
       }
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,15 @@ namespace Database.DTO
     public double Mean { get; set; }
     public double Stdev { get; set; }
     public double OW { get; set; }
+    public double Target { get; set; }
+    public double USL { get; set; }
+    public double LSL { get; set; }
+    public double UCL { get; set; }
+    public double LCL { get; set; }
+
+    public List<Datalog> DatalogPass { get; set; } = new List<Datalog>();
+    public List<Datalog> DatalogAccept { get; set; } = new List<Datalog>();
+    public List<Datalog> DatalogOver { get; set; } = new List<Datalog>();
+    public List<Datalog> DatalogReject { get; set; } = new List<Datalog>();
   }
 }

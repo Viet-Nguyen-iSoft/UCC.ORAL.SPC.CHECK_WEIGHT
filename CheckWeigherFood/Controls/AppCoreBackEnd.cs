@@ -1,6 +1,7 @@
 ﻿using CheckWeigherFood.FrmChild;
 using CheckWeigherFood.PLC;
 using Database.DbContexts;
+using Database.DTO;
 using Database.Models;
 using Database.Service;
 using IoTClient.Clients.PLC;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using static CheckWeigherFood.eNum.eRegisterPLC;
+using static Database.Enum;
 using Application = System.Windows.Forms.Application;
 using DateTime = System.DateTime;
 
@@ -211,6 +213,13 @@ namespace CheckWeigherFood.Controls
 
     private int shift_last = 0;
     private int shift_current = 0;
+    private bool testChangeShift = false;
+    public void ChangeShiftTest()
+    {
+      _datalogsInShiftCurrent = new List<Datalog>();
+      shift_current = GetShiftByHour(DateTime.Now.Hour);
+      OnSendAutoReport(this, shift_last, shift_current);
+    }
     private async void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       //timer_Report_Auto.Stop();
@@ -244,11 +253,6 @@ namespace CheckWeigherFood.Controls
     {
       FrmSetting.Instance.OnSendSavePLC += Instance_OnSendSavePLC1;
       FrmSetting.Instance.OnSendSavePathReport += Instance_OnSendSavePathReport;
-
-
-      FrmSetting.Instance.OnSendAddOP += Instance_OnSendAddOP;
-      FrmSetting.Instance.OnSendAddQC += Instance_OnSendAddQC;
-      FrmSetting.Instance.OnSendAddTC += Instance_OnSendAddTC;
 
       FrmSetting.Instance.OnSendSaveNumberSafe += Instance_OnSendSaveNumberSafe;
       FrmSetting.Instance.OnSendSaveNumverQuality += Instance_OnSendSaveNumverQuality;
@@ -846,6 +850,78 @@ namespace CheckWeigherFood.Controls
       string contentLog = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + $": Content: {content} \r\n";
       File.AppendAllText(NameFileLog, contentLog);
     }
+
+
+    #region Cal Tính toán Mean, Std
+    public SumaryDTO SumaryDTOData(List<Datalog> datalogs, Product product, TareSetting tare)
+    {
+      SumaryDTO sumaryDTO = new SumaryDTO();
+
+      double USL = (product?.USL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+      double LSL = (product?.LSL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+      double UCL = (product?.LCL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+      double LCL = (product?.UCL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+      double target = (product?.Target ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+
+      sumaryDTO.USL = USL;
+      sumaryDTO.UCL = UCL;
+      sumaryDTO.Target = target;
+      sumaryDTO.LCL = LCL;
+      sumaryDTO.LSL = LSL;
+
+      sumaryDTO.DatalogPass = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
+      sumaryDTO.DatalogOver = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
+      sumaryDTO.DatalogAccept = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).ToList();
+      sumaryDTO.DatalogReject = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Reject).ToList();
+
+      var dataNetPass = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
+      sumaryDTO.Sample = dataNetPass.Count;
+      sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(dataNetPass);
+
+      double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(dataNetPass);
+      sumaryDTO.Stdev = Std;
+      sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Min();
+      sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Max();
+
+      sumaryDTO.Cp = (Std != 0) ? Math.Round(((USL - LSL) / (6 * Std)), 3) : 0;
+
+      double hcpk = (Std != 0) ? ((USL - sumaryDTO.Mean) / (3 * Std)) : 0;
+      double lcpk = (Std != 0) ? ((sumaryDTO.Mean - LSL) / (3 * Std)) : 0;
+      sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
+
+      sumaryDTO.OW = (target != 0) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
+
+      return sumaryDTO;
+    }
+    private double CalMean(List<double> list_data)
+    {
+      double x_tb = 0;
+      foreach (var item in list_data)
+      {
+        x_tb += item;
+      }
+      return Math.Round(x_tb / list_data.Count, 2);
+    }
+
+    private double CalStdDev(List<double> list_data)
+    {
+      double mean_x_tb = CalMean(list_data);
+      double sumOfSquares = 0;
+      foreach (double data_x in list_data)
+        sumOfSquares += Math.Pow(data_x - mean_x_tb, 2);
+      double stdDev = Math.Sqrt(sumOfSquares / (list_data.Count - 1));
+      return Math.Round(stdDev, 2);
+    }
+
+    private double CalNormalDensityProbabilityFunction(double x_value, double mean, double stdDev)
+    {
+      double ret = 0;
+      ret = (stdDev != 0) ? (1.0 / (stdDev * Math.Sqrt(2 * Math.PI))) * Math.Exp(-(Math.Pow(x_value - mean, 2) / (2 * Math.Pow(stdDev, 2)))) : 0;
+      return ret;
+    }
+
+    #endregion
+
 
   }
 
