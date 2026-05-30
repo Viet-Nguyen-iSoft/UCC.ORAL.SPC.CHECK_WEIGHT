@@ -60,28 +60,28 @@ namespace CheckWeigherFood
             {
               await db.Machines.AddAsync(new Machine
               {
-                Name = "Line 3",
-                Code = "Line 3",
-                Description = "Line 3",
+                Name = "LINE 3",
+                Code = "LINE 3",
+                Description = "LINE 3",
                 IP = "192.168.1.100",
                 Port = 502,
                 TimeCheckConnect = 1000,
-                Timeout = 500,
-                SampleTime = 1000,
+                Timeout = 200,
+                SampleTime = 150,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
               });
 
               await db.Machines.AddAsync(new Machine
               {
-                Name = "Line 4",
-                Code = "Line 4",
-                Description = "Line 4",
+                Name = "LINE 4",
+                Code = "LINE 4",
+                Description = "LINE 4",
                 IP = "192.168.1.101",
                 Port = 502,
                 TimeCheckConnect = 1000,
-                Timeout = 500,
-                SampleTime = 1000,
+                Timeout = 200,
+                SampleTime = 150,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
               });

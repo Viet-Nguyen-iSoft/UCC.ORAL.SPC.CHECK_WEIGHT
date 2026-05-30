@@ -16,45 +16,52 @@ namespace Database.DTO
     public string Type { get; set; }
 
     [DisplayName("Weight on pack")]
+    [Browsable(false)]
     public string WeightOnPack { get; set; }
     [DisplayName("Đơn vị")]
+    [Browsable(false)]
     public string Unit { get; set; }
 
 
-    [DisplayName("Trọng lượng cận trên (không bì)")]
+    [DisplayName("USL (không bì)")]
     public double? USL { get; set; }
 
 
 
-    [DisplayName("Trọng lượng an toàn trên (không bì)")]
+    [DisplayName("UCL (không bì)")]
     public double? UCL { get; set; }
 
 
 
-    [DisplayName("Trọng lượng net weigh (g) (không bì)")]
+    [DisplayName("Target (g) (không bì)")]
     public double? Target { get; set; }
 
 
 
-    [DisplayName("Trọng lượng an toàn dưới (không bì)")]
+    [DisplayName("LCL (không bì)")]
     public double? LCL { get; set; }
 
 
-    [DisplayName("Trọng lượng cận dưới (không bì)")]
+    [DisplayName("LSL (không bì)")]
     public double? LSL { get; set; }
 
 
 
     [DisplayName("Tỉ trọng")]
+    [Browsable(false)]
     public double? Density { get; set; }
 
 
-    [DisplayName("T (Trọng lượng thiếu cho phép) g")]
+    [DisplayName("T g")]
     public double? T { get; set; }
+
     [DisplayName("Trọng lượng bì (g)")]
+    [Browsable(false)]
     public double? Tare { get; set; }
+
     [DisplayName("Note")]
     public string Note { get; set; }
+
     public string Datetime { get; set; }
 
   }

@@ -17,7 +17,7 @@ namespace CheckWeigherFood.Controls
 {
   public partial class AppCore
   {
-    public delegate void SendValueWeight(double value, bool success, string ok);
+    public delegate void SendValueWeight(double value, bool statusMachine, string ok);
     public event SendValueWeight OnSendValueWeight;
     /// 
     //OPC -UA
@@ -74,26 +74,24 @@ namespace CheckWeigherFood.Controls
       try
       {
         timer_read_opc_ua.Stop();
-
-        ////UserIdentity userIdentity = new UserIdentity("admin", "admin");
-        //UserIdentity userIdentity = new UserIdentity();
-        //opcClient.UserIdentity = new UserIdentity(new AnonymousIdentityToken());
-        //opcClient = new OpcUaClient();
-        //opcClient.ConnectComplete += OpcClient_ConnectComplete;
-        //opcClient.UserIdentity = userIdentity;
-        //opcClient.ConnectServer(opcUrl);
         if (opcClient.Connected)
         {
+          //Value
           string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
           var value_temp = opcClient.ReadNode(nodeId_temp);
           double value = Convert.ToDouble(value_temp.Value);
           value = Math.Round(value/100.0, 2);
 
+          //Status
+          string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
+          var value_status_machine = opcClient.ReadNode(nodeId_status_machine);
+          int _status_machine = Convert.ToInt16(value_status_machine.Value);
+
+
           if (value!= previous)
           {
             previous = value;
-
-            OnSendValueWeight?.Invoke(value, true, "ok data");
+            OnSendValueWeight?.Invoke(value, _status_machine == 1, "data ok");
 
             double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
             if (value > 0 && firstApp == false)
@@ -105,7 +103,6 @@ namespace CheckWeigherFood.Controls
         }
         else
         {
-          //OnSendStatusSMC?.Invoke(false);
           OnSendValueWeight?.Invoke(0.0, false, "Mất kết nối");
         }
 

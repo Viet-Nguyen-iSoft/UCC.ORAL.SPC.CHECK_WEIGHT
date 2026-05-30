@@ -1289,3 +1289,4 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debug\System.Formats.Asn1.xml
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debug\System.IO.Pipelines.xml
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\bin\Debug\System.Reflection.Metadata.xml
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupImportMasterData.resources

@@ -21,5 +21,8 @@ namespace Database.Models
 
     [Browsable(false)]
     public bool DeletedFlag { get; set; } = false;
+
+    [Browsable(false)]
+    public bool EnableFlag { get; set; } = false;
   }
 }

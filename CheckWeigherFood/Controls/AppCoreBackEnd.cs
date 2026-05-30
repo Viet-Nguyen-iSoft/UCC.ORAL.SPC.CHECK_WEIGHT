@@ -1,19 +1,14 @@
 ﻿using CheckWeigherFood.FrmChild;
 using CheckWeigherFood.PLC;
-using Database.DbContexts;
 using Database.DTO;
 using Database.Models;
-using Database.Service;
 using IoTClient.Clients.PLC;
-using IoTClient.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using static CheckWeigherFood.eNum.eRegisterPLC;
 using static Database.Enum;
 using Application = System.Windows.Forms.Application;
 using DateTime = System.DateTime;
@@ -41,30 +36,13 @@ namespace CheckWeigherFood.Controls
     public event SendReSetInforShift OnSendReSetInforShift;
 
     private System.Timers.Timer timer_Report_Auto = new System.Timers.Timer();
-
-
-
-
-
-    //public List<MasterData> _listMasterData = new List<MasterData>();
-    //public MasterData _masterDataCurrent = new MasterData();
-    //public Line _lineCurrent = new Line();
-    //public List<User> _users = new List<User>();
     public void Init()
     {
-      //Check DB và tạo nếu không tồn tại
-      LoadConfigsDB();
-
-      //Load data dưới DB
-      LoadDataLine().Wait();
-
       ResgisterService();
+
       InitLoadDataStartApp().Wait();
 
-      //Init PLC
-      //Init_PLC();
-
-      Init_OPC_UA();
+      //Init_OPC_UA();
 
       //Đăng kí sự kiện thao tác trong UI
       InitEvent();
@@ -72,16 +50,7 @@ namespace CheckWeigherFood.Controls
       //Init Report tự động mỗi khi chuyển ca
       InitReportAuto();
 
-      //Init PLC
-      InitReadDataPLC();
-
-      LoadDataDB();
-
-      SetDataStartApp();
-
       StartShowUI();
-
-      //LogActiveAppToFileLog("Open App");
     }
 
     public List<Datalog> _datalogsInShiftCurrent = new List<Datalog>();
@@ -92,11 +61,12 @@ namespace CheckWeigherFood.Controls
     public Machine _machineCurrent { get; set; }
     private async Task InitLoadDataStartApp()
     {
+      _machineCurrent = await _machineService.GetFirstlDataAsync();
+
       _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
       _appConfig = await _appConfigService.GetFirstlDataAsync();
-
       _tareSettingCurrent = await _tareSettingService.GetFirstDataAsync();
-      _machineCurrent = await _machineService.GetFirstlDataAsync();
+      
 
       if (_appConfig?.ProductId > 0)
       {
@@ -164,19 +134,6 @@ namespace CheckWeigherFood.Controls
       }
     }
 
-
-
-    private void SetDataStartApp()
-    {
-      if (isConnected)
-      {
-        //_funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.LoBB, (uint)eRegisterPLCLength.LoBB, LoBB);
-      }
-    }
-
-    public volatile List<Datalog> datalogsDB = new List<Datalog>();
-    private int ProductId = 0;
-
     private async void LoadDataDB()
     {
       //try
@@ -221,7 +178,7 @@ namespace CheckWeigherFood.Controls
       shift_current = GetShiftByHour(DateTime.Now.Hour);
       OnSendAutoReport(this, shift_last, shift_current);
     }
-    private async void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       //timer_Report_Auto.Stop();
       //try
@@ -252,53 +209,11 @@ namespace CheckWeigherFood.Controls
 
     private void InitEvent()
     {
-      FrmSetting.Instance.OnSendSavePLC += Instance_OnSendSavePLC1;
-      FrmSetting.Instance.OnSendSavePathReport += Instance_OnSendSavePathReport;
-
-      FrmSetting.Instance.OnSendSaveNumberSafe += Instance_OnSendSaveNumberSafe;
-      FrmSetting.Instance.OnSendSaveNumverQuality += Instance_OnSendSaveNumverQuality;
-
-      FrmSetting.Instance.OnSendSaveOLE += Instance_OnSendSaveOLE;
-      FrmSetting.Instance.OnSendSaveOR += Instance_OnSendSaveOR;
-
-
-      FrmSetting.Instance.OnSendSaveLoBB += Instance_OnSendSaveLoBB;
-
-      FrmDashboard.Instance.OnSendKawaTV += Instance_OnSendKawaTV;
-
-      FrmMasterData.Instance.OnSendChangeMasterData += Instance_OnSendChangeMasterData;
-
-
-
       FrmDashboard.Instance.OnSendChangeOver += Instance_OnSendChangeOver;
-      FrmDashboard.Instance.OnSendSaveLoBB += Instance_OnSendSaveLoBB1;
-
-      FrmDashboard.Instance.OnSendSaveOP += Instance_OnSendSaveOP1;
-      FrmDashboard.Instance.OnSendSaveQC += Instance_OnSendSaveQC1;
-      FrmDashboard.Instance.OnSendSaveTC += Instance_OnSendSaveTC1;
-
     }
 
-    private async void Instance_OnSendAddTC()
-    {
-      //_users = await LoadUser();
-    }
 
-    private async void Instance_OnSendAddQC()
-    {
-      //_users = await LoadUser();
-    }
 
-    private async void Instance_OnSendAddOP()
-    {
-      //_users = await LoadUser();
-    }
-
-    private void Instance_OnSendSaveLoBB1(object sender, string LoBB)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.LoBB, (uint)eRegisterPLCLength.LoBB, LoBB);
-    }
 
     private async void Instance_OnSendChangeOver(object sender, string FGs, string NameProduct, double normalSpeed)
     {
@@ -319,101 +234,6 @@ namespace CheckWeigherFood.Controls
 
       //isChangeOver = false;
     }
-
-    public void SendSettingTemperatureSMC(int low, int mid, int high)
-    {
-      if (isConnected == true)
-      {
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.valueTempLow, low);
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.valueTempMid, mid);
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.valueTempHigh, high);
-      }
-    }
-
-    private async void Instance_OnSendChangeMasterData()
-    {
-      //_listMasterData = await LoadRangeMasterData();
-    }
-
-    private void Instance_OnSendKawaTV(object sender, ulong OW, ulong NumberReject)
-    {
-      if (isConnected == true)
-      {
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.OW, OW);
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.NumberReject, NumberReject);
-      }
-
-    }
-
-
-    private void Instance_OnSendSaveTC1(object sender, string TC)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.TC, (uint)eRegisterPLCLength.TC, TC);
-    }
-
-    private void Instance_OnSendSaveQC1(object sender, string QC)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.QC, (uint)eRegisterPLCLength.QC, QC);
-    }
-
-    private void Instance_OnSendSaveOP1(object sender, string OP)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.OP, (uint)eRegisterPLCLength.OP, OP);
-    }
-
-    private async void Instance_OnSendSavePathReport(object sender, string path)
-    {
-      //_lineCurrent.PathReport = path;
-      //await UpdateInfoLine(_lineCurrent);
-    }
-
-    private async void Instance_OnSendSavePLC1(object sender, string PLCIP, int Port)
-    {
-      //_lineCurrent.Port = Port;
-      //_lineCurrent.IpPLC = PLCIP;
-      //await UpdateInfoLine(_lineCurrent);
-    }
-
-
-
-
-
-
-
-    private void Instance_OnSendSaveOR(object sender, int OR)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.OR, OR);
-    }
-
-    private void Instance_OnSendSaveOLE(object sender, int OLE)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.OLE, OLE);
-    }
-
-    private void Instance_OnSendSaveLoBB(object sender, string LoBB)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.LoBB, (uint)eRegisterPLCLength.LoBB, LoBB);
-    }
-
-
-    private void Instance_OnSendSaveNumverQuality(object sender, ulong NumberQuality)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.NumberQuality, NumberQuality);
-    }
-
-    private void Instance_OnSendSaveNumberSafe(object sender, ulong NumberSafe)
-    {
-      if (isConnected == true)
-        _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.NumberSafe, NumberSafe);
-    }
-
 
     public void LoadConfigsDB()
     {
@@ -463,166 +283,6 @@ namespace CheckWeigherFood.Controls
       //{
       //}
     }
-
-
-
-    private bool isConnected = false;
-    private void Timer_checkConnectPLC_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-    {
-      //timer_checkConnectPLC.Stop();
-      //try
-      //{
-      //  Ping ping = new Ping();
-      //  PingReply FindPLC = ping.Send(_lineCurrent.IpPLC, 100);
-      //  isConnected = _client.Connected && FindPLC.Status.ToString().Equals("Success");
-      //  if (isConnected)
-      //  {
-
-      //  }
-      //  else
-      //  {
-      //    _client.Close();
-      //    _client = new MitsubishiClient(MitsubishiVersion.Qna_3E, _lineCurrent.IpPLC, _lineCurrent.Port);
-      //    _client.Open();
-      //  }
-
-      //  NotifyState(isConnected);
-      //}
-      //catch (Exception ex)
-      //{
-      //  Console.WriteLine(ex.Message);
-      //}
-      //finally { timer_checkConnectPLC.Start(); }
-
-    }
-    private void NotifyState(bool isConnected)
-    {
-      if (OnSendStatus != null)
-      {
-        OnSendStatus(this, isConnected);
-      }
-      StatusConnectCurrent = isConnected;
-    }
-
-    private System.Timers.Timer timer_Randomdata = new System.Timers.Timer();
-
-
-    private System.Timers.Timer timer_ReadDataPLC = new System.Timers.Timer();
-    private void InitReadDataPLC()
-    {
-      timer_ReadDataPLC.Interval = 1000;
-      timer_ReadDataPLC.Elapsed += Timer_ReadDataPLC_Elapsed;
-      timer_ReadDataPLC.Start();
-    }
-
-    private void Timer_ReadDataPLC_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-    {
-      timer_ReadDataPLC.Stop();
-      ReadData();
-      timer_ReadDataPLC.Start();
-    }
-
-
-    private async void ReadData()
-    {
-      //if (isChangeOver || !isConnected) return;
-      //if (_masterDataCurrent == null) return;
-
-      //try
-      //{
-      //  uint startResgister = (uint)eRegisterPLCStart.BuferSTT;
-      //  for (int i = 0; i < 10; i++)
-      //  {
-      //    int index = i * 4;
-      //    var dataBlockPLC = _funstionPLC.ReadDataPLC(_client, (uint)(startResgister + index), 4);
-      //    if (dataBlockPLC == null) return;
-
-      //    var STT = (ushort)dataBlockPLC[2].Value << 16 | (ushort)dataBlockPLC[3].Value;
-      //    var ValueWeigher = ((ushort)dataBlockPLC[0].Value << 16 | (ushort)dataBlockPLC[1].Value);
-
-      //    DateTime dt = DateTime.Now;
-      //    int Hour = dt.Hour;
-      //    string fileNameDB = (Hour <= 23 && Hour >= 6) ? dt.ToString("yyMMdd") : dt.AddDays(-1).ToString("yyMMdd");
-
-      //    bool isExit = await IsExit((ulong)STT, fileNameDB);
-
-      //    if (!isExit && STT != 0)
-      //    {
-      //      Datalog dataRow = new Datalog();
-      //      dataRow.STT = (ulong)STT;
-      //      dataRow.ProductId = _masterDataCurrent.Id;
-      //      dataRow.Gross = Math.Round(((double)ValueWeigher) / 100, 2);
-      //      dataRow.Net = dataRow.Gross;
-      //      dataRow.OP = _users?.Where(s => s.Role == "OP" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //      dataRow.QC = _users?.Where(s => s.Role == "QC" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //      dataRow.TC = _users?.Where(s => s.Role == "TC" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //      dataRow.LoBB = Properties.Settings.Default.LoBB;
-      //      dataRow.ShiftId = GetShiftByHour(Hour);
-
-      //      dataRow.CreatedAt = (Hour <= 23 && Hour >= 6) ? dt : dt.AddDays(-1);
-
-      //      //Check Status
-      //      if (dataRow.Gross > _masterDataCurrent.Max) dataRow.Status = "Over";
-      //      else if (dataRow.Gross < _masterDataCurrent.Min) dataRow.Status = "Reject";
-      //      else dataRow.Status = "Ok";
-
-      //      //Check fileDB Shift 3
-      //      var isResult = await AddDataLog(dataRow, fileNameDB);
-      //      if (isResult)
-      //      {
-      //        lock (datalogsDB)
-      //          datalogsDB.Add(dataRow);
-      //      }
-      //    }
-      //  }
-      //}
-      //catch (Exception ex)
-      //{
-      //  LogErrorToFileLog("Lỗi log datalog-" + ex.ToString());
-      //  await Console.Out.WriteLineAsync(ex.Message);
-
-      //}
-    }
-
-    private ulong no = 1;
-    public async void RandomData()
-    {
-      //double value = rd.Next(38000, 42000);
-
-      //DateTime dt = DateTime.Now;
-      //int Hour = dt.Hour;
-      //string fileNameDB = (Hour <= 23 && Hour >= 6) ? dt.ToString("yyMMdd") : dt.AddDays(-1).ToString("yyMMdd");
-
-
-      //Datalog dataRow = new Datalog();
-      //dataRow.STT = (ulong)no++;
-      //dataRow.ProductId = _masterDataCurrent.Id;
-      //dataRow.Gross = Math.Round(((double)value) / 100, 2);
-      //dataRow.Net = dataRow.Gross;
-      //dataRow.OP = _users?.Where(s => s.Role == "OP" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //dataRow.QC = _users?.Where(s => s.Role == "QC" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //dataRow.TC = _users?.Where(s => s.Role == "TC" & s.isEnable == true).Select(s => s.Name).FirstOrDefault();
-      //dataRow.LoBB = Properties.Settings.Default.LoBB;
-      //dataRow.ShiftId = GetShiftByHour(Hour);
-
-      //dataRow.CreatedAt = (Hour <= 23 && Hour >= 6) ? dt : dt.AddDays(-1);
-
-      ////Check Status
-      //if (dataRow.Gross > _masterDataCurrent.Max) dataRow.Status = "Over";
-      //else if (dataRow.Gross < _masterDataCurrent.Min) dataRow.Status = "Reject";
-      //else dataRow.Status = "Ok";
-
-      ////Check fileDB Shift 3
-      //var isResult = await AddDataLog(dataRow, fileNameDB);
-      //if (isResult)
-      //{
-      //  lock (datalogsDB)
-      //    datalogsDB.Add(dataRow);
-      //}
-    }
-
-
-
 
 
     private Random rd = new Random();

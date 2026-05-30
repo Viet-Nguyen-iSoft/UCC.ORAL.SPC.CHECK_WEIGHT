@@ -19,6 +19,7 @@ namespace CheckWeigherFood
     public FrmMain()
     {
       InitializeComponent();
+      this.Shown += FrmMain_Shown;
       this.WindowState = FormWindowState.Maximized;
       this.StartPosition = FormStartPosition.CenterScreen;
     }
@@ -80,9 +81,6 @@ namespace CheckWeigherFood
 
     private static Color Select = Color.FromArgb(255, 255, 255);
     private static Color NoSelect = Color.FromArgb(49, 67, 107);
-
-
-
 
     private void btnDashBoard_Click(object sender, EventArgs e)
     {
@@ -153,12 +151,18 @@ namespace CheckWeigherFood
       this.picLogo.Visible = false;
       this.picLogoVule.Visible = false;
       this.btnDashBoard.PerformClick();
-      AppCore.Ins.OnSendStatus += Ins_OnSendStatus;
+      
 
       //AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       //
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
     }
+
+    private void FrmMain_Shown(object sender, EventArgs e)
+    {
+      SetTitleMachine();
+    }
+
 
     private void Ins_OnSendValueWeight(double value, bool success, string ok)
     {
@@ -181,18 +185,17 @@ namespace CheckWeigherFood
     //}
 
 
-    private void Ins_OnSendStatus(object sender, bool isConnect)
+    private void SetTitleMachine()
     {
-      //if (this.InvokeRequired)
-      //{
-      //  this.Invoke(new Action(() =>
-      //  {
-      //    Ins_OnSendStatus(sender, isConnect);
-      //  }));
-      //  return;
-      //}
-
-      //this.statusPLC.Visible = !isConnect;
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetTitleMachine();
+        }));
+        return;
+      }
+      lbLine.Text = $"ORAL  PACKING - CHECK WEIGHT {AppCore.Ins._machineCurrent?.Name ?? string.Empty}";
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -216,20 +219,9 @@ namespace CheckWeigherFood
       }
     }
 
-    private void picLogo_Click(object sender, EventArgs e)
-    {
-      
-    }
-
-    private void label2_Click(object sender, EventArgs e)
-    {
-      AppCore.Ins.RandomData();
-    }
-
-
     private void label4_Click(object sender, EventArgs e)
     {
-      AppCore.Ins.RandomDataWeight();
+      //AppCore.Ins.RandomDataWeight();
     }
   }
 }

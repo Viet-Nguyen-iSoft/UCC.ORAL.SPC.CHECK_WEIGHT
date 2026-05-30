@@ -423,6 +423,7 @@ namespace CheckWeigherFood.FrmChild
     private void PopupChangeTareAndLot_OnChangeTareSetting(TareSetting obj)
     {
       ShowInforLotAndTare(obj);
+      AppCore.Ins._tareSettingCurrent = obj;
     }
 
     private void ShowInforLotAndTare(TareSetting tareSetting)
@@ -435,6 +436,7 @@ namespace CheckWeigherFood.FrmChild
 
       lbLot.ValueStr = tareSetting?.Lot ?? string.Empty;
       lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
+      lbTailTube.ValueStr = tareSetting?.TailTube.ToString() ?? string.Empty;
       lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
     }
 

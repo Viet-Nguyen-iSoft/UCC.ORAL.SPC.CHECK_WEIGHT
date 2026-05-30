@@ -22,6 +22,7 @@ namespace Database.Respository
       {
         return await this.Context.Set<TareSetting>()
                             .Where(x => x.DeletedFlag == false)
+                            .OrderByDescending(x => x.Id)
                             .FirstOrDefaultAsync();
       }
       catch (Exception ex)

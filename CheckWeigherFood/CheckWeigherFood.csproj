@@ -475,6 +475,12 @@
     <Compile Include="Popup\PopupChangeTareAndLot.Designer.cs">
       <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popup\PopupImportMasterData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupImportMasterData.Designer.cs">
+      <DependentUpon>PopupImportMasterData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="FormUI\ReComboboxFGs.cs">
       <SubType>UserControl</SubType>
@@ -592,6 +598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\PopupChangeTareAndLot.resx">
       <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupImportMasterData.resx">
+      <DependentUpon>PopupImportMasterData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

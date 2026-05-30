@@ -21,6 +21,7 @@ namespace Database.Respository
       {
         return await this.Context.Set<Product>()
                             .Where(x =>x.DeletedFlag == false)
+                            .OrderBy(x=>x.Code)
                             .ToListAsync();
       }
       catch (Exception ex)

@@ -5,13 +5,6 @@ using CustomControls.RJControls;
 using Database.Models;
 using Database.Service;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CheckWeigherFood.Popup
@@ -41,6 +34,7 @@ namespace CheckWeigherFood.Popup
       txtLot.Texts = tareSetting?.Lot ?? string.Empty;
       txtTareTube.Texts = tareSetting?.Tube.ToString() ?? string.Empty;
       txtTareCarton.Texts = tareSetting?.Carton.ToString() ?? string.Empty;
+      txtTareTailTube.Texts = tareSetting?.TailTube.ToString() ?? string.Empty;
     }
 
 
@@ -54,6 +48,7 @@ namespace CheckWeigherFood.Popup
     {
       txtTareCarton.KeyPress += TextBox_PositiveDecimalOnly;
       txtTareTube.KeyPress += TextBox_PositiveDecimalOnly;
+      txtTareTailTube.KeyPress += TextBox_PositiveDecimalOnly;
     }
 
     private void btnExit_Click(object sender, EventArgs e)
@@ -61,7 +56,7 @@ namespace CheckWeigherFood.Popup
       this.Close();
     }
 
-    private async void btnAdd_Click(object sender, EventArgs e)
+    private async void btnConfirm_Click(object sender, EventArgs e)
     {
       if (string.IsNullOrEmpty(txtLot.Texts))
       {
@@ -85,6 +80,7 @@ namespace CheckWeigherFood.Popup
       tareSetting.Lot = txtLot.Texts;
       tareSetting.Carton = double.Parse(txtTareCarton.Texts);
       tareSetting.Tube = double.Parse(txtTareTube.Texts);
+      tareSetting.TailTube = double.Parse(txtTareTailTube.Texts);
       tareSetting.CreatedAt = DateTime.UtcNow;
 
       await _tareSettingService.AddAsync(tareSetting);

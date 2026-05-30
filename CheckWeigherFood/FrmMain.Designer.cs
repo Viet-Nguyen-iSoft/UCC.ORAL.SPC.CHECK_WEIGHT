@@ -47,7 +47,7 @@
       this.panel1 = new System.Windows.Forms.Panel();
       this.btnDashBoard = new System.Windows.Forms.Button();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-      this.label4 = new System.Windows.Forms.Label();
+      this.lbLine = new System.Windows.Forms.Label();
       this.picLogo = new System.Windows.Forms.PictureBox();
       this.pictureBox3 = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -335,7 +335,7 @@
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.69127F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.94629F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.36244F));
-      this.tableLayoutPanel3.Controls.Add(this.label4, 3, 0);
+      this.tableLayoutPanel3.Controls.Add(this.lbLine, 3, 0);
       this.tableLayoutPanel3.Controls.Add(this.picLogo, 1, 0);
       this.tableLayoutPanel3.Controls.Add(this.pictureBox3, 4, 0);
       this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 2, 0);
@@ -348,21 +348,21 @@
       this.tableLayoutPanel3.Size = new System.Drawing.Size(1868, 60);
       this.tableLayoutPanel3.TabIndex = 2;
       // 
-      // label4
+      // lbLine
       // 
-      this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.lbLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.label4.AutoSize = true;
-      this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label4.ForeColor = System.Drawing.Color.White;
-      this.label4.Location = new System.Drawing.Point(677, 0);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(1114, 60);
-      this.label4.TabIndex = 6;
-      this.label4.Text = "ORAL  PACKING - CHECK WEIGHT LINE 4       ";
-      this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.label4.Click += new System.EventHandler(this.label4_Click);
+      this.lbLine.AutoSize = true;
+      this.lbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbLine.ForeColor = System.Drawing.Color.White;
+      this.lbLine.Location = new System.Drawing.Point(677, 0);
+      this.lbLine.Name = "lbLine";
+      this.lbLine.Size = new System.Drawing.Size(1114, 60);
+      this.lbLine.TabIndex = 6;
+      this.lbLine.Text = "ORAL  PACKING - CHECK WEIGHT ";
+      this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.lbLine.Click += new System.EventHandler(this.label4_Click);
       // 
       // picLogo
       // 
@@ -377,7 +377,6 @@
       this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picLogo.TabIndex = 1;
       this.picLogo.TabStop = false;
-      this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
       // 
       // pictureBox3
       // 
@@ -425,7 +424,6 @@
       this.label2.TabIndex = 0;
       this.label2.Text = "DASHBOARD MONITORING WEIGHT";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.label2.Click += new System.EventHandler(this.label2_Click);
       // 
       // lbPage
       // 
@@ -544,7 +542,7 @@
     private System.Windows.Forms.Label lbPage;
     private System.Windows.Forms.Button btnMenu;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label lbLine;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
     private System.Windows.Forms.PictureBox picLogoVule;
     private System.Windows.Forms.Panel panel7;

@@ -19,11 +19,12 @@ namespace CheckWeigherFood.eNum
       Synchronized,
     }
 
-    public enum eProductCheck
+    public enum EnumProductCheck
     {
-      BOX,
-      BOTTLE,
-      ITEM,
+      None = 0,
+      New,
+      Update,
+      Sam,
     }
 
     public enum eResgisterStart

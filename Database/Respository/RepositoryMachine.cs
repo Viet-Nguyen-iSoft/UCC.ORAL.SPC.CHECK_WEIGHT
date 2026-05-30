@@ -21,7 +21,7 @@ namespace Database.Respository
       try
       {
         return await this.Context.Set<Machine>()
-                            .Where(x => x.DeletedFlag == false)
+                            .Where(x => x.DeletedFlag == false && x.EnableFlag == true)
                             .FirstOrDefaultAsync();
       }
       catch (Exception ex)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace Database.Models
     public double? T { get; set; }
     public double? Tare { get; set; }
     public string Note { get; set; }
+
+
+    [NotMapped]
+    public string DisplayText => $"{Code} - {Description}";
 
     #region Mapping
     public ICollection<Datalog> Datalogs { get; set; } = new List<Datalog>();

@@ -17,16 +17,37 @@ namespace Database.DtoHelper
 
     public static List<ProductDTO> ConvertProductDTO(List<Product> roleGroups, string txtSearch)
     {
-      var rs = roleGroups.OrderBy(x => x.CreatedAt)
+      IEnumerable<Product> query = roleGroups;
+
+      if (!string.IsNullOrWhiteSpace(txtSearch))
+      {
+        txtSearch = txtSearch.Trim();
+
+        query = query.Where(x =>
+         (!string.IsNullOrEmpty(x.Code) &&
+          x.Code.IndexOf(txtSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+          || (!string.IsNullOrEmpty(x.ProName) &&
+              x.ProName.IndexOf(txtSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+          || (!string.IsNullOrEmpty(x.Description) &&
+              x.Description.IndexOf(txtSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+          || (!string.IsNullOrEmpty(x.Type) &&
+              x.Type.IndexOf(txtSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+          || (!string.IsNullOrEmpty(x.Note) &&
+              x.Note.IndexOf(txtSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+        );
+      }
+
+      return query
+          .OrderBy(x => x.CreatedAt)
           .Select((e, index) => new ProductDTO
           {
-            No = index + 1, // STT bắt đầu từ 1
+            No = index + 1,
             ProName = e.ProName,
             Code = e.Code,
             Description = e.Description,
             Type = e.Type,
             WeightOnPack = e.WeightOnPack,
-            Unit = e.WeightOnPack,
+            Unit = e.Unit, // sửa lại, đang gán nhầm WeightOnPack
             USL = e.USL,
             UCL = e.UCL,
             Target = e.Target,
@@ -36,12 +57,9 @@ namespace Database.DtoHelper
             T = e.T,
             Tare = e.Tare,
             Note = e.Note,
-
-            Datetime = ((DateTime)e.CreatedAt).AddHours(TimeZoom).ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A",
+            Datetime = e.CreatedAt?.AddHours(TimeZoom).ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A"
           })
           .ToList();
-
-      return rs;
     }
 
     public static List<EmployeeDTO> ConvertEmployeeDTO(List<Employee> employees)

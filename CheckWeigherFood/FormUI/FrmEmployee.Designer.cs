@@ -50,12 +50,13 @@
       this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(25)))), ((int)(((byte)(68)))));
       this.tableLayoutPanel1.ColumnCount = 1;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel1.Controls.Add(this.dgv, 0, 2);
-      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
+      this.tableLayoutPanel1.Controls.Add(this.dgv, 0, 3);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 3;
+      this.tableLayoutPanel1.RowCount = 4;
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -94,7 +95,7 @@
       this.dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
       this.dgv.EnableHeadersVisualStyles = false;
       this.dgv.GridColor = System.Drawing.Color.DimGray;
-      this.dgv.Location = new System.Drawing.Point(0, 70);
+      this.dgv.Location = new System.Drawing.Point(0, 80);
       this.dgv.Margin = new System.Windows.Forms.Padding(0);
       this.dgv.Name = "dgv";
       this.dgv.ReadOnly = true;
@@ -112,7 +113,7 @@
       this.dgv.RowsDefaultCellStyle = dataGridViewCellStyle5;
       this.dgv.RowTemplate.Height = 50;
       this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-      this.dgv.Size = new System.Drawing.Size(1149, 481);
+      this.dgv.Size = new System.Drawing.Size(1149, 471);
       this.dgv.TabIndex = 6;
       // 
       // tableLayoutPanel3
@@ -133,7 +134,7 @@
       this.tableLayoutPanel3.Controls.Add(this.cbbGroup, 1, 0);
       this.tableLayoutPanel3.Controls.Add(this.btnSearch, 3, 0);
       this.tableLayoutPanel3.Controls.Add(this.btnAddNew, 5, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 10);
       this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;

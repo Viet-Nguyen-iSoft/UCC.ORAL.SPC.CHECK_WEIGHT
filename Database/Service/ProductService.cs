@@ -72,5 +72,26 @@ namespace Database.Service
         }
       }
     }
+
+    public async Task UpdateRangeAsync(List<Product> products)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          await db.Database.EnsureCreatedAsync();
+          await db.Database.BeginTransactionAsync();
+          _repositoryProduct = new RepositoryProduct(db);
+          _repositoryProduct.UpdateRangeAsync(products);
+          await db.SaveChangesAsync();
+          db.Database.CommitTransaction();
+        }
+        catch (Exception ex)
+        {
+          db.Database.RollbackTransaction();
+          throw ex;
+        }
+      }
+    }
   }
 }
