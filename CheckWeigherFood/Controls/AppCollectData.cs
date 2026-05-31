@@ -23,12 +23,17 @@ namespace CheckWeigherFood.Controls
     //OPC -UA
     private OpcUaClient opcClient = new OpcUaClient();
     private string opcUrl = $"opc.tcp://10.157.120.23:49320";
+    private string opcWeight = "";
+    private string opcStatusMachine = "";
 
     public System.Timers.Timer timer_read_opc_ua = new System.Timers.Timer();
     public System.Timers.Timer timer_check_connect = new System.Timers.Timer();
     private void Init_OPC_UA()
     {
       opcUrl = $"opc.tcp://10.157.120.23:49320";
+      opcUrl = Environment.GetEnvironmentVariable("OPC_UA_HOST");
+      opcWeight= Environment.GetEnvironmentVariable("OPC_UA_WEIGHT");
+      opcStatusMachine = Environment.GetEnvironmentVariable("OPC_UA_STATUS_MACHINE");
 
       timer_read_opc_ua.Interval = 200;
       timer_read_opc_ua.Elapsed += Timer_read_opc_ua_Elapsed;
@@ -77,14 +82,14 @@ namespace CheckWeigherFood.Controls
         if (opcClient.Connected)
         {
           //Value
-          string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-          var value_temp = opcClient.ReadNode(nodeId_temp);
+          //string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+          var value_temp = opcClient.ReadNode(opcWeight);
           double value = Convert.ToDouble(value_temp.Value);
           value = Math.Round(value/100.0, 2);
 
           //Status
-          string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
-          var value_status_machine = opcClient.ReadNode(nodeId_status_machine);
+          //string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
+          var value_status_machine = opcClient.ReadNode(opcStatusMachine);
           int _status_machine = Convert.ToInt16(value_status_machine.Value);
 
 

@@ -3,43 +3,59 @@
   "WorkspaceRootPath": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmloading.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmloading.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\controls\\appcollectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\controls\\appcollectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\controls\\appcorebackend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\controls\\appcorebackend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\controls\\appcoredb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\controls\\appcoredb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\service\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\service\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\uc\\ucinformationdatasumary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmloading.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmloading.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\controls\\appcollectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\controls\\appcollectdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\initchart\\datachart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\initchart\\datachart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\initchart\\datachart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\dto\\sumarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\dto\\sumarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\dto\\sumarydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\respository\\repositorydatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\respository\\repositorydatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\respository\\repositorydatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\service\\datalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\service\\datalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\service\\datalogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -47,40 +63,36 @@
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\respository\\repositoryproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\respository\\repositoryproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\respository\\repositoryproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\dto\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\dto\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\dto\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\models\\datalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\models\\datalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\models\\datalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frminformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frminformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frminformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -91,11 +103,11 @@
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupimportmasterdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -103,11 +115,11 @@
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupimportmasterdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\popup\\popupchangetareandlot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\popup\\popupchangetareandlot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupchangetareandlot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -115,7 +127,7 @@
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupchangetareandlot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -127,39 +139,31 @@
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupaddnewemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\models\\machine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\database\\models\\machine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\models\\machine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\controls\\appcoredb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\controls\\appcoredb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\database\\service\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E89AD3BB-5063-43B6-BC2C-A8B993D9D500}|Database\\i-Soft.Database.csproj|solutionrelative:database\\service\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupchangeoperator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\popup\\popupchangefgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\popup\\popupchangefgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\popup\\popupchangefgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmsetting.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmsetting.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmsetting.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\uc\\uctextboxdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\uc\\uctextboxdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\uc\\uctextboxdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -167,7 +171,7 @@
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmmasterdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|d:\\project\\unilever\\ucc\\oral\\ucc.oral.spc.check_weight\\checkweigherfood\\formui\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\checkweigherfood\\formui\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{45CE9884-A5AA-470E-8E31-4D21F37B7E1F}|CheckWeigherFood\\CheckWeigherFood.csproj|solutionrelative:checkweigherfood\\formui\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -190,36 +194,138 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FrmLoading.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmLoading.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmLoading.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmLoading.cs [Design]",
-              "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmLoading.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T12:01:44.422Z",
-              "EditorCaption": " [Design]"
+              "Title": ".env",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\.env",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\.env",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\.env",
+              "RelativeToolTip": "CheckWeigherFood\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-31T12:06:18.782Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "RepositoryProduct.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Respository\\RepositoryProduct.cs",
-              "RelativeDocumentMoniker": "Database\\Respository\\RepositoryProduct.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Respository\\RepositoryProduct.cs",
-              "RelativeToolTip": "Database\\Respository\\RepositoryProduct.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAcwCAAAAA3AAAAAAAAAA==",
+              "Title": "SumaryDTO.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\SumaryDTO.cs",
+              "RelativeDocumentMoniker": "Database\\DTO\\SumaryDTO.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\SumaryDTO.cs",
+              "RelativeToolTip": "Database\\DTO\\SumaryDTO.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBgAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T11:48:12.478Z",
+              "WhenOpened": "2026-05-31T10:51:28.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UcInformationDataSumary.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "RelativeToolTip": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAIA8wCUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T09:46:18.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppCollectData.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCollectData.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCollectData.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCollectData.cs",
+              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCollectData.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAWwFwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-30T17:15:48.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "AppCoreDb.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreDb.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCoreDb.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreDb.cs",
+              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCoreDb.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T09:32:20.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MachineService.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\MachineService.cs",
+              "RelativeDocumentMoniker": "Database\\Service\\MachineService.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\MachineService.cs",
+              "RelativeToolTip": "Database\\Service\\MachineService.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAtwDgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T09:25:49.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmMain.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FrmMain.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\FrmMain.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FrmMain.cs",
+              "RelativeToolTip": "CheckWeigherFood\\FrmMain.cs",
+              "ViewState": "AgIAANkAAAAAAAAAAAAqwOMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-30T17:25:38.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppCoreBackEnd.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
+              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAkwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-30T17:15:47.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UcInformationDataSumary.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs [Design]",
+              "RelativeToolTip": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T09:51:26.975Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Datalog.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Datalog.cs",
+              "RelativeDocumentMoniker": "Database\\Models\\Datalog.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Datalog.cs",
+              "RelativeToolTip": "Database\\Models\\Datalog.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T09:48:38.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "FrmDashboard.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmDashboard.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmDashboard.cs",
@@ -233,57 +339,29 @@
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Datalog.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Datalog.cs",
-              "RelativeDocumentMoniker": "Database\\Models\\Datalog.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Datalog.cs",
-              "RelativeToolTip": "Database\\Models\\Datalog.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
+              "Title": "RepositoryProduct.cs",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Respository\\RepositoryProduct.cs",
+              "RelativeDocumentMoniker": "Database\\Respository\\RepositoryProduct.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Respository\\RepositoryProduct.cs",
+              "RelativeToolTip": "Database\\Respository\\RepositoryProduct.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAcwCAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:48:38.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UcInformationDataSumary.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs [Design]*",
-              "RelativeToolTip": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs [Design]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:51:26.975Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SumaryDTO.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\SumaryDTO.cs",
-              "RelativeDocumentMoniker": "Database\\DTO\\SumaryDTO.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\SumaryDTO.cs",
-              "RelativeToolTip": "Database\\DTO\\SumaryDTO.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBgAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:51:28.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UcInformationDataSumary.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcInformationDataSumary.cs*",
-              "RelativeToolTip": "CheckWeigherFood\\UC\\UcInformationDataSumary.cs*",
-              "ViewState": "AgIAABoAAAAAAAAAAAAvwCUAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:46:18.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T11:48:12.478Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "FrmLoading.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmLoading.cs",
+              "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmLoading.cs",
+              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmLoading.cs [Design]",
+              "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmLoading.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T12:01:44.422Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "RepositoryDatalog.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Respository\\RepositoryDatalog.cs",
               "RelativeDocumentMoniker": "Database\\Respository\\RepositoryDatalog.cs",
@@ -291,38 +369,11 @@
               "RelativeToolTip": "Database\\Respository\\RepositoryDatalog.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAADwvx0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T11:49:10.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T11:49:10.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AppCoreBackEnd.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
-              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCoreBackEnd.cs",
-              "ViewState": "AgIAACYBAAAAAAAAAAAYwC4BAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T17:15:47.535Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppCollectData.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCollectData.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCollectData.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCollectData.cs",
-              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCollectData.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAWwPQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T17:15:48.906Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "DataChart.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\InitChart\\DataChart.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\InitChart\\DataChart.cs",
@@ -330,12 +381,11 @@
               "RelativeToolTip": "CheckWeigherFood\\InitChart\\DataChart.cs",
               "ViewState": "AgIAAG0BAAAAAAAAAAArwHgBAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T11:53:28.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T11:53:28.306Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "DatalogService.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\DatalogService.cs",
               "RelativeDocumentMoniker": "Database\\Service\\DatalogService.cs",
@@ -343,12 +393,11 @@
               "RelativeToolTip": "Database\\Service\\DatalogService.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAADwvx4AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T11:48:58.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T11:48:58.253Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\ProductService.cs",
               "RelativeDocumentMoniker": "Database\\Service\\ProductService.cs",
@@ -356,12 +405,11 @@
               "RelativeToolTip": "Database\\Service\\ProductService.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAmwC0AAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T17:10:41.557Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-30T17:10:41.557Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "PopupImportMasterData.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupImportMasterData.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupImportMasterData.cs",
@@ -369,12 +417,11 @@
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupImportMasterData.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAcwHMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T16:35:47.031Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-30T16:35:47.031Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "FrmDashboard.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmDashboard.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmDashboard.cs",
@@ -386,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "EmployeeDTO.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\EmployeeDTO.cs",
               "RelativeDocumentMoniker": "Database\\DTO\\EmployeeDTO.cs",
@@ -394,12 +441,11 @@
               "RelativeToolTip": "Database\\DTO\\EmployeeDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:51:26.578Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T10:51:26.578Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Program.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Program.cs",
@@ -407,24 +453,22 @@
               "RelativeToolTip": "CheckWeigherFood\\Program.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAowDQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:35:02.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:35:02.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "FrmEmployee.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmEmployee.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmEmployee.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmEmployee.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmEmployee.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:50:33.372Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-31T10:50:33.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "AppConfig.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\AppConfig.cs",
               "RelativeDocumentMoniker": "Database\\Models\\AppConfig.cs",
@@ -432,37 +476,22 @@
               "RelativeToolTip": "Database\\Models\\AppConfig.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAQwA0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:35:41.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:35:41.985Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "FrmInformation.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmInformation.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmInformation.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmInformation.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmInformation.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:50:34.167Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-31T10:50:34.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "FrmMain.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FrmMain.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\FrmMain.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FrmMain.cs",
-              "RelativeToolTip": "CheckWeigherFood\\FrmMain.cs",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAkwN8AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T17:25:38.658Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "FrmMain.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FrmMain.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FrmMain.cs",
@@ -474,19 +503,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "PopupImportMasterData.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupImportMasterData.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupImportMasterData.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupImportMasterData.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupImportMasterData.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T16:35:42.284Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-30T16:35:42.284Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "ProductDTO.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\DTO\\ProductDTO.cs",
               "RelativeDocumentMoniker": "Database\\DTO\\ProductDTO.cs",
@@ -494,12 +522,11 @@
               "RelativeToolTip": "Database\\DTO\\ProductDTO.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAgwBkAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:59:08.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:59:08.616Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Database\\Models\\Product.cs",
@@ -507,24 +534,22 @@
               "RelativeToolTip": "Database\\Models\\Product.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T10:00:47.288Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T10:00:47.288Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "PopupChangeTareAndLot.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T16:36:08.153Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-30T16:36:08.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "Employee.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Employee.cs",
               "RelativeDocumentMoniker": "Database\\Models\\Employee.cs",
@@ -532,36 +557,33 @@
               "RelativeToolTip": "Database\\Models\\Employee.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:34:56.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:34:56.493Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "PopupChangeOperator.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeOperator.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeOperator.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeOperator.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeOperator.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:18:19.728Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-31T09:18:19.728Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "PopupChangeFGs.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeFGs.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeFGs.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeFGs.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeFGs.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T16:36:54.996Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-30T16:36:54.996Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "PopupChangeTareAndLot.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs",
@@ -569,12 +591,11 @@
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeTareAndLot.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAADgv1cAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:18:10.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:18:10.822Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "PopupAddNewEmployee.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupAddNewEmployee.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupAddNewEmployee.cs",
@@ -586,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "FrmSetting.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmSetting.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmSetting.cs",
@@ -594,38 +615,11 @@
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmSetting.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAMwGsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T08:54:16.6Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T08:54:16.6Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "MachineService.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\MachineService.cs",
-              "RelativeDocumentMoniker": "Database\\Service\\MachineService.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Service\\MachineService.cs",
-              "RelativeToolTip": "Database\\Service\\MachineService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAuwDYAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:25:49.12Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "AppCoreDb.cs",
-              "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreDb.cs",
-              "RelativeDocumentMoniker": "CheckWeigherFood\\Controls\\AppCoreDb.cs",
-              "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Controls\\AppCoreDb.cs",
-              "RelativeToolTip": "CheckWeigherFood\\Controls\\AppCoreDb.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowCMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:32:20.114Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "Machine.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\Database\\Models\\Machine.cs",
               "RelativeDocumentMoniker": "Database\\Models\\Machine.cs",
@@ -633,24 +627,22 @@
               "RelativeToolTip": "Database\\Models\\Machine.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:34:49.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:34:49.975Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "FrmSetting.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmSetting.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmSetting.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmSetting.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmSetting.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T08:49:02.73Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-31T08:49:02.73Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "PopupChangeOperator.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeOperator.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeOperator.cs",
@@ -658,12 +650,11 @@
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeOperator.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAwwD8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:18:15.593Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:18:15.593Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "PopupChangeFGs.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupChangeFGs.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupChangeFGs.cs",
@@ -671,24 +662,22 @@
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupChangeFGs.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAQwB0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:18:27.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:18:27.021Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "FrmReport.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmReport.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmReport.cs",
               "ToolTip": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmReport.cs [Design]",
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmReport.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T08:50:20.829Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-31T08:50:20.829Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "UcTextBoxData.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\UC\\UcTextBoxData.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\UC\\UcTextBoxData.cs",
@@ -696,12 +685,11 @@
               "RelativeToolTip": "CheckWeigherFood\\UC\\UcTextBoxData.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAD4vx0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:07:57.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:07:57.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "FrmSetting.Designer.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmSetting.Designer.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmSetting.Designer.cs",
@@ -709,12 +697,11 @@
               "RelativeToolTip": "CheckWeigherFood\\FormUI\\FrmSetting.Designer.cs",
               "ViewState": "AgIAALAAAAAAAAAAAAAYwL8AAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-31T09:10:11.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-31T09:10:11.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "FrmMasterData.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmMasterData.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmMasterData.cs",
@@ -726,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "FrmMasterData.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\FormUI\\FrmMasterData.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\FormUI\\FrmMasterData.cs",
@@ -739,7 +726,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "eNumUI.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\eNum\\eNumUI.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\eNum\\eNumUI.cs",
@@ -751,7 +738,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "PopupImportMasterData.Designer.cs",
               "DocumentMoniker": "D:\\Project\\Unilever\\UCC\\Oral\\UCC.ORAL.SPC.CHECK_WEIGHT\\CheckWeigherFood\\Popup\\PopupImportMasterData.Designer.cs",
               "RelativeDocumentMoniker": "CheckWeigherFood\\Popup\\PopupImportMasterData.Designer.cs",
@@ -759,8 +746,7 @@
               "RelativeToolTip": "CheckWeigherFood\\Popup\\PopupImportMasterData.Designer.cs",
               "ViewState": "AgIAAO0AAAAAAAAAAAAawPwAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-30T16:38:11.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-30T16:38:11.282Z"
             }
           ]
         }

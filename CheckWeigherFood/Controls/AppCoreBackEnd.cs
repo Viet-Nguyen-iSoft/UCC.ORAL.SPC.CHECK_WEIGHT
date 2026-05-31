@@ -43,7 +43,9 @@ namespace CheckWeigherFood.Controls
 
       InitLoadDataStartApp().Wait();
 
-      //Init_OPC_UA();
+
+      if (Environment.GetEnvironmentVariable("OPC_UA_ENABLE") == "1")
+        Init_OPC_UA();
 
       //Đăng kí sự kiện thao tác trong UI
       InitEvent();
