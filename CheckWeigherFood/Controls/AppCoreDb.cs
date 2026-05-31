@@ -31,6 +31,10 @@ namespace CheckWeigherFood.Controls
       await _appConfigService.UpdateAsync(appConfig);
     }
 
+    public async Task UpdateMachine(Machine machine)
+    {
+      await _machineService.UpdateAsync(machine);
+    }
 
   }
 }

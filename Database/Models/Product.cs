@@ -25,7 +25,7 @@ namespace Database.Models
     public double? T { get; set; }
     public double? Tare { get; set; }
     public string Note { get; set; }
-
+    public bool IsAbsolute { get; set; }
 
     [NotMapped]
     public string DisplayText => $"{Code} - {Description}";

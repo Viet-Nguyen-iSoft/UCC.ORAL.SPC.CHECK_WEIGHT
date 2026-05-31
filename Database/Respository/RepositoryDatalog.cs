@@ -17,7 +17,7 @@ namespace Database.Respository
 
     }
 
-    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId)
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId, long changeOverId)
     {
       try
       {
@@ -25,6 +25,7 @@ namespace Database.Respository
              .Where(x =>
                  x.DeletedFlag == false &&
                  x.ProductId == productId &&
+                 x.ChangeOverId == changeOverId &&
                  x.CreatedAt >= from &&
                  x.CreatedAt <= to)
              .ToListAsync();

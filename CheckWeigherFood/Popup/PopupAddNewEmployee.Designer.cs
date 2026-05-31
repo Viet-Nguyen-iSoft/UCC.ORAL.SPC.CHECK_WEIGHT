@@ -34,8 +34,8 @@
       this.cbbGroup = new System.Windows.Forms.ComboBox();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.label2 = new System.Windows.Forms.Label();
-      this.txtName = new CustomControls.RJControls.RJTextBox();
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+      this.txtName = new CustomControls.RJControls.RJTextBox();
       this.btnAdd = new CheckWeigherFood.RJControl.RJButton();
       this.btnExit = new CheckWeigherFood.RJControl.RJButton();
       this.tableLayoutPanel1.SuspendLayout();
@@ -154,29 +154,6 @@
       this.label2.Text = "Tên:";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // txtName
-      // 
-      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtName.BackColor = System.Drawing.SystemColors.Window;
-      this.txtName.BorderColor = System.Drawing.Color.Black;
-      this.txtName.BorderFocusColor = System.Drawing.Color.Black;
-      this.txtName.BorderRadius = 5;
-      this.txtName.BorderSize = 2;
-      this.txtName.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-      this.txtName.Location = new System.Drawing.Point(104, 6);
-      this.txtName.Margin = new System.Windows.Forms.Padding(4);
-      this.txtName.Multiline = false;
-      this.txtName.Name = "txtName";
-      this.txtName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-      this.txtName.PasswordChar = false;
-      this.txtName.PlaceholderColor = System.Drawing.Color.DarkGray;
-      this.txtName.PlaceholderText = "";
-      this.txtName.Size = new System.Drawing.Size(418, 48);
-      this.txtName.TabIndex = 26;
-      this.txtName.Texts = "";
-      this.txtName.UnderlinedStyle = false;
-      // 
       // tableLayoutPanel4
       // 
       this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -201,6 +178,29 @@
       this.tableLayoutPanel4.Size = new System.Drawing.Size(526, 60);
       this.tableLayoutPanel4.TabIndex = 8;
       // 
+      // txtName
+      // 
+      this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtName.BackColor = System.Drawing.SystemColors.Window;
+      this.txtName.BorderColor = System.Drawing.Color.Black;
+      this.txtName.BorderFocusColor = System.Drawing.Color.Black;
+      this.txtName.BorderRadius = 5;
+      this.txtName.BorderSize = 2;
+      this.txtName.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+      this.txtName.Location = new System.Drawing.Point(104, 6);
+      this.txtName.Margin = new System.Windows.Forms.Padding(4);
+      this.txtName.Multiline = false;
+      this.txtName.Name = "txtName";
+      this.txtName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+      this.txtName.PasswordChar = false;
+      this.txtName.PlaceholderColor = System.Drawing.Color.DarkGray;
+      this.txtName.PlaceholderText = "";
+      this.txtName.Size = new System.Drawing.Size(418, 48);
+      this.txtName.TabIndex = 26;
+      this.txtName.Texts = "";
+      this.txtName.UnderlinedStyle = false;
+      // 
       // btnAdd
       // 
       this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -211,7 +211,7 @@
       this.btnAdd.BorderSize = 0;
       this.btnAdd.FlatAppearance.BorderSize = 0;
       this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnAdd.ForeColor = System.Drawing.Color.White;
       this.btnAdd.Location = new System.Drawing.Point(204, 5);
       this.btnAdd.Name = "btnAdd";
@@ -232,7 +232,7 @@
       this.btnExit.BorderSize = 0;
       this.btnExit.FlatAppearance.BorderSize = 0;
       this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnExit.ForeColor = System.Drawing.Color.White;
       this.btnExit.Location = new System.Drawing.Point(369, 5);
       this.btnExit.Name = "btnExit";

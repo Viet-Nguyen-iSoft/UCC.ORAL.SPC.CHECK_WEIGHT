@@ -21,14 +21,14 @@ namespace Database.Service
       _repositoryDatalog = new RepositoryDatalog(_context);
     }
 
-    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId)
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long productId, long changeOverId)
     {
       using (var db = new PgDbContext())
       {
         try
         {
           _repositoryDatalog = new RepositoryDatalog(db);
-          return await _repositoryDatalog.GetAllDataByTimeAsync(from, to, productId);
+          return await _repositoryDatalog.GetAllDataByTimeAsync(from, to, productId, changeOverId);
         }
         catch (Exception ex)
         {

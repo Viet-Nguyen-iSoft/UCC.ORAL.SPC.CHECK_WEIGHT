@@ -186,8 +186,8 @@ namespace CheckWeigherFood.Controls
     private Random random = new Random();
     public async void RandomDataWeight()
     {
-      double min = 230.0;
-      double max = 240.0;
+      double max = 65.0;
+      double min = 56.0;
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
 
@@ -196,34 +196,69 @@ namespace CheckWeigherFood.Controls
 
     private async Task SaveDatalog(double value)
     {
-      Datalog datalog = new Datalog();
-      datalog.Net = value;
-      datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
-      datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
-      datalog.EnumStatusRecord = CheckStatus(_productCurrent, (_tareSettingCurrent?.Tube ?? 0.0), (_tareSettingCurrent?.Carton ?? 0.0), value);
-      datalog.NameEmployeeOP = _operationSettingCurrent.OP;
-      datalog.NameEmployeeQC = _operationSettingCurrent.QC;
-      datalog.NameEmployeeShiftLeader = _operationSettingCurrent.ShiftLeader;
-      datalog.MachineId = _machineCurrent?.Id;
-      datalog.ProductId = _productCurrent?.Id;
-      datalog.CreatedAt = DateTime.UtcNow;
-      var rs = await _datalogService.AddAsync(datalog);
-      if (rs)
-        _datalogsInShiftCurrent.Add(datalog);
+      try
+      {
+        if (_machineCurrent == null || _productCurrent == null || _appConfig?.ChangeOverId<=0) return;
+
+        Datalog datalog = new Datalog();
+        datalog.Net = value;
+        datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
+        datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
+        datalog.EnumStatusRecord = CheckStatus(_productCurrent, _tareSettingCurrent, value);
+        datalog.ChangeOverId = _appConfig.ChangeOverId;
+
+        if (_operationSettingCurrent?.OP != null)
+          datalog.NameEmployeeOP = _operationSettingCurrent?.OP;
+        if (_operationSettingCurrent?.QC != null)
+          datalog.NameEmployeeQC = _operationSettingCurrent?.QC;
+        if (_operationSettingCurrent?.ShiftLeader != null)
+          datalog.NameEmployeeShiftLeader = _operationSettingCurrent?.ShiftLeader;
+
+        datalog.MachineId = _machineCurrent?.Id;
+        datalog.ProductId = _productCurrent?.Id;
+        datalog.CreatedAt = DateTime.Now;
+        var rs = await _datalogService.AddAsync(datalog);
+        if (rs)
+          _datalogsInShiftCurrent.Add(datalog);
+      }
+      catch (Exception)
+      {
+
+      }
     }
 
-    private EnumStatusRecord CheckStatus(Product product, double tube, double carton, double net)
+    private static EnumStatusRecord CheckStatus(Product product, TareSetting tareSetting, double net)
     {
-      double actual = net - carton - tube;
-      if (actual > product.USL)
+      double usl = (product?.USL ?? 0.0) + (tareSetting?.Tube ?? 0.0) - (tareSetting?.TailTube ?? 0.0) + (tareSetting?.Carton ?? 0.0);
+      double target = (product?.Target ?? 0.0) + (tareSetting?.Tube ?? 0.0) - (tareSetting?.TailTube ?? 0.0) + (tareSetting?.Carton ?? 0.0);
+      double lsl = (product?.LSL ?? 0.0) + (tareSetting?.Tube ?? 0.0) - (tareSetting?.TailTube ?? 0.0) + (tareSetting?.Carton ?? 0.0);
+
+      if (product.IsAbsolute)
       {
-        return EnumStatusRecord.Over;
-      }
-      if (actual < product.LSL)
-      {
+        if (net > usl)
+        {
+          return EnumStatusRecord.Over;
+        }
+        else if (net <= usl && net >= lsl)
+        {
+          return EnumStatusRecord.Accept;
+        }
+
         return EnumStatusRecord.Reject;
-      }
-      return EnumStatusRecord.Accept;
+      }  
+      else
+      {
+        if (net > usl)
+        {
+          return EnumStatusRecord.Over;
+        }
+        else if (net >= lsl && net <= usl)
+        {
+          return EnumStatusRecord.Accept;
+        }
+        return EnumStatusRecord.Reject;
+      }  
+      
     }
   }
 }

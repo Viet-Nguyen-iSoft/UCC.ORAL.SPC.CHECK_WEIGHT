@@ -3,6 +3,7 @@ using CheckWeigherFood.PLC;
 using Database.DTO;
 using Database.Models;
 using IoTClient.Clients.PLC;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -61,25 +62,24 @@ namespace CheckWeigherFood.Controls
     public Machine _machineCurrent { get; set; }
     private async Task InitLoadDataStartApp()
     {
-      _machineCurrent = await _machineService.GetFirstlDataAsync();
+      _appConfig = await _appConfigService.GetFirstlDataAsync();
+
+      var listMachine = await _machineService.GetDataAsync();
+      _machineCurrent = listMachine?.FirstOrDefault(x => x.Id == _appConfig.MachineId);
 
       _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
-      _appConfig = await _appConfigService.GetFirstlDataAsync();
       _tareSettingCurrent = await _tareSettingService.GetFirstDataAsync();
-      
 
       if (_appConfig?.ProductId > 0)
       {
         _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
 
         var shift = GetCurrentShift(DateTime.Now);
-        DateTime startUtc = shift.StartTime.ToUniversalTime();
-        DateTime endUtc = shift.EndTime.ToUniversalTime();
-        _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(startUtc, endUtc, _productCurrent.Id);
+        _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(shift.StartTime, shift.EndTime, _productCurrent.Id, _appConfig.ChangeOverId);
       }
     }
 
-
+    
     public static ShiftInfo GetCurrentShift(DateTime now)
     {
       DateTime today = now.Date;
@@ -134,33 +134,6 @@ namespace CheckWeigherFood.Controls
       }
     }
 
-    private async void LoadDataDB()
-    {
-      //try
-      //{
-      //  ProductId = _masterDataCurrent?.Id ?? 0;
-
-      //  datalogsDB = new List<Datalog>();
-      //  DateTime dt = DateTime.Now;
-      //  int HourCurrent = dt.Hour;
-
-      //  int shiftCurrent = GetShiftByHour(HourCurrent);
-
-      //  string pathDatabase = Application.StartupPath + $"\\DataBase\\";
-      //  string fileDB = (HourCurrent >= 0 && HourCurrent < 6) ? dt.AddDays(-1).ToString("yyMMdd") : dt.ToString("yyMMdd");
-
-      //  string pathFull = pathDatabase + fileDB + ".sqlite";
-      //  if (File.Exists(pathFull))
-      //    datalogsDB = await AppCore.Ins.GetDataDashBoard(ProductId, fileDB, shiftCurrent);
-
-      //}
-      //catch (Exception ex)
-      //{
-      //  LogErrorToFileLog(ex.ToString());
-      //}
-
-    }
-
     private void InitReportAuto()
     {
       shift_last = GetShiftByHour(DateTime.Now.Hour);
@@ -209,31 +182,9 @@ namespace CheckWeigherFood.Controls
 
     private void InitEvent()
     {
-      FrmDashboard.Instance.OnSendChangeOver += Instance_OnSendChangeOver;
+      //FrmDashboard.Instance.OnSendChangeOver += Instance_OnSendChangeOver;
     }
 
-
-
-
-    private async void Instance_OnSendChangeOver(object sender, string FGs, string NameProduct, double normalSpeed)
-    {
-      //if (OnSendAutoReport != null && _masterDataCurrent != null)
-      //  OnSendAutoReport(this, shift_current, _masterDataCurrent.Id);
-
-      //await ClearActiveProductCurrent();
-      //await ActiveProductCurrent(FGs);
-      //_listMasterData = await LoadRangeMasterData();
-      //_masterDataCurrent = _listMasterData?.Where(s => s.isEnable == true && s.isDelete == false).FirstOrDefault();
-
-      //if (isConnected == true)
-      //{
-      //  _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.FGs, (uint)eRegisterPLCLength.FGs, FGs);
-      //  _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.NameProduct, (uint)eRegisterPLCLength.NameProduct, NameProduct);
-      //  _funstionPLC.SendDataPLC(_client, (uint)eRegisterPLCStart.NormalSpeed, (ulong)normalSpeed);
-      //}
-
-      //isChangeOver = false;
-    }
 
     public void LoadConfigsDB()
     {
@@ -249,41 +200,12 @@ namespace CheckWeigherFood.Controls
       }
     }
 
-    public async Task LoadDataLine()
-    {
-      //_listMasterData = await LoadRangeMasterData();
-      //_masterDataCurrent = _listMasterData.Where(s => s.isEnable == true && s.isDelete == false).FirstOrDefault();
-      //_lineCurrent = await LoadLineCurrent();
-
-      //_users = await LoadUser();
-    }
-
-    public async void ReloadUser()
-    {
-      //_users = await LoadUser();
-    }
 
     public MitsubishiClient _client;
     public System.Timers.Timer timer_checkReadtPLC = new System.Timers.Timer();
     private System.Timers.Timer timer_checkConnectPLC = new System.Timers.Timer();
     private bool StatusConnectCurrent = false;
     private FunstionPLC _funstionPLC = new FunstionPLC();
-    public void Init_PLC()
-    {
-      //try
-      //{
-      //  _client = new MitsubishiClient(MitsubishiVersion.Qna_3E, _lineCurrent.IpPLC, _lineCurrent.Port);
-      //  _client.Open();
-
-      //  timer_checkConnectPLC.Interval = 1000;
-      //  timer_checkConnectPLC.Elapsed += Timer_checkConnectPLC_Elapsed; ;
-      //  timer_checkConnectPLC.Start();
-      //}
-      //catch (Exception)
-      //{
-      //}
-    }
-
 
     private Random rd = new Random();
     public bool isChangeOver = false;
@@ -294,201 +216,6 @@ namespace CheckWeigherFood.Controls
       else if (hour >= 14 && hour < 22) return 2;
       else return 3;
     }
-
-    public async Task UpdateRangeMasterDataOld()
-    {
-      //using (var context = new ConfigDBContext())
-      //{
-      //  GenericRepository<MasterData, ConfigDBContext> repo = new ResponsitoryMasterData(context);
-      //  await repo.UpdateRangeMasterDataOld();
-      //}
-    }
-
-    //public async Task AddMasterData(List<MasterData> data)
-    //{
-    //  //using (var context = new ConfigDBContext())
-    //  //{
-    //  //  var repo = new GenericRepository<MasterData, ConfigDBContext>(context);
-    //  //  await repo.AddRange(data);
-    //  //}
-    //}
-    //public async Task<List<MasterData>> LoadRangeMasterData()
-    //{
-    //  //using (var context = new ConfigDBContext())
-    //  //{
-    //  //  var repo = new ResponsitoryMasterData(context);
-    //  //  List<MasterData> MasterDatas = await repo.GetAllAsync();
-    //  //  return MasterDatas.ToList();
-    //  //}
-    //}
-
-    //public async Task ClearActiveProductCurrent()
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    GenericRepository<MasterData, ConfigDBContext> repo = new ResponsitoryMasterData(context);
-    //    await repo.ClearActiveProductCurrent();
-    //  }
-    //}
-
-    //public async Task ActiveProductCurrent(string FGs)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    GenericRepository<MasterData, ConfigDBContext> repo = new ResponsitoryMasterData(context);
-    //    await repo.ActiveProductCurrent(FGs);
-    //  }
-    //}
-
-
-    //public async Task<Line> LoadLineCurrent()
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    var repo = new ResponsitoryLine(context);
-    //    List<Line> Line = await repo.GetAllAsync();
-    //    return Line.Where(s => s.IsEnable == true).FirstOrDefault();
-    //  }
-    //}
-
-    //public async Task UpdateInfoLine(Line line)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    var repo = new ResponsitoryLine(context);
-    //    await repo.UpdateInfoLine(line);
-    //  }
-    //}
-
-    //public async Task CreateIfNotExist()
-    //{
-    //  using (var context = new DailyDBContext($"{DateTime.Now.AddDays(+1).ToString("yyMMdd")}"))
-    //  {
-    //    await context.Database.EnsureCreatedAsync();
-    //  }
-    //}
-    ////Datalog
-    //public async Task<bool> AddDataLog(Datalog data, string fileName)
-    //{
-    //  using (var context = new DailyDBContext(fileName))
-    //  {
-    //    var repo = new GenericRepository<Datalog, DailyDBContext>(context);
-    //    return await repo.Add(data);
-    //  }
-    //}
-
-    //public async Task<List<Datalog>> LoadDatalog()
-    //{
-    //  using (var context = new DailyDBContext())
-    //  {
-    //    var repo = new GenericRepository<Datalog, DailyDBContext>(context);
-    //    List<Datalog> MasterDatas = await repo.GetAllAsync();
-    //    return MasterDatas.OrderBy(x => x.Id).ToList();
-    //  }
-    //}
-
-    //public async Task<bool> IsExit(ulong stt, string fileDB)
-    //{
-    //  using (var context = new DailyDBContext(fileDB))
-    //  {
-    //    var repo = new GenericRepository<Datalog, DailyDBContext>(context);
-    //    List<Datalog> MasterDatas = await repo.GetAllAsync();
-    //    ulong cnt = (ulong)MasterDatas.Where(s => s.STT == stt).ToList().Count();
-    //    if (cnt > 0)
-    //    {
-    //      return true;
-    //    }
-    //    else
-    //    {
-    //      return false;
-    //    }
-    //  }
-    //}
-
-    //public async Task<List<Datalog>> LoadDatalogDashboard(int shiftId, int productId)
-    //{
-    //  using (var context = new PostgresDbContext())
-    //  {
-    //    var repo = new GenericRepository<Datalog, PostgresDbContext>(context);
-    //    List<Datalog> MasterDatas = await repo.GetAllAsync();
-    //    //if (ShiftId==3)
-    //    return MasterDatas.Where(x => x.ShiftId == shiftId && x.ProductId == productId).OrderBy(x => x.Id).ToList();
-    //  }
-    //}
-
-
-    //public async Task<List<Datalog>> GetDataReportByFilter(int productId, string dateTimeData)
-    //{
-    //  using (var context = new DailyDBContext(dateTimeData))
-    //  {
-    //    GenericRepository<Datalog, DailyDBContext> repo = new ResponsitoryDatalog(context);
-    //    return await repo.GetDataReportByFilter(productId);
-    //  }
-    //}
-
-    //public async Task<List<Datalog>> GetDataDashBoard(int productId, string dateTimeData, int shiftId)
-    //{
-    //  using (var context = new DailyDBContext(dateTimeData))
-    //  {
-    //    GenericRepository<Datalog, DailyDBContext> repo = new ResponsitoryDatalog(context);
-    //    var data = await repo.GetDataReportByFilter(productId);
-    //    return data?.Where(x => x.ShiftId == shiftId).ToList();
-    //  }
-    //}
-
-
-
-    ////User
-    //public async Task AddUser(User data)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    var repo = new GenericRepository<User, ConfigDBContext>(context);
-    //    await repo.Add(data);
-    //  }
-    //}
-
-    //public async Task<bool> CheckUserExit(string data)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    GenericRepository<User, ConfigDBContext> repo = new ResponsitoryUser(context);
-    //    return await repo.CheckExitUser(data);
-    //  }
-    //}
-
-    //public async Task ClearActiveUser(string role)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    GenericRepository<User, ConfigDBContext> repo = new ResponsitoryUser(context);
-    //    await repo.ClearActiveUser(role);
-    //  }
-    //}
-
-
-
-    //public async Task ActiveUser(string name, string role)
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    GenericRepository<User, ConfigDBContext> repo = new ResponsitoryUser(context);
-    //    await repo.ActiveUser(name, role);
-    //  }
-    //}
-
-
-
-    //public async Task<List<User>> LoadUser()
-    //{
-    //  using (var context = new ConfigDBContext())
-    //  {
-    //    var repo = new GenericRepository<User, ConfigDBContext>(context);
-    //    List<User> MasterDatas = await repo.GetAllAsync();
-    //    return MasterDatas;
-    //  }
-    //}
-
 
     public void LogErrorToFileLog(string content)
     {
@@ -518,57 +245,129 @@ namespace CheckWeigherFood.Controls
     {
       SumaryDTO sumaryDTO = new SumaryDTO();
 
-      double USL = (product?.USL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
-      double LSL = (product?.LSL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
-      double UCL = (product?.LCL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
-      double LCL = (product?.UCL ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
-      double target = (product?.Target ?? 0.0) + (tare?.Tube ?? 0.0) + (tare?.Carton ?? 0.0);
+      if (datalogs?.Count()>0)
+      {
+        double USL = (product?.USL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double LSL = (product?.LSL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double UCL = (product?.UCL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double LCL = (product?.LCL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double target = (product?.Target ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
 
-      sumaryDTO.USL = USL;
-      sumaryDTO.UCL = UCL;
-      sumaryDTO.Target = target;
-      sumaryDTO.LCL = LCL;
-      sumaryDTO.LSL = LSL;
+        sumaryDTO.USL = USL;
+        sumaryDTO.UCL = UCL;
+        sumaryDTO.Target = target;
+        sumaryDTO.LCL = LCL;
+        sumaryDTO.LSL = LSL;
 
-      sumaryDTO.DatalogPass = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
-      sumaryDTO.DatalogOver = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
-      sumaryDTO.DatalogAccept = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).ToList();
-      sumaryDTO.DatalogReject = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Reject).ToList();
+        sumaryDTO.DatalogPass = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
+        sumaryDTO.DatalogOver = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
+        sumaryDTO.DatalogAccept = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).ToList();
+        sumaryDTO.DatalogReject = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Reject).ToList();
 
-      var dataNetPass = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
-      sumaryDTO.Sample = dataNetPass.Count;
-      sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(dataNetPass);
+        var dataNetPass = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
+        sumaryDTO.Sample = dataNetPass.Count;
+        sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(dataNetPass);
 
-      double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(dataNetPass);
-      sumaryDTO.Stdev = Std;
-      sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Min();
-      sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Max();
+        double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(dataNetPass);
+        sumaryDTO.Stdev = Std;
+        sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Min();
+        sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Max();
 
-      sumaryDTO.Cp = (Std != 0) ? Math.Round(((USL - LSL) / (6 * Std)), 3) : 0;
+        sumaryDTO.Cp = (Std != 0) ? Math.Round(((USL - LSL) / (6 * Std)), 3) : 0;
 
-      double hcpk = (Std != 0) ? ((USL - sumaryDTO.Mean) / (3 * Std)) : 0;
-      double lcpk = (Std != 0) ? ((sumaryDTO.Mean - LSL) / (3 * Std)) : 0;
-      sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
+        double hcpk = (Std != 0) ? ((USL - sumaryDTO.Mean) / (3 * Std)) : 0;
+        double lcpk = (Std != 0) ? ((sumaryDTO.Mean - LSL) / (3 * Std)) : 0;
+        sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
 
-      sumaryDTO.OW = (target != 0) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
+        sumaryDTO.OW = (target != 0 && sumaryDTO.Mean > target) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
 
-      //Kết quả
-      //if (sumaryDTO.Mean >= LSL && sumaryDTO.Sample > 0)
-      //{
-      //  sumaryDTO.EnumResult = EnumResult.Success;
-      //}
-      //if (sumaryDTO.Mean < LSL && sumaryDTO.Sample > 0)
-      //{
-      //  sumaryDTO.EnumResult = EnumResult.Fail;
-      //}  
-      //else
-      //{
-      //  sumaryDTO.EnumResult = EnumResult.None;
-      //}
-      sumaryDTO.EnumResult = EnumResult.Success;
+        //Kết quả
+        if (product.IsAbsolute)
+        {
+          bool rule01 = datalogs?.Any(x => x.Net < target) ?? false;
+          if (!rule01)
+          {
+            sumaryDTO.EnumResult = EnumResult.Pass;
+          }
+          else
+          {
+            sumaryDTO.EnumResult = EnumResult.Fail;
+            sumaryDTO.ReasonFail.Add("Có mẫu < target theo luật TL Tuyệt đối");
+          }
+        }
+        else
+        {
+          //Số mẫu có khối lượng thuộc [Target - 2T, Target - T) không được vượt quá 2,5 %  cỡ lô
+          var cnt = datalogs?.Count(x => x.Net < LCL && x.Net >= LSL);
+          double value = (((double)cnt) * 100.0) / (double)datalogs.Count();
+          bool rule01 = value <= 2.5;
+          if (!rule01)
+          {
+            sumaryDTO.ReasonFail.Add("Số mẫu có khối lượng thuộc [LSL, LCL) vượt quá 2,5 % cỡ lô");
+          }  
+
+          //Ko có mẫu nào nhỏ hơn giá trị (Target -2T)
+          bool rule02 = !( datalogs?.Any(x => x.Net < LSL) ?? true);
+          if (!rule02)
+          {
+            sumaryDTO.ReasonFail.Add("Có mẫu < LSL ");
+          }
+
+          //Ttb >= Target
+          bool rule03 = sumaryDTO.Mean >= target;
+          if (!rule03)
+          {
+            sumaryDTO.ReasonFail.Add("TL trung bình < target");
+          }
+
+          if (rule01 && rule02 && rule03)
+          {
+            sumaryDTO.EnumResult = EnumResult.Pass;
+          }
+          else
+          {
+            sumaryDTO.EnumResult = EnumResult.Fail;
+          }
+        }
+      }
+      else
+      {
+        double USL = (product?.USL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double LSL = (product?.LSL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double UCL = (product?.LCL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double LCL = (product?.UCL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+        double target = (product?.Target ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
+
+        sumaryDTO.USL = USL;
+        sumaryDTO.UCL = UCL;
+        sumaryDTO.Target = target;
+        sumaryDTO.LCL = LCL;
+        sumaryDTO.LSL = LSL;
+
+        sumaryDTO.DatalogPass = new List<Datalog>() ;
+        sumaryDTO.DatalogOver = new List<Datalog>();
+        sumaryDTO.DatalogAccept = new List<Datalog>();
+        sumaryDTO.DatalogReject = new List<Datalog>();
+
+        sumaryDTO.Sample = 0;
+        sumaryDTO.Mean = 0;
+
+        sumaryDTO.Stdev = 0;
+        sumaryDTO.Min = 0;
+        sumaryDTO.Max = 0;
+
+        sumaryDTO.Cp = 0;
+        sumaryDTO.Cpk = 0;
+
+        sumaryDTO.OW = 0;
+
+        //Kết quả
+        sumaryDTO.EnumResult = EnumResult.None;
+      }  
 
       return sumaryDTO;
     }
+
     private double CalMean(List<double> list_data)
     {
       double x_tb = 0;

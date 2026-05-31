@@ -103,6 +103,7 @@
       this.lbName.Name = "lbName";
       this.lbName.Size = new System.Drawing.Size(802, 44);
       this.lbName.TabIndex = 26;
+      this.lbName.ValueStr = "";
       // 
       // label1
       // 
@@ -146,6 +147,7 @@
       this.lbCode.Name = "lbCode";
       this.lbCode.Size = new System.Drawing.Size(222, 44);
       this.lbCode.TabIndex = 27;
+      this.lbCode.ValueStr = "";
       // 
       // label2
       // 
@@ -198,7 +200,7 @@
       this.btnConfirm.BorderSize = 0;
       this.btnConfirm.FlatAppearance.BorderSize = 0;
       this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnConfirm.ForeColor = System.Drawing.Color.White;
       this.btnConfirm.Location = new System.Drawing.Point(646, 5);
       this.btnConfirm.Name = "btnConfirm";
@@ -220,7 +222,7 @@
       this.btnExit.BorderSize = 0;
       this.btnExit.FlatAppearance.BorderSize = 0;
       this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnExit.ForeColor = System.Drawing.Color.White;
       this.btnExit.Location = new System.Drawing.Point(811, 5);
       this.btnExit.Name = "btnExit";

@@ -374,12 +374,12 @@ namespace CheckWeigherFood.InitChart
         nameChart.Series[3].Points.AddXY(sumaryDTO.Mean, arrayFrequency.Max() * 1.1);
 
         // Lower1T
-        nameChart.Series[4].Points.AddXY(sumaryDTO.UCL, 0);
-        nameChart.Series[4].Points.AddXY(sumaryDTO.UCL, arrayFrequency.Max() * 1.1);
+        nameChart.Series[4].Points.AddXY(sumaryDTO.LCL, 0);
+        nameChart.Series[4].Points.AddXY(sumaryDTO.LCL, arrayFrequency.Max() * 1.1);
 
         // Lower1T
-        nameChart.Series[5].Points.AddXY(sumaryDTO.USL, 0);
-        nameChart.Series[5].Points.AddXY(sumaryDTO.USL, arrayFrequency.Max() * 1.1);
+        nameChart.Series[5].Points.AddXY(sumaryDTO.LSL, 0);
+        nameChart.Series[5].Points.AddXY(sumaryDTO.LSL, arrayFrequency.Max() * 1.1);
 
         // Target
         nameChart.Series[7].Points.AddXY(sumaryDTO.Target, 0);

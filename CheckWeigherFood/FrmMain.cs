@@ -221,7 +221,7 @@ namespace CheckWeigherFood
 
     private void label4_Click(object sender, EventArgs e)
     {
-      //AppCore.Ins.RandomDataWeight();
+      AppCore.Ins.RandomDataWeight();
     }
   }
 }

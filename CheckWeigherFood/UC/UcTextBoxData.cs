@@ -25,6 +25,10 @@ namespace CheckWeigherFood.UC
       {
         lbData.Text = value;
       }
+      get
+      {
+        return lbData.Text;
+      }
     }
     private void CustomUI()
     {

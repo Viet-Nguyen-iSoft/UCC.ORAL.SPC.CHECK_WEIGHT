@@ -36,5 +36,41 @@ namespace Database.Service
       }
     }
 
+    public async Task<List<Machine>> GetDataAsync()
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          _repositoryMachine = new RepositoryMachine(db);
+          return await _repositoryMachine.GetAllAsync();
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+      }
+    }
+
+    public async Task UpdateAsync(Machine machine)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          await db.Database.EnsureCreatedAsync();
+          await db.Database.BeginTransactionAsync();
+          _repositoryMachine = new RepositoryMachine(db);
+          _repositoryMachine.Update(machine);
+          await db.SaveChangesAsync();
+          db.Database.CommitTransaction();
+        }
+        catch (Exception ex)
+        {
+          db.Database.RollbackTransaction();
+          throw ex;
+        }
+      }
+    }
   }
 }

@@ -50,6 +50,7 @@ namespace CheckWeigherFood
             {
               await db.AppConfigs.AddAsync(new AppConfig
               {
+                ChangeOverId = 1,
                 PathReport = "",
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,

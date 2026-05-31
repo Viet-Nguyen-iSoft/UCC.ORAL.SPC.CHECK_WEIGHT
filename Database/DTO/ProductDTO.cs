@@ -22,6 +22,9 @@ namespace Database.DTO
     [Browsable(false)]
     public string Unit { get; set; }
 
+    [Browsable(false)]
+    public bool IsAbsolute { get; set; }
+
 
     [DisplayName("USL (không bì)")]
     public double? USL { get; set; }

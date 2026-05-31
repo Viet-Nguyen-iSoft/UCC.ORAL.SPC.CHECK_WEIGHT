@@ -22,7 +22,8 @@ namespace Database.DTO
     public double LSL { get; set; }
     public double UCL { get; set; }
     public double LCL { get; set; }
-    public EnumResult EnumResult { get; set; }
+    public EnumResult EnumResult { get; set; } = EnumResult.None;
+    public List<string> ReasonFail { get; set; } = new List<string>();
 
     public List<Datalog> DatalogPass { get; set; } = new List<Datalog>();
     public List<Datalog> DatalogAccept { get; set; } = new List<Datalog>();
@@ -33,7 +34,7 @@ namespace Database.DTO
   public enum EnumResult
   {
     None,
-    Success,
+    Pass,
     Fail,
   }
 }

@@ -12,8 +12,9 @@ namespace Database.Models
   {
     public double Net { get; set; }
     public double TareTube { get; set; }
+    public double TareTailTube { get; set; }
     public double TareCarton { get; set; }
-
+    public long ChangeOverId { get; set; }
     public EnumStatusRecord EnumStatusRecord { get; set; }
 
     public string NameEmployeeOP { get; set; }

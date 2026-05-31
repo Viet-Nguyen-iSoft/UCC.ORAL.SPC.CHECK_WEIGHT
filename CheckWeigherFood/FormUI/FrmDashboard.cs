@@ -12,27 +12,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using static Database.Enum;
+using System.Windows.Interop;
 
 namespace CheckWeigherFood.FrmChild
 {
   public partial class FrmDashboard : Form
   {
-    public delegate void SendKawaTV(object sender, ulong OW, ulong NumberReject);
-    public event SendKawaTV OnSendKawaTV;
-
     public delegate void SendChangeOver(object sender, string FGs, string Name, double normalSpeed);
     public event SendChangeOver OnSendChangeOver;
-
-    public delegate void SendSaveLoBB(object sender, string LoBB);
-    public event SendSaveLoBB OnSendSaveLoBB;
-
-    public delegate void SendSaveOP(object sender, string OP);
-    public event SendSaveOP OnSendSaveOP;
-    public delegate void SendSaveQC(object sender, string OP);
-    public event SendSaveQC OnSendSaveQC;
-    public delegate void SendSaveTC(object sender, string OP);
-    public event SendSaveTC OnSendSaveTC;
 
     public FrmDashboard()
     {
@@ -56,7 +43,7 @@ namespace CheckWeigherFood.FrmChild
     }
     #endregion
 
-
+    private Timer timerMarquee = new Timer();
     private void CustomUI()
     {
       ElipseControl elipseControl0 = new ElipseControl();
@@ -87,6 +74,10 @@ namespace CheckWeigherFood.FrmChild
       elipseControl6.TargetControl = tableLayoutPanel24;
       elipseControl6.CornerRadius = 20;
 
+      ElipseControl elipseControl7 = new ElipseControl();
+      elipseControl7.TargetControl = tableLayoutPanel14;
+      elipseControl7.CornerRadius = 20;
+
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
       ucInformationLoss1.ValueTitle = "Thông tin loss";
@@ -115,7 +106,7 @@ namespace CheckWeigherFood.FrmChild
         AppCore.Ins._operationSettingCurrent?.QC,
         AppCore.Ins._operationSettingCurrent?.ShiftLeader);
 
-      ShowInforProduct(AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      ShowInforProduct(AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
       ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent);
 
       //Tạo timer load data 2s
@@ -123,8 +114,56 @@ namespace CheckWeigherFood.FrmChild
       timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
       timer_UpdateUI.Start();
 
+      //
+      lbResult.Text = "Đây là nội dung rất dài cần chạy liên tục trên màn hình";
+      lbResult.AutoSize = true;
+
+      // Đặt label bên phải panel
+      lbResult.Left = panel1.Width;
+
+      timerMarquee.Interval = 100;
+      timerMarquee.Tick += TimerMarquee_Tick;
+      timerMarquee.Start();
+
       //Sự kiện
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
+    }
+    private void TimerMarquee_Tick(object sender, EventArgs e)
+    {
+      
+      try
+      {
+        timerMarquee.Stop();
+        ShowMsg();
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timerMarquee.Start();
+      }
+    }
+
+    private void ShowMsg()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          ShowMsg();
+        }));
+        return;
+      }
+
+      lbResult.Left -= 5;
+
+      // Khi chạy hết bên trái thì quay lại bên phải
+      if (lbResult.Right < 20)
+      {
+        lbResult.Left = panel1.Width;
+      }
     }
 
     private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
@@ -236,6 +275,25 @@ namespace CheckWeigherFood.FrmChild
       SetDataOW_Mean(sumaryDTO);
       UpdateInforLoss(sumaryDTO);
       UpdateDataReject(reject);
+
+      //Kết quả
+      if (sumaryDTO.EnumResult == EnumResult.Pass)
+      {
+        lbResult.ForeColor = Color.Green;
+        lbResult.Text = "   Line sản xuất ĐẠT các tiêu chuẩn luật trọng lượng";
+      }
+      else if (sumaryDTO.EnumResult == EnumResult.Fail)
+      {
+        string mgs = "   KHÔNG ĐẠT : " + string.Join("-", sumaryDTO.ReasonFail);
+        lbResult.ForeColor = Color.Tomato;
+        lbResult.Text = mgs;
+      }  
+      else
+      {
+        string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+        lbResult.ForeColor = Color.DarkGray;
+        lbResult.Text = mgs;
+      }  
     }
 
     private void UpdateInforLoss(SumaryDTO sumaryDTO)
@@ -252,8 +310,8 @@ namespace CheckWeigherFood.FrmChild
       double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Net);
       double lossByOW = sumaryDTO.OW * sumaryDTO.Target;
 
-      ucInformationLoss1.ValueLossReject = Math.Round( (lossByReject/1000.0),2).ToString();
-      ucInformationLoss1.ValueLossOW = Math.Round( (lossByOW / 1000.0),2).ToString();
+      ucInformationLoss1.ValueLossReject = Math.Round((lossByReject / 1000.0), 2).ToString();
+      ucInformationLoss1.ValueLossOW = Math.Round((lossByOW / 1000.0), 2).ToString();
     }
 
 
@@ -296,6 +354,8 @@ namespace CheckWeigherFood.FrmChild
         Debug.WriteLine(ex.Message);
       }
     }
+
+
 
     private void SetDataOW_Mean(SumaryDTO sumaryDTO)
     {
@@ -393,24 +453,25 @@ namespace CheckWeigherFood.FrmChild
     private async void PopupChangeFGs_OnSelectedProduct(Product obj)
     {
       AppCore.Ins._productCurrent = obj;
+      AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
       AppCore.Ins._appConfig.ProductId = obj.Id;
       AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
       await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
 
-      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
-    private void ShowInforProduct(Product product, double tube, double carton)
+    private void ShowInforProduct(Product product, double tube, double tailTube, double carton)
     {
       if (this.InvokeRequired)
       {
-        this.Invoke(new Action(() => { ShowInforProduct(product, tube, carton); }));
+        this.Invoke(new Action(() => { ShowInforProduct(product, tube, tailTube, carton); }));
         return;
       }
 
       lbFGs.ValueStr = product?.Code ?? string.Empty;
       lbNameProduct.ValueStr = product?.Description ?? string.Empty;
-      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
@@ -424,6 +485,10 @@ namespace CheckWeigherFood.FrmChild
     {
       ShowInforLotAndTare(obj);
       AppCore.Ins._tareSettingCurrent = obj;
+      ShowInforProduct(AppCore.Ins._productCurrent,
+        AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0,
+        AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0,
+        AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
     private void ShowInforLotAndTare(TareSetting tareSetting)

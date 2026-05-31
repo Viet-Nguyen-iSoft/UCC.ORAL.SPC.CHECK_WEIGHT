@@ -139,6 +139,7 @@ namespace CheckWeigherFood.Popup
               product.T = item.T;
               product.Tare = item.Tare;
               product.Note = item.Note;
+              product.IsAbsolute = item.IsAbsolute;
               product.CreatedAt = DateTime.UtcNow;
               product.UpdatedAt = DateTime.UtcNow;
 
@@ -283,6 +284,7 @@ namespace CheckWeigherFood.Popup
               row_data.T = GetDouble(worksheet, row, 12);
               row_data.Tare = GetDouble(worksheet, row, 13);
               row_data.Note = GetText(worksheet, row, 15);
+              row_data.IsAbsolute = IsProductTuyetDoi(row_data.Note);
               row_data.Datetime = ((DateTime)DateTime.UtcNow).AddHours(7).ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A";
 
               bool valid = (!string.IsNullOrEmpty(row_data.Code)) &&
@@ -305,6 +307,11 @@ namespace CheckWeigherFood.Popup
         }
       }
       return productDTOs;
+    }
+
+    public static bool IsProductTuyetDoi(string note)
+    {
+      return (note.Trim().ToLower() == "TL tuyệt đối".Trim().ToLower());
     }
 
     private static string GetText(Worksheet worksheet, int row, int column)

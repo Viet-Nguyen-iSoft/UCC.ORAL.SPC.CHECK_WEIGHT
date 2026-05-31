@@ -10,5 +10,7 @@ namespace Database.Models
   {
     public string PathReport { get; set; }
     public long ProductId { get; set; }
+    public long MachineId { get; set; }
+    public long ChangeOverId { get; set; }
   }
 }

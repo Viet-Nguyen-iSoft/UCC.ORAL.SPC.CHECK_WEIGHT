@@ -40,11 +40,11 @@
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.lbNumberDataSam = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.lbNumberDataRemove = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
+      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel4.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
@@ -115,7 +115,7 @@
       this.btnConfirm.BorderSize = 0;
       this.btnConfirm.FlatAppearance.BorderSize = 0;
       this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnConfirm.ForeColor = System.Drawing.Color.White;
       this.btnConfirm.Location = new System.Drawing.Point(293, 5);
       this.btnConfirm.Name = "btnConfirm";
@@ -135,7 +135,7 @@
       this.btnImport.BorderSize = 0;
       this.btnImport.FlatAppearance.BorderSize = 0;
       this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnImport.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnImport.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnImport.ForeColor = System.Drawing.Color.White;
       this.btnImport.Location = new System.Drawing.Point(458, 5);
       this.btnImport.Name = "btnImport";
@@ -155,7 +155,7 @@
       this.btnExit.BorderSize = 0;
       this.btnExit.FlatAppearance.BorderSize = 0;
       this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnExit.ForeColor = System.Drawing.Color.White;
       this.btnExit.Location = new System.Drawing.Point(623, 5);
       this.btnExit.Name = "btnExit";
@@ -286,16 +286,6 @@
       this.label3.Text = "Số dữ liệu trùng không hợp lệ:";
       this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // backgroundWorker1
-      // 
-      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-      this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-      // 
-      // openFileDialog1
-      // 
-      this.openFileDialog1.FileName = "openFileDialog1";
-      this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-      // 
       // tableLayoutPanel5
       // 
       this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -347,6 +337,16 @@
       this.label4.TabIndex = 25;
       this.label4.Text = "Số dữ liệu cần xóa:";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // backgroundWorker1
+      // 
+      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+      this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+      // 
+      // openFileDialog1
+      // 
+      this.openFileDialog1.FileName = "openFileDialog1";
+      this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
       // 
       // PopupImportMasterData
       // 

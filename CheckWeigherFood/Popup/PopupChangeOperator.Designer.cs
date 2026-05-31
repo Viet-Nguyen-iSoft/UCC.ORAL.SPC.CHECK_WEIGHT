@@ -203,7 +203,7 @@
       this.btnConfirm.BorderSize = 0;
       this.btnConfirm.FlatAppearance.BorderSize = 0;
       this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnConfirm.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnConfirm.ForeColor = System.Drawing.Color.White;
       this.btnConfirm.Location = new System.Drawing.Point(322, 5);
       this.btnConfirm.Name = "btnConfirm";
@@ -224,7 +224,7 @@
       this.btnExit.BorderSize = 0;
       this.btnExit.FlatAppearance.BorderSize = 0;
       this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnExit.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnExit.ForeColor = System.Drawing.Color.White;
       this.btnExit.Location = new System.Drawing.Point(487, 5);
       this.btnExit.Name = "btnExit";
