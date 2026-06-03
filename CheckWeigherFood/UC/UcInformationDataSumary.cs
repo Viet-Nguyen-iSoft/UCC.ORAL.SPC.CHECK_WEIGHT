@@ -55,7 +55,6 @@ namespace CheckWeigherFood.UC
 
       if (product!=null)
       {
-        this.lbT.Text = $"{product.T }";
         this.lbUpper.Text = $"{product.USL + tube + carton - tailTube}";
         this.lbUpperControl.Text = $"{product.UCL + tube + carton - tailTube}";
         this.lbTarget.Text = $"{product.Target + tube + carton - tailTube}";
