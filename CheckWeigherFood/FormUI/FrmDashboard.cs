@@ -81,6 +81,26 @@ namespace CheckWeigherFood.FrmChild
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
       ucInformationLoss1.ValueTitle = "Thông tin loss";
+
+      lbOP.SetBackColor = Color.White;
+      lbQC.SetBackColor = Color.White;
+      lbShiftLeader.SetBackColor = Color.White;
+      lbTailTube.SetBackColor = Color.White;
+      lbTube.SetBackColor = Color.White;
+      lbCarton.SetBackColor = Color.White;
+      lbLot.SetBackColor = Color.White;
+      lbFGs.SetBackColor = Color.White;
+      lbNameProduct.SetBackColor = Color.White;
+
+      lbOP.SetForeColor = Color.Black;
+      lbQC.SetForeColor = Color.Black;
+      lbShiftLeader.SetForeColor = Color.Black;
+      lbTailTube.SetForeColor = Color.Black;
+      lbTube.SetForeColor = Color.Black;
+      lbCarton.SetForeColor = Color.Black;
+      lbLot.SetForeColor = Color.Black;
+      lbFGs.SetForeColor = Color.Black;
+      lbNameProduct.SetForeColor = Color.Black;
     }
 
 

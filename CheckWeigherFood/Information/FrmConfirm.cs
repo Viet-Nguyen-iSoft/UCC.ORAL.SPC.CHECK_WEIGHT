@@ -18,12 +18,13 @@ namespace CheckWeigherFood.FrmChild
     public FrmConfirm()
     {
       InitializeComponent();
+      btnConfirm.Click += BtnConfirm_Click;
+      btnCancel.Click += btnCancel_Click;
     }
 
-    public FrmConfirm(string title, eImage eImage)
-    {
-      InitializeComponent();
 
+    public FrmConfirm(string title, eImage eImage):this()
+    {
       this.lbInformation.Text = title;
       this.picIcon.Image = new Bitmap(Application.StartupPath + $"\\Image\\{eImage}.png");
     }
@@ -56,7 +57,7 @@ namespace CheckWeigherFood.FrmChild
       this.Close();
     }
 
-    private void btnOK_Click(object sender, EventArgs e)
+    private void BtnConfirm_Click(object sender, EventArgs e)
     {
       if (OnSendOKClicked != null)
       {

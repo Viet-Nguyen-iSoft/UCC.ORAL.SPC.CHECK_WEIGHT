@@ -283,54 +283,63 @@ namespace CheckWeigherFood.Controls
 
         sumaryDTO.OW = (target != 0 && sumaryDTO.Mean > target) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
 
-        //Kết quả
-        if (product.IsAbsolute)
+        if (sumaryDTO.Mean >= target)
         {
-          bool rule01 = datalogs?.Any(x => x.Net < target) ?? false;
-          if (!rule01)
-          {
-            sumaryDTO.EnumResult = EnumResult.Pass;
-          }
-          else
-          {
-            sumaryDTO.EnumResult = EnumResult.Fail;
-            sumaryDTO.ReasonFail.Add("Có mẫu < target theo luật TL Tuyệt đối");
-          }
+          sumaryDTO.EnumResult = EnumResult.Pass;
         }
         else
         {
-          //Số mẫu có khối lượng thuộc [Target - 2T, Target - T) không được vượt quá 2,5 %  cỡ lô
-          var cnt = datalogs?.Count(x => x.Net < LCL && x.Net >= LSL);
-          double value = (((double)cnt) * 100.0) / (double)datalogs.Count();
-          bool rule01 = value <= 2.5;
-          if (!rule01)
-          {
-            sumaryDTO.ReasonFail.Add("Số mẫu có khối lượng thuộc [LSL, LCL) vượt quá 2,5 % cỡ lô");
-          }  
-
-          //Ko có mẫu nào nhỏ hơn giá trị (Target -2T)
-          bool rule02 = !( datalogs?.Any(x => x.Net < LSL) ?? true);
-          if (!rule02)
-          {
-            sumaryDTO.ReasonFail.Add("Có mẫu < LSL ");
-          }
-
-          //Ttb >= Target
-          bool rule03 = sumaryDTO.Mean >= target;
-          if (!rule03)
-          {
-            sumaryDTO.ReasonFail.Add("TL trung bình < target");
-          }
-
-          if (rule01 && rule02 && rule03)
-          {
-            sumaryDTO.EnumResult = EnumResult.Pass;
-          }
-          else
-          {
-            sumaryDTO.EnumResult = EnumResult.Fail;
-          }
+          sumaryDTO.EnumResult = EnumResult.Fail;
         }
+
+        ////Kết quả
+        //if (product.IsAbsolute)
+        //{
+        //  bool rule01 = datalogs?.Any(x => x.Net < target) ?? false;
+        //  if (!rule01)
+        //  {
+        //    sumaryDTO.EnumResult = EnumResult.Pass;
+        //  }
+        //  else
+        //  {
+        //    sumaryDTO.EnumResult = EnumResult.Fail;
+        //    sumaryDTO.ReasonFail.Add("Có mẫu < target theo luật TL Tuyệt đối");
+        //  }
+        //}
+        //else
+        //{
+        //  //Số mẫu có khối lượng thuộc [Target - 2T, Target - T) không được vượt quá 2,5 %  cỡ lô
+        //  var cnt = datalogs?.Count(x => x.Net < LCL && x.Net >= LSL);
+        //  double value = (((double)cnt) * 100.0) / (double)datalogs.Count();
+        //  bool rule01 = value <= 2.5;
+        //  if (!rule01)
+        //  {
+        //    sumaryDTO.ReasonFail.Add("Số mẫu có khối lượng thuộc [LSL, LCL) vượt quá 2,5 % cỡ lô");
+        //  }
+
+        //  //Ko có mẫu nào nhỏ hơn giá trị (Target -2T)
+        //  bool rule02 = !(datalogs?.Any(x => x.Net < LSL) ?? true);
+        //  if (!rule02)
+        //  {
+        //    sumaryDTO.ReasonFail.Add("Có mẫu < LSL ");
+        //  }
+
+        //  //Ttb >= Target
+        //  bool rule03 = sumaryDTO.Mean >= target;
+        //  if (!rule03)
+        //  {
+        //    sumaryDTO.ReasonFail.Add("TL trung bình < target");
+        //  }
+
+        //  if (rule01 && rule02 && rule03)
+        //  {
+        //    sumaryDTO.EnumResult = EnumResult.Pass;
+        //  }
+        //  else
+        //  {
+        //    sumaryDTO.EnumResult = EnumResult.Fail;
+        //  }
+        //}
       }
       else
       {

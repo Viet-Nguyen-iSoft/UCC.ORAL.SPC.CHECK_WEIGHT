@@ -67,8 +67,12 @@ namespace Database.DtoHelper
       if (employees == null || employees.Count == 0)
         return new List<EmployeeDTO>();
 
-      return employees.Select((x, index) => new EmployeeDTO
+      return employees
+      .OrderBy(x => x.EnumTypeEmployee)
+      .ThenBy(x => x.FullName).ThenBy(x=>x.CreatedAt)
+      .Select((x, index) => new EmployeeDTO
       {
+        Employee = x,
         No = index + 1,
         FullName = x.FullName,
         DatetimeCreate = ((DateTime)x.CreatedAt).AddHours(TimeZoom).ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A",

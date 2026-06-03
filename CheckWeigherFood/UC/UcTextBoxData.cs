@@ -30,6 +30,21 @@ namespace CheckWeigherFood.UC
         return lbData.Text;
       }
     }
+
+    public Color SetBackColor
+    {
+      set
+      {
+        lbData.BackColor = value;
+      }
+    }
+    public Color SetForeColor
+    {
+      set
+      {
+        lbData.ForeColor = value;
+      }
+    }
     private void CustomUI()
     {
       ElipseControl elipseControl0 = new ElipseControl();

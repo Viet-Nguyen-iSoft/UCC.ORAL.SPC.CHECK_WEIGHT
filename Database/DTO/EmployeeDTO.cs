@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace Database.DTO
 {
   public class EmployeeDTO
   {
+    [Browsable(false)]
+    public Employee Employee { get; set; }
+
+
     [DisplayName("Stt")]
     public int No { get; set; }
 

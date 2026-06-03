@@ -40,5 +40,17 @@ namespace Database
       Reject = 3,
 
     }
+
+    public enum EnumTypePopup
+    {
+      [Description("N/A")]
+      None = 0,
+
+      Add = 1,
+
+      Edit = 2,
+
+
+    }
   }
 }

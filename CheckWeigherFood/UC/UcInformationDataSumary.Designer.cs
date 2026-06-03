@@ -514,7 +514,7 @@
       this.lbResult.Size = new System.Drawing.Size(151, 49);
       this.lbResult.TabIndex = 46;
       this.lbResult.Text = "N/A";
-      this.lbResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.lbResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // UcInformationDataSumary
       // 

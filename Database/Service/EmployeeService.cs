@@ -57,5 +57,47 @@ namespace Database.Service
         }
       }
     }
+
+    public async Task UpdateAsync(Employee employee)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          await db.Database.EnsureCreatedAsync();
+          await db.Database.BeginTransactionAsync();
+          _repositoryEmployee = new RepositoryEmployee(db);
+          await _repositoryEmployee.UpdateAsync(employee);
+          await db.SaveChangesAsync();
+          db.Database.CommitTransaction();
+        }
+        catch (Exception ex)
+        {
+          db.Database.RollbackTransaction();
+          throw ex;
+        }
+      }
+    }
+
+    public async Task RemoveAsync(Employee employee)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          await db.Database.EnsureCreatedAsync();
+          await db.Database.BeginTransactionAsync();
+          _repositoryEmployee = new RepositoryEmployee(db);
+          await _repositoryEmployee.RemoveAsync(employee);
+          await db.SaveChangesAsync();
+          db.Database.CommitTransaction();
+        }
+        catch (Exception ex)
+        {
+          db.Database.RollbackTransaction();
+          throw ex;
+        }
+      }
+    }
   }
 }

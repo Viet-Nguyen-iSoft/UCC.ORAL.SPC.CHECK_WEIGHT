@@ -1,17 +1,7 @@
-﻿using CheckWeigherFood.Controls;
-using CheckWeigherFood.InitChart;
-using Database.DTO;
+﻿using Database.DTO;
 using Database.Models;
-using DocumentFormat.OpenXml.Math;
-using Irony.Parsing;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CheckWeigherFood.UC
@@ -53,12 +43,12 @@ namespace CheckWeigherFood.UC
         return;
       }
 
-      if (product!=null)
+      if (product != null)
       {
         this.lbUpper.Text = $"{product.USL + tube + carton - tailTube}";
         this.lbUpperControl.Text = $"{product.UCL + tube + carton - tailTube}";
         this.lbTarget.Text = $"{product.Target + tube + carton - tailTube}";
-        
+
         if (product.IsAbsolute)
         {
           this.lbGroup.Text = "TL tuyệt đối";
@@ -70,9 +60,9 @@ namespace CheckWeigherFood.UC
           this.lbGroup.Text = "TL trung bình";
           this.lbLowerControl.Text = $"{product.LCL + tube + carton - tailTube}";
           this.lbLower.Text = $"{product.LSL + tube + carton - tailTube}";
-        }  
-      }  
-      
+        }
+      }
+
     }
 
     public void SetSumaryDTO(SumaryDTO sumaryDTO)
@@ -93,6 +83,24 @@ namespace CheckWeigherFood.UC
         this.lbCp.Text = $"{sumaryDTO.Cp}";
         this.lbCpk.Text = $"{sumaryDTO.Cpk}";
         this.lbSample.Text = $"{sumaryDTO.Sample}";
+
+        switch (sumaryDTO.EnumResult)
+        {
+          case EnumResult.None:
+            this.lbResult.Text = "N/A";
+            this.lbResult.BackColor = Color.Gray;
+            break;
+          case EnumResult.Pass:
+            this.lbResult.Text = "ĐẠT";
+            this.lbResult.BackColor = Color.DarkGreen;
+            break;
+          case EnumResult.Fail:
+            this.lbResult.Text = "KHÔNG ĐẠT";
+            this.lbResult.BackColor = Color.Red;
+            break;
+          default:
+            break;
+        }
       }
 
     }

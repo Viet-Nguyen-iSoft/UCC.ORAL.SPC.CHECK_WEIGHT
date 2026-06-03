@@ -375,10 +375,10 @@
     <Compile Include="FormUI\FrmAutoReport.Designer.cs">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUI\FrmConfirm.cs">
+    <Compile Include="Information\FrmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUI\FrmConfirm.Designer.cs">
+    <Compile Include="Information\FrmConfirm.Designer.cs">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUI\FrmDashboard.cs">
@@ -393,10 +393,10 @@
     <Compile Include="FormUI\FrmEmployee.Designer.cs">
       <DependentUpon>FrmEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUI\FrmInformation.cs">
+    <Compile Include="Information\FrmInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUI\FrmInformation.Designer.cs">
+    <Compile Include="Information\FrmInformation.Designer.cs">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUI\FrmLoading.cs">
@@ -524,6 +524,12 @@
     <Compile Include="UC\UcData.Designer.cs">
       <DependentUpon>UcData.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UcFilterTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UcFilterTime.Designer.cs">
+      <DependentUpon>UcFilterTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UcInformationDataSumary.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -545,7 +551,7 @@
     <EmbeddedResource Include="FormUI\FrmAutoReport.resx">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUI\FrmConfirm.resx">
+    <EmbeddedResource Include="Information\FrmConfirm.resx">
       <DependentUpon>FrmConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUI\FrmDashboard.resx">
@@ -554,7 +560,7 @@
     <EmbeddedResource Include="FormUI\FrmEmployee.resx">
       <DependentUpon>FrmEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUI\FrmInformation.resx">
+    <EmbeddedResource Include="Information\FrmInformation.resx">
       <DependentUpon>FrmInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUI\FrmLoading.resx">
@@ -623,6 +629,9 @@
     <EmbeddedResource Include="UC\UcData.resx">
       <DependentUpon>UcData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UcFilterTime.resx">
+      <DependentUpon>UcFilterTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UcInformationDataSumary.resx">
       <DependentUpon>UcInformationDataSumary.cs</DependentUpon>
     </EmbeddedResource>
@@ -649,9 +658,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Information\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="logoCW.ico" />
   </ItemGroup>

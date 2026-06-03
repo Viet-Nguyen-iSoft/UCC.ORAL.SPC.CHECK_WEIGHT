@@ -209,6 +209,7 @@ namespace CheckWeigherFood.Controls
         datalog.Net = value;
         datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
         datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
+        datalog.TareTailTube = (_tareSettingCurrent?.TailTube ?? 0.0);
         datalog.EnumStatusRecord = CheckStatus(_productCurrent, _tareSettingCurrent, value);
         datalog.ChangeOverId = _appConfig.ChangeOverId;
 
