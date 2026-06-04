@@ -406,6 +406,22 @@ namespace CheckWeigherFood.Controls
     #endregion
 
 
+
+
+    public (string str1, string str2) SplitString(string input)
+    {
+      if (string.IsNullOrWhiteSpace(input))
+        return (string.Empty, string.Empty);
+
+      string[] arr = input.Split(new[] { "||" }, StringSplitOptions.None);
+
+      if (arr.Length >= 2)
+        return (arr[0], arr[1]);
+
+      return (input, string.Empty);
+    }
+
+
   }
 
   public class ShiftInfo

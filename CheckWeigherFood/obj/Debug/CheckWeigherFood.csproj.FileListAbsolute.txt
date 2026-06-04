@@ -1275,7 +1275,6 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupAddNewEmployee.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeFGs.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeOperator.resources
-D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeTareAndLot.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupImportMasterData.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Properties.Resources.resources
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.UCTextDateTime.resources
@@ -1291,3 +1290,5 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWei.9DAFB280.Up2Date
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.exe
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.pdb
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeTare.resources
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.Popup.PopupChangeLot.resources

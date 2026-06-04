@@ -165,9 +165,9 @@ namespace CheckWeigherFood
     {
       SetTitleMachine();
 
-      timer_UpdateUI.Interval = 1000;
-      timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
-      timer_UpdateUI.Start();
+      //timer_UpdateUI.Interval = 1000;
+      //timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
+      //timer_UpdateUI.Start();
     }
 
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -223,7 +223,7 @@ namespace CheckWeigherFood
 
     private void label4_Click(object sender, EventArgs e)
     {
-      timer_UpdateUI.Start();
+      //timer_UpdateUI.Start();
       //AppCore.Ins.RandomDataWeight();
     }
   }

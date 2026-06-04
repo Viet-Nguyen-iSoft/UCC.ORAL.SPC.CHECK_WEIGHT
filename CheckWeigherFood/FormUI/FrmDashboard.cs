@@ -13,9 +13,11 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using static Database.Enum;
+using Timer = System.Windows.Forms.Timer;
 
 namespace CheckWeigherFood.FrmChild
 {
@@ -100,9 +102,10 @@ namespace CheckWeigherFood.FrmChild
       lbTailTube.SetBackColor = Color.White;
       lbTube.SetBackColor = Color.White;
       lbCarton.SetBackColor = Color.White;
-      lbLot.SetBackColor = Color.White;
+      lbLotTube.SetBackColor = Color.White;
       lbFGs.SetBackColor = Color.White;
       lbNameProduct.SetBackColor = Color.White;
+      lbLotCarton.SetBackColor = Color.White;
 
       lbOP.SetForeColor = Color.Black;
       lbQC.SetForeColor = Color.Black;
@@ -110,9 +113,10 @@ namespace CheckWeigherFood.FrmChild
       lbTailTube.SetForeColor = Color.Black;
       lbTube.SetForeColor = Color.Black;
       lbCarton.SetForeColor = Color.Black;
-      lbLot.SetForeColor = Color.Black;
+      lbLotTube.SetForeColor = Color.Black;
       lbFGs.SetForeColor = Color.Black;
       lbNameProduct.SetForeColor = Color.Black;
+      lbLotCarton.SetForeColor = Color.Black;
     }
 
 
@@ -127,8 +131,12 @@ namespace CheckWeigherFood.FrmChild
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private DataChart _dataChart = new DataChart();
     private List<string> dataTimeData = new List<string>();
+    private List<Datalog> dataChartline = new List<Datalog>();
     private List<DataRejectDTO> reject = new List<DataRejectDTO>();
     private SumaryDTO sumaryDTO = new SumaryDTO();
+
+    private System.Threading.Timer _watchdogTimer;
+    private readonly object _lockObj = new object();
     private void FrmDashboard_Load(object sender, EventArgs e)
     {
       //Init chart
@@ -145,6 +153,7 @@ namespace CheckWeigherFood.FrmChild
 
       //Lấy tgian ca hiện tại set filter chart
       SetTimeFilterChart(AppCore.Ins.shift_last);
+      GetDt();
 
       //Tạo timer load data 2s
       timer_UpdateUI.Interval = 2000;
@@ -171,6 +180,8 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
+
+      InitWatchdog();
     }
 
     private void TimerBlinkStatusInforline_Tick(object sender, EventArgs e)
@@ -188,6 +199,32 @@ namespace CheckWeigherFood.FrmChild
       {
         timerBlinkStatusInforline.Start();
       }
+    }
+
+    public void InitWatchdog()
+    {
+      _watchdogTimer = new System.Threading.Timer(
+          WatchdogTimeout,
+          null,
+          Timeout.Infinite,
+          Timeout.Infinite);
+    }
+
+    private void ResetWatchdog()
+    {
+      lock (_lockObj)
+      {
+        _watchdogTimer?.Change(
+            TimeSpan.FromSeconds(60),
+            Timeout.InfiniteTimeSpan);
+
+        _enumStatusMachine = EnumStatusMachine.Run;
+      }
+    }
+
+    private void WatchdogTimeout(object state)
+    {
+      _enumStatusMachine = EnumStatusMachine.Stop;
     }
 
     private void CheckInforLine()
@@ -233,15 +270,15 @@ namespace CheckWeigherFood.FrmChild
         lbShiftLeader.SetBackColor = Color.White;
       }
 
-      if (string.IsNullOrEmpty(lbLot.ValueStr.Trim()))
+      if (string.IsNullOrEmpty(lbLotTube.ValueStr.Trim()))
       {
-        lbLot.Visible = !lbLot.Visible;
-        lbLot.SetBackColor = Color.Yellow;
+        lbLotTube.Visible = !lbLotTube.Visible;
+        lbLotTube.SetBackColor = Color.Yellow;
       }
       else
       {
-        lbLot.Visible = true;
-        lbLot.SetBackColor = Color.White;
+        lbLotTube.Visible = true;
+        lbLotTube.SetBackColor = Color.White;
       }
     }
 
@@ -316,6 +353,8 @@ namespace CheckWeigherFood.FrmChild
       }
       _statusConnectOpcUa = success;
       ucInformationDataSumary1.SetWeightRealtime(value);
+
+      ResetWatchdog();
     }
 
     private void TimerMarquee_Tick(object sender, EventArgs e)
@@ -421,7 +460,13 @@ namespace CheckWeigherFood.FrmChild
         sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent);
 
         //Data time
-        dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
+        dataChartline = sumaryDTO.DatalogPass
+                        .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
+                        .ToList();
+        //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
+        dataTimeData = dataChartline.Select(x => x.CreatedAt.ToString()).ToList();
+
+        //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
 
         //Data reject
         reject = new List<DataRejectDTO>();
@@ -459,7 +504,7 @@ namespace CheckWeigherFood.FrmChild
 
       if (isUpdateChart)
       {
-        _dataChart.AddChartControlDashboard(chartControl, sumaryDTO, dataTimeData, 0);
+        _dataChart.AddChartControlDashboard(chartControl, sumaryDTO, dataChartline, dataTimeData, 0);
         _dataChart.AddChartHistogram(chartHistogram, sumaryDTO);
         ucChartPie1.SetDataChartPie(sumaryDTO);
       }
@@ -482,6 +527,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
+      _statusConnectOpcUa = true;
       if (_statusConnectOpcUa)
       {
         timerBlinkStatus.Stop();
@@ -570,8 +616,9 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
+      double cnt = (double)(sumaryDTO.DatalogReject.Count());
       double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Net);
-      double lossByOW = sumaryDTO.OW * sumaryDTO.Target;
+      double lossByOW = sumaryDTO.OW * sumaryDTO.Target* cnt;
 
       ucInformationLoss1.ValueLossReject = Math.Round((lossByReject / 1000.0), 2).ToString();
       ucInformationLoss1.ValueLossOW = Math.Round((lossByOW / 1000.0), 2).ToString();
@@ -720,7 +767,7 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins._appConfig.ProductId = obj.Id;
       AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
       await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
-
+      AppCore.Ins._datalogsInShiftCurrent = new List<Datalog>();
       ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
     }
 
@@ -739,14 +786,14 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
     {
-      PopupChangeTareAndLot popupChangeTareAndLot = new PopupChangeTareAndLot(AppCore.Ins._tareSettingCurrent);
-      popupChangeTareAndLot.OnChangeTareSetting += PopupChangeTareAndLot_OnChangeTareSetting;
-      popupChangeTareAndLot.ShowDialog();
+      PopupChangeTare  popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent);
+      popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
+      popupChangeTare.ShowDialog();
     }
 
-    private void PopupChangeTareAndLot_OnChangeTareSetting(TareSetting obj)
+    private void PopupChangeTare_OnChangeTareSetting(TareSetting obj)
     {
-      ShowInforLotAndTare(obj);
+      ShowInforTare(obj);
       AppCore.Ins._tareSettingCurrent = obj;
       ShowInforProduct(AppCore.Ins._productCurrent,
         AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0,
@@ -762,10 +809,39 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      lbLot.ValueStr = tareSetting?.Lot ?? string.Empty;
+      var lot = AppCore.Ins.SplitString(tareSetting?.Lot ?? string.Empty);
+      lbLotTube.ValueStr = lot.str1 ?? string.Empty;
+      lbLotCarton.ValueStr = lot.str2 ?? string.Empty;
+
       lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
       lbTailTube.ValueStr = tareSetting?.TailTube.ToString() ?? string.Empty;
       lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
+    }
+
+    private void ShowInforTare(TareSetting tareSetting)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforTare(tareSetting); }));
+        return;
+      }
+
+      lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
+      lbTailTube.ValueStr = tareSetting?.TailTube.ToString() ?? string.Empty;
+      lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
+    }
+
+    private void ShowInforLot(TareSetting tareSetting)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforLot(tareSetting); }));
+        return;
+      }
+
+      var lot = AppCore.Ins.SplitString(tareSetting?.Lot ?? string.Empty);
+      lbLotTube.ValueStr = lot.str1 ?? string.Empty;
+      lbLotCarton.ValueStr = lot.str2 ?? string.Empty;
     }
 
     private void ClearLot( )
@@ -776,7 +852,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      lbLot.ValueStr =string.Empty;
+      lbLotTube.ValueStr =string.Empty;
     }
 
     private void SetTimeFilterChart(int shift)
@@ -807,6 +883,48 @@ namespace CheckWeigherFood.FrmChild
     private void label8_Click(object sender, EventArgs e)
     {
       AppCore.Ins.ChangeShiftTest();
+    }
+
+    private void btnChangeLot_Click(object sender, EventArgs e)
+    {
+      PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent);
+      popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
+      popupChangeLot.ShowDialog();
+    }
+
+    private void PopupChangeLot_OnChangeTareSetting(TareSetting obj)
+    {
+      ShowInforLot(obj);
+      AppCore.Ins._tareSettingCurrent = obj;
+    }
+
+
+    private DateTime _from { get;set; }
+    private DateTime _to { get;set; }
+    private void picFilterChart_Click(object sender, EventArgs e)
+    {
+      GetDt();
+    }
+
+    private void GetDt()
+    {
+      try
+      {
+        TimeSpan timeSpanFrom = ucFilterTime1.From;
+        TimeSpan timeSpanTo = ucFilterTime1.To;
+
+        _from = DateTime.Today.Add(timeSpanFrom);
+        _to = DateTime.Today.Add(timeSpanTo);
+
+        if (timeSpanTo < timeSpanFrom)
+        {
+          _to = _to.AddDays(1);
+        }
+      }
+      catch (Exception)
+      {
+
+      }
     }
   }
 }

@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace CheckWeigherFood.Popup
 {
-  public partial class PopupChangeTareAndLot : Form
+  public partial class PopupChangeTare : Form
   {
     public event Action<TareSetting> OnChangeTareSetting;
-    public PopupChangeTareAndLot()
+    public PopupChangeTare()
     {
       InitializeComponent();
       RegisterService();
       this.Load += PopupChangeTareAndLot_Load;
     }
-    public PopupChangeTareAndLot(TareSetting tareSetting) :this()
+    public PopupChangeTare(TareSetting tareSetting) :this()
     {
       ShowInforLotAndTare(tareSetting);
     }
@@ -31,7 +31,6 @@ namespace CheckWeigherFood.Popup
         return;
       }
 
-      txtLot.Texts = tareSetting?.Lot ?? string.Empty;
       txtTareTube.Texts = tareSetting?.Tube.ToString() ?? string.Empty;
       txtTareCarton.Texts = tareSetting?.Carton.ToString() ?? string.Empty;
       txtTareTailTube.Texts = tareSetting?.TailTube.ToString() ?? string.Empty;
@@ -60,12 +59,6 @@ namespace CheckWeigherFood.Popup
     {
       try
       {
-        if (string.IsNullOrEmpty(txtLot.Texts))
-        {
-          new FrmInformation().ShowMessage("Vui lòng nhập lô sản xuất !", eNumUI.eImage.Warning);
-          return;
-        }
-
         if (string.IsNullOrEmpty(txtTareTube.Texts))
         {
           new FrmInformation().ShowMessage("Vui lòng nhập Tare tube !", eNumUI.eImage.Warning);
@@ -78,8 +71,13 @@ namespace CheckWeigherFood.Popup
           return;
         }
 
+        if (string.IsNullOrEmpty(txtTareTailTube.Texts))
+        {
+          new FrmInformation().ShowMessage("Vui lòng nhập Tare đuôi tube !", eNumUI.eImage.Warning);
+          return;
+        }
+
         TareSetting tareSetting = new TareSetting();
-        tareSetting.Lot = txtLot.Texts;
         tareSetting.Carton = double.Parse(txtTareCarton.Texts);
         tareSetting.Tube = double.Parse(txtTareTube.Texts);
         tareSetting.TailTube = double.Parse(txtTareTailTube.Texts);

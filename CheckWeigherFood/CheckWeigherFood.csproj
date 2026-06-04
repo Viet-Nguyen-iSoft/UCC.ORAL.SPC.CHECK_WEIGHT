@@ -463,17 +463,23 @@
     <Compile Include="Popup\PopupChangeFGs.Designer.cs">
       <DependentUpon>PopupChangeFGs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Popup\PopupChangeLot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popup\PopupChangeLot.Designer.cs">
+      <DependentUpon>PopupChangeLot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Popup\PopupChangeOperator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Popup\PopupChangeOperator.Designer.cs">
       <DependentUpon>PopupChangeOperator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Popup\PopupChangeTareAndLot.cs">
+    <Compile Include="Popup\PopupChangeTare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Popup\PopupChangeTareAndLot.Designer.cs">
-      <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
+    <Compile Include="Popup\PopupChangeTare.Designer.cs">
+      <DependentUpon>PopupChangeTare.cs</DependentUpon>
     </Compile>
     <Compile Include="Popup\PopupImportMasterData.cs">
       <SubType>Form</SubType>
@@ -599,11 +605,14 @@
     <EmbeddedResource Include="Popup\PopupChangeFGs.resx">
       <DependentUpon>PopupChangeFGs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Popup\PopupChangeLot.resx">
+      <DependentUpon>PopupChangeLot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Popup\PopupChangeOperator.resx">
       <DependentUpon>PopupChangeOperator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Popup\PopupChangeTareAndLot.resx">
-      <DependentUpon>PopupChangeTareAndLot.cs</DependentUpon>
+    <EmbeddedResource Include="Popup\PopupChangeTare.resx">
+      <DependentUpon>PopupChangeTare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Popup\PopupImportMasterData.resx">
       <DependentUpon>PopupImportMasterData.cs</DependentUpon>

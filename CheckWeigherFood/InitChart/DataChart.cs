@@ -1,4 +1,5 @@
 ﻿using Database.DTO;
+using Database.Models;
 using DocumentFormat.OpenXml.Drawing;
 using System;
 using System.Collections.Generic;
@@ -139,11 +140,12 @@ namespace CheckWeigherFood.InitChart
 
     }
 
-    public void AddChartControlDashboard(Chart chartName, SumaryDTO sumaryDTO, List<string> dataX, double max)
+    public void AddChartControlDashboard(Chart chartName, SumaryDTO sumaryDTO, List<Datalog> datalogs, List<string> dataX, double max)
     {
       try
       {
-        List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
+        //List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
+        List<double> dataY = datalogs.Select(x=>x.Net).ToList();
 
         if (dataX == null || dataY == null || dataX.Count == 0 || dataY.Count == 0)
         {
