@@ -86,6 +86,10 @@ namespace CheckWeigherFood.FrmChild
       elipseControl7.TargetControl = tableLayoutPanel14;
       elipseControl7.CornerRadius = 20;
 
+      ElipseControl elipseControl8 = new ElipseControl();
+      elipseControl8.TargetControl = panelContent;
+      elipseControl8.CornerRadius = 20;
+
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
       ucInformationLoss1.ValueTitle = "Thông tin loss";
@@ -159,9 +163,9 @@ namespace CheckWeigherFood.FrmChild
       timerBlinkStatus.Tick += TimerBlinkStatus_Tick;
       //timerBlinkStatus.Start();
 
-      timerBlinkStatusInforline.Interval = 500;
-      timerBlinkStatusInforline.Tick += TimerBlinkStatusInforline_Tick;
-      timerBlinkStatusInforline.Start();
+      //timerBlinkStatusInforline.Interval = 500;
+      //timerBlinkStatusInforline.Tick += TimerBlinkStatusInforline_Tick;
+      //timerBlinkStatusInforline.Start();
 
       //Sự kiện
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
@@ -247,22 +251,27 @@ namespace CheckWeigherFood.FrmChild
       ShowInforOperator(string.Empty, string.Empty, string.Empty);
       ClearLot();
 
-      //Save cài đặt
-      OperationSetting operationSetting = new OperationSetting();
-      operationSetting.OP = "";
-      operationSetting.QC = "";
-      operationSetting.ShiftLeader = "";
-      operationSetting.CreatedAt = DateTime.UtcNow;
-      AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
+      ////Save cài đặt OP, QC, TC
+      //OperationSetting operationSetting = new OperationSetting();
+      //operationSetting.OP = "";
+      //operationSetting.QC = "";
+      //operationSetting.ShiftLeader = "";
+      //operationSetting.CreatedAt = DateTime.UtcNow;
+      //AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
 
-      TareSetting tareSetting = new TareSetting();
-      tareSetting.Lot = "";
-      tareSetting.Carton = AppCore.Ins._tareSettingCurrent.Carton;
-      tareSetting.Tube = AppCore.Ins._tareSettingCurrent.Tube;
-      tareSetting.TailTube = AppCore.Ins._tareSettingCurrent.TailTube;
-      tareSetting.CreatedAt = DateTime.UtcNow;
+      ////Rst lot
+      //TareSetting tareSetting = new TareSetting();
+      //tareSetting.Lot = "";
+      //tareSetting.Carton = AppCore.Ins._tareSettingCurrent.Carton;
+      //tareSetting.Tube = AppCore.Ins._tareSettingCurrent.Tube;
+      //tareSetting.TailTube = AppCore.Ins._tareSettingCurrent.TailTube;
+      //tareSetting.CreatedAt = DateTime.UtcNow;
+      //AppCore.Ins._tareSettingCurrent = await _tareSettingService.AddAsync(tareSetting);
 
-      AppCore.Ins._tareSettingCurrent = await _tareSettingService.AddAsync(tareSetting);
+      //Cắt qua ca
+      AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
+      AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
+      await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
     }
 
     private void TimerBlinkStatus_Tick(object sender, EventArgs e)
@@ -345,6 +354,8 @@ namespace CheckWeigherFood.FrmChild
       {
         lbContent.Left = panel1.Width;
       }
+
+      picAlarm.Visible = !picAlarm.Visible;
     }
 
     private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
@@ -509,34 +520,39 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      sumaryDTO.OW = 0.2;
       if (sumaryDTO.OW > 0.5)
       {
         double value = Math.Round( sumaryDTO.Mean - sumaryDTO.Target, 2);
         string msg = $"OW cao cần giảm trọng lượng {value}g";
         lbContent.Text = msg;
         lbContent.ForeColor = Color.Red;
+        panelContent.Visible = true;
       } 
       else
       {
-        sumaryDTO.EnumResult = EnumResult.None;
         //Kết quả
         if (sumaryDTO.EnumResult == EnumResult.Pass)
         {
-          lbContent.ForeColor = Color.DarkGreen;
-          lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+          //lbContent.ForeColor = Color.DarkGreen;
+          //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+
+          panelContent.Visible = false;
         }
         else if (sumaryDTO.EnumResult == EnumResult.Fail)
         {
           string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
           lbContent.ForeColor = Color.Red;
           lbContent.Text = mgs;
+
+          panelContent.Visible = true;
         }
         else
         {
-          string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
-          lbContent.ForeColor = Color.Black;
-          lbContent.Text = mgs;
+          //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+          //lbContent.ForeColor = Color.Black;
+          //lbContent.Text = mgs;
+
+          panelContent.Visible = false;
         }
       }
 

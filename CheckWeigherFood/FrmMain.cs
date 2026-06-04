@@ -159,9 +159,20 @@ namespace CheckWeigherFood
       this.btnDashBoard.PerformClick();
     }
 
+
+    private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private void FrmMain_Shown(object sender, EventArgs e)
     {
       SetTitleMachine();
+
+      timer_UpdateUI.Interval = 1000;
+      timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
+      timer_UpdateUI.Start();
+    }
+
+    private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+      AppCore.Ins.RandomDataWeight();
     }
 
     private void SetTitleMachine()
@@ -212,7 +223,8 @@ namespace CheckWeigherFood
 
     private void label4_Click(object sender, EventArgs e)
     {
-      AppCore.Ins.RandomDataWeight();
+      timer_UpdateUI.Start();
+      //AppCore.Ins.RandomDataWeight();
     }
   }
 }

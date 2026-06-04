@@ -51,6 +51,7 @@
       System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboard));
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -123,6 +124,8 @@
       this.lbStatusMachine = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
       this.lbContent = new System.Windows.Forms.Label();
+      this.panelContent = new System.Windows.Forms.TableLayoutPanel();
+      this.picAlarm = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel5.SuspendLayout();
       this.tableLayoutPanel6.SuspendLayout();
       this.tableLayoutPanel7.SuspendLayout();
@@ -147,6 +150,8 @@
       this.tableLayoutPanel8.SuspendLayout();
       this.tableLayoutPanel14.SuspendLayout();
       this.panel1.SuspendLayout();
+      this.panelContent.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel5
@@ -925,10 +930,12 @@
       // 
       this.ucFilterTime1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
       this.ucFilterTime1.Location = new System.Drawing.Point(1071, 3);
       this.ucFilterTime1.Name = "ucFilterTime1";
       this.ucFilterTime1.Size = new System.Drawing.Size(415, 54);
       this.ucFilterTime1.TabIndex = 19;
+      this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
       // 
       // tableLayoutPanel1
       // 
@@ -969,7 +976,7 @@
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
       this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
       this.tableLayoutPanel2.Controls.Add(this.label12, 3, 0);
       this.tableLayoutPanel2.Controls.Add(this.label13, 6, 0);
@@ -1059,7 +1066,7 @@
       this.lbShiftLeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.lbShiftLeader.Location = new System.Drawing.Point(1004, 3);
       this.lbShiftLeader.Name = "lbShiftLeader";
-      this.lbShiftLeader.Size = new System.Drawing.Size(300, 44);
+      this.lbShiftLeader.Size = new System.Drawing.Size(299, 44);
       this.lbShiftLeader.TabIndex = 25;
       this.lbShiftLeader.ValueStr = "";
       // 
@@ -1077,9 +1084,9 @@
       this.btnChangeOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeOperator.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeOperator.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOperator.Location = new System.Drawing.Point(1330, 3);
+      this.btnChangeOperator.Location = new System.Drawing.Point(1329, 3);
       this.btnChangeOperator.Name = "btnChangeOperator";
-      this.btnChangeOperator.Size = new System.Drawing.Size(156, 44);
+      this.btnChangeOperator.Size = new System.Drawing.Size(157, 44);
       this.btnChangeOperator.TabIndex = 26;
       this.btnChangeOperator.Text = "Thay đổi";
       this.btnChangeOperator.TextColor = System.Drawing.Color.White;
@@ -1227,7 +1234,7 @@
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(120, 50);
       this.label5.TabIndex = 20;
-      this.label5.Text = "FGs:";
+      this.label5.Text = "Mã sản phẩm:";
       this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // label6
@@ -1281,7 +1288,7 @@
       this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
       this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
       this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+      this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
       this.tableLayoutPanel8.Controls.Add(this.label10, 3, 0);
       this.tableLayoutPanel8.Controls.Add(this.lbCarton, 4, 0);
       this.tableLayoutPanel8.Controls.Add(this.label7, 0, 0);
@@ -1374,9 +1381,9 @@
       this.btnSettingTareAndLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnSettingTareAndLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSettingTareAndLot.ForeColor = System.Drawing.Color.White;
-      this.btnSettingTareAndLot.Location = new System.Drawing.Point(1331, 3);
+      this.btnSettingTareAndLot.Location = new System.Drawing.Point(1330, 3);
       this.btnSettingTareAndLot.Name = "btnSettingTareAndLot";
-      this.btnSettingTareAndLot.Size = new System.Drawing.Size(155, 44);
+      this.btnSettingTareAndLot.Size = new System.Drawing.Size(156, 44);
       this.btnSettingTareAndLot.TabIndex = 27;
       this.btnSettingTareAndLot.Text = "Thay đổi";
       this.btnSettingTareAndLot.TextColor = System.Drawing.Color.White;
@@ -1405,7 +1412,7 @@
       this.lbTailTube.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
       this.lbTailTube.Location = new System.Drawing.Point(1165, 3);
       this.lbTailTube.Name = "lbTailTube";
-      this.lbTailTube.Size = new System.Drawing.Size(140, 44);
+      this.lbTailTube.Size = new System.Drawing.Size(139, 44);
       this.lbTailTube.TabIndex = 29;
       this.lbTailTube.ValueStr = "";
       // 
@@ -1437,7 +1444,7 @@
       this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
       this.tableLayoutPanel14.Controls.Add(this.lbStatusMachine, 1, 0);
-      this.tableLayoutPanel14.Controls.Add(this.panel1, 0, 0);
+      this.tableLayoutPanel14.Controls.Add(this.panelContent, 0, 0);
       this.tableLayoutPanel14.Location = new System.Drawing.Point(5, 5);
       this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -1469,12 +1476,11 @@
       this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.panel1.BackColor = System.Drawing.Color.White;
-      this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.panel1.BackColor = System.Drawing.Color.Yellow;
       this.panel1.Controls.Add(this.lbContent);
-      this.panel1.Location = new System.Drawing.Point(3, 3);
+      this.panel1.Location = new System.Drawing.Point(56, 3);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(1093, 44);
+      this.panel1.Size = new System.Drawing.Size(1040, 44);
       this.panel1.TabIndex = 21;
       // 
       // lbContent
@@ -1493,6 +1499,39 @@
       this.lbContent.TabIndex = 20;
       this.lbContent.Text = "Nội dung";
       this.lbContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // panelContent
+      // 
+      this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panelContent.BackColor = System.Drawing.Color.Yellow;
+      this.panelContent.ColumnCount = 3;
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.panelContent.Controls.Add(this.panel1, 2, 0);
+      this.panelContent.Controls.Add(this.picAlarm, 1, 0);
+      this.panelContent.Location = new System.Drawing.Point(0, 0);
+      this.panelContent.Margin = new System.Windows.Forms.Padding(0);
+      this.panelContent.Name = "panelContent";
+      this.panelContent.RowCount = 1;
+      this.panelContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.panelContent.Size = new System.Drawing.Size(1099, 50);
+      this.panelContent.TabIndex = 21;
+      // 
+      // picAlarm
+      // 
+      this.picAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.picAlarm.Image = ((System.Drawing.Image)(resources.GetObject("picAlarm.Image")));
+      this.picAlarm.Location = new System.Drawing.Point(6, 3);
+      this.picAlarm.Name = "picAlarm";
+      this.picAlarm.Size = new System.Drawing.Size(44, 44);
+      this.picAlarm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picAlarm.TabIndex = 22;
+      this.picAlarm.TabStop = false;
       // 
       // FrmDashboard
       // 
@@ -1539,6 +1578,8 @@
       this.tableLayoutPanel14.PerformLayout();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      this.panelContent.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -1617,5 +1658,7 @@
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
     private UC.UcFilterTime ucFilterTime1;
+    private System.Windows.Forms.TableLayoutPanel panelContent;
+    private System.Windows.Forms.PictureBox picAlarm;
   }
 }
