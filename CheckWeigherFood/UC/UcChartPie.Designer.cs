@@ -106,7 +106,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label63.AutoSize = true;
       this.label63.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-      this.label63.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label63.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label63.ForeColor = System.Drawing.Color.White;
       this.label63.Location = new System.Drawing.Point(3, 0);
       this.label63.Name = "label63";
@@ -122,7 +122,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label71.AutoSize = true;
       this.label71.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-      this.label71.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label71.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label71.ForeColor = System.Drawing.Color.White;
       this.label71.Location = new System.Drawing.Point(149, 0);
       this.label71.Name = "label71";
@@ -138,7 +138,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label72.AutoSize = true;
       this.label72.BackColor = System.Drawing.Color.Red;
-      this.label72.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label72.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label72.ForeColor = System.Drawing.Color.White;
       this.label72.Location = new System.Drawing.Point(295, 0);
       this.label72.Name = "label72";

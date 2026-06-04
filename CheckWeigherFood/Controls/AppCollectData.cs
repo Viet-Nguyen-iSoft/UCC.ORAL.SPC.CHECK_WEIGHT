@@ -191,8 +191,8 @@ namespace CheckWeigherFood.Controls
     private Random random = new Random();
     public async void RandomDataWeight()
     {
-      double max = 65.0;
-      double min = 56.0;
+      double max = 170.0;
+      double min = 145.0;
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
 
