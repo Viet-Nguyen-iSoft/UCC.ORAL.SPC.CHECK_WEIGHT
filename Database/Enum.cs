@@ -25,6 +25,16 @@ namespace Database
 
     }
 
+    public enum EnumStatusMachine
+    {
+      [Description("N/A")]
+      None = 0,
+      Run = 1,
+      Stop = 2,
+      Disconnect = 3,
+
+    }
+
     public enum EnumStatusRecord
     {
       [Description("N/A")]

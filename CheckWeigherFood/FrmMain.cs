@@ -118,6 +118,7 @@ namespace CheckWeigherFood
       this.btnMasterData.ForeColor = NoSelect;
       this.btnReport.ForeColor = NoSelect;
       this.btnSetting.ForeColor = NoSelect;
+      this.btnEmployee.ForeColor = NoSelect;
 
       switch (button)
       {
@@ -138,7 +139,7 @@ namespace CheckWeigherFood
           OpenChildForm(AppModulSupport.Setting, FrmSetting.Instance);
           break;
         case AppModulSupport.Employee:
-          this.btnSetting.ForeColor = Select;
+          this.btnEmployee.ForeColor = Select;
           OpenChildForm(AppModulSupport.Employee, FrmEmployee.Instance);
           break;
 
@@ -147,43 +148,21 @@ namespace CheckWeigherFood
 
     private void FrmMain_Load(object sender, EventArgs e)
     {
+      this.btnDashBoard.Text = "";
+      this.btnMasterData.Text = "";
+      this.btnSetting.Text = "";
+      this.btnReport.Text = "";
+      this.btnEmployee.Text = "";
       this.panelMenu.Width = 75;
       this.picLogo.Visible = false;
       this.picLogoVule.Visible = false;
       this.btnDashBoard.PerformClick();
-      
-
-      //AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
-      //
-      AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
     }
 
     private void FrmMain_Shown(object sender, EventArgs e)
     {
       SetTitleMachine();
     }
-
-
-    private void Ins_OnSendValueWeight(double value, bool success, string ok)
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          Ins_OnSendValueWeight(value, success, ok);
-        }));
-        return;
-      }
-
-      label2.Text = value.ToString() + "--" + ok;
-    }
-    //private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
-    //{
-    //  FrmAutoReport report = new FrmAutoReport(shiftId, productId);
-    //  report.BringToFront();
-    //  report.ShowDialog();
-    //}
-
 
     private void SetTitleMachine()
     {
@@ -210,12 +189,24 @@ namespace CheckWeigherFood
         this.panelMenu.Width = 75;
         this.picLogo.Visible = false;
         this.picLogoVule.Visible = false;
+
+        this.btnDashBoard.Text = "";
+        this.btnMasterData.Text = "";
+        this.btnSetting.Text = "";
+        this.btnReport.Text = "";
+        this.btnEmployee.Text = "";
       }
       else
       {
         this.panelMenu.Width = 190;
         this.picLogo.Visible = true;
         this.picLogoVule.Visible = true;
+
+        this.btnDashBoard.Text = "          TRANG CHÍNH";
+        this.btnMasterData.Text = "          SẢN PHẨM";
+        this.btnSetting.Text = "          CÀI ĐẶT";
+        this.btnReport.Text = "          BÁO CÁO";
+        this.btnEmployee.Text = "          NHÂN VIÊN";
       }
     }
 

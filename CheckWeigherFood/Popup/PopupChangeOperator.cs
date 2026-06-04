@@ -1,4 +1,5 @@
 ﻿using CheckWeigherFood.Controls;
+using CheckWeigherFood.FrmChild;
 using Database.DTO;
 using Database.DtoHelper;
 using Database.Models;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CheckWeigherFood.eNum.eNumUI;
 using static Database.Enum;
 
 namespace CheckWeigherFood.Popup
@@ -61,6 +63,7 @@ namespace CheckWeigherFood.Popup
 
       comboBox.DataSource = employees;
       comboBox.DisplayMember = nameof(Employee.FullName);
+      comboBox.SelectedIndex = -1;
     }
 
     private async Task<List<Employee>> LoadData(EnumTypeEmployee enumTypeEmployee)
@@ -73,6 +76,22 @@ namespace CheckWeigherFood.Popup
       Employee empOP = cbbOP.SelectedItem as Employee;
       Employee empQC = cbbQC.SelectedItem as Employee;
       Employee empShiftLeader = cbbShiftLeader.SelectedItem as Employee;
+
+      if (empOP==null)
+      {
+        new FrmInformation().ShowMessage("Vui lòng chọn Vận hành máy !", eImage.Warning);
+        return;
+      }
+      if (empQC == null)
+      {
+        new FrmInformation().ShowMessage("Vui lòng chọn Chất lượng (QC) !", eImage.Warning);
+        return;
+      }
+      if (empShiftLeader == null)
+      {
+        new FrmInformation().ShowMessage("Vui lòng chọn Trưởng ca !", eImage.Warning);
+        return;
+      }
 
       OnSelectedEmployees?.Invoke(empOP, empQC, empShiftLeader);
 

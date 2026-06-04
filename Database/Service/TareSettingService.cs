@@ -37,7 +37,7 @@ namespace Database.Service
       }
     }
 
-    public async Task AddAsync(TareSetting tareSetting)
+    public async Task<TareSetting> AddAsync(TareSetting tareSetting)
     {
       using (var db = new PgDbContext())
       {
@@ -46,9 +46,11 @@ namespace Database.Service
           await db.Database.EnsureCreatedAsync();
           await db.Database.BeginTransactionAsync();
           _repositoryTareSetting = new RepositoryTareSetting(db);
-          await _repositoryTareSetting.AddAsync(tareSetting);
+          var rs = await _repositoryTareSetting.AddAsync(tareSetting);
           await db.SaveChangesAsync();
           db.Database.CommitTransaction();
+
+          return rs;
         }
         catch (Exception ex)
         {

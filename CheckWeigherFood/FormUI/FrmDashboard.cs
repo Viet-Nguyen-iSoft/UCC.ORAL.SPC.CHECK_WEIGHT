@@ -2,9 +2,11 @@
 using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
 using CheckWeigherFood.RJControl;
+using CheckWeigherFood.UC;
 using Database.DTO;
 using Database.Models;
 using Database.Service;
+using DocumentFormat.OpenXml.Drawing.Charts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +15,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using static Database.Enum;
 
 namespace CheckWeigherFood.FrmChild
 {
@@ -43,7 +46,12 @@ namespace CheckWeigherFood.FrmChild
     }
     #endregion
 
+    private EnumStatusMachine _enumStatusMachine { get; set; }
     private Timer timerMarquee = new Timer();
+    private Timer timerBlinkStatus = new Timer();
+    private Timer timerBlinkStatusInforline = new Timer();
+    private bool _statusConnectOpcUa = false;
+
     private void CustomUI()
     {
       ElipseControl elipseControl0 = new ElipseControl();
@@ -105,9 +113,11 @@ namespace CheckWeigherFood.FrmChild
 
 
     private OperationSettingService _operationSettingService { get; set; }
+    private TareSettingService _tareSettingService { get; set; }
     private void RegisterService()
     {
       _operationSettingService = AppFactory.CreateOperationSettingService();
+      _tareSettingService = AppFactory.CreateTareSettingService();
     }
 
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
@@ -129,25 +139,176 @@ namespace CheckWeigherFood.FrmChild
       ShowInforProduct(AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
       ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent);
 
+      //Lấy tgian ca hiện tại set filter chart
+      SetTimeFilterChart(AppCore.Ins.shift_last);
+
       //Tạo timer load data 2s
       timer_UpdateUI.Interval = 2000;
       timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
       timer_UpdateUI.Start();
 
-      //
-      lbResult.Text = "Đây là nội dung rất dài cần chạy liên tục trên màn hình";
-      lbResult.AutoSize = true;
-
-      // Đặt label bên phải panel
-      lbResult.Left = panel1.Width;
+      
+      lbContent.AutoSize = true;
+      lbContent.Left = panel1.Width;
 
       timerMarquee.Interval = 100;
       timerMarquee.Tick += TimerMarquee_Tick;
       timerMarquee.Start();
 
+      timerBlinkStatus.Interval = 500;
+      timerBlinkStatus.Tick += TimerBlinkStatus_Tick;
+      //timerBlinkStatus.Start();
+
+      timerBlinkStatusInforline.Interval = 500;
+      timerBlinkStatusInforline.Tick += TimerBlinkStatusInforline_Tick;
+      timerBlinkStatusInforline.Start();
+
       //Sự kiện
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
+      AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
+      AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
     }
+
+    private void TimerBlinkStatusInforline_Tick(object sender, EventArgs e)
+    {
+      try
+      {
+        timerBlinkStatusInforline.Stop();
+        CheckInforLine();
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timerBlinkStatusInforline.Start();
+      }
+    }
+
+    private void CheckInforLine()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { CheckInforLine(); }));
+        return;
+      }
+
+      if (string.IsNullOrEmpty(lbOP.ValueStr.Trim()))
+      {
+        lbOP.Visible = !lbOP.Visible;
+        lbOP.SetBackColor = Color.Yellow;
+      }
+      else
+      {
+        lbOP.Visible = true;
+        lbOP.SetBackColor = Color.White;
+      }
+
+
+      if (string.IsNullOrEmpty(lbQC.ValueStr.Trim()))
+      {
+        lbQC.Visible = !lbQC.Visible;
+        lbQC.SetBackColor = Color.Yellow;
+      }
+      else
+      {
+        lbQC.Visible = true;
+        lbQC.SetBackColor = Color.White;
+      }
+
+
+      if (string.IsNullOrEmpty(lbShiftLeader.ValueStr.Trim()))
+      {
+        lbShiftLeader.Visible = !lbShiftLeader.Visible;
+        lbShiftLeader.SetBackColor = Color.Yellow;
+      }
+      else
+      {
+        lbShiftLeader.Visible = true;
+        lbShiftLeader.SetBackColor = Color.White;
+      }
+
+      if (string.IsNullOrEmpty(lbLot.ValueStr.Trim()))
+      {
+        lbLot.Visible = !lbLot.Visible;
+        lbLot.SetBackColor = Color.Yellow;
+      }
+      else
+      {
+        lbLot.Visible = true;
+        lbLot.SetBackColor = Color.White;
+      }
+    }
+
+    private async void Ins_OnSendReSetInforShift()
+    {
+      SetTimeFilterChart(AppCore.Ins.shift_last);
+      ShowInforOperator(string.Empty, string.Empty, string.Empty);
+      ClearLot();
+
+      //Save cài đặt
+      OperationSetting operationSetting = new OperationSetting();
+      operationSetting.OP = "";
+      operationSetting.QC = "";
+      operationSetting.ShiftLeader = "";
+      operationSetting.CreatedAt = DateTime.UtcNow;
+      AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
+
+      TareSetting tareSetting = new TareSetting();
+      tareSetting.Lot = "";
+      tareSetting.Carton = AppCore.Ins._tareSettingCurrent.Carton;
+      tareSetting.Tube = AppCore.Ins._tareSettingCurrent.Tube;
+      tareSetting.TailTube = AppCore.Ins._tareSettingCurrent.TailTube;
+      tareSetting.CreatedAt = DateTime.UtcNow;
+
+      AppCore.Ins._tareSettingCurrent = await _tareSettingService.AddAsync(tareSetting);
+    }
+
+    private void TimerBlinkStatus_Tick(object sender, EventArgs e)
+    {
+      try
+      {
+        timerBlinkStatus.Stop();
+        BlinkStatusMachine();
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timerBlinkStatus.Start();
+      }
+    }
+
+    private void BlinkStatusMachine()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          BlinkStatusMachine();
+        }));
+        return;
+      }
+      lbStatusMachine.Visible = !lbStatusMachine.Visible;
+    }
+
+    private void Ins_OnSendValueWeight(double value, bool success, string ok)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          Ins_OnSendValueWeight(value, success, ok);
+        }));
+        return;
+      }
+      _statusConnectOpcUa = success;
+      ucInformationDataSumary1.SetWeightRealtime(value);
+    }
+
     private void TimerMarquee_Tick(object sender, EventArgs e)
     {
       
@@ -177,12 +338,12 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      lbResult.Left -= 5;
+      lbContent.Left -= 5;
 
       // Khi chạy hết bên trái thì quay lại bên phải
-      if (lbResult.Right < 20)
+      if (lbContent.Right < 20)
       {
-        lbResult.Left = panel1.Width;
+        lbContent.Left = panel1.Width;
       }
     }
 
@@ -221,6 +382,8 @@ namespace CheckWeigherFood.FrmChild
 
       try
       {
+        SetStatusMachine();
+        SetContent();
         LoadDataDashBoard();
       }
       catch (Exception ex)
@@ -295,25 +458,89 @@ namespace CheckWeigherFood.FrmChild
       SetDataOW_Mean(sumaryDTO);
       UpdateInforLoss(sumaryDTO);
       UpdateDataReject(reject);
+    }
 
-      //Kết quả
-      if (sumaryDTO.EnumResult == EnumResult.Pass)
+    private void SetStatusMachine()
+    {
+      if (this.InvokeRequired)
       {
-        lbResult.ForeColor = Color.Green;
-        lbResult.Text = "   Line sản xuất ĐẠT các tiêu chuẩn luật trọng lượng";
+        this.Invoke(new Action(() =>
+        {
+          SetStatusMachine();
+        }));
+        return;
       }
-      else if (sumaryDTO.EnumResult == EnumResult.Fail)
+
+      if (_statusConnectOpcUa)
       {
-        string mgs = "   KHÔNG ĐẠT : " + string.Join("-", sumaryDTO.ReasonFail);
-        lbResult.ForeColor = Color.Tomato;
-        lbResult.Text = mgs;
-      }  
+        timerBlinkStatus.Stop();
+        if (_enumStatusMachine == EnumStatusMachine.Run)
+        {
+          lbStatusMachine.Text = "MÁY CHẠY";
+          lbStatusMachine.ForeColor = Color.LightGreen;
+        }
+        else if (_enumStatusMachine == EnumStatusMachine.Stop)
+        {
+          lbStatusMachine.Text = "MÁY DỪNG";
+          lbStatusMachine.ForeColor = Color.Yellow;
+        }
+      } 
       else
       {
-        string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
-        lbResult.ForeColor = Color.DarkGray;
-        lbResult.Text = mgs;
+        if (_enumStatusMachine!= EnumStatusMachine.Disconnect)
+        {
+          _enumStatusMachine = EnumStatusMachine.Disconnect;
+          timerBlinkStatus.Start();
+        }  
+        
+        lbStatusMachine.Text = "MẤT KẾT NỐI OPC UA";
+        lbStatusMachine.ForeColor = Color.Red;
       }  
+    }
+
+    private void SetContent()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetContent();
+        }));
+        return;
+      }
+
+      sumaryDTO.OW = 0.2;
+      if (sumaryDTO.OW > 0.5)
+      {
+        double value = Math.Round( sumaryDTO.Mean - sumaryDTO.Target, 2);
+        string msg = $"OW cao cần giảm trọng lượng {value}g";
+        lbContent.Text = msg;
+        lbContent.ForeColor = Color.Red;
+      } 
+      else
+      {
+        sumaryDTO.EnumResult = EnumResult.None;
+        //Kết quả
+        if (sumaryDTO.EnumResult == EnumResult.Pass)
+        {
+          lbContent.ForeColor = Color.DarkGreen;
+          lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+        }
+        else if (sumaryDTO.EnumResult == EnumResult.Fail)
+        {
+          string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+          lbContent.ForeColor = Color.Red;
+          lbContent.Text = mgs;
+        }
+        else
+        {
+          string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+          lbContent.ForeColor = Color.Black;
+          lbContent.Text = mgs;
+        }
+      }
+
+      
     }
 
     private void UpdateInforLoss(SumaryDTO sumaryDTO)
@@ -523,6 +750,42 @@ namespace CheckWeigherFood.FrmChild
       lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
       lbTailTube.ValueStr = tareSetting?.TailTube.ToString() ?? string.Empty;
       lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
+    }
+
+    private void ClearLot( )
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ClearLot(); }));
+        return;
+      }
+
+      lbLot.ValueStr =string.Empty;
+    }
+
+    private void SetTimeFilterChart(int shift)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetTimeFilterChart(shift); }));
+        return;
+      }
+
+      if (shift == 1)
+      {
+        ucFilterTime1.From = new TimeSpan(6, 0, 0);
+        ucFilterTime1.To = new TimeSpan(14, 0, 0);
+      }
+      else if (shift == 2)
+      {
+        ucFilterTime1.From = new TimeSpan(14, 0, 0);
+        ucFilterTime1.To = new TimeSpan(22, 0, 0);
+      }
+      else if (shift == 3)
+      {
+        ucFilterTime1.From = new TimeSpan(22, 0, 0);
+        ucFilterTime1.To = new TimeSpan(6, 0, 0);
+      }
     }
 
     private void label8_Click(object sender, EventArgs e)

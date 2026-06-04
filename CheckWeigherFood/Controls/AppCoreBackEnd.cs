@@ -36,7 +36,7 @@ namespace CheckWeigherFood.Controls
     public delegate void SendReSetInforShift();
     public event SendReSetInforShift OnSendReSetInforShift;
 
-    private System.Timers.Timer timer_Report_Auto = new System.Timers.Timer();
+    private System.Timers.Timer timerCheckChangeShift = new System.Timers.Timer();
     public void Init()
     {
       ResgisterService();
@@ -139,12 +139,12 @@ namespace CheckWeigherFood.Controls
     private void InitReportAuto()
     {
       shift_last = GetShiftByHour(DateTime.Now.Hour);
-      timer_Report_Auto.Interval = 1000;
-      timer_Report_Auto.Elapsed += Timer_Report_Auto_Elapsed; ;
-      timer_Report_Auto.Start();
+      timerCheckChangeShift.Interval = 1000;
+      timerCheckChangeShift.Elapsed += Timer_Report_Auto_Elapsed; ;
+      timerCheckChangeShift.Start();
     }
 
-    private int shift_last = 0;
+    public int shift_last = 0;
     private int shift_current = 0;
     private bool testChangeShift = false;
     public void ChangeShiftTest()
@@ -155,29 +155,26 @@ namespace CheckWeigherFood.Controls
     }
     private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-      //timer_Report_Auto.Stop();
-      //try
-      //{
+      timerCheckChangeShift.Stop();
+      try
+      {
+        shift_current = GetShiftByHour(DateTime.Now.Hour);
+        if (shift_current != shift_last)
+        {
+          shift_last = shift_current;
+          if (OnSendAutoReport != null)
+          {
+            //OnSendAutoReport(this, shift_last, _masterDataCurrent.Id);
+            OnSendReSetInforShift?.Invoke();
+          }
 
-      //  shift_current = GetShiftByHour(DateTime.Now.Hour);
-      //  if (shift_current != shift_last)
-      //  {
-      //    await CreateIfNotExist();
-      //    if (OnSendAutoReport != null)
-      //    {
-      //      OnSendAutoReport(this, shift_last, _masterDataCurrent.Id);
-      //      OnSendReSetInforShift();
-      //      shift_last = shift_current;
-      //    }
-
-      //    datalogsDB.Clear();
-
-      //  }
-      //}
-      //catch (Exception)
-      //{
-      //}
-      //finally { timer_Report_Auto.Start(); }
+          _datalogsInShiftCurrent.Clear();
+        }
+      }
+      catch (Exception)
+      {
+      }
+      finally { timerCheckChangeShift.Start(); }
     }
 
 

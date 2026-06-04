@@ -65,6 +65,20 @@ namespace CheckWeigherFood.UC
 
     }
 
+    public void SetWeightRealtime(double weight)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetWeightRealtime(weight);
+        }));
+        return;
+      }
+
+      lbWeightRealtime.Text = weight.ToString();
+    }
+
     public void SetSumaryDTO(SumaryDTO sumaryDTO)
     {
       if (this.InvokeRequired)

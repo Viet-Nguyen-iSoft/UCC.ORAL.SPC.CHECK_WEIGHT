@@ -58,35 +58,42 @@ namespace CheckWeigherFood.Popup
 
     private async void btnConfirm_Click(object sender, EventArgs e)
     {
-      if (string.IsNullOrEmpty(txtLot.Texts))
+      try
       {
-        new FrmInformation().ShowMessage("Vui lòng nhập lô sản xuất !", eNumUI.eImage.Warning);
-        return;
-      }
+        if (string.IsNullOrEmpty(txtLot.Texts))
+        {
+          new FrmInformation().ShowMessage("Vui lòng nhập lô sản xuất !", eNumUI.eImage.Warning);
+          return;
+        }
 
-      if (string.IsNullOrEmpty(txtTareTube.Texts))
+        if (string.IsNullOrEmpty(txtTareTube.Texts))
+        {
+          new FrmInformation().ShowMessage("Vui lòng nhập Tare tube !", eNumUI.eImage.Warning);
+          return;
+        }
+
+        if (string.IsNullOrEmpty(txtTareCarton.Texts))
+        {
+          new FrmInformation().ShowMessage("Vui lòng nhập Tare carton !", eNumUI.eImage.Warning);
+          return;
+        }
+
+        TareSetting tareSetting = new TareSetting();
+        tareSetting.Lot = txtLot.Texts;
+        tareSetting.Carton = double.Parse(txtTareCarton.Texts);
+        tareSetting.Tube = double.Parse(txtTareTube.Texts);
+        tareSetting.TailTube = double.Parse(txtTareTailTube.Texts);
+        tareSetting.CreatedAt = DateTime.UtcNow;
+
+        await _tareSettingService.AddAsync(tareSetting);
+
+        OnChangeTareSetting?.Invoke(tareSetting);
+        this.Close();
+      }
+      catch (Exception ex)
       {
-        new FrmInformation().ShowMessage("Vui lòng nhập Tare tube !", eNumUI.eImage.Warning);
-        return;
+
       }
-
-      if (string.IsNullOrEmpty(txtTareCarton.Texts))
-      {
-        new FrmInformation().ShowMessage("Vui lòng nhập Tare carton !", eNumUI.eImage.Warning);
-        return;
-      }
-
-      TareSetting tareSetting = new TareSetting();
-      tareSetting.Lot = txtLot.Texts;
-      tareSetting.Carton = double.Parse(txtTareCarton.Texts);
-      tareSetting.Tube = double.Parse(txtTareTube.Texts);
-      tareSetting.TailTube = double.Parse(txtTareTailTube.Texts);
-      tareSetting.CreatedAt = DateTime.UtcNow;
-
-      await _tareSettingService.AddAsync(tareSetting);
-
-      OnChangeTareSetting?.Invoke(tareSetting);
-      this.Close();
     }
 
 
