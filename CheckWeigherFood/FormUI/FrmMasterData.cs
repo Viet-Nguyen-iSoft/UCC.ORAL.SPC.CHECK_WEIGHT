@@ -21,6 +21,7 @@ namespace CheckWeigherFood.FrmChild
 {
   public partial class FrmMasterData : Form
   {
+    public event Action OnSendMasterDataChanged;
     public FrmMasterData()
     {
       InitializeComponent();
@@ -76,18 +77,12 @@ namespace CheckWeigherFood.FrmChild
     {
       try
       {
-        //LockUI(true);
-
         var dto = HelperDTO.ConvertProductDTO(_products, txtSearch.Texts);
         ShowDgv(dto);
       }
       catch (Exception)
       {
 
-      }
-      finally
-      {
-        //LockUI(false);
       }
     }
 
@@ -108,6 +103,8 @@ namespace CheckWeigherFood.FrmChild
       _products = await LoadData();
       var dto = HelperDTO.ConvertProductDTO(_products, "");
       ShowDgv(dto);
+
+      OnSendMasterDataChanged?.Invoke();
     }
 
     private void ShowDgv(List<ProductDTO> productDTOs)
@@ -118,13 +115,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      if (productDTOs?.Count() > 0)
-      {
-        productDTOs = productDTOs.OrderBy(x => x.Code).ToList();
-      }
-
       dgvDataProducts.DataSource = productDTOs;
-
 
       dgvDataProducts.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
       dgvDataProducts.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -136,20 +127,20 @@ namespace CheckWeigherFood.FrmChild
       //dgvMachine.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
     }
 
-
-
-
-    private void LockUI(bool lockUI)
+    private void btnAddNew_Click(object sender, EventArgs e)
     {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() => { LockUI(lockUI); }));
-        return;
-      }
-
-      //btnSave.Enabled = !lockUI;
+      PopupAddNewProduct popupAddNewProduct = new PopupAddNewProduct();
+      popupAddNewProduct.MasterDataChanged += PopupAddNewProduct_MasterDataChanged;
+      popupAddNewProduct.ShowDialog();
     }
 
+    private async void PopupAddNewProduct_MasterDataChanged()
+    {
+      _products = await LoadData();
+      var dto = HelperDTO.ConvertProductDTO(_products, "");
+      ShowDgv(dto);
 
+      OnSendMasterDataChanged?.Invoke();
+    }
   }
 }

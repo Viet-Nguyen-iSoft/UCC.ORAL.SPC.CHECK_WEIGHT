@@ -40,13 +40,13 @@ namespace Database
       [Description("N/A")]
       None = 0,
 
-      [Description("Vận hành máy")]
+      [Description("Accept")]
       Accept = 1,
 
-      [Description("Chất lượng")]
+      [Description("Over")]
       Over = 2,
 
-      [Description("Trưởng ca")]
+      [Description("Reject")]
       Reject = 3,
 
     }

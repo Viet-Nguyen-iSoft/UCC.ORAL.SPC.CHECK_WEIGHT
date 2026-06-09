@@ -18,6 +18,7 @@ namespace Database.DTO
     public double Stdev { get; set; }
     public double OW { get; set; }
     public double Target { get; set; }
+    public double targetSrc { get; set; }
     public double USL { get; set; }
     public double LSL { get; set; }
     public double UCL { get; set; }

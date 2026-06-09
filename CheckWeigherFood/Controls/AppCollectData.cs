@@ -191,11 +191,18 @@ namespace CheckWeigherFood.Controls
     private Random random = new Random();
     public async void RandomDataWeight()
     {
-      double max = 153.0;
-      double min = 151.0;
+      double max = 157.0;
+      double min = 146.0;
+
+      max = 41;
+      min = 39;
+
+      max = 165;
+      min = 148;
+
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
-
+      OnSendValueWeight?.Invoke(value, true, "data ok");
       await SaveDatalog(value);
     }
 
@@ -210,6 +217,8 @@ namespace CheckWeigherFood.Controls
         datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
         datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
         datalog.TareTailTube = (_tareSettingCurrent?.TailTube ?? 0.0);
+        datalog.LotTube = _tareSettingCurrent?.LotTube;
+        datalog.LotCarton = _tareSettingCurrent?.LotCarton;
         datalog.EnumStatusRecord = CheckStatus(_productCurrent, _tareSettingCurrent, value);
         datalog.ChangeOverId = _appConfig.ChangeOverId;
 

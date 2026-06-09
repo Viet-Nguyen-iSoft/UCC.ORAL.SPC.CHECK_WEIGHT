@@ -24,9 +24,9 @@ namespace Database.Respository
                             .OrderBy(x=>x.Code)
                             .ToListAsync();
       }
-      catch (Exception ex)
+      catch (Exception)
       {
-        throw ex;
+        throw;
       }
     }
 

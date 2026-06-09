@@ -39,9 +39,8 @@ namespace CheckWeigherFood.Popup
         return;
       }
 
-      var rs = AppCore.Ins.SplitString(tareSetting?.Lot);
-      txtLotTube.Texts = rs.str1;
-      txtLotCarton.Texts = rs.str2;
+      txtLotTube.Texts = tareSetting.LotTube;
+      txtLotCarton.Texts = tareSetting.LotCarton;
     }
 
     private TareSettingService _tareSettingService { get; set; }
@@ -76,7 +75,8 @@ namespace CheckWeigherFood.Popup
         tareSetting.Carton = _tareSetting.Carton;
         tareSetting.Tube = _tareSetting.Tube;
         tareSetting.TailTube = _tareSetting.TailTube;
-        tareSetting.Lot = txtLotTube.Texts + "||" + txtLotCarton.Texts;
+        tareSetting.LotTube = txtLotTube.Texts;
+        tareSetting.LotCarton = txtLotCarton.Texts;
         tareSetting.CreatedAt = DateTime.UtcNow;
 
         await _tareSettingService.AddAsync(tareSetting);

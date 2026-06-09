@@ -35,5 +35,22 @@ namespace Database.Respository
         throw ex;
       }
     }
+
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to)
+    {
+      try
+      {
+        return await this.Context.Set<Datalog>()
+             .Where(x =>
+                 x.DeletedFlag == false &&
+                 x.CreatedAt >= from &&
+                 x.CreatedAt <= to)
+             .ToListAsync();
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
   }
 }

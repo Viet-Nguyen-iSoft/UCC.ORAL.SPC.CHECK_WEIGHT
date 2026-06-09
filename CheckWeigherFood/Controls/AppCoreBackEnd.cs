@@ -6,9 +6,11 @@ using IoTClient.Clients.PLC;
 using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using static Database.Enum;
 using Application = System.Windows.Forms.Application;
@@ -60,6 +62,7 @@ namespace CheckWeigherFood.Controls
     public OperationSetting _operationSettingCurrent { get; set; }
     public AppConfig _appConfig { get; set; }
     public Product _productCurrent { get; set; }
+    public List<Product> _products { get; set; }
     public TareSetting _tareSettingCurrent { get; set; }
     public Machine _machineCurrent { get; set; }
     private async Task InitLoadDataStartApp()
@@ -74,11 +77,17 @@ namespace CheckWeigherFood.Controls
 
       if (_appConfig?.ProductId > 0)
       {
-        _productCurrent = await _productService.GetDataByIdAsync(_appConfig.ProductId);
+        _products = await _productService.GetAllAsync();
+        _productCurrent = _products?.Where(x=>x.Id == _appConfig.ProductId).FirstOrDefault();
 
         var shift = GetCurrentShift(DateTime.Now);
         _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(shift.StartTime, shift.EndTime, _productCurrent.Id, _appConfig.ChangeOverId);
       }
+    }
+    public async Task ReloadMasterData()
+    {
+      _products = await _productService.GetAllAsync();
+      _productCurrent = _products?.Where(x => x.Id == _appConfig.ProductId).FirstOrDefault();
     }
 
     
@@ -138,30 +147,31 @@ namespace CheckWeigherFood.Controls
 
     private void InitReportAuto()
     {
-      shift_last = GetShiftByHour(DateTime.Now.Hour);
+      _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
+      _shiftLast = _shiftCurrent;
       timerCheckChangeShift.Interval = 1000;
       timerCheckChangeShift.Elapsed += Timer_Report_Auto_Elapsed; ;
       timerCheckChangeShift.Start();
     }
 
-    public int shift_last = 0;
-    private int shift_current = 0;
+    private int _shiftLast = 0;
+    public int _shiftCurrent = 0;
     private bool testChangeShift = false;
     public void ChangeShiftTest()
     {
       _datalogsInShiftCurrent = new List<Datalog>();
-      shift_current = GetShiftByHour(DateTime.Now.Hour);
-      OnSendAutoReport(this, shift_last, shift_current);
+      _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
+      OnSendAutoReport(this, _shiftLast, _shiftCurrent);
     }
     private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       timerCheckChangeShift.Stop();
       try
       {
-        shift_current = GetShiftByHour(DateTime.Now.Hour);
-        if (shift_current != shift_last)
+        _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
+        if (_shiftCurrent != _shiftLast)
         {
-          shift_last = shift_current;
+          _shiftLast = _shiftCurrent;
           if (OnSendAutoReport != null)
           {
             //OnSendAutoReport(this, shift_last, _masterDataCurrent.Id);
@@ -182,23 +192,14 @@ namespace CheckWeigherFood.Controls
     private void InitEvent()
     {
       //FrmDashboard.Instance.OnSendChangeOver += Instance_OnSendChangeOver;
+
+      FrmMasterData.Instance.OnSendMasterDataChanged += Instance_OnSendMasterDataChanged;
     }
 
-
-    public void LoadConfigsDB()
+    private async void Instance_OnSendMasterDataChanged()
     {
-      try
-      {
-        //DataBase.Init().Wait();
-      }
-      catch (Exception ex)
-      {
-        //LogErrorToFileLog("Lỗi khi khởi tạo chương trình, vui lòng khởi động lại!" + ex.ToString());
-        System.Windows.Forms.MessageBox.Show($"Lỗi khi khởi tạo chương trình, vui lòng khởi động lại!", "Lỗi");
-        Environment.Exit(2);
-      }
+      await ReloadMasterData();
     }
-
 
     public MitsubishiClient _client;
     public System.Timers.Timer timer_checkReadtPLC = new System.Timers.Timer();
@@ -255,6 +256,7 @@ namespace CheckWeigherFood.Controls
         sumaryDTO.USL = USL;
         sumaryDTO.UCL = UCL;
         sumaryDTO.Target = target;
+        sumaryDTO.targetSrc = (product?.Target ?? 0.0);
         sumaryDTO.LCL = LCL;
         sumaryDTO.LSL = LSL;
 
@@ -404,22 +406,6 @@ namespace CheckWeigherFood.Controls
     }
 
     #endregion
-
-
-
-
-    public (string str1, string str2) SplitString(string input)
-    {
-      if (string.IsNullOrWhiteSpace(input))
-        return (string.Empty, string.Empty);
-
-      string[] arr = input.Split(new[] { "||" }, StringSplitOptions.None);
-
-      if (arr.Length >= 2)
-        return (arr[0], arr[1]);
-
-      return (input, string.Empty);
-    }
 
 
   }

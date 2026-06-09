@@ -73,6 +73,27 @@ namespace Database.Service
       }
     }
 
+    public async Task AddAsync(Product product)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          await db.Database.EnsureCreatedAsync();
+          await db.Database.BeginTransactionAsync();
+          _repositoryProduct = new RepositoryProduct(db);
+          await _repositoryProduct.AddAsync(product);
+          await db.SaveChangesAsync();
+          db.Database.CommitTransaction();
+        }
+        catch (Exception ex)
+        {
+          db.Database.RollbackTransaction();
+          throw ex;
+        }
+      }
+    }
+
     public async Task UpdateRangeAsync(List<Product> products)
     {
       using (var db = new PgDbContext())

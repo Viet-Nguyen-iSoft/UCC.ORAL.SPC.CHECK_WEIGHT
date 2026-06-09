@@ -140,12 +140,13 @@ namespace CheckWeigherFood.InitChart
 
     }
 
-    public void AddChartControlDashboard(Chart chartName, SumaryDTO sumaryDTO, List<Datalog> datalogs, List<string> dataX, double max)
+    public void AddChartControlDashboard(Chart chartName, SumaryDTO sumaryDTO, List<Datalog> datalogs, double max)
     {
       try
       {
         //List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
         List<double> dataY = datalogs.Select(x=>x.Net).ToList();
+        List<string> dataX = datalogs.Select(x => ((DateTime)(x.CreatedAt)).ToString("HH:mm:ss")).ToList();
 
         if (dataX == null || dataY == null || dataX.Count == 0 || dataY.Count == 0)
         {
@@ -158,9 +159,14 @@ namespace CheckWeigherFood.InitChart
           return;
         }
 
+        double offsetY = (sumaryDTO.USL - sumaryDTO.LSL) * 0.1;
+        //chartName.ChartAreas[0].AxisY.Maximum = (max < sumaryDTO.USL) ? sumaryDTO.USL + 5 : sumaryDTO.USL * 1.01;
+        //chartName.ChartAreas[0].AxisY.Minimum = sumaryDTO.LSL - 5;
 
-        chartName.ChartAreas[0].AxisY.Maximum = (max < sumaryDTO.USL) ? sumaryDTO.USL + 5 : sumaryDTO.USL * 1.01;
-        chartName.ChartAreas[0].AxisY.Minimum = sumaryDTO.LSL - 5;
+        double minChart = sumaryDTO.LSL - offsetY;
+        double maxChart = (max < sumaryDTO.USL) ? sumaryDTO.USL + offsetY : sumaryDTO.USL * 1.01;
+        chartName.ChartAreas[0].AxisY.Maximum = maxChart;
+        chartName.ChartAreas[0].AxisY.Minimum = minChart;
 
         chartName.Series[0].Points.Clear();
         chartName.Series[1].Points.Clear();
@@ -172,9 +178,9 @@ namespace CheckWeigherFood.InitChart
 
         for (int i = 0; i < dataX.Count(); i++)
         {
-          chartName.Series[0].Points.AddXY(i, dataY[i]);
+          if (dataY[i]>= minChart && dataY[i] <= maxChart)
+            chartName.Series[0].Points.AddXY(i, dataY[i]);
         }
-
 
         chartName.Series[1].Points.AddXY(0, sumaryDTO.USL);
         chartName.Series[1].Points.AddXY(dataX.Count() - 1, sumaryDTO.USL);
@@ -191,11 +197,12 @@ namespace CheckWeigherFood.InitChart
         chartName.Series[5].Points.AddXY(0, sumaryDTO.LSL);
         chartName.Series[5].Points.AddXY(dataX.Count() - 1, sumaryDTO.LSL);
 
-        List<int> selectedPoints = GetEquallySpacedPoints(chartName.Series[0].Points.Count(), 10);
+        int k = dataX?.Count() > 10 ? 10 : dataX?.Count() ?? 0;
+
+        List<int> selectedPoints = GetEquallySpacedPoints(chartName.Series[0].Points.Count(), k);
         chartName.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
 
-
-        int width = (int)(dataY.Count / 10);
+        int width = (int)(dataY.Count / k);
         width = (int)(width * 0.7);
         for (int i = 0; i < selectedPoints.Count; i++)
         {
@@ -206,8 +213,9 @@ namespace CheckWeigherFood.InitChart
 
         chartName.Invalidate();
       }
-      catch (Exception)
+      catch (Exception ex)
       {
+        throw;
       }
 
 

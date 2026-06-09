@@ -33,6 +33,7 @@
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboard));
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -51,7 +52,6 @@
       System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboard));
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -71,6 +71,10 @@
       this.lbTLTB = new CheckWeigherFood.UC.UcData();
       this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+      this.panelContent = new System.Windows.Forms.TableLayoutPanel();
+      this.picAlarm = new System.Windows.Forms.PictureBox();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.lbContent = new System.Windows.Forms.Label();
       this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
       this.chartHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -91,6 +95,7 @@
       this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
       this.label28 = new System.Windows.Forms.Label();
       this.ucFilterTime1 = new CheckWeigherFood.UC.UcFilterTime();
+      this.picFilterChart = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.label11 = new System.Windows.Forms.Label();
@@ -101,6 +106,7 @@
       this.lbShiftLeader = new CheckWeigherFood.UC.UcTextBoxData();
       this.btnChangeOperator = new CheckWeigherFood.RJControl.RJButton();
       this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+      this.lbStatusMachine = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.label3 = new System.Windows.Forms.Label();
@@ -113,24 +119,17 @@
       this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
       this.label10 = new System.Windows.Forms.Label();
       this.lbCarton = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbLotTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.btnSettingTareAndLot = new CheckWeigherFood.RJControl.RJButton();
       this.label2 = new System.Windows.Forms.Label();
       this.lbTailTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.label9 = new System.Windows.Forms.Label();
-      this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-      this.lbStatusMachine = new System.Windows.Forms.Label();
-      this.panel1 = new System.Windows.Forms.Panel();
-      this.lbContent = new System.Windows.Forms.Label();
-      this.panelContent = new System.Windows.Forms.TableLayoutPanel();
-      this.picAlarm = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
       this.label15 = new System.Windows.Forms.Label();
       this.btnChangeLot = new CheckWeigherFood.RJControl.RJButton();
       this.label1 = new System.Windows.Forms.Label();
+      this.lbLotTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbLotCarton = new CheckWeigherFood.UC.UcTextBoxData();
-      this.picFilterChart = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel5.SuspendLayout();
       this.tableLayoutPanel6.SuspendLayout();
       this.tableLayoutPanel7.SuspendLayout();
@@ -140,6 +139,9 @@
       this.tableLayoutPanel24.SuspendLayout();
       this.tableLayoutPanel10.SuspendLayout();
       this.tableLayoutPanel12.SuspendLayout();
+      this.panelContent.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).BeginInit();
+      this.panel1.SuspendLayout();
       this.tableLayoutPanel13.SuspendLayout();
       this.tableLayoutPanel20.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartHistogram)).BeginInit();
@@ -147,18 +149,14 @@
       this.tableLayoutPanel17.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chartControl)).BeginInit();
       this.tableLayoutPanel15.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picFilterChart)).BeginInit();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       this.tableLayoutPanel11.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel4.SuspendLayout();
       this.tableLayoutPanel8.SuspendLayout();
-      this.tableLayoutPanel14.SuspendLayout();
-      this.panel1.SuspendLayout();
-      this.panelContent.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).BeginInit();
       this.tableLayoutPanel18.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.picFilterChart)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel5
@@ -479,21 +477,83 @@
       this.tableLayoutPanel12.BackColor = System.Drawing.Color.Transparent;
       this.tableLayoutPanel12.ColumnCount = 1;
       this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel12.Controls.Add(this.panelContent, 0, 0);
       this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel13, 0, 4);
       this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel23, 0, 2);
-      this.tableLayoutPanel12.Controls.Add(this.tableLayoutPanel14, 0, 0);
       this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel12.Location = new System.Drawing.Point(5, 255);
       this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel12.Name = "tableLayoutPanel12";
       this.tableLayoutPanel12.RowCount = 5;
-      this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+      this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
       this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
       this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
       this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
       this.tableLayoutPanel12.Size = new System.Drawing.Size(1499, 781);
       this.tableLayoutPanel12.TabIndex = 1;
+      // 
+      // panelContent
+      // 
+      this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panelContent.BackColor = System.Drawing.Color.Yellow;
+      this.panelContent.ColumnCount = 3;
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.panelContent.Controls.Add(this.picAlarm, 1, 0);
+      this.panelContent.Controls.Add(this.panel1, 2, 0);
+      this.panelContent.Location = new System.Drawing.Point(0, 0);
+      this.panelContent.Margin = new System.Windows.Forms.Padding(0);
+      this.panelContent.Name = "panelContent";
+      this.panelContent.RowCount = 1;
+      this.panelContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.panelContent.Size = new System.Drawing.Size(1499, 48);
+      this.panelContent.TabIndex = 21;
+      this.panelContent.Visible = false;
+      // 
+      // picAlarm
+      // 
+      this.picAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.picAlarm.Image = ((System.Drawing.Image)(resources.GetObject("picAlarm.Image")));
+      this.picAlarm.Location = new System.Drawing.Point(6, 3);
+      this.picAlarm.Name = "picAlarm";
+      this.picAlarm.Size = new System.Drawing.Size(44, 42);
+      this.picAlarm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picAlarm.TabIndex = 22;
+      this.picAlarm.TabStop = false;
+      // 
+      // panel1
+      // 
+      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.panel1.Controls.Add(this.lbContent);
+      this.panel1.Location = new System.Drawing.Point(56, 3);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(1440, 42);
+      this.panel1.TabIndex = 23;
+      // 
+      // lbContent
+      // 
+      this.lbContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbContent.AutoSize = true;
+      this.lbContent.BackColor = System.Drawing.Color.Transparent;
+      this.lbContent.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbContent.ForeColor = System.Drawing.Color.Black;
+      this.lbContent.Location = new System.Drawing.Point(8, 9);
+      this.lbContent.Margin = new System.Windows.Forms.Padding(0);
+      this.lbContent.Name = "lbContent";
+      this.lbContent.Size = new System.Drawing.Size(90, 24);
+      this.lbContent.TabIndex = 20;
+      this.lbContent.Text = "Nội dung";
+      this.lbContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // tableLayoutPanel13
       // 
@@ -509,12 +569,12 @@
       this.tableLayoutPanel13.Controls.Add(this.ucInformationLoss1, 0, 0);
       this.tableLayoutPanel13.Controls.Add(this.ucChartPie1, 2, 0);
       this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 530);
+      this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 529);
       this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel13.Name = "tableLayoutPanel13";
       this.tableLayoutPanel13.RowCount = 1;
       this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel13.Size = new System.Drawing.Size(1499, 251);
+      this.tableLayoutPanel13.Size = new System.Drawing.Size(1499, 252);
       this.tableLayoutPanel13.TabIndex = 0;
       // 
       // tableLayoutPanel20
@@ -532,7 +592,7 @@
       this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
       this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel20.Size = new System.Drawing.Size(597, 251);
+      this.tableLayoutPanel20.Size = new System.Drawing.Size(597, 252);
       this.tableLayoutPanel20.TabIndex = 1;
       // 
       // chartHistogram
@@ -610,7 +670,7 @@
       this.chartHistogram.Series.Add(series6);
       this.chartHistogram.Series.Add(series7);
       this.chartHistogram.Series.Add(series8);
-      this.chartHistogram.Size = new System.Drawing.Size(597, 211);
+      this.chartHistogram.Size = new System.Drawing.Size(597, 212);
       this.chartHistogram.TabIndex = 11;
       this.chartHistogram.Text = "chart1";
       // 
@@ -640,7 +700,7 @@
       this.ucInformationLoss1.Location = new System.Drawing.Point(0, 0);
       this.ucInformationLoss1.Margin = new System.Windows.Forms.Padding(0);
       this.ucInformationLoss1.Name = "ucInformationLoss1";
-      this.ucInformationLoss1.Size = new System.Drawing.Size(446, 251);
+      this.ucInformationLoss1.Size = new System.Drawing.Size(446, 252);
       this.ucInformationLoss1.TabIndex = 3;
       // 
       // ucChartPie1
@@ -651,7 +711,7 @@
       this.ucChartPie1.Location = new System.Drawing.Point(451, 0);
       this.ucChartPie1.Margin = new System.Windows.Forms.Padding(0);
       this.ucChartPie1.Name = "ucChartPie1";
-      this.ucChartPie1.Size = new System.Drawing.Size(446, 251);
+      this.ucChartPie1.Size = new System.Drawing.Size(446, 252);
       this.ucChartPie1.TabIndex = 4;
       // 
       // tableLayoutPanel23
@@ -665,14 +725,14 @@
       this.tableLayoutPanel23.Controls.Add(this.chartControl, 1, 1);
       this.tableLayoutPanel23.Controls.Add(this.tableLayoutPanel15, 1, 0);
       this.tableLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tableLayoutPanel23.Location = new System.Drawing.Point(0, 55);
+      this.tableLayoutPanel23.Location = new System.Drawing.Point(0, 53);
       this.tableLayoutPanel23.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel23.Name = "tableLayoutPanel23";
       this.tableLayoutPanel23.RowCount = 3;
       this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-      this.tableLayoutPanel23.Size = new System.Drawing.Size(1499, 465);
+      this.tableLayoutPanel23.Size = new System.Drawing.Size(1499, 466);
       this.tableLayoutPanel23.TabIndex = 3;
       // 
       // tableLayoutPanel17
@@ -703,7 +763,7 @@
       this.tableLayoutPanel17.Controls.Add(this.panel4, 1, 0);
       this.tableLayoutPanel17.Controls.Add(this.label33, 11, 0);
       this.tableLayoutPanel17.Controls.Add(this.panel14, 10, 0);
-      this.tableLayoutPanel17.Location = new System.Drawing.Point(5, 435);
+      this.tableLayoutPanel17.Location = new System.Drawing.Point(5, 436);
       this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
       this.tableLayoutPanel17.Name = "tableLayoutPanel17";
       this.tableLayoutPanel17.RowCount = 1;
@@ -892,7 +952,7 @@
       this.chartControl.Series.Add(series12);
       this.chartControl.Series.Add(series13);
       this.chartControl.Series.Add(series14);
-      this.chartControl.Size = new System.Drawing.Size(1489, 375);
+      this.chartControl.Size = new System.Drawing.Size(1489, 376);
       this.chartControl.TabIndex = 17;
       this.chartControl.Text = "chart1";
       // 
@@ -905,7 +965,7 @@
       this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-      this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+      this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
       this.tableLayoutPanel15.Controls.Add(this.label28, 0, 0);
       this.tableLayoutPanel15.Controls.Add(this.ucFilterTime1, 1, 0);
       this.tableLayoutPanel15.Controls.Add(this.picFilterChart, 3, 0);
@@ -944,6 +1004,20 @@
       this.ucFilterTime1.Size = new System.Drawing.Size(415, 54);
       this.ucFilterTime1.TabIndex = 19;
       this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
+      // 
+      // picFilterChart
+      // 
+      this.picFilterChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.picFilterChart.Image = ((System.Drawing.Image)(resources.GetObject("picFilterChart.Image")));
+      this.picFilterChart.Location = new System.Drawing.Point(1431, 3);
+      this.picFilterChart.Name = "picFilterChart";
+      this.picFilterChart.Size = new System.Drawing.Size(55, 54);
+      this.picFilterChart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picFilterChart.TabIndex = 20;
+      this.picFilterChart.TabStop = false;
+      this.picFilterChart.Click += new System.EventHandler(this.picFilterChart_Click);
       // 
       // tableLayoutPanel1
       // 
@@ -984,7 +1058,7 @@
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
       this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
       this.tableLayoutPanel2.Controls.Add(this.label12, 3, 0);
       this.tableLayoutPanel2.Controls.Add(this.label13, 6, 0);
@@ -1080,7 +1154,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lbShiftLeader.Location = new System.Drawing.Point(1004, 3);
       this.lbShiftLeader.Name = "lbShiftLeader";
-      this.lbShiftLeader.Size = new System.Drawing.Size(300, 34);
+      this.lbShiftLeader.Size = new System.Drawing.Size(299, 34);
       this.lbShiftLeader.TabIndex = 25;
       this.lbShiftLeader.ValueStr = "";
       // 
@@ -1098,9 +1172,9 @@
       this.btnChangeOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeOperator.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeOperator.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOperator.Location = new System.Drawing.Point(1330, 3);
+      this.btnChangeOperator.Location = new System.Drawing.Point(1329, 3);
       this.btnChangeOperator.Name = "btnChangeOperator";
-      this.btnChangeOperator.Size = new System.Drawing.Size(156, 34);
+      this.btnChangeOperator.Size = new System.Drawing.Size(157, 34);
       this.btnChangeOperator.TabIndex = 26;
       this.btnChangeOperator.Text = "Thay đổi";
       this.btnChangeOperator.TextColor = System.Drawing.Color.White;
@@ -1115,6 +1189,7 @@
       this.tableLayoutPanel11.ColumnCount = 2;
       this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanel11.Controls.Add(this.lbStatusMachine, 1, 0);
       this.tableLayoutPanel11.Controls.Add(this.label4, 0, 0);
       this.tableLayoutPanel11.Location = new System.Drawing.Point(5, 0);
       this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
@@ -1123,6 +1198,24 @@
       this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel11.Size = new System.Drawing.Size(1489, 40);
       this.tableLayoutPanel11.TabIndex = 21;
+      // 
+      // lbStatusMachine
+      // 
+      this.lbStatusMachine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbStatusMachine.AutoSize = true;
+      this.lbStatusMachine.BackColor = System.Drawing.Color.Transparent;
+      this.lbStatusMachine.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbStatusMachine.ForeColor = System.Drawing.Color.IndianRed;
+      this.lbStatusMachine.Location = new System.Drawing.Point(744, 0);
+      this.lbStatusMachine.Margin = new System.Windows.Forms.Padding(0);
+      this.lbStatusMachine.Name = "lbStatusMachine";
+      this.lbStatusMachine.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
+      this.lbStatusMachine.Size = new System.Drawing.Size(745, 40);
+      this.lbStatusMachine.TabIndex = 20;
+      this.lbStatusMachine.Text = "MÁY DỪNG";
+      this.lbStatusMachine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // label4
       // 
@@ -1138,7 +1231,7 @@
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(744, 40);
       this.label4.TabIndex = 19;
-      this.label4.Text = "Thông tin sản xuất và vận hành";
+      this.label4.Text = "Thông tin vận hành";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // tableLayoutPanel3
@@ -1351,17 +1444,6 @@
       this.lbCarton.TabIndex = 24;
       this.lbCarton.ValueStr = "";
       // 
-      // lbLotTube
-      // 
-      this.lbLotTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLotTube.Location = new System.Drawing.Point(133, 3);
-      this.lbLotTube.Name = "lbLotTube";
-      this.lbLotTube.Size = new System.Drawing.Size(357, 33);
-      this.lbLotTube.TabIndex = 25;
-      this.lbLotTube.ValueStr = "";
-      // 
       // lbTube
       // 
       this.lbTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1442,105 +1524,6 @@
       this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       this.label9.Click += new System.EventHandler(this.label9_Click);
       // 
-      // tableLayoutPanel14
-      // 
-      this.tableLayoutPanel14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-      this.tableLayoutPanel14.ColumnCount = 2;
-      this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-      this.tableLayoutPanel14.Controls.Add(this.lbStatusMachine, 1, 0);
-      this.tableLayoutPanel14.Controls.Add(this.panelContent, 0, 0);
-      this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 0);
-      this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(0);
-      this.tableLayoutPanel14.Name = "tableLayoutPanel14";
-      this.tableLayoutPanel14.RowCount = 1;
-      this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel14.Size = new System.Drawing.Size(1499, 50);
-      this.tableLayoutPanel14.TabIndex = 22;
-      // 
-      // lbStatusMachine
-      // 
-      this.lbStatusMachine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbStatusMachine.AutoSize = true;
-      this.lbStatusMachine.BackColor = System.Drawing.Color.Transparent;
-      this.lbStatusMachine.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbStatusMachine.ForeColor = System.Drawing.Color.IndianRed;
-      this.lbStatusMachine.Location = new System.Drawing.Point(1099, 0);
-      this.lbStatusMachine.Margin = new System.Windows.Forms.Padding(0);
-      this.lbStatusMachine.Name = "lbStatusMachine";
-      this.lbStatusMachine.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-      this.lbStatusMachine.Size = new System.Drawing.Size(400, 50);
-      this.lbStatusMachine.TabIndex = 20;
-      this.lbStatusMachine.Text = "MÁY DỪNG";
-      this.lbStatusMachine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      // 
-      // panel1
-      // 
-      this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.panel1.BackColor = System.Drawing.Color.Yellow;
-      this.panel1.Controls.Add(this.lbContent);
-      this.panel1.Location = new System.Drawing.Point(56, 3);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(1040, 44);
-      this.panel1.TabIndex = 21;
-      // 
-      // lbContent
-      // 
-      this.lbContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbContent.AutoSize = true;
-      this.lbContent.BackColor = System.Drawing.Color.Transparent;
-      this.lbContent.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbContent.ForeColor = System.Drawing.Color.Black;
-      this.lbContent.Location = new System.Drawing.Point(4, 8);
-      this.lbContent.Margin = new System.Windows.Forms.Padding(0);
-      this.lbContent.Name = "lbContent";
-      this.lbContent.Size = new System.Drawing.Size(90, 24);
-      this.lbContent.TabIndex = 20;
-      this.lbContent.Text = "Nội dung";
-      this.lbContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // panelContent
-      // 
-      this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.panelContent.BackColor = System.Drawing.Color.Yellow;
-      this.panelContent.ColumnCount = 3;
-      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 3F));
-      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-      this.panelContent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.panelContent.Controls.Add(this.panel1, 2, 0);
-      this.panelContent.Controls.Add(this.picAlarm, 1, 0);
-      this.panelContent.Location = new System.Drawing.Point(0, 0);
-      this.panelContent.Margin = new System.Windows.Forms.Padding(0);
-      this.panelContent.Name = "panelContent";
-      this.panelContent.RowCount = 1;
-      this.panelContent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.panelContent.Size = new System.Drawing.Size(1099, 50);
-      this.panelContent.TabIndex = 21;
-      // 
-      // picAlarm
-      // 
-      this.picAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.picAlarm.Image = ((System.Drawing.Image)(resources.GetObject("picAlarm.Image")));
-      this.picAlarm.Location = new System.Drawing.Point(6, 3);
-      this.picAlarm.Name = "picAlarm";
-      this.picAlarm.Size = new System.Drawing.Size(44, 44);
-      this.picAlarm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picAlarm.TabIndex = 22;
-      this.picAlarm.TabStop = false;
-      // 
       // tableLayoutPanel18
       // 
       this.tableLayoutPanel18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1553,7 +1536,7 @@
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
       this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
       this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
       this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
@@ -1598,9 +1581,9 @@
       this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeLot.ForeColor = System.Drawing.Color.White;
-      this.btnChangeLot.Location = new System.Drawing.Point(1331, 3);
+      this.btnChangeLot.Location = new System.Drawing.Point(1329, 3);
       this.btnChangeLot.Name = "btnChangeLot";
-      this.btnChangeLot.Size = new System.Drawing.Size(155, 33);
+      this.btnChangeLot.Size = new System.Drawing.Size(157, 33);
       this.btnChangeLot.TabIndex = 27;
       this.btnChangeLot.Text = "Thay đổi";
       this.btnChangeLot.TextColor = System.Drawing.Color.White;
@@ -1616,7 +1599,7 @@
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(815, 0);
+      this.label1.Location = new System.Drawing.Point(814, 0);
       this.label1.Margin = new System.Windows.Forms.Padding(0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(130, 39);
@@ -1624,30 +1607,27 @@
       this.label1.Text = "Lô carton:";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
+      // lbLotTube
+      // 
+      this.lbLotTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbLotTube.Location = new System.Drawing.Point(133, 3);
+      this.lbLotTube.Name = "lbLotTube";
+      this.lbLotTube.Size = new System.Drawing.Size(356, 33);
+      this.lbLotTube.TabIndex = 25;
+      this.lbLotTube.ValueStr = "";
+      // 
       // lbLotCarton
       // 
       this.lbLotCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLotCarton.Location = new System.Drawing.Point(948, 3);
+      this.lbLotCarton.Location = new System.Drawing.Point(947, 3);
       this.lbLotCarton.Name = "lbLotCarton";
-      this.lbLotCarton.Size = new System.Drawing.Size(357, 33);
+      this.lbLotCarton.Size = new System.Drawing.Size(356, 33);
       this.lbLotCarton.TabIndex = 29;
       this.lbLotCarton.ValueStr = "";
-      // 
-      // picFilterChart
-      // 
-      this.picFilterChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.picFilterChart.Image = ((System.Drawing.Image)(resources.GetObject("picFilterChart.Image")));
-      this.picFilterChart.Location = new System.Drawing.Point(1431, 3);
-      this.picFilterChart.Name = "picFilterChart";
-      this.picFilterChart.Size = new System.Drawing.Size(55, 54);
-      this.picFilterChart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picFilterChart.TabIndex = 20;
-      this.picFilterChart.TabStop = false;
-      this.picFilterChart.Click += new System.EventHandler(this.picFilterChart_Click);
       // 
       // FrmDashboard
       // 
@@ -1669,6 +1649,10 @@
       this.tableLayoutPanel24.ResumeLayout(false);
       this.tableLayoutPanel10.ResumeLayout(false);
       this.tableLayoutPanel12.ResumeLayout(false);
+      this.panelContent.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).EndInit();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.tableLayoutPanel13.ResumeLayout(false);
       this.tableLayoutPanel20.ResumeLayout(false);
       this.tableLayoutPanel20.PerformLayout();
@@ -1679,6 +1663,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.chartControl)).EndInit();
       this.tableLayoutPanel15.ResumeLayout(false);
       this.tableLayoutPanel15.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picFilterChart)).EndInit();
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
       this.tableLayoutPanel2.PerformLayout();
@@ -1690,15 +1675,8 @@
       this.tableLayoutPanel4.PerformLayout();
       this.tableLayoutPanel8.ResumeLayout(false);
       this.tableLayoutPanel8.PerformLayout();
-      this.tableLayoutPanel14.ResumeLayout(false);
-      this.tableLayoutPanel14.PerformLayout();
-      this.panel1.ResumeLayout(false);
-      this.panel1.PerformLayout();
-      this.panelContent.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).EndInit();
       this.tableLayoutPanel18.ResumeLayout(false);
       this.tableLayoutPanel18.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.picFilterChart)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -1772,8 +1750,6 @@
     private System.Windows.Forms.Label label2;
     private UC.UcTextBoxData lbTailTube;
     private System.Windows.Forms.Label lbContent;
-    private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
-    private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
     private UC.UcFilterTime ucFilterTime1;
     private System.Windows.Forms.TableLayoutPanel panelContent;
@@ -1784,5 +1760,6 @@
     private System.Windows.Forms.Label label1;
     private UC.UcTextBoxData lbLotCarton;
     private System.Windows.Forms.PictureBox picFilterChart;
+    private System.Windows.Forms.Panel panel1;
   }
 }

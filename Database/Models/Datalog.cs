@@ -14,6 +14,8 @@ namespace Database.Models
     public double TareTube { get; set; }
     public double TareTailTube { get; set; }
     public double TareCarton { get; set; }
+    public string LotTube { get; set; }
+    public string LotCarton { get; set; }
     public long ChangeOverId { get; set; }
     public EnumStatusRecord EnumStatusRecord { get; set; }
 

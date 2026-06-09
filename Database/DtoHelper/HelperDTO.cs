@@ -38,7 +38,7 @@ namespace Database.DtoHelper
       }
 
       return query
-          .OrderBy(x => x.CreatedAt)
+          .OrderBy(x => x.Code)
           .Select((e, index) => new ProductDTO
           {
             No = index + 1,
@@ -97,5 +97,42 @@ namespace Database.DtoHelper
 
       return value.ToString();
     }
+
+    public static List<DatalogDTO> ConvertDatalogDTO(List<Datalog> datalogs)
+    {
+      return datalogs
+          .OrderBy(x => x.CreatedAt)
+          .Select((e, index) => new DatalogDTO
+          {
+            No = index + 1,
+            Gross = e.Net,
+            TareTube = e.TareTube,
+            TareTailTube = e.TareTailTube,
+            TareCarton = e.TareCarton,
+            LotTube = e.LotTube,
+            LotCarton = e.LotCarton,
+            Status = GetEnumDescription(e.EnumStatusRecord),
+            EnumStatusRecord = e.EnumStatusRecord,
+            DateTime = e.CreatedAt?.AddHours(TimeZoom).ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A"
+          })
+          .ToList();
+    }
+
+    private static string GetEnumDescription(EnumStatusRecord value)
+    {
+      FieldInfo field = value.GetType().GetField(value.ToString());
+
+      if (field != null)
+      {
+        DescriptionAttribute attribute = field
+            .GetCustomAttribute<DescriptionAttribute>();
+
+        if (attribute != null)
+          return attribute.Description;
+      }
+
+      return value.ToString();
+    }
+
   }
 }
