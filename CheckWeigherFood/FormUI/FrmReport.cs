@@ -405,7 +405,7 @@ namespace CheckWeigherFood.FrmChild
             DataRejectDTO dataReject = new DataRejectDTO();
             dataReject.DateTime = (DateTime)rj.CreatedAt;
             dataReject.FGs = product?.Code;
-            dataReject.Actual = rj.Net;
+            dataReject.Actual = rj.Gross;
             dataReject.Target = _sumaryDTO.Target;
             reject.Add(dataReject);
           }
@@ -503,7 +503,7 @@ namespace CheckWeigherFood.FrmChild
       }
 
       double cnt = (double)(sumaryDTO.DatalogAccept.Count());
-      double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Net);
+      double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Gross);
       double lossByOW = (sumaryDTO.OW / 100.0) * sumaryDTO.targetSrc * cnt;
 
       ucInformationLoss1.ValueLossReject = Math.Round((lossByReject / 1000.0), 2).ToString();

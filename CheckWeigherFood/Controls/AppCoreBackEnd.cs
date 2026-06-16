@@ -265,14 +265,14 @@ namespace CheckWeigherFood.Controls
         sumaryDTO.DatalogAccept = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).ToList();
         sumaryDTO.DatalogReject = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Reject).ToList();
 
-        var dataNetPass = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
-        sumaryDTO.Sample = dataNetPass.Count;
-        sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(dataNetPass);
+        var dataGrossPass = sumaryDTO.DatalogPass.Select(x => x.Gross).ToList();
+        sumaryDTO.Sample = dataGrossPass.Count;
+        sumaryDTO.Mean = (sumaryDTO.Sample == 0) ? 0 : CalMean(dataGrossPass);
 
-        double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(dataNetPass);
+        double Std = (sumaryDTO.Sample == 0) ? 0 : CalStdDev(dataGrossPass);
         sumaryDTO.Stdev = Std;
-        sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Min();
-        sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : dataNetPass.Max();
+        sumaryDTO.Min = (sumaryDTO.Sample == 0) ? 0 : dataGrossPass.Min();
+        sumaryDTO.Max = (sumaryDTO.Sample == 0) ? 0 : dataGrossPass.Max();
 
         sumaryDTO.Cp = (Std != 0) ? Math.Round(((USL - LSL) / (6 * Std)), 3) : 0;
 

@@ -181,8 +181,53 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
+      AppCore.Ins.OnSendMsg += Ins_OnSendMsg;
+      AppCore.Ins.OnSendMsgRead += Ins_OnSendMsgRead;
+      AppCore.Ins.OnSendJson += Ins_OnSendJson;
 
       InitWatchdog();
+    }
+
+    private void Ins_OnSendJson(string json)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          Ins_OnSendJson(json);
+        }));
+        return;
+      }
+
+      label4.Text = json;
+    }
+
+    private void Ins_OnSendMsgRead(string msg)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          Ins_OnSendMsgRead(msg);
+        }));
+        return;
+      }
+
+      label28.Text = msg;
+    }
+
+    private void Ins_OnSendMsg(string msg)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          Ins_OnSendMsg(msg);
+        }));
+        return;
+      }
+
+      label3.Text = msg;
     }
 
     private void TimerBlinkStatusInforline_Tick(object sender, EventArgs e)
@@ -344,16 +389,18 @@ namespace CheckWeigherFood.FrmChild
       lbStatusMachine.Visible = !lbStatusMachine.Visible;
     }
 
-    private void Ins_OnSendValueWeight(double value, bool success, string ok)
+    private void Ins_OnSendValueWeight(double value, bool success, string msg)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          Ins_OnSendValueWeight(value, success, ok);
+          Ins_OnSendValueWeight(value, success, msg);
         }));
         return;
       }
+
+      //label4.Text = msg;
       _statusConnectOpcUa = success;
       ucInformationDataSumary1.SetWeightRealtime(value);
 
@@ -481,7 +528,7 @@ namespace CheckWeigherFood.FrmChild
             DataRejectDTO dataReject = new DataRejectDTO();
             dataReject.DateTime = (DateTime)data.CreatedAt;
             dataReject.FGs = AppCore.Ins._productCurrent.Code;
-            dataReject.Actual = data.Net;
+            dataReject.Actual = data.Gross;
             dataReject.Target = sumaryDTO.Target;
             reject.Add(dataReject);
           }
@@ -630,7 +677,7 @@ namespace CheckWeigherFood.FrmChild
       }
 
       double cnt = (double)(sumaryDTO.DatalogAccept.Count());
-      double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Net);
+      double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Gross);
       double lossByOW = (sumaryDTO.OW/100.0) * sumaryDTO.targetSrc* cnt;
 
       ucInformationLoss1.ValueLossReject = Math.Round((lossByReject / 1000.0), 2).ToString();

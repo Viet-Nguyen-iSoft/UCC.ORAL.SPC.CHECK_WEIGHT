@@ -3,6 +3,7 @@ using Database.Models;
 using Database.Service;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Newtonsoft.Json;
 using Opc.Ua;
 using OpcUaHelper;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using static CheckWeigherFood.Controls.AppCore;
 using static Database.Enum;
 
 namespace CheckWeigherFood.Controls
@@ -19,6 +21,16 @@ namespace CheckWeigherFood.Controls
   {
     public delegate void SendValueWeight(double value, bool statusMachine, string ok);
     public event SendValueWeight OnSendValueWeight;
+
+
+    public delegate void SendMsg(string msg);
+    public event SendMsg OnSendMsg;
+
+    public delegate void SendMsgRead(string msg);
+    public event SendMsgRead OnSendMsgRead;
+
+    public delegate void SendJson(string json);
+    public event SendJson OnSendJson;
     /// 
     //OPC -UA
     private OpcUaClient opcClient = new OpcUaClient();
@@ -35,7 +47,7 @@ namespace CheckWeigherFood.Controls
       opcWeight= Environment.GetEnvironmentVariable("OPC_UA_WEIGHT");
       opcStatusMachine = Environment.GetEnvironmentVariable("OPC_UA_STATUS_MACHINE");
 
-      timer_read_opc_ua.Interval = 200;
+      timer_read_opc_ua.Interval = 1000;
       timer_read_opc_ua.Elapsed += Timer_read_opc_ua_Elapsed;
       timer_read_opc_ua.Start();
 
@@ -50,6 +62,7 @@ namespace CheckWeigherFood.Controls
       {
         timer_read_opc_ua.Stop();
 
+        string key = " ";
         if (opcClient.Connected == false)
         {
           opcClient = new OpcUaClient();
@@ -60,11 +73,19 @@ namespace CheckWeigherFood.Controls
           opcClient.ConnectComplete += OpcClient_ConnectComplete;
           opcClient.UserIdentity = userIdentity;
           opcClient.ConnectServer(opcUrl);
-        } 
-      }
-      catch (Exception)
-      {
 
+          key = " Trong ";
+        }
+
+
+
+        string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
+        string msg = DateTime.Now.ToString("HH:mm:ss") + key + status;
+        OnSendMsg?.Invoke(msg);
+      }
+      catch (Exception ex)
+      {
+        OnSendMsg?.Invoke(ex.ToString());
       }
       finally
       {
@@ -79,19 +100,29 @@ namespace CheckWeigherFood.Controls
       try
       {
         timer_read_opc_ua.Stop();
+
+        string key = " ";
+        double valueSend = 0;
         if (opcClient.Connected)
         {
+          key = " tren ";
           //Value
-          //string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-          var value_temp = opcClient.ReadNode(opcWeight);
+          string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+          nodeId_temp = "ns=2;s=OL04C.07.C4M00";
+          var value_temp = opcClient.ReadNode(opcStatusMachine);
           double value = Convert.ToDouble(value_temp.Value);
           value = Math.Round(value/100.0, 2);
 
-          //Status
-          //string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
-          var value_status_machine = opcClient.ReadNode(opcStatusMachine);
-          int _status_machine = Convert.ToInt16(value_status_machine.Value);
+          string json = JsonConvert.SerializeObject(value_temp);
+          string a = value_temp.GetType().FullName;
+          OnSendJson?.Invoke(a + " - " + value_temp.StatusCode + " - " + value_temp.StatusCode.Code + "****" + json);
+          valueSend = value;
 
+          ////Status
+          ////string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
+          //var value_status_machine = opcClient.ReadNode(opcStatusMachine);
+          //int _status_machine = Convert.ToInt16(value_status_machine.Value);
+          int _status_machine = 1;
 
           if (value!= previous)
           {
@@ -108,14 +139,19 @@ namespace CheckWeigherFood.Controls
         }
         else
         {
-          OnSendValueWeight?.Invoke(0.0, false, "Mất kết nối");
+          key = " duoi ";
+          OnSendValueWeight?.Invoke(-1, false, "Mất kết nối");
         }
 
+
+        string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
+        string msg = DateTime.Now.ToString("HH:mm:ss") + key + status + " Value: "+ valueSend.ToString();
+        OnSendMsgRead?.Invoke(msg);
         firstApp = false;
       }
       catch (Exception ex)
       {
-        OnSendValueWeight?.Invoke(0.0, false, ex.ToString());
+        OnSendValueWeight?.Invoke(404, false, ex.ToString());
       }
       finally
       {
@@ -213,7 +249,7 @@ namespace CheckWeigherFood.Controls
         if (_machineCurrent == null || _productCurrent == null || _appConfig?.ChangeOverId<=0) return;
 
         Datalog datalog = new Datalog();
-        datalog.Net = value;
+        datalog.Gross = value;
         datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
         datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
         datalog.TareTailTube = (_tareSettingCurrent?.TailTube ?? 0.0);

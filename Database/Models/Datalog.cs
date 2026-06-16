@@ -10,7 +10,7 @@ namespace Database.Models
 {
   public class Datalog : BaseModel
   {
-    public double Net { get; set; }
+    public double Gross { get; set; }
     public double TareTube { get; set; }
     public double TareTailTube { get; set; }
     public double TareCarton { get; set; }

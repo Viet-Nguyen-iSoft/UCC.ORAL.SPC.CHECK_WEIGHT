@@ -105,7 +105,7 @@ namespace Database.DtoHelper
           .Select((e, index) => new DatalogDTO
           {
             No = index + 1,
-            Gross = e.Net,
+            Gross = e.Gross,
             TareTube = e.TareTube,
             TareTailTube = e.TareTailTube,
             TareCarton = e.TareCarton,

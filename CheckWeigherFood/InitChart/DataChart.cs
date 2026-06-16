@@ -145,7 +145,7 @@ namespace CheckWeigherFood.InitChart
       try
       {
         //List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
-        List<double> dataY = datalogs.Select(x=>x.Net).ToList();
+        List<double> dataY = datalogs.Select(x=>x.Gross).ToList();
         List<string> dataX = datalogs.Select(x => ((DateTime)(x.CreatedAt)).ToString("HH:mm:ss")).ToList();
 
         if (dataX == null || dataY == null || dataX.Count == 0 || dataY.Count == 0)
@@ -297,7 +297,7 @@ namespace CheckWeigherFood.InitChart
     {
       try
       {
-        List<double> dataWeigher = sumaryDTO.DatalogPass.Select(x => x.Net).ToList();
+        List<double> dataWeigher = sumaryDTO.DatalogPass.Select(x => x.Gross).ToList();
 
         if (dataWeigher.Count()<=0)
         {
