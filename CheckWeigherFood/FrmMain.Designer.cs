@@ -198,6 +198,7 @@
       this.picLogoVule.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picLogoVule.TabIndex = 17;
       this.picLogoVule.TabStop = false;
+      this.picLogoVule.Click += new System.EventHandler(this.picLogoVule_Click);
       // 
       // btnSetting
       // 
@@ -362,7 +363,6 @@
       this.lbLine.TabIndex = 6;
       this.lbLine.Text = "ORAL  PACKING - CHECK WEIGHT ";
       this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.lbLine.Click += new System.EventHandler(this.label4_Click);
       // 
       // picLogo
       // 

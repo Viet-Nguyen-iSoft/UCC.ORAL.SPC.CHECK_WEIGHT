@@ -222,7 +222,7 @@ namespace CheckWeigherFood
     }
 
     private bool enableTime = false;
-    private void label4_Click(object sender, EventArgs e)
+    private void picLogoVule_Click(object sender, EventArgs e)
     {
       enableTime = !enableTime;
       if (enableTime)

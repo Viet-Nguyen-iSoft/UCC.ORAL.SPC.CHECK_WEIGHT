@@ -31,6 +31,10 @@ namespace CheckWeigherFood.Controls
 
     public delegate void SendJson(string json);
     public event SendJson OnSendJson;
+
+    private double previous = 0;
+    private bool firstApp = true;
+
     /// 
     //OPC -UA
     private OpcUaClient opcClient = new OpcUaClient();
@@ -54,85 +58,13 @@ namespace CheckWeigherFood.Controls
       timer_check_connect.Elapsed += Timer_check_connect_Elapsed;
       timer_check_connect.Start();
     }
-    //private async Task Connect()
-    //{
-    //  opcClient = new OpcUaClient();
-
-    //  opcClient.AppConfig.ApplicationName = "test";
-    //  opcClient.AppConfig.ApplicationUri = $"urn:{Utils.GetHostName()}:test";
-    //  opcClient.AppConfig.ApplicationType = ApplicationType.Client;
-    //  opcClient.UseSecurity = false;
-    //  opcClient.AppConfig.SecurityConfiguration = new SecurityConfiguration
-    //  {
-    //    ApplicationCertificate = new CertificateIdentifier
-    //    {
-    //      StoreType = "Directory",
-    //      StorePath = @"CertificateStores\Own",
-    //      SubjectName = "test"
-    //    },
-
-    //    TrustedPeerCertificates = new CertificateTrustList
-    //    {
-    //      StoreType = "Directory",
-    //      StorePath = @"CertificateStores\UA Applications"
-    //    },
-
-    //    TrustedIssuerCertificates = new CertificateTrustList
-    //    {
-    //      StoreType = "Directory",
-    //      StorePath = @"CertificateStores\UA Certificate Authorities"
-    //    },
-
-    //    RejectedCertificateStore = new CertificateTrustList
-    //    {
-    //      StoreType = "Directory",
-    //      StorePath = @"CertificateStores\RejectedCertificates"
-    //    },
-
-    //    AutoAcceptUntrustedCertificates = true,
-    //    AddAppCertToTrustedStore = true
-    //  };
-
-    //  opcClient.AppConfig.TransportQuotas = new TransportQuotas
-    //  {
-    //    OperationTimeout = 15000
-    //  };
-
-    //  opcClient.AppConfig.ClientConfiguration.DefaultSessionTimeout = 60000;
-
-    //  await opcClient.AppConfig.Validate(ApplicationType.Client);
-
-    //  //bool certOk = await opcClient.AppConfig.(false, 2048);
-    //  //if (!certOk)
-    //  //  throw new Exception("Cannot create OPC UA application certificate.");
-
-    //  opcClient.AppConfig.CertificateValidator.CertificateValidation += (sender, e) =>
-    //  {
-    //    // Chỉ dùng để test. Production nên trust certificate rõ ràng.
-    //    e.Accept = true;
-    //  };
-
-    //  opcClient.UserIdentity = new UserIdentity();
-    //  opcClient.ConnectComplete += (s, e) =>
-    //  {
-    //    Console.WriteLine("OPC UA connected.");
-    //  };
-    //  opcClient.OpcStatusChange += OpcClient_OpcStatusChange;
-    //  await opcClient.ConnectServer("opc.tcp://DESKTOP-5DG8V11:49320");
-    //}
-
-    //private void OpcClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
-    //{
-    //  Console.WriteLine(e.Error);
-    //}
-
+   
     private async void Timer_check_connect_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       try
       {
         timer_check_connect.Stop();
 
-        string key = " ";
         if (opcClient.Connected == false)
         {
           opcClient = new OpcUaClient();
@@ -142,37 +74,11 @@ namespace CheckWeigherFood.Controls
           opcClient.ConnectComplete += OpcClient_ConnectComplete;
           opcClient.UserIdentity = userIdentity;
           await opcClient.ConnectServer(opcUrl);
-
-
-          //try
-          //{
-          //  opcClient = new OpcUaClient();
-          //  //opcClient.AppConfig.ApplicationName = "test";
-          //  //opcClient.AppConfig.ClientConfiguration.DefaultSessionTimeout = 10000;
-          //  opcClient.UserIdentity =
-          //      new UserIdentity(new AnonymousIdentityToken());
-
-          //  await opcClient.ConnectServer("opc.tcp://DESKTOP-5DG8V11:49320");
-          //  //await Connect();
-          //  //MessageBox.Show("Connected");
-          //}
-          //catch (Exception ex)
-          //{
-          //  //MessageBox.Show(ex.ToString());
-          //}
-          //finally
-          //{
-
-          //  //timer_check_connect.Start();
-          //}
-          key = " Trong ";
         }
 
-
-
-        string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
-        string msg = DateTime.Now.ToString("HH:mm:ss") + key + status;
-        OnSendMsg?.Invoke(msg);
+        //string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
+        //string msg = DateTime.Now.ToString("HH:mm:ss") + key + status;
+        //OnSendMsg?.Invoke(msg);
       }
       catch (Exception ex)
       {
@@ -184,8 +90,6 @@ namespace CheckWeigherFood.Controls
       }
     }
 
-    private double previous = 0;
-    private bool firstApp = true;
     private async void Timer_read_opc_ua_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       try
@@ -250,6 +154,8 @@ namespace CheckWeigherFood.Controls
         timer_read_opc_ua.Start();
       }
     }
+
+
     private void OpcClient_ConnectComplete(object sender, EventArgs e)
     {
       //try
@@ -298,12 +204,34 @@ namespace CheckWeigherFood.Controls
 
     private void _modbus_Error(object sender, Exception e)
     {
-
+       
     }
 
-    private void _modbus_DataReceived(object sender, ModbusDataEventArgs e)
+    private async void _modbus_DataReceived(object sender, ModbusDataEventArgs e)
     {
+      ushort value = e.Registers[0];
+      if (firstApp)
+      {
+        previous = value;
+        firstApp = false;
 
+        double valueWeight = ((double)value) / 100.0;
+        OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
+      }
+
+      if (previous!= value)
+      {
+        previous = value;
+
+        double valueWeight = ((double)value) / 100.0;
+        OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
+        
+        double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
+        if (valueWeight > valueFilter)
+        {
+          await SaveDatalog(valueWeight);
+        }
+      }  
     }
 
     private void Modbus_ConnectionChanged(
@@ -321,14 +249,14 @@ namespace CheckWeigherFood.Controls
     private Random random = new Random();
     public async void RandomDataWeight()
     {
-      double max = 157.0;
-      double min = 146.0;
+      double max = 129.0;
+      double min = 132.0;
 
       max = 41;
       min = 39;
 
-      max = 165;
-      min = 148;
+      max = 129;
+      min = 140;
 
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);

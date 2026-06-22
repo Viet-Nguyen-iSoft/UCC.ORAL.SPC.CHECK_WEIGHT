@@ -30,6 +30,7 @@ namespace Database.DTO
     public List<Datalog> DatalogAccept { get; set; } = new List<Datalog>();
     public List<Datalog> DatalogOver { get; set; } = new List<Datalog>();
     public List<Datalog> DatalogReject { get; set; } = new List<Datalog>();
+    public Product Product { get; set; } = new Product();
   }
 
   public enum EnumResult

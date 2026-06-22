@@ -10,12 +10,14 @@ using Opc.Ua.Security.Certificates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
+using static CheckWeigherFood.eNum.eNumUI;
 using static Database.Enum;
 using Application = System.Windows.Forms.Application;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -364,12 +366,7 @@ namespace CheckWeigherFood.FrmChild
 
         //Thông tin sản phẩm
         var product = AppCore.Ins._products?.FirstOrDefault(x => x.Id == group.ProductId);
-        if (product!=null)
-        {
-          lbFGs.ValueStr = product.Code;
-          lbNameProduct.ValueStr = product.Description;
-        }
-
+       
         double tareTube = data.Average(x => x.TareTube);
         double tareTailTube = data.Average(x => x.TareTailTube);
         double tareCarton = data.Average(x => x.TareCarton);
@@ -389,6 +386,15 @@ namespace CheckWeigherFood.FrmChild
         tareSetting.TailTube = tareTailTube;
         tareSetting.Carton = tareCarton;
         _sumaryDTO = AppCore.Ins.SumaryDTOData(data, product, tareSetting);
+
+
+        if (product != null)
+        {
+          lbFGs.ValueStr = product.Code;
+          lbNameProduct.ValueStr = product.Description;
+          ucInformationDataSumary1.SetInforProduct(product, tareTube, tareTailTube, tareCarton);
+
+        }
 
         //Data time
         var dataChartline = _sumaryDTO.DatalogPass
@@ -583,41 +589,78 @@ namespace CheckWeigherFood.FrmChild
       {
         this.btnExport.Visible = false;
 
-
         // Load file template
         string templatePath = $@"{Application.StartupPath}\Template\FormatExcel.xlsx";
         XLWorkbook workbook = new XLWorkbook(templatePath);
         IXLWorksheet worksheet = workbook.Worksheet("Report");
 
+        worksheet.Cell("C3").Value = _selectedDate.ToString("yyyy-MM-dd");
+        worksheet.Cell("C4").Value = _selectedShift.ToString();
+        worksheet.Cell("C5").Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+        worksheet.Cell("F3").Value = "4";
+        worksheet.Cell("F4").Value = _sumaryDTO.Product.Code;
+        worksheet.Cell("F5").Value = _sumaryDTO.Product.ProName;
+
+        //Sumary
+        worksheet.Cell("C7").Value = _sumaryDTO.EnumResult == EnumResult.Pass ? "ĐẠT" : "KHÔNG ĐẠT";
+        worksheet.Cell("C8").Value = _sumaryDTO.Sample;
+        worksheet.Cell("C9").Value = _sumaryDTO.Cpk;
+        worksheet.Cell("C10").Value = _sumaryDTO.Cp;
+        worksheet.Cell("C11").Value = _sumaryDTO.Min;
+        worksheet.Cell("C12").Value = _sumaryDTO.Max;
+
+
+        double accept = (double)_sumaryDTO.DatalogAccept.Count();
+        double over = (double)_sumaryDTO.DatalogOver.Count();
+        double reject = (double)_sumaryDTO.DatalogReject.Count();
+        double total = accept + over + reject;
+
+        double accept_P = Math.Round((accept * 100) / total, 2);
+        double over_P = Math.Round((over * 100) / total, 2);
+        double reject_P = Math.Round((reject * 100) / total, 2);
+
+        worksheet.Cell("C13").Value = $"{over}  ({over_P} %)";
+        worksheet.Cell("C14").Value = $"{accept}  ({accept_P} %)";
+        worksheet.Cell("C15").Value = $"{reject}  ({reject_P} %)";
+
+        //INfor Product
+        worksheet.Cell("F7").Value = _sumaryDTO.Target;
+        worksheet.Cell("F8").Value = _sumaryDTO.USL;
+        worksheet.Cell("F9").Value = _sumaryDTO.UCL;
+        worksheet.Cell("F10").Value = _sumaryDTO.LCL;
+        worksheet.Cell("F11").Value = _sumaryDTO.LSL;
+
         //// Lấy dữ liệu từ DataGridView
-        //DataTable dataTable = new DataTable();
-        //foreach (DataGridViewColumn column in dgvData.Columns)
-        //{
-        //  dataTable.Columns.Add(column.HeaderText);
-        //}
-        //foreach (DataGridViewRow row in dgvData.Rows)
-        //{
-        //  DataRow dataRow = dataTable.NewRow();
-        //  foreach (DataGridViewCell cell in row.Cells)
-        //  {
-        //    dataRow[cell.ColumnIndex] = cell.Value;
-        //  }
-        //  dataTable.Rows.Add(dataRow);
-        //}
-        //worksheet.Cell("A50").InsertTable(dataTable);
+        DataTable dataTable = new DataTable();
+        foreach (DataGridViewColumn column in dgvData.Columns)
+        {
+          dataTable.Columns.Add(column.HeaderText);
+        }
+        foreach (DataGridViewRow row in dgvData.Rows)
+        {
+          DataRow dataRow = dataTable.NewRow();
+          foreach (DataGridViewCell cell in row.Cells)
+          {
+            dataRow[cell.ColumnIndex] = cell.Value;
+          }
+          dataTable.Rows.Add(dataRow);
+        }
+        worksheet.Cell("A33").InsertTable(dataTable);
 
-        //string imagePath = "";
-        //// Chart Control
-        //Bitmap bitmap = new Bitmap(tableLayoutPanel37.Width, tableLayoutPanel37.Height);
-        //tableLayoutPanel37.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel37.Width, tableLayoutPanel37.Height));
+        string imagePath = "";
+        // Chart Control
+        Bitmap bitmap = new Bitmap(tableLayoutPanel23.Width, tableLayoutPanel23.Height);
+        tableLayoutPanel23.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel23.Width, tableLayoutPanel23.Height));
 
-        //imagePath = "chart1.png";
-        //bitmap.Save(imagePath);
-        //var pictureChartControl = worksheet.Pictures.Add(imagePath);
-        //pictureChartControl.MoveTo(worksheet.Cell(23, 1));
-        //pictureChartControl.WithSize(1930, 500);
+        imagePath = "chart1.png";
+        bitmap.Save(imagePath);
+        var pictureChartControl = worksheet.Pictures.Add(imagePath);
+        pictureChartControl.MoveTo(worksheet.Cell(17, 1));
+        pictureChartControl.WithSize(1405, 300);
 
-        ////tableLayoutPanel24
+
+        //tableLayoutPanel24
         //bitmap = new Bitmap(tableLayoutPanel24.Width, tableLayoutPanel24.Height);
         //tableLayoutPanel24.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel24.Width, tableLayoutPanel24.Height));
         //imagePath = "chart2.png";
@@ -628,20 +671,21 @@ namespace CheckWeigherFood.FrmChild
 
 
 
-        //using (var saveFD = new SaveFileDialog())
-        //{
-        //  saveFD.Filter = "Excel|*.xlsx|All files|*.*";
-        //  saveFD.Title = "Save report to excel file";
-        //  saveFD.FileName = $"DataReport{fromDate.ToString("_dd_MM_yyyy")}_{cbShift.SelectedItem.ToString().Trim()}";
-        //  DialogResult dialogResult = saveFD.ShowDialog();
-        //  if (dialogResult == DialogResult.OK) fileName = saveFD.FileName; //lay duong dan luu file
-        //  else return; //huy report neu chon cancel
-        //}
-        //workbook.SaveAs(fileName);
+        using (var saveFD = new SaveFileDialog())
+        {
+          saveFD.Filter = "Excel|*.xlsx|All files|*.*";
+          saveFD.Title = "Save report to excel file";
+          //saveFD.FileName = $"DataReport{fromDate.ToString("_dd_MM_yyyy")}_{cbShift.SelectedItem.ToString().Trim()}";
+          saveFD.FileName = $"Report_{_sumaryDTO.Product.Code}_{_selectedDate.ToString("_dd_MM_yyyy")}_Shift{_selectedShift}";
+          DialogResult dialogResult = saveFD.ShowDialog();
+          if (dialogResult == DialogResult.OK) fileName = saveFD.FileName; //lay duong dan luu file
+          else return; //huy report neu chon cancel
+        }
+        workbook.SaveAs(fileName);
 
-        //FrmConfirm frmConfirm = new FrmConfirm("Xuất report thành công !\n Bạn có muốn mở file bây giờ ?", eImage.Question);
-        //frmConfirm.OnSendOKClicked += FrmConfirm_OnSendOKClicked;
-        //frmConfirm.ShowDialog();
+        FrmConfirm frmConfirm = new FrmConfirm("Xuất report thành công !\n Bạn có muốn mở file bây giờ ?", eImage.Question);
+        frmConfirm.OnSendOKClicked += FrmConfirm_OnSendOKClicked;
+        frmConfirm.ShowDialog();
       }
       catch (Exception ex)
       {

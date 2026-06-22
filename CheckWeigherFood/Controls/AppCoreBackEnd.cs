@@ -255,6 +255,7 @@ namespace CheckWeigherFood.Controls
         double LCL = (product?.LCL ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
         double target = (product?.Target ?? 0.0) + (tare?.Tube ?? 0.0) - (tare?.TailTube ?? 0.0) + (tare?.Carton ?? 0.0);
 
+        sumaryDTO.Product = product;
         sumaryDTO.USL = USL;
         sumaryDTO.UCL = UCL;
         sumaryDTO.Target = target;
