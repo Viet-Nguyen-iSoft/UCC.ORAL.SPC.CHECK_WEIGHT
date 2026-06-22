@@ -30,6 +30,7 @@ namespace CheckWeigherFood.Modbus
     private bool _isRunning;
     private bool _isReading;
     private bool _disposed;
+    private ushort _addressWeight;
 
     public bool IsConnected =>
         _tcpClient != null &&
@@ -42,11 +43,13 @@ namespace CheckWeigherFood.Modbus
     public ModbusTcpService(
         string ip,
         int port = 502,
+        ushort addressWeight = 1,
         byte slaveId = 1)
     {
       _ip = ip;
       _port = port;
       _slaveId = slaveId;
+      _addressWeight = addressWeight;
     }
 
     public void Start(int periodMs = 1000)
@@ -92,11 +95,11 @@ namespace CheckWeigherFood.Modbus
 
         // ===== READ HOLDING REGISTER =====
 
-        ushort startAddress = 0;
+        ushort startAddress = _addressWeight;
         ushort length = 10;
 
         ushort[] data =
-            _master.ReadHoldingRegisters(
+            _master.ReadInputRegisters(
                 _slaveId,
                 startAddress,
                 length);

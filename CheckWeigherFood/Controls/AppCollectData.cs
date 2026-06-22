@@ -42,12 +42,11 @@ namespace CheckWeigherFood.Controls
     public System.Timers.Timer timer_check_connect = new System.Timers.Timer();
     private void Init_OPC_UA()
     {
-      opcUrl = $"opc.tcp://10.157.120.23:49320";
       opcUrl = Environment.GetEnvironmentVariable("OPC_UA_HOST");
-      opcWeight= Environment.GetEnvironmentVariable("OPC_UA_WEIGHT");
+      opcWeight = Environment.GetEnvironmentVariable("OPC_UA_WEIGHT");
       opcStatusMachine = Environment.GetEnvironmentVariable("OPC_UA_STATUS_MACHINE");
 
-      timer_read_opc_ua.Interval = 1000;
+      timer_read_opc_ua.Interval = 200;
       timer_read_opc_ua.Elapsed += Timer_read_opc_ua_Elapsed;
       timer_read_opc_ua.Start();
 
@@ -55,12 +54,83 @@ namespace CheckWeigherFood.Controls
       timer_check_connect.Elapsed += Timer_check_connect_Elapsed;
       timer_check_connect.Start();
     }
+    //private async Task Connect()
+    //{
+    //  opcClient = new OpcUaClient();
 
-    private void Timer_check_connect_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    //  opcClient.AppConfig.ApplicationName = "test";
+    //  opcClient.AppConfig.ApplicationUri = $"urn:{Utils.GetHostName()}:test";
+    //  opcClient.AppConfig.ApplicationType = ApplicationType.Client;
+    //  opcClient.UseSecurity = false;
+    //  opcClient.AppConfig.SecurityConfiguration = new SecurityConfiguration
+    //  {
+    //    ApplicationCertificate = new CertificateIdentifier
+    //    {
+    //      StoreType = "Directory",
+    //      StorePath = @"CertificateStores\Own",
+    //      SubjectName = "test"
+    //    },
+
+    //    TrustedPeerCertificates = new CertificateTrustList
+    //    {
+    //      StoreType = "Directory",
+    //      StorePath = @"CertificateStores\UA Applications"
+    //    },
+
+    //    TrustedIssuerCertificates = new CertificateTrustList
+    //    {
+    //      StoreType = "Directory",
+    //      StorePath = @"CertificateStores\UA Certificate Authorities"
+    //    },
+
+    //    RejectedCertificateStore = new CertificateTrustList
+    //    {
+    //      StoreType = "Directory",
+    //      StorePath = @"CertificateStores\RejectedCertificates"
+    //    },
+
+    //    AutoAcceptUntrustedCertificates = true,
+    //    AddAppCertToTrustedStore = true
+    //  };
+
+    //  opcClient.AppConfig.TransportQuotas = new TransportQuotas
+    //  {
+    //    OperationTimeout = 15000
+    //  };
+
+    //  opcClient.AppConfig.ClientConfiguration.DefaultSessionTimeout = 60000;
+
+    //  await opcClient.AppConfig.Validate(ApplicationType.Client);
+
+    //  //bool certOk = await opcClient.AppConfig.(false, 2048);
+    //  //if (!certOk)
+    //  //  throw new Exception("Cannot create OPC UA application certificate.");
+
+    //  opcClient.AppConfig.CertificateValidator.CertificateValidation += (sender, e) =>
+    //  {
+    //    // Chỉ dùng để test. Production nên trust certificate rõ ràng.
+    //    e.Accept = true;
+    //  };
+
+    //  opcClient.UserIdentity = new UserIdentity();
+    //  opcClient.ConnectComplete += (s, e) =>
+    //  {
+    //    Console.WriteLine("OPC UA connected.");
+    //  };
+    //  opcClient.OpcStatusChange += OpcClient_OpcStatusChange;
+    //  await opcClient.ConnectServer("opc.tcp://DESKTOP-5DG8V11:49320");
+    //}
+
+    //private void OpcClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
+    //{
+    //  Console.WriteLine(e.Error);
+    //}
+
+    private async void Timer_check_connect_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       try
       {
-        timer_read_opc_ua.Stop();
+        timer_check_connect.Stop();
 
         string key = " ";
         if (opcClient.Connected == false)
@@ -69,11 +139,32 @@ namespace CheckWeigherFood.Controls
           //UserIdentity userIdentity = new UserIdentity("admin", "admin");
           UserIdentity userIdentity = new UserIdentity();
           opcClient.UserIdentity = new UserIdentity(new AnonymousIdentityToken());
-          opcClient = new OpcUaClient();
           opcClient.ConnectComplete += OpcClient_ConnectComplete;
           opcClient.UserIdentity = userIdentity;
-          opcClient.ConnectServer(opcUrl);
+          await opcClient.ConnectServer(opcUrl);
 
+
+          //try
+          //{
+          //  opcClient = new OpcUaClient();
+          //  //opcClient.AppConfig.ApplicationName = "test";
+          //  //opcClient.AppConfig.ClientConfiguration.DefaultSessionTimeout = 10000;
+          //  opcClient.UserIdentity =
+          //      new UserIdentity(new AnonymousIdentityToken());
+
+          //  await opcClient.ConnectServer("opc.tcp://DESKTOP-5DG8V11:49320");
+          //  //await Connect();
+          //  //MessageBox.Show("Connected");
+          //}
+          //catch (Exception ex)
+          //{
+          //  //MessageBox.Show(ex.ToString());
+          //}
+          //finally
+          //{
+
+          //  //timer_check_connect.Start();
+          //}
           key = " Trong ";
         }
 
@@ -101,22 +192,23 @@ namespace CheckWeigherFood.Controls
       {
         timer_read_opc_ua.Stop();
 
-        string key = " ";
+        //string key = " ";
         double valueSend = 0;
         if (opcClient.Connected)
         {
-          key = " tren ";
+          //key = " tren ";
           //Value
-          string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-          nodeId_temp = "ns=2;s=OL04C.07.C4M00";
-          var value_temp = opcClient.ReadNode(opcStatusMachine);
+          //string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+          //nodeId_temp = "ns=2;s=OL04C.07.C4M00";
+          //nodeId_temp = "ns=2;s=OL04C.07.C4P00";
+          var value_temp = opcClient.ReadNode(opcWeight);
           double value = Convert.ToDouble(value_temp.Value);
-          value = Math.Round(value/100.0, 2);
+          value = Math.Round(value / 100.0, 2);
 
-          string json = JsonConvert.SerializeObject(value_temp);
-          string a = value_temp.GetType().FullName;
-          OnSendJson?.Invoke(a + " - " + value_temp.StatusCode + " - " + value_temp.StatusCode.Code + "****" + json);
-          valueSend = value;
+          //string json = JsonConvert.SerializeObject(value_temp);
+          //string a = value_temp.GetType().FullName;
+          //OnSendJson?.Invoke(a + " - " + value_temp.StatusCode + " - " + value_temp.StatusCode.Code + "****" + json);
+          //valueSend = value;
 
           ////Status
           ////string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
@@ -124,7 +216,7 @@ namespace CheckWeigherFood.Controls
           //int _status_machine = Convert.ToInt16(value_status_machine.Value);
           int _status_machine = 1;
 
-          if (value!= previous)
+          if (value != previous)
           {
             previous = value;
             OnSendValueWeight?.Invoke(value, _status_machine == 1, "data ok");
@@ -133,20 +225,20 @@ namespace CheckWeigherFood.Controls
             if (value > 0 && firstApp == false)
             {
               await SaveDatalog(value);
-            }  
-              
-          }  
+            }
+
+          }
         }
         else
         {
-          key = " duoi ";
+          //key = " duoi ";
           OnSendValueWeight?.Invoke(-1, false, "Mất kết nối");
         }
 
 
-        string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
-        string msg = DateTime.Now.ToString("HH:mm:ss") + key + status + " Value: "+ valueSend.ToString();
-        OnSendMsgRead?.Invoke(msg);
+        //string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
+        //string msg = DateTime.Now.ToString("HH:mm:ss") + key + status + " Value: " + valueSend.ToString();
+        //OnSendMsgRead?.Invoke(msg);
         firstApp = false;
       }
       catch (Exception ex)
@@ -158,8 +250,6 @@ namespace CheckWeigherFood.Controls
         timer_read_opc_ua.Start();
       }
     }
-
-
     private void OpcClient_ConnectComplete(object sender, EventArgs e)
     {
       //try
@@ -191,10 +281,14 @@ namespace CheckWeigherFood.Controls
     /// <summary>
     /// //
     /// </summary>
-    private ModbusTcpService _modbus;
+    private ModbusTcpService _modbus { get; set; }
     private void InitModbus(string ip, int port)
     {
-      _modbus = new ModbusTcpService(ip, port, 1);
+      string ipModbus = Environment.GetEnvironmentVariable("MODBUS_HOST");
+      int portModbus = int.Parse(Environment.GetEnvironmentVariable("MODBUS_PORT"));
+      ushort addressWeight = ushort.Parse(Environment.GetEnvironmentVariable("MODBUS_ADDRESS_WEIGHT"));
+
+      _modbus = new ModbusTcpService(ip, port, addressWeight, 1);
 
       _modbus.ConnectionChanged += Modbus_ConnectionChanged;
       _modbus.DataReceived += _modbus_DataReceived;
@@ -204,19 +298,19 @@ namespace CheckWeigherFood.Controls
 
     private void _modbus_Error(object sender, Exception e)
     {
-      
+
     }
 
     private void _modbus_DataReceived(object sender, ModbusDataEventArgs e)
     {
-      
+
     }
 
     private void Modbus_ConnectionChanged(
     object sender,
     bool connected)
     {
-      
+
     }
 
 
@@ -246,7 +340,7 @@ namespace CheckWeigherFood.Controls
     {
       try
       {
-        if (_machineCurrent == null || _productCurrent == null || _appConfig?.ChangeOverId<=0) return;
+        if (_machineCurrent == null || _productCurrent == null || _appConfig?.ChangeOverId <= 0) return;
 
         Datalog datalog = new Datalog();
         datalog.Gross = value;
@@ -296,7 +390,7 @@ namespace CheckWeigherFood.Controls
         }
 
         return EnumStatusRecord.Reject;
-      }  
+      }
       else
       {
         if (net > usl)
@@ -308,8 +402,8 @@ namespace CheckWeigherFood.Controls
           return EnumStatusRecord.Accept;
         }
         return EnumStatusRecord.Reject;
-      }  
-      
+      }
+
     }
   }
 }

@@ -199,7 +199,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      label4.Text = json;
+      //label4.Text = json;
     }
 
     private void Ins_OnSendMsgRead(string msg)
@@ -400,7 +400,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      //label4.Text = msg;
+      label4.Text = msg;
       _statusConnectOpcUa = success;
       ucInformationDataSumary1.SetWeightRealtime(value);
 
