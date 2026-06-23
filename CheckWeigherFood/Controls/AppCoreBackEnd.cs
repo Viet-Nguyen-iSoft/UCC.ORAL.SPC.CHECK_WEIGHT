@@ -49,7 +49,7 @@ namespace CheckWeigherFood.Controls
       if (Environment.GetEnvironmentVariable("OPC_UA_ENABLE") == "1")
         Init_OPC_UA();
 
-      InitModbus("127.0.0.1", 502);
+      InitModbus();
 
       //Đăng kí sự kiện thao tác trong UI
       InitEvent();

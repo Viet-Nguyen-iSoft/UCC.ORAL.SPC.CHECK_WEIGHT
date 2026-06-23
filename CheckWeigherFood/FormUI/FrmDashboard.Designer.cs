@@ -56,6 +56,7 @@
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
       this.label8 = new System.Windows.Forms.Label();
+      this.ucInformationDataSumary1 = new CheckWeigherFood.UC.UcInformationDataSumary();
       this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
       this.dgvReject = new System.Windows.Forms.DataGridView();
       this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +65,10 @@
       this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
       this.label14 = new System.Windows.Forms.Label();
+      this.lbDataNumberReject = new CheckWeigherFood.UC.UcTextBoxData();
       this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
+      this.lbOverWeight = new CheckWeigherFood.UC.UcData();
+      this.lbTLTB = new CheckWeigherFood.UC.UcData();
       this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
       this.panelContent = new System.Windows.Forms.TableLayoutPanel();
@@ -75,6 +79,8 @@
       this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
       this.chartHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.label34 = new System.Windows.Forms.Label();
+      this.ucInformationLoss1 = new CheckWeigherFood.UC.UcInformationLoss();
+      this.ucChartPie1 = new CheckWeigherFood.UC.UcChartPie();
       this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
       this.panel2 = new System.Windows.Forms.Panel();
@@ -88,46 +94,40 @@
       this.chartControl = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
       this.label28 = new System.Windows.Forms.Label();
+      this.ucFilterTime1 = new CheckWeigherFood.UC.UcFilterTime();
       this.picFilterChart = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.label11 = new System.Windows.Forms.Label();
       this.label12 = new System.Windows.Forms.Label();
       this.label13 = new System.Windows.Forms.Label();
+      this.lbOP = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbQC = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbShiftLeader = new CheckWeigherFood.UC.UcTextBoxData();
+      this.btnChangeOperator = new CheckWeigherFood.RJControl.RJButton();
       this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
       this.lbStatusMachine = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.label3 = new System.Windows.Forms.Label();
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+      this.btnChangeOver = new CheckWeigherFood.RJControl.RJButton();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
-      this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-      this.label10 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
-      this.label9 = new System.Windows.Forms.Label();
-      this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-      this.label15 = new System.Windows.Forms.Label();
-      this.label1 = new System.Windows.Forms.Label();
-      this.ucInformationDataSumary1 = new CheckWeigherFood.UC.UcInformationDataSumary();
-      this.lbDataNumberReject = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbOverWeight = new CheckWeigherFood.UC.UcData();
-      this.lbTLTB = new CheckWeigherFood.UC.UcData();
-      this.ucInformationLoss1 = new CheckWeigherFood.UC.UcInformationLoss();
-      this.ucChartPie1 = new CheckWeigherFood.UC.UcChartPie();
-      this.ucFilterTime1 = new CheckWeigherFood.UC.UcFilterTime();
-      this.lbOP = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbQC = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbShiftLeader = new CheckWeigherFood.UC.UcTextBoxData();
-      this.btnChangeOperator = new CheckWeigherFood.RJControl.RJButton();
-      this.btnChangeOver = new CheckWeigherFood.RJControl.RJButton();
       this.lbFGs = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbNameProduct = new CheckWeigherFood.UC.UcTextBoxData();
+      this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+      this.label10 = new System.Windows.Forms.Label();
       this.lbCarton = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.btnSettingTareAndLot = new CheckWeigherFood.RJControl.RJButton();
+      this.label2 = new System.Windows.Forms.Label();
       this.lbTailTube = new CheckWeigherFood.UC.UcTextBoxData();
+      this.label9 = new System.Windows.Forms.Label();
+      this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+      this.label15 = new System.Windows.Forms.Label();
       this.btnChangeLot = new CheckWeigherFood.RJControl.RJButton();
+      this.label1 = new System.Windows.Forms.Label();
       this.lbLotTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbLotCarton = new CheckWeigherFood.UC.UcTextBoxData();
       this.tableLayoutPanel5.SuspendLayout();
@@ -238,6 +238,16 @@
       this.label8.Text = "Tổng quan dữ liệu";
       this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       this.label8.Click += new System.EventHandler(this.label8_Click);
+      // 
+      // ucInformationDataSumary1
+      // 
+      this.ucInformationDataSumary1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucInformationDataSumary1.Location = new System.Drawing.Point(3, 173);
+      this.ucInformationDataSumary1.Name = "ucInformationDataSumary1";
+      this.ucInformationDataSumary1.Size = new System.Drawing.Size(374, 554);
+      this.ucInformationDataSumary1.TabIndex = 7;
       // 
       // tableLayoutPanel16
       // 
@@ -384,6 +394,15 @@
       this.label14.Text = "Reject ";
       this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // lbDataNumberReject
+      // 
+      this.lbDataNumberReject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbDataNumberReject.Location = new System.Drawing.Point(223, 8);
+      this.lbDataNumberReject.Name = "lbDataNumberReject";
+      this.lbDataNumberReject.Size = new System.Drawing.Size(154, 44);
+      this.lbDataNumberReject.TabIndex = 7;
+      this.lbDataNumberReject.ValueStr = "";
+      // 
       // tableLayoutPanel24
       // 
       this.tableLayoutPanel24.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -407,6 +426,26 @@
       this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 3F));
       this.tableLayoutPanel24.Size = new System.Drawing.Size(380, 120);
       this.tableLayoutPanel24.TabIndex = 6;
+      // 
+      // lbOverWeight
+      // 
+      this.lbOverWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbOverWeight.Location = new System.Drawing.Point(6, 6);
+      this.lbOverWeight.Name = "lbOverWeight";
+      this.lbOverWeight.Size = new System.Drawing.Size(176, 108);
+      this.lbOverWeight.TabIndex = 1;
+      // 
+      // lbTLTB
+      // 
+      this.lbTLTB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbTLTB.Location = new System.Drawing.Point(198, 6);
+      this.lbTLTB.Name = "lbTLTB";
+      this.lbTLTB.Size = new System.Drawing.Size(176, 108);
+      this.lbTLTB.TabIndex = 0;
       // 
       // tableLayoutPanel10
       // 
@@ -651,6 +690,29 @@
       this.label34.TabIndex = 12;
       this.label34.Text = "Biểu đồ phân bố";
       this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // ucInformationLoss1
+      // 
+      this.ucInformationLoss1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucInformationLoss1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+      this.ucInformationLoss1.Location = new System.Drawing.Point(0, 0);
+      this.ucInformationLoss1.Margin = new System.Windows.Forms.Padding(0);
+      this.ucInformationLoss1.Name = "ucInformationLoss1";
+      this.ucInformationLoss1.Size = new System.Drawing.Size(446, 252);
+      this.ucInformationLoss1.TabIndex = 3;
+      // 
+      // ucChartPie1
+      // 
+      this.ucChartPie1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucChartPie1.Location = new System.Drawing.Point(451, 0);
+      this.ucChartPie1.Margin = new System.Windows.Forms.Padding(0);
+      this.ucChartPie1.Name = "ucChartPie1";
+      this.ucChartPie1.Size = new System.Drawing.Size(446, 252);
+      this.ucChartPie1.TabIndex = 4;
       // 
       // tableLayoutPanel23
       // 
@@ -932,6 +994,17 @@
       this.label28.Text = "Kiểm soát số lượng qua cân";
       this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // ucFilterTime1
+      // 
+      this.ucFilterTime1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
+      this.ucFilterTime1.Location = new System.Drawing.Point(1000, 3);
+      this.ucFilterTime1.Name = "ucFilterTime1";
+      this.ucFilterTime1.Size = new System.Drawing.Size(415, 54);
+      this.ucFilterTime1.TabIndex = 19;
+      this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
+      // 
       // picFilterChart
       // 
       this.picFilterChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -985,7 +1058,7 @@
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
       this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
       this.tableLayoutPanel2.Controls.Add(this.label12, 3, 0);
       this.tableLayoutPanel2.Controls.Add(this.label13, 6, 0);
@@ -1027,7 +1100,7 @@
       this.label12.BackColor = System.Drawing.Color.Transparent;
       this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label12.ForeColor = System.Drawing.Color.White;
-      this.label12.Location = new System.Drawing.Point(445, 0);
+      this.label12.Location = new System.Drawing.Point(444, 0);
       this.label12.Margin = new System.Windows.Forms.Padding(0);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(140, 40);
@@ -1044,13 +1117,69 @@
       this.label13.BackColor = System.Drawing.Color.Transparent;
       this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label13.ForeColor = System.Drawing.Color.White;
-      this.label13.Location = new System.Drawing.Point(910, 0);
+      this.label13.Location = new System.Drawing.Point(909, 0);
       this.label13.Margin = new System.Windows.Forms.Padding(0);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(91, 40);
       this.label13.TabIndex = 22;
       this.label13.Text = "Trưởng ca:";
       this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      // 
+      // lbOP
+      // 
+      this.lbOP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbOP.Location = new System.Drawing.Point(123, 3);
+      this.lbOP.Name = "lbOP";
+      this.lbOP.Size = new System.Drawing.Size(298, 34);
+      this.lbOP.TabIndex = 23;
+      this.lbOP.ValueStr = "";
+      // 
+      // lbQC
+      // 
+      this.lbQC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbQC.Location = new System.Drawing.Point(587, 3);
+      this.lbQC.Name = "lbQC";
+      this.lbQC.Size = new System.Drawing.Size(299, 34);
+      this.lbQC.TabIndex = 24;
+      this.lbQC.ValueStr = "";
+      // 
+      // lbShiftLeader
+      // 
+      this.lbShiftLeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbShiftLeader.Location = new System.Drawing.Point(1003, 3);
+      this.lbShiftLeader.Name = "lbShiftLeader";
+      this.lbShiftLeader.Size = new System.Drawing.Size(299, 34);
+      this.lbShiftLeader.TabIndex = 25;
+      this.lbShiftLeader.ValueStr = "";
+      // 
+      // btnChangeOperator
+      // 
+      this.btnChangeOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnChangeOperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOperator.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOperator.BorderColor = System.Drawing.Color.PaleVioletRed;
+      this.btnChangeOperator.BorderRadius = 5;
+      this.btnChangeOperator.BorderSize = 0;
+      this.btnChangeOperator.FlatAppearance.BorderSize = 0;
+      this.btnChangeOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnChangeOperator.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnChangeOperator.ForeColor = System.Drawing.Color.White;
+      this.btnChangeOperator.Location = new System.Drawing.Point(1328, 3);
+      this.btnChangeOperator.Name = "btnChangeOperator";
+      this.btnChangeOperator.Size = new System.Drawing.Size(158, 34);
+      this.btnChangeOperator.TabIndex = 26;
+      this.btnChangeOperator.Text = "Thay đổi";
+      this.btnChangeOperator.TextColor = System.Drawing.Color.White;
+      this.btnChangeOperator.UseVisualStyleBackColor = false;
+      this.btnChangeOperator.Click += new System.EventHandler(this.btnChangeOperator_Click);
       // 
       // tableLayoutPanel11
       // 
@@ -1095,7 +1224,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label4.AutoSize = true;
       this.label4.BackColor = System.Drawing.Color.Transparent;
-      this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label4.ForeColor = System.Drawing.Color.White;
       this.label4.Location = new System.Drawing.Point(0, 0);
       this.label4.Margin = new System.Windows.Forms.Padding(0);
@@ -1178,6 +1307,29 @@
       this.tableLayoutPanel4.Size = new System.Drawing.Size(1489, 38);
       this.tableLayoutPanel4.TabIndex = 3;
       // 
+      // btnChangeOver
+      // 
+      this.btnChangeOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnChangeOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOver.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOver.BorderColor = System.Drawing.Color.PaleVioletRed;
+      this.btnChangeOver.BorderRadius = 5;
+      this.btnChangeOver.BorderSize = 0;
+      this.btnChangeOver.FlatAppearance.BorderSize = 0;
+      this.btnChangeOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnChangeOver.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnChangeOver.ForeColor = System.Drawing.Color.White;
+      this.btnChangeOver.Location = new System.Drawing.Point(1332, 3);
+      this.btnChangeOver.Name = "btnChangeOver";
+      this.btnChangeOver.Size = new System.Drawing.Size(154, 32);
+      this.btnChangeOver.TabIndex = 27;
+      this.btnChangeOver.Text = "Thay đổi";
+      this.btnChangeOver.TextColor = System.Drawing.Color.White;
+      this.btnChangeOver.UseVisualStyleBackColor = false;
+      this.btnChangeOver.Click += new System.EventHandler(this.btnChangeOver_Click);
+      // 
       // label5
       // 
       this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1211,6 +1363,28 @@
       this.label6.TabIndex = 21;
       this.label6.Text = "Tên sản phẩm:";
       this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // lbFGs
+      // 
+      this.lbFGs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbFGs.Location = new System.Drawing.Point(133, 3);
+      this.lbFGs.Name = "lbFGs";
+      this.lbFGs.Size = new System.Drawing.Size(194, 32);
+      this.lbFGs.TabIndex = 23;
+      this.lbFGs.ValueStr = "";
+      // 
+      // lbNameProduct
+      // 
+      this.lbNameProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbNameProduct.Location = new System.Drawing.Point(493, 3);
+      this.lbNameProduct.Name = "lbNameProduct";
+      this.lbNameProduct.Size = new System.Drawing.Size(813, 32);
+      this.lbNameProduct.TabIndex = 24;
+      this.lbNameProduct.ValueStr = "";
       // 
       // tableLayoutPanel8
       // 
@@ -1259,275 +1433,6 @@
       this.label10.Text = "TL carton (g):";
       this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // label2
-      // 
-      this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label2.AutoSize = true;
-      this.label2.BackColor = System.Drawing.Color.Transparent;
-      this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.ForeColor = System.Drawing.Color.White;
-      this.label2.Location = new System.Drawing.Point(690, 0);
-      this.label2.Margin = new System.Windows.Forms.Padding(0);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(419, 38);
-      this.label2.TabIndex = 28;
-      this.label2.Text = "TL đuôi tube (g):";
-      this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      // 
-      // label9
-      // 
-      this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label9.AutoSize = true;
-      this.label9.BackColor = System.Drawing.Color.Transparent;
-      this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label9.ForeColor = System.Drawing.Color.White;
-      this.label9.Location = new System.Drawing.Point(360, 0);
-      this.label9.Margin = new System.Windows.Forms.Padding(0);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(130, 38);
-      this.label9.TabIndex = 20;
-      this.label9.Text = "TL tube (g):";
-      this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.label9.Click += new System.EventHandler(this.label9_Click);
-      // 
-      // tableLayoutPanel18
-      // 
-      this.tableLayoutPanel18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel18.ColumnCount = 7;
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.78627F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
-      this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
-      this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
-      this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
-      this.tableLayoutPanel18.Controls.Add(this.lbLotTube, 1, 0);
-      this.tableLayoutPanel18.Controls.Add(this.lbLotCarton, 4, 0);
-      this.tableLayoutPanel18.Location = new System.Drawing.Point(5, 121);
-      this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(0);
-      this.tableLayoutPanel18.Name = "tableLayoutPanel18";
-      this.tableLayoutPanel18.RowCount = 1;
-      this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel18.Size = new System.Drawing.Size(1489, 39);
-      this.tableLayoutPanel18.TabIndex = 21;
-      // 
-      // label15
-      // 
-      this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label15.AutoSize = true;
-      this.label15.BackColor = System.Drawing.Color.Transparent;
-      this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label15.ForeColor = System.Drawing.Color.White;
-      this.label15.Location = new System.Drawing.Point(0, 0);
-      this.label15.Margin = new System.Windows.Forms.Padding(0);
-      this.label15.Name = "label15";
-      this.label15.Size = new System.Drawing.Size(130, 39);
-      this.label15.TabIndex = 22;
-      this.label15.Text = "Lô tube:";
-      this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // label1
-      // 
-      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label1.AutoSize = true;
-      this.label1.BackColor = System.Drawing.Color.Transparent;
-      this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(814, 0);
-      this.label1.Margin = new System.Windows.Forms.Padding(0);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(130, 39);
-      this.label1.TabIndex = 28;
-      this.label1.Text = "Lô carton:";
-      this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      // 
-      // ucInformationDataSumary1
-      // 
-      this.ucInformationDataSumary1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucInformationDataSumary1.Location = new System.Drawing.Point(3, 173);
-      this.ucInformationDataSumary1.Name = "ucInformationDataSumary1";
-      this.ucInformationDataSumary1.Size = new System.Drawing.Size(374, 554);
-      this.ucInformationDataSumary1.TabIndex = 7;
-      // 
-      // lbDataNumberReject
-      // 
-      this.lbDataNumberReject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbDataNumberReject.Location = new System.Drawing.Point(223, 8);
-      this.lbDataNumberReject.Name = "lbDataNumberReject";
-      this.lbDataNumberReject.Size = new System.Drawing.Size(154, 44);
-      this.lbDataNumberReject.TabIndex = 7;
-      this.lbDataNumberReject.ValueStr = "";
-      // 
-      // lbOverWeight
-      // 
-      this.lbOverWeight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbOverWeight.Location = new System.Drawing.Point(6, 6);
-      this.lbOverWeight.Name = "lbOverWeight";
-      this.lbOverWeight.Size = new System.Drawing.Size(176, 108);
-      this.lbOverWeight.TabIndex = 1;
-      // 
-      // lbTLTB
-      // 
-      this.lbTLTB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbTLTB.Location = new System.Drawing.Point(198, 6);
-      this.lbTLTB.Name = "lbTLTB";
-      this.lbTLTB.Size = new System.Drawing.Size(176, 108);
-      this.lbTLTB.TabIndex = 0;
-      // 
-      // ucInformationLoss1
-      // 
-      this.ucInformationLoss1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucInformationLoss1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-      this.ucInformationLoss1.Location = new System.Drawing.Point(0, 0);
-      this.ucInformationLoss1.Margin = new System.Windows.Forms.Padding(0);
-      this.ucInformationLoss1.Name = "ucInformationLoss1";
-      this.ucInformationLoss1.Size = new System.Drawing.Size(446, 252);
-      this.ucInformationLoss1.TabIndex = 3;
-      // 
-      // ucChartPie1
-      // 
-      this.ucChartPie1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucChartPie1.Location = new System.Drawing.Point(451, 0);
-      this.ucChartPie1.Margin = new System.Windows.Forms.Padding(0);
-      this.ucChartPie1.Name = "ucChartPie1";
-      this.ucChartPie1.Size = new System.Drawing.Size(446, 252);
-      this.ucChartPie1.TabIndex = 4;
-      // 
-      // ucFilterTime1
-      // 
-      this.ucFilterTime1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
-      this.ucFilterTime1.Location = new System.Drawing.Point(1000, 3);
-      this.ucFilterTime1.Name = "ucFilterTime1";
-      this.ucFilterTime1.Size = new System.Drawing.Size(415, 54);
-      this.ucFilterTime1.TabIndex = 19;
-      this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
-      // 
-      // lbOP
-      // 
-      this.lbOP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbOP.Location = new System.Drawing.Point(123, 3);
-      this.lbOP.Name = "lbOP";
-      this.lbOP.Size = new System.Drawing.Size(299, 34);
-      this.lbOP.TabIndex = 23;
-      this.lbOP.ValueStr = "";
-      // 
-      // lbQC
-      // 
-      this.lbQC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbQC.Location = new System.Drawing.Point(588, 3);
-      this.lbQC.Name = "lbQC";
-      this.lbQC.Size = new System.Drawing.Size(299, 34);
-      this.lbQC.TabIndex = 24;
-      this.lbQC.ValueStr = "";
-      // 
-      // lbShiftLeader
-      // 
-      this.lbShiftLeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbShiftLeader.Location = new System.Drawing.Point(1004, 3);
-      this.lbShiftLeader.Name = "lbShiftLeader";
-      this.lbShiftLeader.Size = new System.Drawing.Size(299, 34);
-      this.lbShiftLeader.TabIndex = 25;
-      this.lbShiftLeader.ValueStr = "";
-      // 
-      // btnChangeOperator
-      // 
-      this.btnChangeOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnChangeOperator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOperator.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOperator.BorderColor = System.Drawing.Color.PaleVioletRed;
-      this.btnChangeOperator.BorderRadius = 5;
-      this.btnChangeOperator.BorderSize = 0;
-      this.btnChangeOperator.FlatAppearance.BorderSize = 0;
-      this.btnChangeOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnChangeOperator.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnChangeOperator.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOperator.Location = new System.Drawing.Point(1329, 3);
-      this.btnChangeOperator.Name = "btnChangeOperator";
-      this.btnChangeOperator.Size = new System.Drawing.Size(157, 34);
-      this.btnChangeOperator.TabIndex = 26;
-      this.btnChangeOperator.Text = "Thay đổi";
-      this.btnChangeOperator.TextColor = System.Drawing.Color.White;
-      this.btnChangeOperator.UseVisualStyleBackColor = false;
-      this.btnChangeOperator.Click += new System.EventHandler(this.btnChangeOperator_Click);
-      // 
-      // btnChangeOver
-      // 
-      this.btnChangeOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnChangeOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOver.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOver.BorderColor = System.Drawing.Color.PaleVioletRed;
-      this.btnChangeOver.BorderRadius = 5;
-      this.btnChangeOver.BorderSize = 0;
-      this.btnChangeOver.FlatAppearance.BorderSize = 0;
-      this.btnChangeOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnChangeOver.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnChangeOver.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOver.Location = new System.Drawing.Point(1332, 3);
-      this.btnChangeOver.Name = "btnChangeOver";
-      this.btnChangeOver.Size = new System.Drawing.Size(154, 32);
-      this.btnChangeOver.TabIndex = 27;
-      this.btnChangeOver.Text = "Thay đổi";
-      this.btnChangeOver.TextColor = System.Drawing.Color.White;
-      this.btnChangeOver.UseVisualStyleBackColor = false;
-      this.btnChangeOver.Click += new System.EventHandler(this.btnChangeOver_Click);
-      // 
-      // lbFGs
-      // 
-      this.lbFGs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbFGs.Location = new System.Drawing.Point(133, 3);
-      this.lbFGs.Name = "lbFGs";
-      this.lbFGs.Size = new System.Drawing.Size(194, 32);
-      this.lbFGs.TabIndex = 23;
-      this.lbFGs.ValueStr = "";
-      // 
-      // lbNameProduct
-      // 
-      this.lbNameProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbNameProduct.Location = new System.Drawing.Point(493, 3);
-      this.lbNameProduct.Name = "lbNameProduct";
-      this.lbNameProduct.Size = new System.Drawing.Size(813, 32);
-      this.lbNameProduct.TabIndex = 24;
-      this.lbNameProduct.ValueStr = "";
-      // 
       // lbCarton
       // 
       this.lbCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1573,6 +1478,23 @@
       this.btnSettingTareAndLot.UseVisualStyleBackColor = false;
       this.btnSettingTareAndLot.Click += new System.EventHandler(this.btnSettingTareAndLot_Click);
       // 
+      // label2
+      // 
+      this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label2.AutoSize = true;
+      this.label2.BackColor = System.Drawing.Color.Transparent;
+      this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label2.ForeColor = System.Drawing.Color.White;
+      this.label2.Location = new System.Drawing.Point(690, 0);
+      this.label2.Margin = new System.Windows.Forms.Padding(0);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(419, 38);
+      this.label2.TabIndex = 28;
+      this.label2.Text = "TL đuôi tube (g):";
+      this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      // 
       // lbTailTube
       // 
       this.lbTailTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1583,6 +1505,67 @@
       this.lbTailTube.Size = new System.Drawing.Size(194, 32);
       this.lbTailTube.TabIndex = 29;
       this.lbTailTube.ValueStr = "";
+      // 
+      // label9
+      // 
+      this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label9.AutoSize = true;
+      this.label9.BackColor = System.Drawing.Color.Transparent;
+      this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label9.ForeColor = System.Drawing.Color.White;
+      this.label9.Location = new System.Drawing.Point(360, 0);
+      this.label9.Margin = new System.Windows.Forms.Padding(0);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(130, 38);
+      this.label9.TabIndex = 20;
+      this.label9.Text = "TL tube (g):";
+      this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.label9.Click += new System.EventHandler(this.label9_Click);
+      // 
+      // tableLayoutPanel18
+      // 
+      this.tableLayoutPanel18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel18.ColumnCount = 7;
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.78627F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+      this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
+      this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
+      this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
+      this.tableLayoutPanel18.Controls.Add(this.lbLotTube, 1, 0);
+      this.tableLayoutPanel18.Controls.Add(this.lbLotCarton, 4, 0);
+      this.tableLayoutPanel18.Location = new System.Drawing.Point(5, 121);
+      this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(0);
+      this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+      this.tableLayoutPanel18.RowCount = 1;
+      this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel18.Size = new System.Drawing.Size(1489, 39);
+      this.tableLayoutPanel18.TabIndex = 21;
+      // 
+      // label15
+      // 
+      this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label15.AutoSize = true;
+      this.label15.BackColor = System.Drawing.Color.Transparent;
+      this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label15.ForeColor = System.Drawing.Color.White;
+      this.label15.Location = new System.Drawing.Point(0, 0);
+      this.label15.Margin = new System.Windows.Forms.Padding(0);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(130, 39);
+      this.label15.TabIndex = 22;
+      this.label15.Text = "Lô tube:";
+      this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // btnChangeLot
       // 
@@ -1598,14 +1581,31 @@
       this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeLot.ForeColor = System.Drawing.Color.White;
-      this.btnChangeLot.Location = new System.Drawing.Point(1329, 3);
+      this.btnChangeLot.Location = new System.Drawing.Point(1327, 3);
       this.btnChangeLot.Name = "btnChangeLot";
-      this.btnChangeLot.Size = new System.Drawing.Size(157, 33);
+      this.btnChangeLot.Size = new System.Drawing.Size(159, 33);
       this.btnChangeLot.TabIndex = 27;
       this.btnChangeLot.Text = "Thay đổi";
       this.btnChangeLot.TextColor = System.Drawing.Color.White;
       this.btnChangeLot.UseVisualStyleBackColor = false;
       this.btnChangeLot.Click += new System.EventHandler(this.btnChangeLot_Click);
+      // 
+      // label1
+      // 
+      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label1.AutoSize = true;
+      this.label1.BackColor = System.Drawing.Color.Transparent;
+      this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label1.ForeColor = System.Drawing.Color.White;
+      this.label1.Location = new System.Drawing.Point(813, 0);
+      this.label1.Margin = new System.Windows.Forms.Padding(0);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(130, 39);
+      this.label1.TabIndex = 28;
+      this.label1.Text = "Lô carton:";
+      this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // lbLotTube
       // 
@@ -1614,7 +1614,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lbLotTube.Location = new System.Drawing.Point(133, 3);
       this.lbLotTube.Name = "lbLotTube";
-      this.lbLotTube.Size = new System.Drawing.Size(356, 33);
+      this.lbLotTube.Size = new System.Drawing.Size(355, 33);
       this.lbLotTube.TabIndex = 25;
       this.lbLotTube.ValueStr = "";
       // 
@@ -1623,9 +1623,9 @@
       this.lbLotCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLotCarton.Location = new System.Drawing.Point(947, 3);
+      this.lbLotCarton.Location = new System.Drawing.Point(946, 3);
       this.lbLotCarton.Name = "lbLotCarton";
-      this.lbLotCarton.Size = new System.Drawing.Size(356, 33);
+      this.lbLotCarton.Size = new System.Drawing.Size(355, 33);
       this.lbLotCarton.TabIndex = 29;
       this.lbLotCarton.ValueStr = "";
       // 

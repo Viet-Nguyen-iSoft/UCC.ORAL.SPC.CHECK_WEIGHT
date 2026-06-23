@@ -181,25 +181,24 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
-      AppCore.Ins.OnSendMsg += Ins_OnSendMsg;
       AppCore.Ins.OnSendMsgRead += Ins_OnSendMsgRead;
-      AppCore.Ins.OnSendJson += Ins_OnSendJson;
+      AppCore.Ins.OnSendDebug += Ins_OnSendDebug;
 
       InitWatchdog();
     }
 
-    private void Ins_OnSendJson(string json)
+    private void Ins_OnSendDebug(string msg)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          Ins_OnSendJson(json);
+          Ins_OnSendDebug(msg);
         }));
         return;
       }
 
-      //label4.Text = json;
+      label4.Text = msg;
     }
 
     private void Ins_OnSendMsgRead(string msg)
@@ -214,20 +213,6 @@ namespace CheckWeigherFood.FrmChild
       }
 
       label28.Text = msg;
-    }
-
-    private void Ins_OnSendMsg(string msg)
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          Ins_OnSendMsg(msg);
-        }));
-        return;
-      }
-
-      label3.Text = msg;
     }
 
     private void TimerBlinkStatusInforline_Tick(object sender, EventArgs e)
@@ -400,7 +385,7 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      label4.Text = msg;
+      //label4.Text = msg;
       _statusConnectOpcUa = success;
       ucInformationDataSumary1.SetWeightRealtime(value);
 

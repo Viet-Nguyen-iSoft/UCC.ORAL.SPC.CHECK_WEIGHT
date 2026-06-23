@@ -39,6 +39,7 @@ namespace CheckWeigherFood.Modbus
     public event EventHandler<bool> ConnectionChanged;
     public event EventHandler<ModbusDataEventArgs> DataReceived;
     public event EventHandler<Exception> Error;
+    public event EventHandler<string> OnSendDebug;
 
     public ModbusTcpService(
         string ip,
@@ -96,7 +97,7 @@ namespace CheckWeigherFood.Modbus
         // ===== READ HOLDING REGISTER =====
 
         ushort startAddress = _addressWeight;
-        ushort length = 10;
+        ushort length = 4;
 
         ushort[] data =
             _master.ReadInputRegisters(
@@ -110,12 +111,15 @@ namespace CheckWeigherFood.Modbus
             {
               Registers = data
             });
+
+        OnSendDebug?.Invoke(this, $"{_ip}_{_port} - {IsConnected}");
       }
       catch (Exception ex)
       {
         Error?.Invoke(this, ex);
 
         Disconnect();
+        OnSendDebug?.Invoke(this, $"{ex.ToString()}");
       }
       finally
       {
@@ -140,8 +144,7 @@ namespace CheckWeigherFood.Modbus
 
         _master = ModbusIpMaster.CreateIp(_tcpClient);
 
-        ConnectionChanged?.Invoke(this, true);
-
+        ConnectionChanged?.Invoke(this, IsConnected);
         return true;
       }
       catch (Exception ex)
@@ -149,7 +152,6 @@ namespace CheckWeigherFood.Modbus
         Error?.Invoke(this, ex);
 
         Disconnect();
-
         return false;
       }
     }

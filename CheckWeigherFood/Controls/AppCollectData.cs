@@ -2,6 +2,7 @@
 using Database.Models;
 using Database.Service;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Newtonsoft.Json;
 using Opc.Ua;
@@ -23,14 +24,11 @@ namespace CheckWeigherFood.Controls
     public event SendValueWeight OnSendValueWeight;
 
 
-    public delegate void SendMsg(string msg);
-    public event SendMsg OnSendMsg;
+    public delegate void SendMsgDebug(string msg);
+    public event SendMsgDebug OnSendDebug;
 
     public delegate void SendMsgRead(string msg);
     public event SendMsgRead OnSendMsgRead;
-
-    public delegate void SendJson(string json);
-    public event SendJson OnSendJson;
 
     private double previous = 0;
     private bool firstApp = true;
@@ -82,7 +80,7 @@ namespace CheckWeigherFood.Controls
       }
       catch (Exception ex)
       {
-        OnSendMsg?.Invoke(ex.ToString());
+        OnSendDebug?.Invoke(ex.ToString());
       }
       finally
       {
@@ -188,18 +186,24 @@ namespace CheckWeigherFood.Controls
     /// //
     /// </summary>
     private ModbusTcpService _modbus { get; set; }
-    private void InitModbus(string ip, int port)
+    private void InitModbus()
     {
       string ipModbus = Environment.GetEnvironmentVariable("MODBUS_HOST");
       int portModbus = int.Parse(Environment.GetEnvironmentVariable("MODBUS_PORT"));
       ushort addressWeight = ushort.Parse(Environment.GetEnvironmentVariable("MODBUS_ADDRESS_WEIGHT"));
 
-      _modbus = new ModbusTcpService(ip, port, addressWeight, 1);
+      _modbus = new ModbusTcpService(ipModbus, portModbus, addressWeight, 1);
 
       _modbus.ConnectionChanged += Modbus_ConnectionChanged;
       _modbus.DataReceived += _modbus_DataReceived;
       _modbus.Error += _modbus_Error;
+      _modbus.OnSendDebug += _modbus_OnSendDebug;
       _modbus.Start(200);
+    }
+
+    private void _modbus_OnSendDebug(object sender, string e)
+    {
+      OnSendDebug?.Invoke(e);
     }
 
     private void _modbus_Error(object sender, Exception e)
@@ -207,25 +211,26 @@ namespace CheckWeigherFood.Controls
        
     }
 
+    private int k = 0;
     private async void _modbus_DataReceived(object sender, ModbusDataEventArgs e)
     {
-      ushort value = e.Registers[0];
+      ushort value = e.Registers[1];
+      double valueWeight = ((double)value) / 100.0;
+      OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
+
+      k++;
+      string result = string.Join("-", e.Registers);
+      OnSendMsgRead?.Invoke(k.ToString() + "---"+ result);
+
       if (firstApp)
       {
         previous = value;
         firstApp = false;
-
-        double valueWeight = ((double)value) / 100.0;
-        OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
       }
 
       if (previous!= value)
       {
         previous = value;
-
-        double valueWeight = ((double)value) / 100.0;
-        OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
-        
         double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {

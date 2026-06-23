@@ -367,9 +367,9 @@ namespace CheckWeigherFood.FrmChild
         //Thông tin sản phẩm
         var product = AppCore.Ins._products?.FirstOrDefault(x => x.Id == group.ProductId);
        
-        double tareTube = data.Average(x => x.TareTube);
-        double tareTailTube = data.Average(x => x.TareTailTube);
-        double tareCarton = data.Average(x => x.TareCarton);
+        double tareTube = Math.Round( data.Average(x => x.TareTube),2);
+        double tareTailTube = Math.Round(data.Average(x => x.TareTailTube), 2);
+        double tareCarton = Math.Round(data.Average(x => x.TareCarton), 2);
 
         lbTube.ValueStr = tareTube.ToString();
         lbTailTube.ValueStr = tareTailTube.ToString();
@@ -708,13 +708,5 @@ namespace CheckWeigherFood.FrmChild
       }
     }
 
-
-
-
-    
-    private string FGsFind = "";
-    private string fileDB1 = "";
-
-    
   }
 }
