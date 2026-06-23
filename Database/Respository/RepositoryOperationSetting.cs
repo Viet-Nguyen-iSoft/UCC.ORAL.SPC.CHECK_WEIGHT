@@ -15,12 +15,12 @@ namespace Database.Respository
     {
     }
 
-    public async Task<OperationSetting> GetFirstDataAsync()
+    public async Task<OperationSetting> GetFirstDataAsync(long keyMachine)
     {
       try
       {
         return await this.Context.Set<OperationSetting>()
-                            .Where(x => x.DeletedFlag == false)
+                            .Where(x => x.DeletedFlag == false && x.KeyMachine == keyMachine)
                             .OrderByDescending(x=>x.Id)
                             .FirstOrDefaultAsync();
       }

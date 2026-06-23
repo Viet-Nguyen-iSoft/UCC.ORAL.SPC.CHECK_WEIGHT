@@ -16,10 +16,9 @@ namespace Database.Models
     public int? TimeCheckConnect { get; set; }
     public int? SampleTime { get; set; }
 
-
-    public string PathReport { get; set; }
+    public string PathReport { get; set; } = string.Empty;
     public long ProductId { get; set; }
-    public long MachineId { get; set; }
+    public long KeyMachine { get; set; }
     public long ChangeOverId { get; set; }
 
 

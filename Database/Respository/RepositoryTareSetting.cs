@@ -16,12 +16,12 @@ namespace Database.Respository
     {
     }
 
-    public async Task<TareSetting> GetFirstlDataAsync()
+    public async Task<TareSetting> GetFirstlDataAsync(long keyMachine)
     {
       try
       {
         return await this.Context.Set<TareSetting>()
-                            .Where(x => x.DeletedFlag == false)
+                            .Where(x => x.DeletedFlag == false && x.KeyMachine == keyMachine)
                             .OrderByDescending(x => x.Id)
                             .FirstOrDefaultAsync();
       }

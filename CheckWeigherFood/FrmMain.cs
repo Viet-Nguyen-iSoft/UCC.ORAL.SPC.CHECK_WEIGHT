@@ -177,8 +177,6 @@ namespace CheckWeigherFood
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private void FrmMain_Shown(object sender, EventArgs e)
     {
-      SetTitleMachine();
-
       timer_UpdateUI.Interval = 1000;
       timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
       //timer_UpdateUI.Start();
@@ -187,24 +185,6 @@ namespace CheckWeigherFood
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       AppCore.Ins.RandomDataWeight();
-    }
-
-    private void SetTitleMachine()
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          SetTitleMachine();
-        }));
-        return;
-      }
-      lbLine.Text = $"ORAL  PACKING - CHECK WEIGHT {AppCore.Ins._machineCurrent?.Name ?? string.Empty}";
-    }
-
-    private void label1_Click(object sender, EventArgs e)
-    {
-      this.Close();
     }
 
     private void btnMenu_Click(object sender, EventArgs e)

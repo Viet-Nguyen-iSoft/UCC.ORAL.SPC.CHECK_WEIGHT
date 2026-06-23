@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Interop;
+using static CheckWeigherFood.eNum.eNumUI;
 using static Database.Enum;
 using Timer = System.Windows.Forms.Timer;
 
@@ -85,9 +86,9 @@ namespace CheckWeigherFood.FrmChild
       elipseControl6.TargetControl = tableLayoutPanel24;
       elipseControl6.CornerRadius = 20;
 
-      //ElipseControl elipseControl7 = new ElipseControl();
-      //elipseControl7.TargetControl = tableLayoutPanel14;
-      //elipseControl7.CornerRadius = 20;
+      ElipseControl elipseControl7 = new ElipseControl();
+      elipseControl7.TargetControl = tableLayoutPanel14;
+      elipseControl7.CornerRadius = 20;
 
       ElipseControl elipseControl8 = new ElipseControl();
       elipseControl8.TargetControl = panelContent;
@@ -144,13 +145,8 @@ namespace CheckWeigherFood.FrmChild
       _dataChart.ChartControlInit(chartControl);
       _dataChart.ChartHistogramInit(chartHistogram);
 
-      //Show thông tin cài đặt
-      ShowInforOperator(AppCore.Ins._operationSettingCurrent?.OP,
-        AppCore.Ins._operationSettingCurrent?.QC,
-        AppCore.Ins._operationSettingCurrent?.ShiftLeader);
 
-      ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
-      ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+      
 
       //Lấy tgian ca hiện tại set filter chart
       SetTimeFilterChart(AppCore.Ins._shiftCurrent);
@@ -177,6 +173,10 @@ namespace CheckWeigherFood.FrmChild
       //timerBlinkStatusInforline.Tick += TimerBlinkStatusInforline_Tick;
       //timerBlinkStatusInforline.Start();
 
+      
+      cbbLine.SelectedIndexChanged += CbbLine_SelectedIndexChanged;
+      cbbLine.SelectedIndex = 0;
+
       //Sự kiện
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
@@ -185,6 +185,53 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendDebug += Ins_OnSendDebug;
 
       InitWatchdog();
+    }
+
+    private void CbbLine_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      int line = int.Parse( cbbLine.SelectedItem.ToString());
+      if (line==3)
+      {
+        //Show thông tin cài đặt
+        ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP,
+          AppCore.Ins._operationSettingCurrent03?.QC,
+          AppCore.Ins._operationSettingCurrent03?.ShiftLeader);
+
+        ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+        ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+      }
+      else if (line == 4)
+      {
+        //Show thông tin cài đặt
+        ShowInforOperator(AppCore.Ins._operationSettingCurrent04?.OP,
+          AppCore.Ins._operationSettingCurrent04?.QC,
+          AppCore.Ins._operationSettingCurrent04?.ShiftLeader);
+
+        ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+        ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+      }
+    }
+
+    public void ResfreshOperation()
+    {
+      if (cbbLine.SelectedIndex!=-1)
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == 3)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP,
+            AppCore.Ins._operationSettingCurrent03?.QC,
+            AppCore.Ins._operationSettingCurrent03?.ShiftLeader);
+        }
+        else if (line == 4)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent04?.OP,
+            AppCore.Ins._operationSettingCurrent04?.QC,
+            AppCore.Ins._operationSettingCurrent04?.ShiftLeader);
+        }
+      } 
     }
 
     private void Ins_OnSendDebug(string msg)
@@ -327,7 +374,7 @@ namespace CheckWeigherFood.FrmChild
       operationSetting.QC = "";
       operationSetting.ShiftLeader = "";
       operationSetting.CreatedAt = DateTime.UtcNow;
-      AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
+      //AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
 
       ////Rst lot
       //TareSetting tareSetting = new TareSetting();
@@ -339,9 +386,9 @@ namespace CheckWeigherFood.FrmChild
       //AppCore.Ins._tareSettingCurrent = await _tareSettingService.AddAsync(tareSetting);
 
       //Cắt qua ca
-      AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
-      AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
-      await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
+      //AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
+      //AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
+      //await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
     }
 
     private void TimerBlinkStatus_Tick(object sender, EventArgs e)
@@ -481,50 +528,50 @@ namespace CheckWeigherFood.FrmChild
 
     private void LoadDataDashBoard()
     {
-      try
-      {
-        if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
-        {
-          ResetDashboard();
-          return;
-        }
+      //try
+      //{
+      //  if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
+      //  {
+      //    ResetDashboard();
+      //    return;
+      //  }
 
-        GetDt();
+      //  GetDt();
 
-        var list = AppCore.Ins._datalogsInShiftCurrent;
-        sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+      //  var list = AppCore.Ins._datalogsInShiftCurrent;
+      //  sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
 
-        //Data time
-        dataChartline = sumaryDTO.DatalogPass
-                        .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
-                        .OrderBy(x=>x.CreatedAt)
-                        .ToList();
-        //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
+      //  //Data time
+      //  dataChartline = sumaryDTO.DatalogPass
+      //                  .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
+      //                  .OrderBy(x=>x.CreatedAt)
+      //                  .ToList();
+      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
         
 
-        //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
+      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
 
-        //Data reject
-        reject = new List<DataRejectDTO>();
-        if (sumaryDTO.DatalogReject?.Count() > 0)
-        {
-          foreach (var data in sumaryDTO.DatalogReject)
-          {
-            DataRejectDTO dataReject = new DataRejectDTO();
-            dataReject.DateTime = (DateTime)data.CreatedAt;
-            dataReject.FGs = AppCore.Ins._productCurrent04.Code;
-            dataReject.Actual = data.Gross;
-            dataReject.Target = sumaryDTO.Target;
-            reject.Add(dataReject);
-          }
-        }
+      //  //Data reject
+      //  reject = new List<DataRejectDTO>();
+      //  if (sumaryDTO.DatalogReject?.Count() > 0)
+      //  {
+      //    foreach (var data in sumaryDTO.DatalogReject)
+      //    {
+      //      DataRejectDTO dataReject = new DataRejectDTO();
+      //      dataReject.DateTime = (DateTime)data.CreatedAt;
+      //      dataReject.FGs = AppCore.Ins._productCurrent04.Code;
+      //      dataReject.Actual = data.Gross;
+      //      dataReject.Target = sumaryDTO.Target;
+      //      reject.Add(dataReject);
+      //    }
+      //  }
 
-        UpdateDataUI(true);
-      }
-      catch (Exception ex)
-      {
-        Debug.WriteLine(ex.Message);
-      }
+      //  UpdateDataUI(true);
+      //}
+      //catch (Exception ex)
+      //{
+      //  Debug.WriteLine(ex.Message);
+      //}
     }
 
     private void UpdateDataUI(bool isUpdateChart)
@@ -755,10 +802,6 @@ namespace CheckWeigherFood.FrmChild
       //AppCore.Ins.LogActiveAppToFileLog($"Thay đổi lô BB: {this.ucTextBoxLoBB.Texts}");
     }
 
-    private void label3_Click(object sender, EventArgs e)
-    {
-
-    }
 
     private void label9_Click(object sender, EventArgs e)
     {
@@ -774,15 +817,50 @@ namespace CheckWeigherFood.FrmChild
 
     private async void PopupChangeOperator_OnSelectedEmployees(Employee arg1, Employee arg2, Employee arg3)
     {
-      //Save cài đặt
-      OperationSetting operationSetting = new OperationSetting();
-      operationSetting.OP = arg1.FullName;
-      operationSetting.QC = arg2.FullName;
-      operationSetting.ShiftLeader = arg3.FullName;
-      operationSetting.CreatedAt = DateTime.UtcNow;
-      AppCore.Ins._operationSettingCurrent = await _operationSettingService.AddAsync(operationSetting);
+      try
+      {
+        //Save cài đặt
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        OperationSetting operationSetting = new OperationSetting();
+        operationSetting.OP = arg1.FullName;
+        operationSetting.QC = arg2.FullName;
+        operationSetting.ShiftLeader = arg3.FullName;
+        operationSetting.KeyMachine = line;
+        operationSetting.CreatedAt = DateTime.UtcNow;
 
-      ShowInforOperator(arg1.FullName, arg2.FullName, arg3.FullName);
+        if (line == 3)
+        {
+          OperationSetting operationSetting04 = new OperationSetting();
+          operationSetting04.OP = AppCore.Ins._operationSettingCurrent04.OP;
+          operationSetting04.QC = arg2.FullName;
+          operationSetting04.ShiftLeader = arg3.FullName;
+          operationSetting04.KeyMachine = 4;
+          operationSetting04.CreatedAt = DateTime.UtcNow;
+          AppCore.Ins._operationSettingCurrent04 = await _operationSettingService.AddAsync(operationSetting04);
+
+          AppCore.Ins._operationSettingCurrent03 = await _operationSettingService.AddAsync(operationSetting);
+
+          ShowInforOperator(arg1.FullName, arg2.FullName, arg3.FullName);
+        }
+        else if (line == 4)
+        {
+          OperationSetting operationSetting03 = new OperationSetting();
+          operationSetting03.OP = AppCore.Ins._operationSettingCurrent03.OP;
+          operationSetting03.QC = arg2.FullName;
+          operationSetting03.ShiftLeader = arg3.FullName;
+          operationSetting03.KeyMachine = 3;
+          operationSetting03.CreatedAt = DateTime.UtcNow;
+          AppCore.Ins._operationSettingCurrent03 = await _operationSettingService.AddAsync(operationSetting03);
+
+          AppCore.Ins._operationSettingCurrent04 = await _operationSettingService.AddAsync(operationSetting);
+
+          ShowInforOperator(arg1.FullName, arg2.FullName, arg3.FullName);
+        }
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
     }
 
     private void ShowInforOperator(string op, string qc, string shiftleader)
@@ -800,20 +878,43 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnChangeOver_Click(object sender, EventArgs e)
     {
-      PopupChangeFGs popupChangeFGs = new PopupChangeFGs();
+      int line = int.Parse(cbbLine.SelectedItem.ToString());
+      PopupChangeFGs popupChangeFGs = new PopupChangeFGs(line);
       popupChangeFGs.OnSelectedProduct += PopupChangeFGs_OnSelectedProduct;
       popupChangeFGs.ShowDialog();
     }
 
-    private async void PopupChangeFGs_OnSelectedProduct(Product obj)
+    private async void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
     {
-      AppCore.Ins._productCurrent04 = obj;
-      AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
-      AppCore.Ins._appConfig.ProductId = obj.Id;
-      AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
-      await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
-      AppCore.Ins._datalogsInShiftCurrent = new List<Datalog>();
-      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+      try
+      {
+        if (line == 3)
+        {
+          AppCore.Ins._productCurrent03 = obj;
+          AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent03.ChangeOverId + 1;
+
+          AppCore.Ins._machineCurrent03.ProductId = obj.Id;
+          AppCore.Ins._machineCurrent03.UpdatedAt = DateTime.UtcNow;
+          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent03);
+          AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
+          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+        }
+        else if (line == 4)
+        {
+          AppCore.Ins._productCurrent04 = obj;
+          AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+
+          AppCore.Ins._machineCurrent04.ProductId = obj.Id;
+          AppCore.Ins._machineCurrent04.UpdatedAt = DateTime.UtcNow;
+          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent04);
+          AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
+          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+        }
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
     }
 
     private void ShowInforProduct(Product product, double tube, double tailTube, double carton)
@@ -838,12 +939,36 @@ namespace CheckWeigherFood.FrmChild
 
     private void PopupChangeTare_OnChangeTareSetting(TareSetting obj)
     {
-      ShowInforTare(obj);
-      AppCore.Ins._tareSettingCurrent04 = obj;
-      ShowInforProduct(AppCore.Ins._productCurrent04,
-        AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0,
-        AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0,
-        AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+      try
+      {
+        //Save cài đặt
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+
+        if (line == 3)
+        {
+          AppCore.Ins._tareSettingCurrent03 = obj;
+          ShowInforTare(AppCore.Ins._tareSettingCurrent03);
+
+          ShowInforProduct( AppCore.Ins._productCurrent03,
+                            AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0,
+                            AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0,
+                            AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+        }
+        else if (line == 4)
+        {
+          AppCore.Ins._tareSettingCurrent04 = obj;
+          ShowInforTare(AppCore.Ins._tareSettingCurrent04);
+
+          ShowInforProduct(AppCore.Ins._productCurrent04,
+                            AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0,
+                            AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0,
+                            AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+        }
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
     }
 
     private void ShowInforLotAndTare(TareSetting tareSetting)
@@ -929,15 +1054,44 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnChangeLot_Click(object sender, EventArgs e)
     {
-      PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04);
-      popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
-      popupChangeLot.ShowDialog();
+      int line = int.Parse(cbbLine.SelectedItem.ToString());
+      if (line == 3)
+      {
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent03);
+        popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
+        popupChangeLot.ShowDialog();
+      }
+      else if (line == 4)
+      {
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04);
+        popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
+        popupChangeLot.ShowDialog();
+      }
+     
     }
 
     private void PopupChangeLot_OnChangeTareSetting(TareSetting obj)
     {
-      ShowInforLot(obj);
-      AppCore.Ins._tareSettingCurrent04 = obj;
+      try
+      {
+        //Save cài đặt
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+
+        if (line == 3)
+        {
+          AppCore.Ins._tareSettingCurrent03 = obj;
+          ShowInforLot(obj);
+        }
+        else if (line == 4)
+        {
+          AppCore.Ins._tareSettingCurrent04 = obj;
+          ShowInforLot(obj);
+        }
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
     }
 
 

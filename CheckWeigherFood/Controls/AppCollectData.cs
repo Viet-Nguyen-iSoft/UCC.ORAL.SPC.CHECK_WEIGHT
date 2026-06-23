@@ -126,7 +126,7 @@ namespace CheckWeigherFood.Controls
             double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
             if (value > 0 && firstApp == false)
             {
-              await SaveDatalog(value);
+              //await SaveDatalog(value);
             }
 
           }
@@ -234,7 +234,7 @@ namespace CheckWeigherFood.Controls
         double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {
-          await SaveDatalog(valueWeight);
+          //await SaveDatalog(valueWeight);
         }
       }  
     }
@@ -266,15 +266,14 @@ namespace CheckWeigherFood.Controls
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
       OnSendValueWeight?.Invoke(value, true, "data ok");
-      await SaveDatalog(value);
+      //await SaveDatalog(value);
     }
 
-    private async Task SaveDatalog(double value)
+
+    private async Task<Datalog> SaveDatalog(double value,long machineId,long productId, long changeOverId)
     {
       try
       {
-        if (_machineCurrent == null || _productCurrent04 == null || _appConfig?.ChangeOverId <= 0) return;
-
         Datalog datalog = new Datalog();
         datalog.Gross = value;
         datalog.TareTube = (_tareSettingCurrent04?.Tube ?? 0.0);
@@ -283,25 +282,26 @@ namespace CheckWeigherFood.Controls
         datalog.LotTube = _tareSettingCurrent04?.LotTube;
         datalog.LotCarton = _tareSettingCurrent04?.LotCarton;
         datalog.EnumStatusRecord = CheckStatus(_productCurrent04, _tareSettingCurrent04, value);
-        datalog.ChangeOverId = _appConfig.ChangeOverId;
+        
 
-        if (_operationSettingCurrent?.OP != null)
-          datalog.NameEmployeeOP = _operationSettingCurrent?.OP;
-        if (_operationSettingCurrent?.QC != null)
-          datalog.NameEmployeeQC = _operationSettingCurrent?.QC;
-        if (_operationSettingCurrent?.ShiftLeader != null)
-          datalog.NameEmployeeShiftLeader = _operationSettingCurrent?.ShiftLeader;
+        //if (_operationSettingCurrent?.OP != null)
+        //  datalog.NameEmployeeOP = _operationSettingCurrent?.OP;
+        //if (_operationSettingCurrent?.QC != null)
+        //  datalog.NameEmployeeQC = _operationSettingCurrent?.QC;
+        //if (_operationSettingCurrent?.ShiftLeader != null)
+        //  datalog.NameEmployeeShiftLeader = _operationSettingCurrent?.ShiftLeader;
 
-        datalog.MachineId = _machineCurrent?.Id;
-        datalog.ProductId = _productCurrent04?.Id;
+        datalog.MachineId = _machineCurrent03?.Id;
+        datalog.ProductId = productId;
+        datalog.ChangeOverId = changeOverId;
+        datalog.MachineId = machineId;
         datalog.CreatedAt = DateTime.Now;
         var rs = await _datalogService.AddAsync(datalog);
-        if (rs)
-          _datalogsInShiftCurrent.Add(datalog);
+        return rs;
       }
       catch (Exception)
       {
-
+        throw;
       }
     }
 

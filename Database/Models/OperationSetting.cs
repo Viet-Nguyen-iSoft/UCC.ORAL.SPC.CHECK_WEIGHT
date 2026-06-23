@@ -11,6 +11,7 @@ namespace Database.Models
     public string OP { get; set; }
     public string QC { get; set; }
     public string ShiftLeader { get; set; }
+    public long KeyMachine { get; set; }
 
     #region Mapping
 

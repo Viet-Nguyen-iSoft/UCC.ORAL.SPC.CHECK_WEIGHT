@@ -12,7 +12,6 @@ namespace Database.DbContexts
 {
   public class CommonDbContext : DbContext
   {
-    public virtual DbSet<AppConfig> AppConfigs { get; set; }
     public virtual DbSet<Datalog> Datalogs { get; set; }
     public virtual DbSet<Employee> Employees { get; set; }
     public virtual DbSet<Machine> Machines { get; set; }

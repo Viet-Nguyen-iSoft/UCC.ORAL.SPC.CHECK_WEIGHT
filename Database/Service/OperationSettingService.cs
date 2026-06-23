@@ -21,14 +21,14 @@ namespace Database.Service
       _repositoryOperationSetting = new RepositoryOperationSetting(_context);
     }
 
-    public async Task<OperationSetting> GetFirstDataAsync()
+    public async Task<OperationSetting> GetFirstDataAsync(long keyMachine)
     {
       using (var db = new PgDbContext())
       {
         try
         {
           _repositoryOperationSetting = new RepositoryOperationSetting(db);
-          return await _repositoryOperationSetting.GetFirstDataAsync();
+          return await _repositoryOperationSetting.GetFirstDataAsync(keyMachine);
         }
         catch (Exception ex)
         {

@@ -29,12 +29,6 @@ namespace CheckWeigherFood.Controls
       return new OperationSettingService(context);
     }
 
-    public static AppConfigService CreateAppConfigService()
-    {
-      var context = new PgDbContext();
-      return new AppConfigService(context);
-    }
-
     public static TareSettingService CreateTareSettingService()
     {
       var context = new PgDbContext();

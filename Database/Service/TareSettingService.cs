@@ -21,14 +21,14 @@ namespace Database.Service
       _repositoryTareSetting = new RepositoryTareSetting(_context);
     }
 
-    public async Task<TareSetting> GetFirstDataAsync()
+    public async Task<TareSetting> GetFirstDataAsync(long keyMachine)
     {
       using (var db = new PgDbContext())
       {
         try
         {
           _repositoryTareSetting = new RepositoryTareSetting(db);
-          return await _repositoryTareSetting.GetFirstlDataAsync();
+          return await _repositoryTareSetting.GetFirstlDataAsync(keyMachine);
         }
         catch (Exception ex)
         {

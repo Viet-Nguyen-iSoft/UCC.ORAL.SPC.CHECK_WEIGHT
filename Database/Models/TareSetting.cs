@@ -8,6 +8,7 @@
     //public string Lot { get; set; }
     public string LotTube { get; set; }
     public string LotCarton { get; set; }
+    public long KeyMachine { get; set; }
 
 
     #region Mapping

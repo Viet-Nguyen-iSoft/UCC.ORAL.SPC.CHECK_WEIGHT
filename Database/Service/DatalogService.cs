@@ -53,7 +53,7 @@ namespace Database.Service
       }
     }
 
-    public async Task<bool> AddAsync(Datalog datalog)
+    public async Task<Datalog> AddAsync(Datalog datalog)
     {
       using (var db = new PgDbContext())
       {
@@ -65,12 +65,12 @@ namespace Database.Service
           await _repositoryDatalog.AddAsync(datalog);
           await db.SaveChangesAsync();
           db.Database.CommitTransaction();
-          return true;
+          return datalog;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
           db.Database.RollbackTransaction();
-          return false;
+          throw;
         }
       }
     }

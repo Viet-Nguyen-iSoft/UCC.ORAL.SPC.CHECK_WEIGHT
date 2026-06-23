@@ -23,8 +23,6 @@ namespace Database.Models
     public string NameEmployeeQC { get; set; }
     public string NameEmployeeShiftLeader { get; set; }
 
-    public long LineId { get; set; }
-
     #region Mapping
     [ForeignKey(nameof(EmployeeOPId))]
     public long? EmployeeOPId { get; set; }

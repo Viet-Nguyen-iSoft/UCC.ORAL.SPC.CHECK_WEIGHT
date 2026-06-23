@@ -45,18 +45,6 @@ namespace CheckWeigherFood
           {
             await db.Database.EnsureCreatedAsync();
             await db.Database.BeginTransactionAsync();
-
-            if (db?.AppConfigs?.Count() <= 0)
-            {
-              await db.AppConfigs.AddAsync(new AppConfig
-              {
-                ChangeOverId = 1,
-                PathReport = "",
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-              });
-            }
-
             if (db?.Machines?.Count() <= 0)
             {
               await db.Machines.AddAsync(new Machine
@@ -69,6 +57,7 @@ namespace CheckWeigherFood
                 TimeCheckConnect = 1000,
                 Timeout = 200,
                 SampleTime = 150,
+                KeyMachine = 3,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
               });
@@ -83,6 +72,7 @@ namespace CheckWeigherFood
                 TimeCheckConnect = 1000,
                 Timeout = 200,
                 SampleTime = 150,
+                KeyMachine = 4,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
               });

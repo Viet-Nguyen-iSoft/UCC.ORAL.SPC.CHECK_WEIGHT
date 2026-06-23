@@ -61,36 +61,52 @@ namespace CheckWeigherFood.Controls
       StartShowUI();
     }
 
-    public List<Datalog> _datalogsInShiftCurrent = new List<Datalog>();
-    public OperationSetting _operationSettingCurrent { get; set; }
-    public AppConfig _appConfig { get; set; }
-    public Product _productCurrent04 { get; set; }
+    public List<Datalog> _datalogsInShiftCurrent_Line3 = new List<Datalog>();
+    public List<Datalog> _datalogsInShiftCurrent_Line4 = new List<Datalog>();
+    public OperationSetting _operationSettingCurrent03 { get; set; }
+    public OperationSetting _operationSettingCurrent04 { get; set; }
+
+
     public List<Product> _products { get; set; }
+    public Product _productCurrent03 { get; set; }
+    public Product _productCurrent04 { get; set; }
+
+
+    public TareSetting _tareSettingCurrent03 { get; set; }
     public TareSetting _tareSettingCurrent04 { get; set; }
-    public Machine _machineCurrent { get; set; }
+
+    public Machine _machineCurrent03 { get; set; }
+    public Machine _machineCurrent04 { get; set; }
+
+
     private async Task InitLoadDataStartApp()
     {
-      _appConfig = await _appConfigService.GetFirstlDataAsync();
-
       var listMachine = await _machineService.GetDataAsync();
-      _machineCurrent = listMachine?.FirstOrDefault(x => x.Id == _appConfig.MachineId);
+      _machineCurrent03 = listMachine?.FirstOrDefault(x => x.KeyMachine == 3);
+      _machineCurrent04 = listMachine?.FirstOrDefault(x => x.KeyMachine == 4);
 
-      _operationSettingCurrent = await _operationSettingService.GetFirstDataAsync();
-      _tareSettingCurrent04 = await _tareSettingService.GetFirstDataAsync();
+      _operationSettingCurrent03 = await _operationSettingService.GetFirstDataAsync(3);
+      _operationSettingCurrent04 = await _operationSettingService.GetFirstDataAsync(4);
 
-      if (_appConfig?.ProductId > 0)
-      {
-        _products = await _productService.GetAllAsync();
-        _productCurrent04 = _products?.Where(x=>x.Id == _appConfig.ProductId).FirstOrDefault();
+      _tareSettingCurrent03 = await _tareSettingService.GetFirstDataAsync(3);
+      _tareSettingCurrent04 = await _tareSettingService.GetFirstDataAsync(4);
 
-        var shift = GetCurrentShift(DateTime.Now);
-        _datalogsInShiftCurrent = await _datalogService.GetAllDataByTimeAsync(shift.StartTime, shift.EndTime, _productCurrent04.Id, _appConfig.ChangeOverId);
-      }
+      _products = await _productService.GetAllAsync();
+      _productCurrent03 = _products?.Where(x => x.Id == _machineCurrent03.ProductId).FirstOrDefault();
+      _productCurrent04 = _products?.Where(x => x.Id == _machineCurrent04.ProductId).FirstOrDefault();
+
+      var shift = GetCurrentShift(DateTime.Now);
+      if (_productCurrent03!=null && _machineCurrent03!=null)
+        _datalogsInShiftCurrent_Line3 = await _datalogService.GetAllDataByTimeAsync(shift.StartTime, shift.EndTime, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
+
+      if (_productCurrent04 != null && _machineCurrent04 != null)
+        _datalogsInShiftCurrent_Line4 = await _datalogService.GetAllDataByTimeAsync(shift.StartTime, shift.EndTime, _productCurrent04.Id, _machineCurrent04.ChangeOverId);
     }
+
     public async Task ReloadMasterData()
     {
       _products = await _productService.GetAllAsync();
-      _productCurrent04 = _products?.Where(x => x.Id == _appConfig.ProductId).FirstOrDefault();
+      //_productCurrent04 = _products?.Where(x => x.Id == _appConfig.ProductId).FirstOrDefault();
     }
 
     
@@ -162,9 +178,9 @@ namespace CheckWeigherFood.Controls
     private bool testChangeShift = false;
     public void ChangeShiftTest()
     {
-      _datalogsInShiftCurrent = new List<Datalog>();
-      _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
-      OnSendAutoReport(this, _shiftLast, _shiftCurrent);
+      //_datalogsInShiftCurrent = new List<Datalog>();
+      //_shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
+      //OnSendAutoReport(this, _shiftLast, _shiftCurrent);
     }
     private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
@@ -181,7 +197,7 @@ namespace CheckWeigherFood.Controls
             OnSendReSetInforShift?.Invoke();
           }
 
-          _datalogsInShiftCurrent.Clear();
+          //_datalogsInShiftCurrent.Clear();
         }
       }
       catch (Exception)
@@ -210,20 +226,19 @@ namespace CheckWeigherFood.Controls
       try
       {
         timerCheckData.Stop();
-        if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
+        if (AppCore.Ins._datalogsInShiftCurrent_Line3?.Count() > 0)
         {
-          return;
+          _sumaryDTOLine3 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line3, AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03);
         }
 
-        var data03 = AppCore.Ins._datalogsInShiftCurrent?.Where(x => x.LineId == 3).ToList();
-        var data04 = AppCore.Ins._datalogsInShiftCurrent?.Where(x => x.LineId == 4).ToList();
-
-        _sumaryDTOLine4 = AppCore.Ins.SumaryDTOData(data03, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+        if (AppCore.Ins._datalogsInShiftCurrent_Line4?.Count() > 0)
+        {
+          _sumaryDTOLine4 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line4, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+        }
       }
       catch (Exception)
       {
 
-        throw;
       }
       finally
       {
