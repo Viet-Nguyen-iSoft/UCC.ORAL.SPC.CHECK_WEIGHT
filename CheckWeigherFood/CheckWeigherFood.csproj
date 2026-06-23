@@ -375,6 +375,18 @@
     <Compile Include="FormUI\FrmAutoReport.Designer.cs">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUI\FrmOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUI\FrmOverview.Designer.cs">
+      <DependentUpon>FrmOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUI\UcOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUI\UcOverview.Designer.cs">
+      <DependentUpon>UcOverview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Information\FrmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -562,6 +574,12 @@
     </Compile>
     <EmbeddedResource Include="FormUI\FrmAutoReport.resx">
       <DependentUpon>FrmAutoReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUI\FrmOverview.resx">
+      <DependentUpon>FrmOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUI\UcOverview.resx">
+      <DependentUpon>UcOverview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Information\FrmConfirm.resx">
       <DependentUpon>FrmConfirm.cs</DependentUpon>

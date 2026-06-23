@@ -10,6 +10,7 @@ namespace CheckWeigherFood.eNum
   {
     public enum AppModulSupport
     {
+      Overview,
       DashBoard,
       MasterData,
       Synthetic,

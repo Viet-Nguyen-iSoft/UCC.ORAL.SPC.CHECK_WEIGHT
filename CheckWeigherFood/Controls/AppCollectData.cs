@@ -123,7 +123,7 @@ namespace CheckWeigherFood.Controls
             previous = value;
             OnSendValueWeight?.Invoke(value, _status_machine == 1, "data ok");
 
-            double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
+            double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
             if (value > 0 && firstApp == false)
             {
               await SaveDatalog(value);
@@ -231,7 +231,7 @@ namespace CheckWeigherFood.Controls
       if (previous!= value)
       {
         previous = value;
-        double valueFilter = (_productCurrent?.LSL ?? 0.0) * 0.5;
+        double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {
           await SaveDatalog(valueWeight);
@@ -273,16 +273,16 @@ namespace CheckWeigherFood.Controls
     {
       try
       {
-        if (_machineCurrent == null || _productCurrent == null || _appConfig?.ChangeOverId <= 0) return;
+        if (_machineCurrent == null || _productCurrent04 == null || _appConfig?.ChangeOverId <= 0) return;
 
         Datalog datalog = new Datalog();
         datalog.Gross = value;
-        datalog.TareTube = (_tareSettingCurrent?.Tube ?? 0.0);
-        datalog.TareCarton = (_tareSettingCurrent?.Carton ?? 0.0);
-        datalog.TareTailTube = (_tareSettingCurrent?.TailTube ?? 0.0);
-        datalog.LotTube = _tareSettingCurrent?.LotTube;
-        datalog.LotCarton = _tareSettingCurrent?.LotCarton;
-        datalog.EnumStatusRecord = CheckStatus(_productCurrent, _tareSettingCurrent, value);
+        datalog.TareTube = (_tareSettingCurrent04?.Tube ?? 0.0);
+        datalog.TareCarton = (_tareSettingCurrent04?.Carton ?? 0.0);
+        datalog.TareTailTube = (_tareSettingCurrent04?.TailTube ?? 0.0);
+        datalog.LotTube = _tareSettingCurrent04?.LotTube;
+        datalog.LotCarton = _tareSettingCurrent04?.LotCarton;
+        datalog.EnumStatusRecord = CheckStatus(_productCurrent04, _tareSettingCurrent04, value);
         datalog.ChangeOverId = _appConfig.ChangeOverId;
 
         if (_operationSettingCurrent?.OP != null)
@@ -293,7 +293,7 @@ namespace CheckWeigherFood.Controls
           datalog.NameEmployeeShiftLeader = _operationSettingCurrent?.ShiftLeader;
 
         datalog.MachineId = _machineCurrent?.Id;
-        datalog.ProductId = _productCurrent?.Id;
+        datalog.ProductId = _productCurrent04?.Id;
         datalog.CreatedAt = DateTime.Now;
         var rs = await _datalogService.AddAsync(datalog);
         if (rs)

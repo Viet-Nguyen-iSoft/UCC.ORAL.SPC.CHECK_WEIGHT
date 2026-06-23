@@ -22,7 +22,16 @@ namespace CheckWeigherFood
       this.Shown += FrmMain_Shown;
       this.WindowState = FormWindowState.Maximized;
       this.StartPosition = FormStartPosition.CenterScreen;
+
+      this.btnOverview.Click += BtnOverview_Click;
+      this.btnDashBoard.Click += BtnDashBoard_Click;
+      this.btnEmployee.Click += BtnEmployee_Click;
+      this.btnSetting.Click += BtnSetting_Click;
+      this.btnReport.Click += BtnReport_Click;
+      this.btnMasterData.Click += BtnMasterData_Click;
     }
+
+   
 
     #region Singleton parttern
     private static FrmMain _Instance = null;
@@ -82,38 +91,39 @@ namespace CheckWeigherFood
     private static Color Select = Color.FromArgb(255, 255, 255);
     private static Color NoSelect = Color.FromArgb(49, 67, 107);
 
-    private void btnDashBoard_Click(object sender, EventArgs e)
-    {
-      ChangeButton(AppModulSupport.DashBoard);
-    }
 
-    private void btnMasterData_Click(object sender, EventArgs e)
-    {
-      ChangeButton(AppModulSupport.MasterData);
-    }
-
-    private void btnSynthetic_Click(object sender, EventArgs e)
-    {
-      ChangeButton(AppModulSupport.Synthetic);
-    }
-
-    private void btnReport_Click(object sender, EventArgs e)
+    private void BtnReport_Click(object sender, EventArgs e)
     {
       ChangeButton(AppModulSupport.Report);
     }
 
-    private void btnSetting_Click(object sender, EventArgs e)
+    private void BtnSetting_Click(object sender, EventArgs e)
     {
       ChangeButton(AppModulSupport.Setting);
     }
 
-    private void btnEmployee_Click(object sender, EventArgs e)
+    private void BtnEmployee_Click(object sender, EventArgs e)
     {
       ChangeButton(AppModulSupport.Employee);
     }
 
+    private void BtnDashBoard_Click(object sender, EventArgs e)
+    {
+      ChangeButton(AppModulSupport.DashBoard);
+    }
+    private void BtnMasterData_Click(object sender, EventArgs e)
+    {
+      ChangeButton(AppModulSupport.MasterData);
+    }
+
+    private void BtnOverview_Click(object sender, EventArgs e)
+    {
+      ChangeButton(AppModulSupport.Overview);
+    }
+   
     public void ChangeButton(AppModulSupport button)
     {
+      this.btnOverview.ForeColor = NoSelect;
       this.btnDashBoard.ForeColor = NoSelect;
       this.btnMasterData.ForeColor = NoSelect;
       this.btnReport.ForeColor = NoSelect;
@@ -122,25 +132,29 @@ namespace CheckWeigherFood
 
       switch (button)
       {
+        case AppModulSupport.Overview:
+          this.btnOverview.ForeColor = Select;
+          OpenChildForm(button, FrmOverview.Instance);
+          break;
         case AppModulSupport.DashBoard:
           this.btnDashBoard.ForeColor = Select;
-          OpenChildForm(AppModulSupport.DashBoard, FrmDashboard.Instance);
+          OpenChildForm(button, FrmDashboard.Instance);
           break;
         case AppModulSupport.MasterData:
           this.btnMasterData.ForeColor = Select;
-          OpenChildForm(AppModulSupport.MasterData, FrmMasterData.Instance);
+          OpenChildForm(button, FrmMasterData.Instance);
           break;
         case AppModulSupport.Report:
           this.btnReport.ForeColor = Select;
-          OpenChildForm(AppModulSupport.Report, FrmReport.Instance);
+          OpenChildForm(button, FrmReport.Instance);
           break;
         case AppModulSupport.Setting:
           this.btnSetting.ForeColor = Select;
-          OpenChildForm(AppModulSupport.Setting, FrmSetting.Instance);
+          OpenChildForm(button, FrmSetting.Instance);
           break;
         case AppModulSupport.Employee:
           this.btnEmployee.ForeColor = Select;
-          OpenChildForm(AppModulSupport.Employee, FrmEmployee.Instance);
+          OpenChildForm(button, FrmEmployee.Instance);
           break;
 
       }
@@ -156,7 +170,7 @@ namespace CheckWeigherFood
       this.panelMenu.Width = 75;
       this.picLogo.Visible = false;
       this.picLogoVule.Visible = false;
-      this.btnDashBoard.PerformClick();
+      this.btnOverview.PerformClick();
     }
 
 
@@ -231,5 +245,7 @@ namespace CheckWeigherFood
         timer_UpdateUI.Stop();
       //AppCore.Ins.RandomDataWeight();
     }
+
+    
   }
 }

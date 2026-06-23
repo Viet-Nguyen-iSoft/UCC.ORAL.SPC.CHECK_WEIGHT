@@ -17,6 +17,12 @@ namespace Database.Models
     public int? SampleTime { get; set; }
 
 
+    public string PathReport { get; set; }
+    public long ProductId { get; set; }
+    public long MachineId { get; set; }
+    public long ChangeOverId { get; set; }
+
+
     #region Mapping
     public ICollection<Datalog> Datalogs { get; set; }
     #endregion

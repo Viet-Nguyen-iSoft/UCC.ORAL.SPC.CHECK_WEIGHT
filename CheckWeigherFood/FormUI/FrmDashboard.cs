@@ -149,8 +149,8 @@ namespace CheckWeigherFood.FrmChild
         AppCore.Ins._operationSettingCurrent?.QC,
         AppCore.Ins._operationSettingCurrent?.ShiftLeader);
 
-      ShowInforProduct(AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
-      ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent);
+      ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+      ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
 
       //Lấy tgian ca hiện tại set filter chart
       SetTimeFilterChart(AppCore.Ins._shiftCurrent);
@@ -492,7 +492,7 @@ namespace CheckWeigherFood.FrmChild
         GetDt();
 
         var list = AppCore.Ins._datalogsInShiftCurrent;
-        sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent, AppCore.Ins._tareSettingCurrent);
+        sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
 
         //Data time
         dataChartline = sumaryDTO.DatalogPass
@@ -512,7 +512,7 @@ namespace CheckWeigherFood.FrmChild
           {
             DataRejectDTO dataReject = new DataRejectDTO();
             dataReject.DateTime = (DateTime)data.CreatedAt;
-            dataReject.FGs = AppCore.Ins._productCurrent.Code;
+            dataReject.FGs = AppCore.Ins._productCurrent04.Code;
             dataReject.Actual = data.Gross;
             dataReject.Target = sumaryDTO.Target;
             reject.Add(dataReject);
@@ -807,13 +807,13 @@ namespace CheckWeigherFood.FrmChild
 
     private async void PopupChangeFGs_OnSelectedProduct(Product obj)
     {
-      AppCore.Ins._productCurrent = obj;
+      AppCore.Ins._productCurrent04 = obj;
       AppCore.Ins._appConfig.ChangeOverId = AppCore.Ins._appConfig.ChangeOverId + 1;
       AppCore.Ins._appConfig.ProductId = obj.Id;
       AppCore.Ins._appConfig.UpdatedAt = DateTime.UtcNow;
       await AppCore.Ins.UpdateAppConfig(AppCore.Ins._appConfig);
       AppCore.Ins._datalogsInShiftCurrent = new List<Datalog>();
-      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
     }
 
     private void ShowInforProduct(Product product, double tube, double tailTube, double carton)
@@ -826,12 +826,12 @@ namespace CheckWeigherFood.FrmChild
 
       lbFGs.ValueStr = product?.Code ?? string.Empty;
       lbNameProduct.ValueStr = product?.Description ?? string.Empty;
-      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
     }
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
     {
-      PopupChangeTare  popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent);
+      PopupChangeTare  popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent04);
       popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
       popupChangeTare.ShowDialog();
     }
@@ -839,11 +839,11 @@ namespace CheckWeigherFood.FrmChild
     private void PopupChangeTare_OnChangeTareSetting(TareSetting obj)
     {
       ShowInforTare(obj);
-      AppCore.Ins._tareSettingCurrent = obj;
-      ShowInforProduct(AppCore.Ins._productCurrent,
-        AppCore.Ins._tareSettingCurrent?.Tube ?? 0.0,
-        AppCore.Ins._tareSettingCurrent?.TailTube ?? 0.0,
-        AppCore.Ins._tareSettingCurrent?.Carton ?? 0.0);
+      AppCore.Ins._tareSettingCurrent04 = obj;
+      ShowInforProduct(AppCore.Ins._productCurrent04,
+        AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0,
+        AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0,
+        AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
     }
 
     private void ShowInforLotAndTare(TareSetting tareSetting)
@@ -929,7 +929,7 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnChangeLot_Click(object sender, EventArgs e)
     {
-      PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent);
+      PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04);
       popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
       popupChangeLot.ShowDialog();
     }
@@ -937,7 +937,7 @@ namespace CheckWeigherFood.FrmChild
     private void PopupChangeLot_OnChangeTareSetting(TareSetting obj)
     {
       ShowInforLot(obj);
-      AppCore.Ins._tareSettingCurrent = obj;
+      AppCore.Ins._tareSettingCurrent04 = obj;
     }
 
 
