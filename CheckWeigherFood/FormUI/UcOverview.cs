@@ -1,5 +1,7 @@
 ﻿using CheckWeigherFood.RJControl;
 using CheckWeigherFood.UC;
+using Database.Models;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,11 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Color = System.Drawing.Color;
 
 namespace CheckWeigherFood.FormUI
 {
   public partial class UcOverview : UserControl
   {
+    private long KeyMachine {  get; set; }
+    public event Action<long> OnSendChangeProduct;
     public UcOverview()
     {
       InitializeComponent();
@@ -34,10 +39,6 @@ namespace CheckWeigherFood.FormUI
       elipseControl2.TargetControl = tableLayoutPanel1;
       elipseControl2.CornerRadius = 20;
 
-      ElipseControl elipseControl3 = new ElipseControl();
-      elipseControl3.TargetControl = tableLayoutPanel3;
-      elipseControl3.CornerRadius = 20;
-
       ElipseControl elipseControl4 = new ElipseControl();
       elipseControl4.TargetControl = tableLayoutPanel5;
       elipseControl4.CornerRadius = 20;
@@ -50,9 +51,9 @@ namespace CheckWeigherFood.FormUI
       elipseControl6.TargetControl = tableLayoutPanel24;
       elipseControl6.CornerRadius = 20;
 
-      //ElipseControl elipseControl7 = new ElipseControl();
-      //elipseControl7.TargetControl = tableLayoutPanel14;
-      //elipseControl7.CornerRadius = 20;
+      ElipseControl elipseControl7 = new ElipseControl();
+      elipseControl7.TargetControl = tableLayoutPanel7;
+      elipseControl7.CornerRadius = 20;
 
       //ElipseControl elipseControl8 = new ElipseControl();
       //elipseControl8.TargetControl = panelContent;
@@ -61,9 +62,6 @@ namespace CheckWeigherFood.FormUI
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
 
-      lbOP.SetBackColor = Color.White;
-      lbQC.SetBackColor = Color.White;
-      lbShiftLeader.SetBackColor = Color.White;
       lbTailTube.SetBackColor = Color.White;
       lbTube.SetBackColor = Color.White;
       lbCarton.SetBackColor = Color.White;
@@ -72,9 +70,6 @@ namespace CheckWeigherFood.FormUI
       lbNameProduct.SetBackColor = Color.White;
       lbLotCarton.SetBackColor = Color.White;
 
-      lbOP.SetForeColor = Color.Black;
-      lbQC.SetForeColor = Color.Black;
-      lbShiftLeader.SetForeColor = Color.Black;
       lbTailTube.SetForeColor = Color.Black;
       lbTube.SetForeColor = Color.Black;
       lbCarton.SetForeColor = Color.Black;
@@ -83,5 +78,24 @@ namespace CheckWeigherFood.FormUI
       lbNameProduct.SetForeColor = Color.Black;
       lbLotCarton.SetForeColor = Color.Black;
     }
+
+    public void SetKeyMachine(long keyMachine)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetKeyMachine(keyMachine); }));
+        return;
+      }
+
+      KeyMachine = keyMachine;
+
+      lbLine.Text = keyMachine.ToString("D2");
+    }
+
+    private void btnChangeOver_Click(object sender, EventArgs e)
+    {
+      OnSendChangeProduct?.Invoke(KeyMachine);
+    }
+
   }
 }

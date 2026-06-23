@@ -16,13 +16,17 @@ namespace CheckWeigherFood.Popup
 {
   public partial class PopupChangeFGs : Form
   {
-    public event Action<Product> OnSelectedProduct;
+    public event Action<long,Product> OnSelectedProduct;
     public PopupChangeFGs()
     {
       InitializeComponent();
       RegisterService();
       CustomUI();
       this.Load += PopupChangeFGs_Load;
+    }
+    public PopupChangeFGs(long keyMachine):this()
+    {
+      _keyMachine = keyMachine;
     }
 
     private void CustomUI()
@@ -37,6 +41,7 @@ namespace CheckWeigherFood.Popup
     private ProductService _productService { get; set; }
     private List<Product> _allProducts { get; set; }
     private Product _product { get; set; }
+    private long _keyMachine { get; set; }
     private void RegisterService()
     {
       _productService = AppFactory.CreateProductService();
@@ -137,7 +142,7 @@ namespace CheckWeigherFood.Popup
 
     private void btnConfirm_Click(object sender, EventArgs e)
     {
-      OnSelectedProduct?.Invoke(_product);
+      OnSelectedProduct?.Invoke(_keyMachine, _product);
       this.Close();
     }
   }

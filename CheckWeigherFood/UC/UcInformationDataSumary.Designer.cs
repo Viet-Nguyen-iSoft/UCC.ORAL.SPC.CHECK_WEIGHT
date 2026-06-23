@@ -29,7 +29,6 @@
     private void InitializeComponent()
     {
       this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-      this.label3 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.label19 = new System.Windows.Forms.Label();
       this.label23 = new System.Windows.Forms.Label();
@@ -42,7 +41,6 @@
       this.lbCpk = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
       this.lbCp = new System.Windows.Forms.Label();
-      this.lbWeightRealtime = new System.Windows.Forms.Label();
       this.label16 = new System.Windows.Forms.Label();
       this.lbUpperControl = new System.Windows.Forms.Label();
       this.label15 = new System.Windows.Forms.Label();
@@ -53,7 +51,9 @@
       this.lbResult = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.lbSample = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
       this.label18 = new System.Windows.Forms.Label();
+      this.lbWeightRealtime = new System.Windows.Forms.Label();
       this.lbTarget = new System.Windows.Forms.Label();
       this.tableLayoutPanel9.SuspendLayout();
       this.SuspendLayout();
@@ -116,23 +116,6 @@
       this.tableLayoutPanel9.Size = new System.Drawing.Size(399, 594);
       this.tableLayoutPanel9.TabIndex = 4;
       // 
-      // label3
-      // 
-      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label3.AutoSize = true;
-      this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
-      this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.ForeColor = System.Drawing.Color.White;
-      this.label3.Location = new System.Drawing.Point(0, 48);
-      this.label3.Margin = new System.Windows.Forms.Padding(0);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(245, 45);
-      this.label3.TabIndex = 47;
-      this.label3.Text = "Giá trị hiện tại (g)";
-      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
       // label17
       // 
       this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -142,12 +125,12 @@
       this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.label17.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label17.ForeColor = System.Drawing.Color.White;
-      this.label17.Location = new System.Drawing.Point(0, 321);
+      this.label17.Location = new System.Drawing.Point(0, 320);
       this.label17.Margin = new System.Windows.Forms.Padding(0);
       this.label17.Name = "label17";
-      this.label17.Size = new System.Drawing.Size(245, 45);
+      this.label17.Size = new System.Drawing.Size(182, 45);
       this.label17.TabIndex = 13;
-      this.label17.Text = "TL an toàn dưới (Target - 1/3T)";
+      this.label17.Text = "TL an toàn dưới (LCL)";
       this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // label19
@@ -159,12 +142,12 @@
       this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label19.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label19.ForeColor = System.Drawing.Color.White;
-      this.label19.Location = new System.Drawing.Point(0, 366);
+      this.label19.Location = new System.Drawing.Point(0, 365);
       this.label19.Margin = new System.Windows.Forms.Padding(0);
       this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(245, 45);
+      this.label19.Size = new System.Drawing.Size(182, 45);
       this.label19.TabIndex = 15;
-      this.label19.Text = "TL dưới (Target - 1T)";
+      this.label19.Text = "TL dưới (LSL)";
       this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // label23
@@ -176,10 +159,10 @@
       this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.label23.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label23.ForeColor = System.Drawing.Color.White;
-      this.label23.Location = new System.Drawing.Point(0, 414);
+      this.label23.Location = new System.Drawing.Point(0, 413);
       this.label23.Margin = new System.Windows.Forms.Padding(0);
       this.label23.Name = "label23";
-      this.label23.Size = new System.Drawing.Size(245, 45);
+      this.label23.Size = new System.Drawing.Size(182, 45);
       this.label23.TabIndex = 19;
       this.label23.Text = "Min (g)";
       this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,10 +176,10 @@
       this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label24.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label24.ForeColor = System.Drawing.Color.White;
-      this.label24.Location = new System.Drawing.Point(0, 459);
+      this.label24.Location = new System.Drawing.Point(0, 458);
       this.label24.Margin = new System.Windows.Forms.Padding(0);
       this.label24.Name = "label24";
-      this.label24.Size = new System.Drawing.Size(245, 45);
+      this.label24.Size = new System.Drawing.Size(182, 45);
       this.label24.TabIndex = 20;
       this.label24.Text = "Max (g)";
       this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -210,10 +193,10 @@
       this.lbLowerControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbLowerControl.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbLowerControl.ForeColor = System.Drawing.Color.White;
-      this.lbLowerControl.Location = new System.Drawing.Point(248, 321);
+      this.lbLowerControl.Location = new System.Drawing.Point(185, 320);
       this.lbLowerControl.Margin = new System.Windows.Forms.Padding(0);
       this.lbLowerControl.Name = "lbLowerControl";
-      this.lbLowerControl.Size = new System.Drawing.Size(151, 45);
+      this.lbLowerControl.Size = new System.Drawing.Size(214, 45);
       this.lbLowerControl.TabIndex = 27;
       this.lbLowerControl.Text = "0.0";
       this.lbLowerControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -227,10 +210,10 @@
       this.lbLower.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbLower.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbLower.ForeColor = System.Drawing.Color.White;
-      this.lbLower.Location = new System.Drawing.Point(248, 366);
+      this.lbLower.Location = new System.Drawing.Point(185, 365);
       this.lbLower.Margin = new System.Windows.Forms.Padding(0);
       this.lbLower.Name = "lbLower";
-      this.lbLower.Size = new System.Drawing.Size(151, 45);
+      this.lbLower.Size = new System.Drawing.Size(214, 45);
       this.lbLower.TabIndex = 28;
       this.lbLower.Text = "0.0";
       this.lbLower.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -244,10 +227,10 @@
       this.lbMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbMin.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbMin.ForeColor = System.Drawing.Color.White;
-      this.lbMin.Location = new System.Drawing.Point(248, 414);
+      this.lbMin.Location = new System.Drawing.Point(185, 413);
       this.lbMin.Margin = new System.Windows.Forms.Padding(0);
       this.lbMin.Name = "lbMin";
-      this.lbMin.Size = new System.Drawing.Size(151, 45);
+      this.lbMin.Size = new System.Drawing.Size(214, 45);
       this.lbMin.TabIndex = 31;
       this.lbMin.Text = "0.0";
       this.lbMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -261,10 +244,10 @@
       this.lbMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbMax.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbMax.ForeColor = System.Drawing.Color.White;
-      this.lbMax.Location = new System.Drawing.Point(248, 459);
+      this.lbMax.Location = new System.Drawing.Point(185, 458);
       this.lbMax.Margin = new System.Windows.Forms.Padding(0);
       this.lbMax.Name = "lbMax";
-      this.lbMax.Size = new System.Drawing.Size(151, 45);
+      this.lbMax.Size = new System.Drawing.Size(214, 45);
       this.lbMax.TabIndex = 34;
       this.lbMax.Text = "0.0";
       this.lbMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -278,10 +261,10 @@
       this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.label26.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label26.ForeColor = System.Drawing.Color.White;
-      this.label26.Location = new System.Drawing.Point(0, 504);
+      this.label26.Location = new System.Drawing.Point(0, 503);
       this.label26.Margin = new System.Windows.Forms.Padding(0);
       this.label26.Name = "label26";
-      this.label26.Size = new System.Drawing.Size(245, 45);
+      this.label26.Size = new System.Drawing.Size(182, 45);
       this.label26.TabIndex = 22;
       this.label26.Text = "Cpk";
       this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -295,10 +278,10 @@
       this.lbCpk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbCpk.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbCpk.ForeColor = System.Drawing.Color.White;
-      this.lbCpk.Location = new System.Drawing.Point(248, 504);
+      this.lbCpk.Location = new System.Drawing.Point(185, 503);
       this.lbCpk.Margin = new System.Windows.Forms.Padding(0);
       this.lbCpk.Name = "lbCpk";
-      this.lbCpk.Size = new System.Drawing.Size(151, 45);
+      this.lbCpk.Size = new System.Drawing.Size(214, 45);
       this.lbCpk.TabIndex = 37;
       this.lbCpk.Text = "0.0";
       this.lbCpk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -312,10 +295,10 @@
       this.label27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label27.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label27.ForeColor = System.Drawing.Color.White;
-      this.label27.Location = new System.Drawing.Point(0, 549);
+      this.label27.Location = new System.Drawing.Point(0, 548);
       this.label27.Margin = new System.Windows.Forms.Padding(0);
       this.label27.Name = "label27";
-      this.label27.Size = new System.Drawing.Size(245, 45);
+      this.label27.Size = new System.Drawing.Size(182, 46);
       this.label27.TabIndex = 23;
       this.label27.Text = "Cp";
       this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -329,30 +312,13 @@
       this.lbCp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbCp.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbCp.ForeColor = System.Drawing.Color.White;
-      this.lbCp.Location = new System.Drawing.Point(248, 549);
+      this.lbCp.Location = new System.Drawing.Point(185, 548);
       this.lbCp.Margin = new System.Windows.Forms.Padding(0);
       this.lbCp.Name = "lbCp";
-      this.lbCp.Size = new System.Drawing.Size(151, 45);
+      this.lbCp.Size = new System.Drawing.Size(214, 46);
       this.lbCp.TabIndex = 36;
       this.lbCp.Text = "0.0";
       this.lbCp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      // 
-      // lbWeightRealtime
-      // 
-      this.lbWeightRealtime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbWeightRealtime.AutoSize = true;
-      this.lbWeightRealtime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
-      this.lbWeightRealtime.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbWeightRealtime.ForeColor = System.Drawing.Color.White;
-      this.lbWeightRealtime.Location = new System.Drawing.Point(248, 48);
-      this.lbWeightRealtime.Margin = new System.Windows.Forms.Padding(0);
-      this.lbWeightRealtime.Name = "lbWeightRealtime";
-      this.lbWeightRealtime.Size = new System.Drawing.Size(151, 45);
-      this.lbWeightRealtime.TabIndex = 48;
-      this.lbWeightRealtime.Text = "0.0";
-      this.lbWeightRealtime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // label16
       // 
@@ -363,12 +329,12 @@
       this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label16.ForeColor = System.Drawing.Color.White;
-      this.label16.Location = new System.Drawing.Point(0, 276);
+      this.label16.Location = new System.Drawing.Point(0, 275);
       this.label16.Margin = new System.Windows.Forms.Padding(0);
       this.label16.Name = "label16";
-      this.label16.Size = new System.Drawing.Size(245, 45);
+      this.label16.Size = new System.Drawing.Size(182, 45);
       this.label16.TabIndex = 12;
-      this.label16.Text = "TL an toàn trên (Target + 1/3T)";
+      this.label16.Text = "TL an toàn trên (UCL)";
       this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // lbUpperControl
@@ -380,10 +346,10 @@
       this.lbUpperControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbUpperControl.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbUpperControl.ForeColor = System.Drawing.Color.White;
-      this.lbUpperControl.Location = new System.Drawing.Point(248, 276);
+      this.lbUpperControl.Location = new System.Drawing.Point(185, 275);
       this.lbUpperControl.Margin = new System.Windows.Forms.Padding(0);
       this.lbUpperControl.Name = "lbUpperControl";
-      this.lbUpperControl.Size = new System.Drawing.Size(151, 45);
+      this.lbUpperControl.Size = new System.Drawing.Size(214, 45);
       this.lbUpperControl.TabIndex = 41;
       this.lbUpperControl.Text = "0.0";
       this.lbUpperControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -397,12 +363,12 @@
       this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label15.ForeColor = System.Drawing.Color.White;
-      this.label15.Location = new System.Drawing.Point(0, 231);
+      this.label15.Location = new System.Drawing.Point(0, 230);
       this.label15.Margin = new System.Windows.Forms.Padding(0);
       this.label15.Name = "label15";
-      this.label15.Size = new System.Drawing.Size(245, 45);
+      this.label15.Size = new System.Drawing.Size(182, 45);
       this.label15.TabIndex = 11;
-      this.label15.Text = "TL trên (Target + 1T)";
+      this.label15.Text = "TL trên (USL)";
       this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // lbUpper
@@ -414,10 +380,10 @@
       this.lbUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbUpper.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbUpper.ForeColor = System.Drawing.Color.White;
-      this.lbUpper.Location = new System.Drawing.Point(248, 231);
+      this.lbUpper.Location = new System.Drawing.Point(185, 230);
       this.lbUpper.Margin = new System.Windows.Forms.Padding(0);
       this.lbUpper.Name = "lbUpper";
-      this.lbUpper.Size = new System.Drawing.Size(151, 45);
+      this.lbUpper.Size = new System.Drawing.Size(214, 45);
       this.lbUpper.TabIndex = 40;
       this.lbUpper.Text = "0.0";
       this.lbUpper.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -431,10 +397,10 @@
       this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(0, 186);
+      this.label1.Location = new System.Drawing.Point(0, 185);
       this.label1.Margin = new System.Windows.Forms.Padding(0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(245, 45);
+      this.label1.Size = new System.Drawing.Size(182, 45);
       this.label1.TabIndex = 43;
       this.label1.Text = "Luật trọng lượng";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -448,10 +414,10 @@
       this.lbGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbGroup.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbGroup.ForeColor = System.Drawing.Color.White;
-      this.lbGroup.Location = new System.Drawing.Point(248, 186);
+      this.lbGroup.Location = new System.Drawing.Point(185, 185);
       this.lbGroup.Margin = new System.Windows.Forms.Padding(0);
       this.lbGroup.Name = "lbGroup";
-      this.lbGroup.Size = new System.Drawing.Size(151, 45);
+      this.lbGroup.Size = new System.Drawing.Size(214, 45);
       this.lbGroup.TabIndex = 44;
       this.lbGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
@@ -464,10 +430,10 @@
       this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label2.ForeColor = System.Drawing.Color.White;
-      this.label2.Location = new System.Drawing.Point(0, 141);
+      this.label2.Location = new System.Drawing.Point(0, 140);
       this.label2.Margin = new System.Windows.Forms.Padding(0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(245, 45);
+      this.label2.Size = new System.Drawing.Size(182, 45);
       this.label2.TabIndex = 45;
       this.label2.Text = "Kết quả";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -481,10 +447,10 @@
       this.lbResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbResult.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbResult.ForeColor = System.Drawing.Color.White;
-      this.lbResult.Location = new System.Drawing.Point(248, 141);
+      this.lbResult.Location = new System.Drawing.Point(185, 140);
       this.lbResult.Margin = new System.Windows.Forms.Padding(0);
       this.lbResult.Name = "lbResult";
-      this.lbResult.Size = new System.Drawing.Size(151, 45);
+      this.lbResult.Size = new System.Drawing.Size(214, 45);
       this.lbResult.TabIndex = 46;
       this.lbResult.Text = "N/A";
       this.lbResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -498,10 +464,10 @@
       this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.label21.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label21.ForeColor = System.Drawing.Color.White;
-      this.label21.Location = new System.Drawing.Point(0, 96);
+      this.label21.Location = new System.Drawing.Point(0, 95);
       this.label21.Margin = new System.Windows.Forms.Padding(0);
       this.label21.Name = "label21";
-      this.label21.Size = new System.Drawing.Size(245, 45);
+      this.label21.Size = new System.Drawing.Size(182, 45);
       this.label21.TabIndex = 17;
       this.label21.Text = "Số lượng";
       this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -515,13 +481,30 @@
       this.lbSample.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
       this.lbSample.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbSample.ForeColor = System.Drawing.Color.White;
-      this.lbSample.Location = new System.Drawing.Point(248, 96);
+      this.lbSample.Location = new System.Drawing.Point(185, 95);
       this.lbSample.Margin = new System.Windows.Forms.Padding(0);
       this.lbSample.Name = "lbSample";
-      this.lbSample.Size = new System.Drawing.Size(151, 45);
+      this.lbSample.Size = new System.Drawing.Size(214, 45);
       this.lbSample.TabIndex = 32;
       this.lbSample.Text = "0.0";
       this.lbSample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // label3
+      // 
+      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label3.AutoSize = true;
+      this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
+      this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.ForeColor = System.Drawing.Color.White;
+      this.label3.Location = new System.Drawing.Point(0, 47);
+      this.label3.Margin = new System.Windows.Forms.Padding(0);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(182, 45);
+      this.label3.TabIndex = 47;
+      this.label3.Text = "Giá trị hiện tại (g)";
+      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // label18
       // 
@@ -535,10 +518,27 @@
       this.label18.Location = new System.Drawing.Point(0, 0);
       this.label18.Margin = new System.Windows.Forms.Padding(0);
       this.label18.Name = "label18";
-      this.label18.Size = new System.Drawing.Size(245, 45);
+      this.label18.Size = new System.Drawing.Size(182, 44);
       this.label18.TabIndex = 14;
       this.label18.Text = "Trọng lượng chuẩn";
       this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // lbWeightRealtime
+      // 
+      this.lbWeightRealtime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbWeightRealtime.AutoSize = true;
+      this.lbWeightRealtime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(33)))), ((int)(((byte)(84)))));
+      this.lbWeightRealtime.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbWeightRealtime.ForeColor = System.Drawing.Color.White;
+      this.lbWeightRealtime.Location = new System.Drawing.Point(185, 47);
+      this.lbWeightRealtime.Margin = new System.Windows.Forms.Padding(0);
+      this.lbWeightRealtime.Name = "lbWeightRealtime";
+      this.lbWeightRealtime.Size = new System.Drawing.Size(214, 45);
+      this.lbWeightRealtime.TabIndex = 48;
+      this.lbWeightRealtime.Text = "0.0";
+      this.lbWeightRealtime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // lbTarget
       // 
@@ -549,10 +549,10 @@
       this.lbTarget.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(47)))), ((int)(((byte)(101)))));
       this.lbTarget.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbTarget.ForeColor = System.Drawing.Color.White;
-      this.lbTarget.Location = new System.Drawing.Point(248, 0);
+      this.lbTarget.Location = new System.Drawing.Point(185, 0);
       this.lbTarget.Margin = new System.Windows.Forms.Padding(0);
       this.lbTarget.Name = "lbTarget";
-      this.lbTarget.Size = new System.Drawing.Size(151, 45);
+      this.lbTarget.Size = new System.Drawing.Size(214, 44);
       this.lbTarget.TabIndex = 26;
       this.lbTarget.Text = "0.0";
       this.lbTarget.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
