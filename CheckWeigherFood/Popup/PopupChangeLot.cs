@@ -25,9 +25,11 @@ namespace CheckWeigherFood.Popup
     }
 
     private TareSetting _tareSetting { get; set; }
-    public PopupChangeLot(TareSetting tareSetting) : this()
+    private long _keyMachine { get; set; }
+    public PopupChangeLot(TareSetting tareSetting, long keyMachine) : this()
     {
       _tareSetting = tareSetting;
+      _keyMachine = keyMachine;
       ShowInforLotAndTare(tareSetting);
     }
 
@@ -77,6 +79,7 @@ namespace CheckWeigherFood.Popup
         tareSetting.TailTube = _tareSetting.TailTube;
         tareSetting.LotTube = txtLotTube.Texts;
         tareSetting.LotCarton = txtLotCarton.Texts;
+        tareSetting.KeyMachine = _keyMachine;
         tareSetting.CreatedAt = DateTime.UtcNow;
 
         await _tareSettingService.AddAsync(tareSetting);

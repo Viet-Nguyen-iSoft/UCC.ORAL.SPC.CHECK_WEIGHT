@@ -18,8 +18,16 @@ namespace CheckWeigherFood.Popup
       RegisterService();
       this.Load += PopupChangeTareAndLot_Load;
     }
-    public PopupChangeTare(TareSetting tareSetting) :this()
+    private TareSettingService _tareSettingService { get; set; }
+    private long _keyMachine { get; set; }
+    private void RegisterService()
     {
+      _tareSettingService = AppFactory.CreateTareSettingService();
+    }
+
+    public PopupChangeTare(TareSetting tareSetting, long keyMachine) :this()
+    {
+      _keyMachine = keyMachine;
       ShowInforLotAndTare(tareSetting);
     }
 
@@ -30,18 +38,14 @@ namespace CheckWeigherFood.Popup
         this.Invoke(new Action(() => { ShowInforLotAndTare(tareSetting); }));
         return;
       }
-
+      
       txtTareTube.Texts = tareSetting?.Tube.ToString() ?? string.Empty;
       txtTareCarton.Texts = tareSetting?.Carton.ToString() ?? string.Empty;
       txtTareTailTube.Texts = tareSetting?.TailTube.ToString() ?? string.Empty;
     }
 
 
-    private TareSettingService _tareSettingService { get; set; }
-    private void RegisterService()
-    {
-      _tareSettingService = AppFactory.CreateTareSettingService();
-    }
+    
 
     private void PopupChangeTareAndLot_Load(object sender, EventArgs e)
     {
@@ -81,6 +85,7 @@ namespace CheckWeigherFood.Popup
         tareSetting.Carton = double.Parse(txtTareCarton.Texts);
         tareSetting.Tube = double.Parse(txtTareTube.Texts);
         tareSetting.TailTube = double.Parse(txtTareTailTube.Texts);
+        tareSetting.KeyMachine = _keyMachine;
         tareSetting.CreatedAt = DateTime.UtcNow;
 
         await _tareSettingService.AddAsync(tareSetting);

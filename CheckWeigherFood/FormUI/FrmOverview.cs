@@ -45,28 +45,28 @@ namespace CheckWeigherFood.FormUI
     {
       try
       {
-        if (line == 3)
-        {
-          AppCore.Ins._productCurrent03 = obj;
+        //if (line == 3)
+        //{
+        //  AppCore.Ins._productCurrent03 = obj;
 
-          AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
-          AppCore.Ins._machineCurrent03.ProductId = obj.Id;
-          AppCore.Ins._machineCurrent03.UpdatedAt = DateTime.UtcNow;
-          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent03);
-          AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
-          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
-        }
-        else if (line == 4)
-        {
-          AppCore.Ins._productCurrent04 = obj;
-          AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+        //  AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+        //  AppCore.Ins._machineCurrent03.ProductId = obj.Id;
+        //  AppCore.Ins._machineCurrent03.UpdatedAt = DateTime.UtcNow;
+        //  await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent03);
+        //  AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
+        //  ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+        //}
+        //else if (line == 4)
+        //{
+        //  AppCore.Ins._productCurrent04 = obj;
+        //  AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
 
-          AppCore.Ins._machineCurrent04.ProductId = obj.Id;
-          AppCore.Ins._machineCurrent04.UpdatedAt = DateTime.UtcNow;
-          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent04);
-          AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
-          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
-        }
+        //  AppCore.Ins._machineCurrent04.ProductId = obj.Id;
+        //  AppCore.Ins._machineCurrent04.UpdatedAt = DateTime.UtcNow;
+        //  await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent04);
+        //  AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
+        //  ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+        //}
       }
       catch (Exception)
       {

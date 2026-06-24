@@ -932,9 +932,26 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
     {
-      PopupChangeTare  popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent04);
-      popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
-      popupChangeTare.ShowDialog();
+      if (cbbLine.SelectedIndex!=-1)
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line==3)
+        {
+          PopupChangeTare popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent03, line);
+          popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
+          popupChangeTare.ShowDialog();
+        }
+        else if (line == 4)
+        {
+          PopupChangeTare popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent04, line);
+          popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
+          popupChangeTare.ShowDialog();
+        }  
+      }
+      else
+      {
+        new FrmInformation().ShowMessage("Vui lòng chọn line !", eImage.Information);
+      }
     }
 
     private void PopupChangeTare_OnChangeTareSetting(TareSetting obj)
@@ -1057,13 +1074,13 @@ namespace CheckWeigherFood.FrmChild
       int line = int.Parse(cbbLine.SelectedItem.ToString());
       if (line == 3)
       {
-        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent03);
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent03, line);
         popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
         popupChangeLot.ShowDialog();
       }
       else if (line == 4)
       {
-        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04);
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04, line);
         popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
         popupChangeLot.ShowDialog();
       }

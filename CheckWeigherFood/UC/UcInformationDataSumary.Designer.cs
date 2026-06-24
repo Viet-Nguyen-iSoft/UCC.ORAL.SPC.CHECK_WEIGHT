@@ -419,7 +419,7 @@
       this.lbGroup.Name = "lbGroup";
       this.lbGroup.Size = new System.Drawing.Size(214, 45);
       this.lbGroup.TabIndex = 44;
-      this.lbGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.lbGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // label2
       // 
