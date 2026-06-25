@@ -132,10 +132,14 @@ namespace CheckWeigherFood.FrmChild
 
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private DataChart _dataChart = new DataChart();
-    //private List<string> dataTimeData = new List<string>();
-    private List<Datalog> dataChartline = new List<Datalog>();
-    private List<DataRejectDTO> reject = new List<DataRejectDTO>();
-    private SumaryDTO sumaryDTO = new SumaryDTO();
+
+    private List<Datalog> dataChartline03 = new List<Datalog>();
+    private List<DataRejectDTO> _reject03 = new List<DataRejectDTO>();
+    private int _numberRejectLast03 = -1;
+
+    private List<Datalog> dataChartline04 = new List<Datalog>();
+    private List<DataRejectDTO> _reject04 = new List<DataRejectDTO>();
+    private int _numberRejectLast04 = -1;
 
     private System.Threading.Timer _watchdogTimer;
     private readonly object _lockObj = new object();
@@ -145,8 +149,6 @@ namespace CheckWeigherFood.FrmChild
       _dataChart.ChartControlInit(chartControl);
       _dataChart.ChartHistogramInit(chartHistogram);
 
-
-      
 
       //Lấy tgian ca hiện tại set filter chart
       SetTimeFilterChart(AppCore.Ins._shiftCurrent);
@@ -189,26 +191,37 @@ namespace CheckWeigherFood.FrmChild
 
     private void CbbLine_SelectedIndexChanged(object sender, EventArgs e)
     {
-      int line = int.Parse( cbbLine.SelectedItem.ToString());
-      if (line==3)
+      try
       {
-        //Show thông tin cài đặt
-        ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP,
-          AppCore.Ins._operationSettingCurrent03?.QC,
-          AppCore.Ins._operationSettingCurrent03?.ShiftLeader);
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == 3)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP,
+            AppCore.Ins._operationSettingCurrent03?.QC,
+            AppCore.Ins._operationSettingCurrent03?.ShiftLeader);
 
-        ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
-        ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+          ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+        }
+        else if (line == 4)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent04?.OP,
+            AppCore.Ins._operationSettingCurrent04?.QC,
+            AppCore.Ins._operationSettingCurrent04?.ShiftLeader);
+
+          ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+        }
+
+        _numberRejectLast03 = -1;
+        _numberRejectLast04 = -1;
+        LoadDataDashBoard();
       }
-      else if (line == 4)
+      catch (Exception)
       {
-        //Show thông tin cài đặt
-        ShowInforOperator(AppCore.Ins._operationSettingCurrent04?.OP,
-          AppCore.Ins._operationSettingCurrent04?.QC,
-          AppCore.Ins._operationSettingCurrent04?.ShiftLeader);
 
-        ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
-        ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
       }
     }
 
@@ -421,21 +434,28 @@ namespace CheckWeigherFood.FrmChild
       lbStatusMachine.Visible = !lbStatusMachine.Visible;
     }
 
-    private void Ins_OnSendValueWeight(double value, bool success, string msg)
+    private void Ins_OnSendValueWeight(double value, bool success, long keyMachine)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          Ins_OnSendValueWeight(value, success, msg);
+          Ins_OnSendValueWeight(value, success, keyMachine);
         }));
         return;
       }
 
       //label4.Text = msg;
-      _statusConnectOpcUa = success;
-      ucInformationDataSumary1.SetWeightRealtime(value);
+      if (cbbLine.SelectedIndex != -1)
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == keyMachine)
+        {
+          ucInformationDataSumary1.SetWeightRealtime(value);
+        }
+      }
 
+      _statusConnectOpcUa = success;
       ResetWatchdog();
     }
 
@@ -496,9 +516,9 @@ namespace CheckWeigherFood.FrmChild
 
       try
       {
-        sumaryDTO = new SumaryDTO();
-        reject = new List<DataRejectDTO>();
-        UpdateDataUI(true);
+        //sumaryDTO = new SumaryDTO();
+        //reject = new List<DataRejectDTO>();
+        //UpdateDataUI(true);
       }
       catch (Exception ex)
       {
@@ -512,8 +532,9 @@ namespace CheckWeigherFood.FrmChild
 
       try
       {
-        SetStatusMachine();
-        SetContent();
+        //SetStatusMachine();
+        //SetContent();
+
         LoadDataDashBoard();
       }
       catch (Exception ex)
@@ -528,6 +549,16 @@ namespace CheckWeigherFood.FrmChild
 
     private void LoadDataDashBoard()
     {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          LoadDataDashBoard();
+        }));
+        return;
+      }
+      GetDt();
+
       //try
       //{
       //  if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
@@ -547,7 +578,7 @@ namespace CheckWeigherFood.FrmChild
       //                  .OrderBy(x=>x.CreatedAt)
       //                  .ToList();
       //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
-        
+
 
       //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
 
@@ -572,6 +603,98 @@ namespace CheckWeigherFood.FrmChild
       //{
       //  Debug.WriteLine(ex.Message);
       //}
+
+      if (cbbLine.SelectedIndex != -1)
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == 3)
+        {
+          //Data reject
+          if (_reject03.Count() != _numberRejectLast03)
+          {
+            if (AppCore.Ins._sumaryDTOLine3.DatalogReject?.Count() > 0)
+            {
+              _reject03 = new List<DataRejectDTO>();
+              foreach (var data in AppCore.Ins._sumaryDTOLine3.DatalogReject)
+              {
+                DataRejectDTO dataReject = new DataRejectDTO();
+                dataReject.DateTime = (DateTime)data.CreatedAt;
+                dataReject.FGs = AppCore.Ins._productCurrent03.Code;
+                dataReject.Actual = data.Gross;
+                dataReject.Target = AppCore.Ins._sumaryDTOLine3.Target;
+                _reject03.Add(dataReject);
+              }
+            }
+            else
+            {
+              _reject03 = new List<DataRejectDTO>();
+            }
+
+            UpdateDataReject(_reject03);
+            _numberRejectLast03 = _reject03.Count();
+          }
+
+          lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine3.DatalogReject.Count().ToString();
+          ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
+          SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
+          UpdateInforLoss(AppCore.Ins._sumaryDTOLine3);
+          
+          SetContent(3);
+
+
+          dataChartline03 = AppCore.Ins._sumaryDTOLine3.DatalogPass
+                          .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
+                          .OrderBy(x => x.CreatedAt)
+                          .ToList();
+          _dataChart.AddChartControlDashboard(chartControl, AppCore.Ins._sumaryDTOLine3, dataChartline03, 0);
+          _dataChart.AddChartHistogram(chartHistogram, AppCore.Ins._sumaryDTOLine3);
+          ucChartPie1.SetDataChartPie(AppCore.Ins._sumaryDTOLine3);
+        }
+        else if (line == 4)
+        {
+          if (_reject04.Count() != _numberRejectLast04)
+          {
+            //Data reject
+            if (AppCore.Ins._sumaryDTOLine4.DatalogReject?.Count() > 0)
+            {
+              _reject04 = new List<DataRejectDTO>();
+              foreach (var data in AppCore.Ins._sumaryDTOLine4.DatalogReject)
+              {
+                DataRejectDTO dataReject = new DataRejectDTO();
+                dataReject.DateTime = (DateTime)data.CreatedAt;
+                dataReject.FGs = AppCore.Ins._productCurrent04.Code;
+                dataReject.Actual = data.Gross;
+                dataReject.Target = AppCore.Ins._sumaryDTOLine4.Target;
+                _reject04.Add(dataReject);
+              }
+            }
+            else
+            {
+              _reject04 = new List<DataRejectDTO>();
+            }
+
+            UpdateDataReject(_reject04);
+            _numberRejectLast04 = _reject04.Count();
+          }
+         
+
+          lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine4.DatalogReject.Count().ToString();
+          ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
+          SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
+          UpdateInforLoss(AppCore.Ins._sumaryDTOLine4);
+          
+          SetContent(4);
+
+          dataChartline04 = AppCore.Ins._sumaryDTOLine4.DatalogPass
+                          .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
+                          .OrderBy(x => x.CreatedAt)
+                          .ToList();
+
+          _dataChart.AddChartControlDashboard(chartControl, AppCore.Ins._sumaryDTOLine4, dataChartline04, 0);
+          _dataChart.AddChartHistogram(chartHistogram, AppCore.Ins._sumaryDTOLine4);
+          ucChartPie1.SetDataChartPie(AppCore.Ins._sumaryDTOLine4);
+        }
+      }
     }
 
     private void UpdateDataUI(bool isUpdateChart)
@@ -585,25 +708,25 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      try
-      {
-        if (isUpdateChart)
-        {
-          _dataChart.AddChartControlDashboard(chartControl, sumaryDTO, dataChartline, 0);
-          _dataChart.AddChartHistogram(chartHistogram, sumaryDTO);
-          ucChartPie1.SetDataChartPie(sumaryDTO);
-        }
+      //try
+      //{
+      //  if (isUpdateChart)
+      //  {
+      //    _dataChart.AddChartControlDashboard(chartControl, sumaryDTO, dataChartline, 0);
+      //    _dataChart.AddChartHistogram(chartHistogram, sumaryDTO);
+      //    ucChartPie1.SetDataChartPie(sumaryDTO);
+      //  }
 
-        lbDataNumberReject.ValueStr = sumaryDTO.DatalogReject.Count().ToString();
-        ucInformationDataSumary1.SetSumaryDTO(sumaryDTO);
-        SetDataOW_Mean(sumaryDTO);
-        UpdateInforLoss(sumaryDTO);
-        UpdateDataReject(reject);
-      }
-      catch (Exception ex)
-      {
+      //  lbDataNumberReject.ValueStr = sumaryDTO.DatalogReject.Count().ToString();
+      //  ucInformationDataSumary1.SetSumaryDTO(sumaryDTO);
+      //  SetDataOW_Mean(sumaryDTO);
+      //  UpdateInforLoss(sumaryDTO);
+      //  UpdateDataReject(reject);
+      //}
+      //catch (Exception ex)
+      //{
 
-      }
+      //}
     }
 
     private void SetStatusMachine()
@@ -645,56 +768,97 @@ namespace CheckWeigherFood.FrmChild
       }  
     }
 
-    private void SetContent()
+    private void SetContent(long keyMachine)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          SetContent();
+          SetContent(keyMachine);
         }));
         return;
       }
 
-      if (sumaryDTO.OW > 0.5)
+      if (keyMachine == 3)
       {
-        double value = Math.Round( sumaryDTO.Mean - sumaryDTO.Target, 2);
-        string msg = $"OW cao cần giảm trọng lượng {value}g";
-        lbContent.Text = msg;
-        lbContent.ForeColor = Color.Red;
-        panelContent.Visible = true;
-      } 
-      else
-      {
-        //Kết quả
-        if (sumaryDTO.EnumResult == EnumResult.Pass)
+        if (AppCore.Ins._sumaryDTOLine3.OW > 0.5)
         {
-          //lbContent.ForeColor = Color.DarkGreen;
-          //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
-          //lbContent.Visible = true;
-          panelContent.Visible = false;
-        }
-        else if (sumaryDTO.EnumResult == EnumResult.Fail)
-        {
-          string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+          double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Mean - AppCore.Ins._sumaryDTOLine3.Target, 2);
+          string msg = $"OW cao cần giảm trọng lượng {value}g";
+          lbContent.Text = msg;
           lbContent.ForeColor = Color.Red;
-          lbContent.Text = mgs;
-
           panelContent.Visible = true;
-          //lbContent.Visible = true;
         }
         else
         {
-          //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
-          //lbContent.ForeColor = Color.Black;
-          //lbContent.Text = mgs;
+          //Kết quả
+          if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Pass)
+          {
+            //lbContent.ForeColor = Color.DarkGreen;
+            //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+            //lbContent.Visible = true;
+            panelContent.Visible = false;
+          }
+          else if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Fail)
+          {
+            string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+            lbContent.ForeColor = Color.Red;
+            lbContent.Text = mgs;
 
-          panelContent.Visible = false;
-          //lbContent.Visible = false;
+            panelContent.Visible = true;
+            //lbContent.Visible = true;
+          }
+          else
+          {
+            //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+            //lbContent.ForeColor = Color.Black;
+            //lbContent.Text = mgs;
+
+            panelContent.Visible = false;
+            //lbContent.Visible = false;
+          }
         }
-      }
+      }  
+      else
+      {
+        if (AppCore.Ins._sumaryDTOLine4.OW > 0.5)
+        {
+          double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Mean - AppCore.Ins._sumaryDTOLine4.Target, 2);
+          string msg = $"OW cao cần giảm trọng lượng {value}g";
+          lbContent.Text = msg;
+          lbContent.ForeColor = Color.Red;
+          panelContent.Visible = true;
+        }
+        else
+        {
+          //Kết quả
+          if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Pass)
+          {
+            //lbContent.ForeColor = Color.DarkGreen;
+            //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+            //lbContent.Visible = true;
+            panelContent.Visible = false;
+          }
+          else if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Fail)
+          {
+            string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+            lbContent.ForeColor = Color.Red;
+            lbContent.Text = mgs;
 
-      
+            panelContent.Visible = true;
+            //lbContent.Visible = true;
+          }
+          else
+          {
+            //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+            //lbContent.ForeColor = Color.Black;
+            //lbContent.Text = mgs;
+
+            panelContent.Visible = false;
+            //lbContent.Visible = false;
+          }
+        }
+      }  
     }
 
     private void UpdateInforLoss(SumaryDTO sumaryDTO)
@@ -717,7 +881,7 @@ namespace CheckWeigherFood.FrmChild
     }
 
 
-    private int numberRejectLast = 0;
+    
     private void UpdateDataReject(List<DataRejectDTO> dataRejects)
     {
       try
@@ -731,24 +895,20 @@ namespace CheckWeigherFood.FrmChild
           return;
         }
 
-        if (dataRejects == null)
+        if (dataRejects == null || dataRejects?.Count()<=0)
         {
           dgvReject.Rows.Clear();
           return;
         }
 
-        if (numberRejectLast != dataRejects.Count)
+        dataRejects = dataRejects.OrderByDescending(x => x.DateTime).ToList();
+        dgvReject.Rows.Clear();
+        foreach (var item in dataRejects)
         {
-          dataRejects = dataRejects.OrderByDescending(x => x.DateTime).ToList();
-          dgvReject.Rows.Clear();
-          foreach (var item in dataRejects)
-          {
-            int indexOfFirstSpace = item.DateTime.ToString().IndexOf(' ');
-            string timeOnly = item.DateTime.ToString().Substring(indexOfFirstSpace + 1);
+          int indexOfFirstSpace = item.DateTime.ToString().IndexOf(' ');
+          string timeOnly = item.DateTime.ToString().Substring(indexOfFirstSpace + 1);
 
-            dgvReject.Rows.Add(timeOnly, item.FGs, item.Target, item.Actual);
-          }
-          numberRejectLast = dataRejects.Count();
+          dgvReject.Rows.Add(timeOnly, item.FGs, item.Target, item.Actual);
         }
       }
       catch (Exception ex)

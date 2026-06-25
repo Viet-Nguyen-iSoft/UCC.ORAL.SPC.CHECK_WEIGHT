@@ -33,12 +33,12 @@
       this.label11 = new System.Windows.Forms.Label();
       this.label12 = new System.Windows.Forms.Label();
       this.label13 = new System.Windows.Forms.Label();
-      this.lbOP = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbOP03 = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbQC = new CheckWeigherFood.UC.UcTextBoxData();
       this.lbShiftLeader = new CheckWeigherFood.UC.UcTextBoxData();
       this.btnChangeOperator = new CheckWeigherFood.RJControl.RJButton();
       this.label1 = new System.Windows.Forms.Label();
-      this.ucTextBoxData1 = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbOP04 = new CheckWeigherFood.UC.UcTextBoxData();
       this.ucOverviewLine4 = new CheckWeigherFood.FormUI.UcOverview();
       this.ucOverviewLine3 = new CheckWeigherFood.FormUI.UcOverview();
       this.tableLayoutPanel1.SuspendLayout();
@@ -85,12 +85,12 @@
       this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
       this.tableLayoutPanel2.Controls.Add(this.label12, 6, 0);
       this.tableLayoutPanel2.Controls.Add(this.label13, 9, 0);
-      this.tableLayoutPanel2.Controls.Add(this.lbOP, 1, 0);
+      this.tableLayoutPanel2.Controls.Add(this.lbOP03, 1, 0);
       this.tableLayoutPanel2.Controls.Add(this.lbQC, 7, 0);
       this.tableLayoutPanel2.Controls.Add(this.lbShiftLeader, 10, 0);
       this.tableLayoutPanel2.Controls.Add(this.btnChangeOperator, 12, 0);
       this.tableLayoutPanel2.Controls.Add(this.label1, 3, 0);
-      this.tableLayoutPanel2.Controls.Add(this.ucTextBoxData1, 4, 0);
+      this.tableLayoutPanel2.Controls.Add(this.lbOP04, 4, 0);
       this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -111,9 +111,9 @@
       this.label11.Location = new System.Drawing.Point(0, 0);
       this.label11.Margin = new System.Windows.Forms.Padding(0);
       this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(120, 50);
+      this.label11.Size = new System.Drawing.Size(164, 50);
       this.label11.TabIndex = 20;
-      this.label11.Text = "Vận hành máy:";
+      this.label11.Text = "Vận hành máy line 3:";
       this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // label12
@@ -125,7 +125,7 @@
       this.label12.BackColor = System.Drawing.Color.Transparent;
       this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label12.ForeColor = System.Drawing.Color.White;
-      this.label12.Location = new System.Drawing.Point(558, 0);
+      this.label12.Location = new System.Drawing.Point(602, 0);
       this.label12.Margin = new System.Windows.Forms.Padding(0);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(140, 50);
@@ -142,7 +142,7 @@
       this.label13.BackColor = System.Drawing.Color.Transparent;
       this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label13.ForeColor = System.Drawing.Color.White;
-      this.label13.Location = new System.Drawing.Point(857, 0);
+      this.label13.Location = new System.Drawing.Point(879, 0);
       this.label13.Margin = new System.Windows.Forms.Padding(0);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(91, 50);
@@ -150,25 +150,25 @@
       this.label13.Text = "Trưởng ca:";
       this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // lbOP
+      // lbOP03
       // 
-      this.lbOP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.lbOP03.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbOP.Location = new System.Drawing.Point(123, 3);
-      this.lbOP.Name = "lbOP";
-      this.lbOP.Size = new System.Drawing.Size(133, 44);
-      this.lbOP.TabIndex = 23;
-      this.lbOP.ValueStr = "";
+      this.lbOP03.Location = new System.Drawing.Point(167, 3);
+      this.lbOP03.Name = "lbOP03";
+      this.lbOP03.Size = new System.Drawing.Size(111, 44);
+      this.lbOP03.TabIndex = 23;
+      this.lbOP03.ValueStr = "";
       // 
       // lbQC
       // 
       this.lbQC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbQC.Location = new System.Drawing.Point(701, 3);
+      this.lbQC.Location = new System.Drawing.Point(745, 3);
       this.lbQC.Name = "lbQC";
-      this.lbQC.Size = new System.Drawing.Size(133, 44);
+      this.lbQC.Size = new System.Drawing.Size(111, 44);
       this.lbQC.TabIndex = 24;
       this.lbQC.ValueStr = "";
       // 
@@ -177,9 +177,9 @@
       this.lbShiftLeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbShiftLeader.Location = new System.Drawing.Point(951, 3);
+      this.lbShiftLeader.Location = new System.Drawing.Point(973, 3);
       this.lbShiftLeader.Name = "lbShiftLeader";
-      this.lbShiftLeader.Size = new System.Drawing.Size(133, 44);
+      this.lbShiftLeader.Size = new System.Drawing.Size(111, 44);
       this.lbShiftLeader.TabIndex = 25;
       this.lbShiftLeader.ValueStr = "";
       // 
@@ -215,24 +215,24 @@
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(279, 0);
+      this.label1.Location = new System.Drawing.Point(301, 0);
       this.label1.Margin = new System.Windows.Forms.Padding(0);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(120, 50);
+      this.label1.Size = new System.Drawing.Size(164, 50);
       this.label1.TabIndex = 27;
-      this.label1.Text = "Vận hành máy:";
+      this.label1.Text = "Vận hành máy line 4:";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // ucTextBoxData1
+      // lbOP04
       // 
-      this.ucTextBoxData1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.lbOP04.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucTextBoxData1.Location = new System.Drawing.Point(402, 3);
-      this.ucTextBoxData1.Name = "ucTextBoxData1";
-      this.ucTextBoxData1.Size = new System.Drawing.Size(133, 44);
-      this.ucTextBoxData1.TabIndex = 28;
-      this.ucTextBoxData1.ValueStr = "";
+      this.lbOP04.Location = new System.Drawing.Point(468, 3);
+      this.lbOP04.Name = "lbOP04";
+      this.lbOP04.Size = new System.Drawing.Size(111, 44);
+      this.lbOP04.TabIndex = 28;
+      this.lbOP04.ValueStr = "";
       // 
       // ucOverviewLine4
       // 
@@ -279,11 +279,11 @@
     private System.Windows.Forms.Label label11;
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.Label label13;
-    private UC.UcTextBoxData lbOP;
+    private UC.UcTextBoxData lbOP03;
     private UC.UcTextBoxData lbQC;
     private UC.UcTextBoxData lbShiftLeader;
     private RJControl.RJButton btnChangeOperator;
     private System.Windows.Forms.Label label1;
-    private UC.UcTextBoxData ucTextBoxData1;
+    private UC.UcTextBoxData lbOP04;
   }
 }

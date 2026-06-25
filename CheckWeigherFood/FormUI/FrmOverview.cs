@@ -1,9 +1,12 @@
 ﻿using CheckWeigherFood.Controls;
 using CheckWeigherFood.FrmChild;
+using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
+using CheckWeigherFood.UC;
 using Database.DTO;
 using Database.Models;
 using Database.Service;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,67 +102,137 @@ namespace CheckWeigherFood.FormUI
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private void FrmOverview_Load(object sender, EventArgs e)
     {
+      ucOverviewLine3.InitChart();
+      ucOverviewLine4.InitChart();
+
+      ucOverviewLine3.SetTimeFilterChart(AppCore.Ins._shiftCurrent);
+      ucOverviewLine4.SetTimeFilterChart(AppCore.Ins._shiftCurrent);
+
+      ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.QC ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.ShiftLeader ?? string.Empty
+        );
+
+      ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03, 3);
+      ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04, 4);
+
       //Tạo timer load data 2s
       timer_UpdateUI.Interval = 2000;
       timer_UpdateUI.Elapsed += Timer_UpdateUI_Elapsed;
       timer_UpdateUI.Start();
+
+      AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
     }
 
-   
-    private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void Ins_OnSendValueWeight(double value, bool statusMachine, long machineKey)
     {
-      
+      try
+      {
+        if (machineKey == 3)
+        {
+          ucOverviewLine3.SetValueWeightRealtime(value);
+        }
+        else if (machineKey == 4)
+        {
+          ucOverviewLine4.SetValueWeightRealtime(value);
+        }
+      }
+      catch (Exception)
+      {
+
+      }
     }
 
+    private List<Datalog> dataChartline03 = new List<Datalog>();
+    private List<Datalog> dataChartline04 = new List<Datalog>();
 
     private void LoadDataDashBoard()
     {
-      //try
-      //{
-      //  if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
-      //  {
-      //    ResetDashboard();
-      //    return;
-      //  }
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          LoadDataDashBoard();
+        }));
+        return;
+      }
 
-      //  GetDt();
+      var dt03 = ucOverviewLine3.GetDt();
+      dataChartline03 = AppCore.Ins._sumaryDTOLine3.DatalogPass
+                      .Where(x => x.CreatedAt >= dt03.From && x.CreatedAt <= dt03.To)
+                      .OrderBy(x => x.CreatedAt)
+                      .ToList();
+      ucOverviewLine3.ChartLine(AppCore.Ins._sumaryDTOLine3, dataChartline03);
+      ucOverviewLine3.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
+      ucOverviewLine3.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
 
-      //  var list = AppCore.Ins._datalogsInShiftCurrent;
-      //  sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+      //lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine3.DatalogReject.Count().ToString();
+      //ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
+      //SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
+      //UpdateInforLoss(AppCore.Ins._sumaryDTOLine3);
 
-      //  //Data time
-      //  dataChartline = sumaryDTO.DatalogPass
-      //                  .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
-      //                  .OrderBy(x => x.CreatedAt)
-      //                  .ToList();
-      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
+      //SetContent(3);
 
 
-      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
 
-      //  //Data reject
-      //  reject = new List<DataRejectDTO>();
-      //  if (sumaryDTO.DatalogReject?.Count() > 0)
-      //  {
-      //    foreach (var data in sumaryDTO.DatalogReject)
-      //    {
-      //      DataRejectDTO dataReject = new DataRejectDTO();
-      //      dataReject.DateTime = (DateTime)data.CreatedAt;
-      //      dataReject.FGs = AppCore.Ins._productCurrent04.Code;
-      //      dataReject.Actual = data.Gross;
-      //      dataReject.Target = sumaryDTO.Target;
-      //      reject.Add(dataReject);
-      //    }
-      //  }
+      var dt04 = ucOverviewLine4.GetDt();
+      dataChartline04 = AppCore.Ins._sumaryDTOLine4.DatalogPass
+                      .Where(x => x.CreatedAt >= dt04.From && x.CreatedAt <= dt04.To)
+                      .OrderBy(x => x.CreatedAt)
+                      .ToList();
+      ucOverviewLine4.ChartLine(AppCore.Ins._sumaryDTOLine4, dataChartline04);
+      ucOverviewLine4.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
+      ucOverviewLine4.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
 
-      //  UpdateDataUI(true);
-      //}
-      //catch (Exception ex)
-      //{
-      //  Debug.WriteLine(ex.Message);
-      //}
+    }
+   
+    private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+      try
+      {
+        timer_UpdateUI.Stop();
+        LoadDataDashBoard();
+      }
+      catch (Exception ex)
+      {
+
+      }
+      finally
+      {
+        timer_UpdateUI.Start();
+      }
     }
 
+    private void ShowInforOperator(string op03, string op04, string qc, string shiftleader)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforOperator(op03, op04, qc, shiftleader); }));
+        return;
+      }
+
+      lbOP03.ValueStr = op03;
+      lbOP04.ValueStr = op04;
+      lbQC.ValueStr = qc;
+      lbShiftLeader.ValueStr = shiftleader;
+    }
+
+    private void ShowInforProduct(Product product, TareSetting tareSetting, long keyMachine)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforProduct(product, tareSetting, keyMachine); }));
+        return;
+      }
+
+      if (keyMachine==3)
+        ucOverviewLine3.ShowInforProduct(product, tareSetting);
+      else if (keyMachine == 4)
+        ucOverviewLine4.ShowInforProduct(product, tareSetting);
+    }
+
+  
 
     
     private void ResetDashboard()

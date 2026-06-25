@@ -118,5 +118,20 @@ namespace CheckWeigherFood.UC
       }
 
     }
+
+    public void SetValueWeightRealtime(double value)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetValueWeightRealtime(value);
+        }));
+        return;
+      }
+
+      this.lbWeightRealtime.Text = $"{value}";
+
+    }
   }
 }

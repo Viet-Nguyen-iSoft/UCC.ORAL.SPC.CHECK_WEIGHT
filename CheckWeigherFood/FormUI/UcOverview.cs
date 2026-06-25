@@ -1,5 +1,8 @@
-﻿using CheckWeigherFood.RJControl;
+﻿using CheckWeigherFood.Controls;
+using CheckWeigherFood.InitChart;
+using CheckWeigherFood.RJControl;
 using CheckWeigherFood.UC;
+using Database.DTO;
 using Database.Models;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
@@ -25,6 +28,7 @@ namespace CheckWeigherFood.FormUI
       CustomUI();
     }
 
+    private DataChart _dataChart = new DataChart();
     private void CustomUI()
     {
       ElipseControl elipseControl0 = new ElipseControl();
@@ -79,6 +83,14 @@ namespace CheckWeigherFood.FormUI
       lbLotCarton.SetForeColor = Color.Black;
     }
 
+
+    public void InitChart()
+    {
+      //Init chart
+      _dataChart.ChartControlInit(chartControl);
+    }
+
+
     public void SetKeyMachine(long keyMachine)
     {
       if (this.InvokeRequired)
@@ -95,6 +107,141 @@ namespace CheckWeigherFood.FormUI
     private void btnChangeOver_Click(object sender, EventArgs e)
     {
       OnSendChangeProduct?.Invoke(KeyMachine);
+    }
+
+    public void ShowInforProduct(Product product, TareSetting tareSetting)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ShowInforProduct(product, tareSetting); }));
+        return;
+      }
+
+      lbFGs.ValueStr = product?.Code ?? string.Empty;
+      lbNameProduct.ValueStr = product?.Description ?? string.Empty;
+      ucInformationDataSumary1.SetInforProduct(product, tareSetting?.Tube ?? 0.0, tareSetting?.TailTube ?? 0.0, tareSetting?.Carton ?? 0.0);
+
+      lbCarton.ValueStr = tareSetting?.Carton.ToString()??string.Empty;
+      lbTailTube.ValueStr = tareSetting?.TailTube.ToString()??string.Empty;
+      lbTube.ValueStr = tareSetting?.Tube.ToString()??string.Empty;
+
+      lbLotTube.ValueStr = tareSetting?.LotTube??string.Empty;
+      lbLotCarton.ValueStr = tareSetting?.LotCarton??string.Empty;
+
+    }
+
+    public void ChartLine(SumaryDTO sumaryDTO, List<Datalog> dataChartline)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { ChartLine(sumaryDTO, dataChartline); }));
+        return;
+      }
+
+      _dataChart.AddChartControlDashboard(chartControl, sumaryDTO, dataChartline, 0);
+    }
+
+
+    public (DateTime From, DateTime To) GetDt()
+    {
+      TimeSpan timeSpanFrom = ucFilterTime1.From;
+      TimeSpan timeSpanTo = ucFilterTime1.To;
+
+      DateTime from = DateTime.Today.Add(timeSpanFrom);
+      DateTime to = DateTime.Today.Add(timeSpanTo);
+
+      if (timeSpanTo < timeSpanFrom)
+      {
+        DateTime now = DateTime.Now;
+
+        if (now.Hour >= 0 && now.Hour <= 6)
+        {
+          from = from.AddDays(-1);
+        }
+        else
+        {
+          to = to.AddDays(1);
+        }
+      }
+
+      return (from, to);
+    }
+
+    public void SetTimeFilterChart(int shift)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetTimeFilterChart(shift); }));
+        return;
+      }
+
+      if (shift == 1)
+      {
+        ucFilterTime1.From = new TimeSpan(6, 0, 0);
+        ucFilterTime1.To = new TimeSpan(14, 0, 0);
+      }
+      else if (shift == 2)
+      {
+        ucFilterTime1.From = new TimeSpan(14, 0, 0);
+        ucFilterTime1.To = new TimeSpan(22, 0, 0);
+      }
+      else if (shift == 3)
+      {
+        ucFilterTime1.From = new TimeSpan(22, 0, 0);
+        ucFilterTime1.To = new TimeSpan(6, 0, 0);
+      }
+    }
+
+    public void SetDataOW_Mean(SumaryDTO sumaryDTO)
+    {
+      try
+      {
+        if (this.InvokeRequired)
+        {
+          this.Invoke(new Action(() =>
+          {
+            SetDataOW_Mean(sumaryDTO);
+          }));
+          return;
+        }
+
+        lbOverWeight.ValueData = sumaryDTO.OW.ToString();
+        lbTLTB.ValueData = sumaryDTO.Mean.ToString();
+
+        lbOverWeight.SetColor = (sumaryDTO.OW > 0.5) ? Color.Tomato : Color.DarkGreen;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+      }
+    }
+
+    public void SetSumaryDTO(SumaryDTO sumaryDTO)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetSumaryDTO(sumaryDTO);
+        }));
+        return;
+      }
+
+      ucInformationDataSumary1.SetSumaryDTO(sumaryDTO);
+    }
+
+    public void SetValueWeightRealtime(double value)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetValueWeightRealtime(value);
+        }));
+        return;
+      }
+
+      ucInformationDataSumary1.SetValueWeightRealtime(value);
     }
 
   }

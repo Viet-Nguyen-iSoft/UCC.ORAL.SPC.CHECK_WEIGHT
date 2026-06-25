@@ -46,10 +46,6 @@ namespace CheckWeigherFood.Controls
 
       InitLoadDataStartApp().Wait();
 
-
-      if (Environment.GetEnvironmentVariable("OPC_UA_ENABLE") == "1")
-        Init_OPC_UA();
-
       InitModbus();
 
       //Đăng kí sự kiện thao tác trong UI
@@ -219,8 +215,8 @@ namespace CheckWeigherFood.Controls
       FrmMasterData.Instance.OnSendMasterDataChanged += Instance_OnSendMasterDataChanged;
     }
 
-    private SumaryDTO _sumaryDTOLine3 { get; set; }
-    private SumaryDTO _sumaryDTOLine4 { get; set; }
+    public SumaryDTO _sumaryDTOLine3 { get; set; }
+    public SumaryDTO _sumaryDTOLine4 { get; set; }
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       try
@@ -230,11 +226,19 @@ namespace CheckWeigherFood.Controls
         {
           _sumaryDTOLine3 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line3, AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03);
         }
+        else
+        {
+          _sumaryDTOLine3 = new SumaryDTO();
+        }
 
         if (AppCore.Ins._datalogsInShiftCurrent_Line4?.Count() > 0)
         {
           _sumaryDTOLine4 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line4, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
         }
+        else
+        {
+          _sumaryDTOLine4 = new SumaryDTO();
+        }  
       }
       catch (Exception)
       {

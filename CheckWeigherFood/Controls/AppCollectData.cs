@@ -20,7 +20,7 @@ namespace CheckWeigherFood.Controls
 {
   public partial class AppCore
   {
-    public delegate void SendValueWeight(double value, bool statusMachine, string ok);
+    public delegate void SendValueWeight(double value, bool statusMachine, long machineKey);
     public event SendValueWeight OnSendValueWeight;
 
 
@@ -30,247 +30,213 @@ namespace CheckWeigherFood.Controls
     public delegate void SendMsgRead(string msg);
     public event SendMsgRead OnSendMsgRead;
 
-    private double previous = 0;
-    private bool firstApp = true;
+    private double previous03 = 0;
+    private bool firstApp03 = true;
 
-    /// 
-    //OPC -UA
-    private OpcUaClient opcClient = new OpcUaClient();
-    private string opcUrl = $"opc.tcp://10.157.120.23:49320";
-    private string opcWeight = "";
-    private string opcStatusMachine = "";
-
-    public System.Timers.Timer timer_read_opc_ua = new System.Timers.Timer();
-    public System.Timers.Timer timer_check_connect = new System.Timers.Timer();
-    private void Init_OPC_UA()
-    {
-      opcUrl = Environment.GetEnvironmentVariable("OPC_UA_HOST");
-      opcWeight = Environment.GetEnvironmentVariable("OPC_UA_WEIGHT");
-      opcStatusMachine = Environment.GetEnvironmentVariable("OPC_UA_STATUS_MACHINE");
-
-      timer_read_opc_ua.Interval = 200;
-      timer_read_opc_ua.Elapsed += Timer_read_opc_ua_Elapsed;
-      timer_read_opc_ua.Start();
-
-      timer_check_connect.Interval = 1000;
-      timer_check_connect.Elapsed += Timer_check_connect_Elapsed;
-      timer_check_connect.Start();
-    }
-   
-    private async void Timer_check_connect_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-    {
-      try
-      {
-        timer_check_connect.Stop();
-
-        if (opcClient.Connected == false)
-        {
-          opcClient = new OpcUaClient();
-          //UserIdentity userIdentity = new UserIdentity("admin", "admin");
-          UserIdentity userIdentity = new UserIdentity();
-          opcClient.UserIdentity = new UserIdentity(new AnonymousIdentityToken());
-          opcClient.ConnectComplete += OpcClient_ConnectComplete;
-          opcClient.UserIdentity = userIdentity;
-          await opcClient.ConnectServer(opcUrl);
-        }
-
-        //string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
-        //string msg = DateTime.Now.ToString("HH:mm:ss") + key + status;
-        //OnSendMsg?.Invoke(msg);
-      }
-      catch (Exception ex)
-      {
-        OnSendDebug?.Invoke(ex.ToString());
-      }
-      finally
-      {
-        timer_read_opc_ua.Start();
-      }
-    }
-
-    private async void Timer_read_opc_ua_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-    {
-      try
-      {
-        timer_read_opc_ua.Stop();
-
-        //string key = " ";
-        double valueSend = 0;
-        if (opcClient.Connected)
-        {
-          //key = " tren ";
-          //Value
-          //string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-          //nodeId_temp = "ns=2;s=OL04C.07.C4M00";
-          //nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-          var value_temp = opcClient.ReadNode(opcWeight);
-          double value = Convert.ToDouble(value_temp.Value);
-          value = Math.Round(value / 100.0, 2);
-
-          //string json = JsonConvert.SerializeObject(value_temp);
-          //string a = value_temp.GetType().FullName;
-          //OnSendJson?.Invoke(a + " - " + value_temp.StatusCode + " - " + value_temp.StatusCode.Code + "****" + json);
-          //valueSend = value;
-
-          ////Status
-          ////string nodeId_status_machine = "ns=2;s=OL04C.07.C4P00";
-          //var value_status_machine = opcClient.ReadNode(opcStatusMachine);
-          //int _status_machine = Convert.ToInt16(value_status_machine.Value);
-          int _status_machine = 1;
-
-          if (value != previous)
-          {
-            previous = value;
-            OnSendValueWeight?.Invoke(value, _status_machine == 1, "data ok");
-
-            double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
-            if (value > 0 && firstApp == false)
-            {
-              //await SaveDatalog(value);
-            }
-
-          }
-        }
-        else
-        {
-          //key = " duoi ";
-          OnSendValueWeight?.Invoke(-1, false, "Mất kết nối");
-        }
-
-
-        //string status = opcClient.Connected == true ? " - Kết nối" : " - Mất kết nối";
-        //string msg = DateTime.Now.ToString("HH:mm:ss") + key + status + " Value: " + valueSend.ToString();
-        //OnSendMsgRead?.Invoke(msg);
-        firstApp = false;
-      }
-      catch (Exception ex)
-      {
-        OnSendValueWeight?.Invoke(404, false, ex.ToString());
-      }
-      finally
-      {
-        timer_read_opc_ua.Start();
-      }
-    }
-
-
-    private void OpcClient_ConnectComplete(object sender, EventArgs e)
-    {
-      //try
-      //{
-      //  if (opcClient.Connected)
-      //  {
-      //    string nodeId_temp = "ns=2;s=OL04C.07.C4P00";
-      //    var value_temp = opcClient.ReadNode(nodeId_temp);
-
-      //    double value = Convert.ToDouble(value_temp.Value);
-
-      //    OnSendValueWeight?.Invoke(value, true, "ok");
-
-      //    opcClient.Disconnect();
-      //  }
-      //  else
-      //  {
-      //    //OnSendStatusSMC?.Invoke(false);
-      //    OnSendValueWeight?.Invoke(0.0, false, "Mất kết nối");
-      //  }
-      //}
-      //catch (Exception ex)
-      //{
-      //  OnSendValueWeight?.Invoke(0.0, false, ex.ToString());
-      //}
-    }
+    private double previous04 = 0;
+    private bool firstApp04 = true;
 
 
     /// <summary>
     /// //
     /// </summary>
-    private ModbusTcpService _modbus { get; set; }
+    private ModbusTcpService _modbusLine03 { get; set; }
+    private ModbusTcpService _modbusLine04 { get; set; }
     private void InitModbus()
     {
       string ipModbus = Environment.GetEnvironmentVariable("MODBUS_HOST");
       int portModbus = int.Parse(Environment.GetEnvironmentVariable("MODBUS_PORT"));
       ushort addressWeight = ushort.Parse(Environment.GetEnvironmentVariable("MODBUS_ADDRESS_WEIGHT"));
 
-      _modbus = new ModbusTcpService(ipModbus, portModbus, addressWeight, 1);
+      _modbusLine03 = new ModbusTcpService("10.2.3.56", 502, addressWeight, 1);
+      _modbusLine03.ConnectionChanged += Modbus_ConnectionChanged_Line03;
+      _modbusLine03.DataReceived += _modbus_DataReceived_Line03;
+      _modbusLine03.Error += _modbus_Error_Line03;
+      _modbusLine03.OnSendDebug += _modbus_OnSendDebug_Line03;
+      _modbusLine03.Start(200);
 
-      _modbus.ConnectionChanged += Modbus_ConnectionChanged;
-      _modbus.DataReceived += _modbus_DataReceived;
-      _modbus.Error += _modbus_Error;
-      _modbus.OnSendDebug += _modbus_OnSendDebug;
-      _modbus.Start(200);
+      _modbusLine04 = new ModbusTcpService("10.2.4.56", 502, addressWeight, 1);
+      _modbusLine04.ConnectionChanged += Modbus_ConnectionChanged_Line04;
+      _modbusLine04.DataReceived += _modbus_DataReceived_Line04;
+      _modbusLine04.Error += _modbus_Error_Line04;
+      _modbusLine04.OnSendDebug += _modbus_OnSendDebug_Line04;
+      _modbusLine04.Start(200);
     }
 
-    private void _modbus_OnSendDebug(object sender, string e)
+    private void _modbus_OnSendDebug_Line03(object sender, string e)
+    {
+      OnSendDebug?.Invoke(e);
+    }
+    private void _modbus_OnSendDebug_Line04(object sender, string e)
     {
       OnSendDebug?.Invoke(e);
     }
 
-    private void _modbus_Error(object sender, Exception e)
+    private void _modbus_Error_Line03(object sender, Exception e)
     {
        
     }
+    private void _modbus_Error_Line04(object sender, Exception e)
+    {
 
-    private int k = 0;
-    private async void _modbus_DataReceived(object sender, ModbusDataEventArgs e)
+    }
+
+    private async void _modbus_DataReceived_Line03(object sender, ModbusDataEventArgs e)
     {
       ushort value = e.Registers[1];
       double valueWeight = ((double)value) / 100.0;
-      OnSendValueWeight?.Invoke(valueWeight, true, "data ok");
+      OnSendValueWeight?.Invoke(valueWeight, true, 3);
 
-      k++;
-      string result = string.Join("-", e.Registers);
-      OnSendMsgRead?.Invoke(k.ToString() + "---"+ result);
+      //k++;
+      //string result = string.Join("-", e.Registers);
+      //OnSendMsgRead?.Invoke(k.ToString() + "---"+ result);
 
-      if (firstApp)
+      if (firstApp03)
       {
-        previous = value;
-        firstApp = false;
+        previous03 = value;
+        firstApp03 = false;
       }
 
-      if (previous!= value)
+      if (previous03 != value)
       {
-        previous = value;
+        previous03 = value;
         double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {
-          //await SaveDatalog(valueWeight);
+          if (_productCurrent03?.Id > 0 && _machineCurrent03?.ChangeOverId > 0)
+          {
+            var rs = await SaveDatalog03(value, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
+            if (rs != null)
+            {
+              _datalogsInShiftCurrent_Line3.Add(rs);
+            }
+          }
         }
       }  
     }
 
-    private void Modbus_ConnectionChanged(
+    private async void _modbus_DataReceived_Line04(object sender, ModbusDataEventArgs e)
+    {
+      ushort value = e.Registers[1];
+      double valueWeight = ((double)value) / 100.0;
+      OnSendValueWeight?.Invoke(valueWeight, true, 4);
+
+      //string result = string.Join("-", e.Registers);
+      //OnSendMsgRead?.Invoke(k.ToString() + "---" + result);
+
+      if (firstApp04)
+      {
+        previous04 = value;
+        firstApp04 = false;
+      }
+
+      if (previous04 != value)
+      {
+        previous04 = value;
+        double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
+        if (valueWeight > valueFilter)
+        {
+          if (_productCurrent04?.Id > 0 && _machineCurrent04?.ChangeOverId > 0)
+          {
+            var rs = await SaveDatalog04(value, _productCurrent04.Id, _machineCurrent04.ChangeOverId);
+            if (rs != null)
+            {
+              _datalogsInShiftCurrent_Line4.Add(rs);
+            }
+          }
+        }
+      }
+    }
+
+    private void Modbus_ConnectionChanged_Line03(
     object sender,
     bool connected)
     {
 
     }
+    private void Modbus_ConnectionChanged_Line04(
+   object sender,
+   bool connected)
+    {
 
-
+    }
 
 
 
 
     private Random random = new Random();
-    public async void RandomDataWeight()
+    public async void RandomDataWeight03()
     {
-      double max = 129.0;
-      double min = 132.0;
-
-      max = 41;
-      min = 39;
-
-      max = 129;
-      min = 140;
+      double max = 186.0;
+      double min = 170.0;
 
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
-      OnSendValueWeight?.Invoke(value, true, "data ok");
-      //await SaveDatalog(value);
+      OnSendValueWeight?.Invoke(value, true, 3);
+      if (_productCurrent03?.Id>0 && _machineCurrent03?.ChangeOverId>0)
+      {
+        var rs = await SaveDatalog03(value, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
+        if (rs != null)
+        {
+          _datalogsInShiftCurrent_Line3.Add(rs);
+        }
+      }  
+        
+    }
+
+    public async void RandomDataWeight04()
+    {
+      double max = 185.0;
+      double min = 166.0;
+
+      double value = random.NextDouble() * (max - min) + min;
+      value = Math.Round(value, 2);
+      OnSendValueWeight?.Invoke(value, true, 4);
+      if (_productCurrent04?.Id > 0 && _machineCurrent04?.ChangeOverId > 0)
+      {
+        var rs = await SaveDatalog03(value, _productCurrent04.Id, _machineCurrent04.ChangeOverId);
+        if (rs != null)
+        {
+          _datalogsInShiftCurrent_Line4.Add(rs);
+        }  
+      }  
     }
 
 
-    private async Task<Datalog> SaveDatalog(double value,long machineId,long productId, long changeOverId)
+    private async Task<Datalog> SaveDatalog03(double value,long productId, long changeOverId)
+    {
+      try
+      {
+        Datalog datalog = new Datalog();
+        datalog.Gross = value;
+        datalog.TareTube = (_tareSettingCurrent03?.Tube ?? 0.0);
+        datalog.TareCarton = (_tareSettingCurrent03?.Carton ?? 0.0);
+        datalog.TareTailTube = (_tareSettingCurrent03?.TailTube ?? 0.0);
+        datalog.LotTube = _tareSettingCurrent03?.LotTube;
+        datalog.LotCarton = _tareSettingCurrent03?.LotCarton;
+        datalog.EnumStatusRecord = CheckStatus(_productCurrent03, _tareSettingCurrent03, value);
+
+
+        if (_operationSettingCurrent03?.OP != null)
+          datalog.NameEmployeeOP = _operationSettingCurrent03?.OP;
+        if (_operationSettingCurrent03?.QC != null)
+          datalog.NameEmployeeQC = _operationSettingCurrent03?.QC;
+        if (_operationSettingCurrent03?.ShiftLeader != null)
+          datalog.NameEmployeeShiftLeader = _operationSettingCurrent03?.ShiftLeader;
+
+        datalog.MachineId = _machineCurrent03?.Id;
+        datalog.ProductId = productId;
+        datalog.ChangeOverId = changeOverId;
+        datalog.CreatedAt = DateTime.Now;
+        var rs = await _datalogService.AddAsync(datalog);
+        return rs;
+      }
+      catch (Exception)
+      {
+        throw;
+      }
+    }
+    private async Task<Datalog> SaveDatalog04(double value, long productId, long changeOverId)
     {
       try
       {
@@ -282,19 +248,18 @@ namespace CheckWeigherFood.Controls
         datalog.LotTube = _tareSettingCurrent04?.LotTube;
         datalog.LotCarton = _tareSettingCurrent04?.LotCarton;
         datalog.EnumStatusRecord = CheckStatus(_productCurrent04, _tareSettingCurrent04, value);
-        
 
-        //if (_operationSettingCurrent?.OP != null)
-        //  datalog.NameEmployeeOP = _operationSettingCurrent?.OP;
-        //if (_operationSettingCurrent?.QC != null)
-        //  datalog.NameEmployeeQC = _operationSettingCurrent?.QC;
-        //if (_operationSettingCurrent?.ShiftLeader != null)
-        //  datalog.NameEmployeeShiftLeader = _operationSettingCurrent?.ShiftLeader;
 
-        datalog.MachineId = _machineCurrent03?.Id;
+        if (_operationSettingCurrent04?.OP != null)
+          datalog.NameEmployeeOP = _operationSettingCurrent04?.OP;
+        if (_operationSettingCurrent04?.QC != null)
+          datalog.NameEmployeeQC = _operationSettingCurrent04?.QC;
+        if (_operationSettingCurrent04?.ShiftLeader != null)
+          datalog.NameEmployeeShiftLeader = _operationSettingCurrent04?.ShiftLeader;
+
+        datalog.MachineId = _machineCurrent04?.Id;
         datalog.ProductId = productId;
         datalog.ChangeOverId = changeOverId;
-        datalog.MachineId = machineId;
         datalog.CreatedAt = DateTime.Now;
         var rs = await _datalogService.AddAsync(datalog);
         return rs;
@@ -304,6 +269,7 @@ namespace CheckWeigherFood.Controls
         throw;
       }
     }
+
 
     private static EnumStatusRecord CheckStatus(Product product, TareSetting tareSetting, double net)
     {

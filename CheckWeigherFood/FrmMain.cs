@@ -184,7 +184,14 @@ namespace CheckWeigherFood
 
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-      AppCore.Ins.RandomDataWeight();
+      if (keyMachine==3)
+      {
+        AppCore.Ins.RandomDataWeight03();
+      }  
+      else
+      {
+        AppCore.Ins.RandomDataWeight04();
+      }  
     }
 
     private void btnMenu_Click(object sender, EventArgs e)
@@ -216,8 +223,10 @@ namespace CheckWeigherFood
     }
 
     private bool enableTime = false;
+    private long keyMachine = 3;
     private void picLogoVule_Click(object sender, EventArgs e)
     {
+      keyMachine = 4;
       enableTime = !enableTime;
       if (enableTime)
         timer_UpdateUI.Start();
@@ -226,6 +235,9 @@ namespace CheckWeigherFood
       //AppCore.Ins.RandomDataWeight();
     }
 
-    
+    private void lbLine_Click(object sender, EventArgs e)
+    {
+      keyMachine = keyMachine == 3 ? 4 : 3;
+    }
   }
 }
