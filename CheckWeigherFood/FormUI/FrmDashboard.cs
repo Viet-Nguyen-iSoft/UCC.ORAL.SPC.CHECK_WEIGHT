@@ -50,11 +50,9 @@ namespace CheckWeigherFood.FrmChild
     }
     #endregion
 
-    private EnumStatusMachine _enumStatusMachine { get; set; }
     private Timer timerMarquee = new Timer();
     private Timer timerBlinkStatus = new Timer();
     private Timer timerBlinkStatusInforline = new Timer();
-    private bool _statusConnectOpcUa = false;
 
     private void CustomUI()
     {
@@ -141,8 +139,6 @@ namespace CheckWeigherFood.FrmChild
     private List<DataRejectDTO> _reject04 = new List<DataRejectDTO>();
     private int _numberRejectLast04 = -1;
 
-    private System.Threading.Timer _watchdogTimer;
-    private readonly object _lockObj = new object();
     private void FrmDashboard_Load(object sender, EventArgs e)
     {
       //Init chart
@@ -185,8 +181,6 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
       AppCore.Ins.OnSendMsgRead += Ins_OnSendMsgRead;
       AppCore.Ins.OnSendDebug += Ins_OnSendDebug;
-
-      InitWatchdog();
     }
 
     private void CbbLine_SelectedIndexChanged(object sender, EventArgs e)
@@ -290,32 +284,6 @@ namespace CheckWeigherFood.FrmChild
       {
         timerBlinkStatusInforline.Start();
       }
-    }
-
-    public void InitWatchdog()
-    {
-      _watchdogTimer = new System.Threading.Timer(
-          WatchdogTimeout,
-          null,
-          Timeout.Infinite,
-          Timeout.Infinite);
-    }
-
-    private void ResetWatchdog()
-    {
-      lock (_lockObj)
-      {
-        _watchdogTimer?.Change(
-            TimeSpan.FromSeconds(60),
-            Timeout.InfiniteTimeSpan);
-
-        _enumStatusMachine = EnumStatusMachine.Run;
-      }
-    }
-
-    private void WatchdogTimeout(object state)
-    {
-      _enumStatusMachine = EnumStatusMachine.Stop;
     }
 
     private void CheckInforLine()
@@ -454,9 +422,6 @@ namespace CheckWeigherFood.FrmChild
           ucInformationDataSumary1.SetWeightRealtime(value);
         }
       }
-
-      _statusConnectOpcUa = success;
-      ResetWatchdog();
     }
 
     private void TimerMarquee_Tick(object sender, EventArgs e)
@@ -559,54 +524,10 @@ namespace CheckWeigherFood.FrmChild
       }
       GetDt();
 
-      //try
-      //{
-      //  if (AppCore.Ins._datalogsInShiftCurrent == null || AppCore.Ins._datalogsInShiftCurrent?.Count() == 0)
-      //  {
-      //    ResetDashboard();
-      //    return;
-      //  }
-
-      //  GetDt();
-
-      //  var list = AppCore.Ins._datalogsInShiftCurrent;
-      //  sumaryDTO = AppCore.Ins.SumaryDTOData(list, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
-
-      //  //Data time
-      //  dataChartline = sumaryDTO.DatalogPass
-      //                  .Where(x => x.CreatedAt >= _from && x.CreatedAt <= _to)
-      //                  .OrderBy(x=>x.CreatedAt)
-      //                  .ToList();
-      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
-
-
-      //  //dataTimeData = sumaryDTO.DatalogPass.Select(x => x.CreatedAt.ToString()).ToList();
-
-      //  //Data reject
-      //  reject = new List<DataRejectDTO>();
-      //  if (sumaryDTO.DatalogReject?.Count() > 0)
-      //  {
-      //    foreach (var data in sumaryDTO.DatalogReject)
-      //    {
-      //      DataRejectDTO dataReject = new DataRejectDTO();
-      //      dataReject.DateTime = (DateTime)data.CreatedAt;
-      //      dataReject.FGs = AppCore.Ins._productCurrent04.Code;
-      //      dataReject.Actual = data.Gross;
-      //      dataReject.Target = sumaryDTO.Target;
-      //      reject.Add(dataReject);
-      //    }
-      //  }
-
-      //  UpdateDataUI(true);
-      //}
-      //catch (Exception ex)
-      //{
-      //  Debug.WriteLine(ex.Message);
-      //}
-
       if (cbbLine.SelectedIndex != -1)
       {
         int line = int.Parse(cbbLine.SelectedItem.ToString());
+        SetStatusMachine(line);
         if (line == 3)
         {
           //Data reject
@@ -729,43 +650,53 @@ namespace CheckWeigherFood.FrmChild
       //}
     }
 
-    private void SetStatusMachine()
+    private void SetStatusMachine(long keyMachine)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          SetStatusMachine();
+          SetStatusMachine(keyMachine);
         }));
         return;
       }
 
-      _statusConnectOpcUa = true;
-      if (_statusConnectOpcUa)
+      if (keyMachine == 3)
       {
-        timerBlinkStatus.Stop();
-        if (_enumStatusMachine == EnumStatusMachine.Run)
+        if (AppCore.Ins._enumStatusMachine03 == EnumStatusMachine.Run)
         {
           lbStatusMachine.Text = "MÁY CHẠY";
           lbStatusMachine.ForeColor = Color.LightGreen;
         }
-        else if (_enumStatusMachine == EnumStatusMachine.Stop)
+        else if (AppCore.Ins._enumStatusMachine03 == EnumStatusMachine.Stop)
         {
           lbStatusMachine.Text = "MÁY DỪNG";
-          lbStatusMachine.ForeColor = Color.Yellow;
+          lbStatusMachine.ForeColor = Color.Tomato;
         }
-      } 
-      else
-      {
-        if (_enumStatusMachine!= EnumStatusMachine.Disconnect)
+        else if (AppCore.Ins._enumStatusMachine03 == EnumStatusMachine.Disconnect)
         {
-          _enumStatusMachine = EnumStatusMachine.Disconnect;
-          timerBlinkStatus.Start();
-        }  
-        
-        lbStatusMachine.Text = "MẤT KẾT NỐI OPC UA";
-        lbStatusMachine.ForeColor = Color.Red;
-      }  
+          lbStatusMachine.Text = "MẤT KẾT NỐI";
+          lbStatusMachine.ForeColor = Color.Gray;
+        }
+      }
+      else if (keyMachine == 4)
+      {
+        if (AppCore.Ins._enumStatusMachine04 == EnumStatusMachine.Run)
+        {
+          lbStatusMachine.Text = "MÁY CHẠY";
+          lbStatusMachine.ForeColor = Color.LightGreen;
+        }
+        else if (AppCore.Ins._enumStatusMachine04 == EnumStatusMachine.Stop)
+        {
+          lbStatusMachine.Text = "MÁY DỪNG";
+          lbStatusMachine.ForeColor = Color.Tomato;
+        }
+        else if (AppCore.Ins._enumStatusMachine04 == EnumStatusMachine.Disconnect)
+        {
+          lbStatusMachine.Text = "MẤT KẾT NỐI";
+          lbStatusMachine.ForeColor = Color.Gray;
+        }
+      }
     }
 
     private void SetContent(long keyMachine)
@@ -941,31 +872,6 @@ namespace CheckWeigherFood.FrmChild
       {
         Console.WriteLine(ex.Message);
       }
-    }
-
-
-
-    private void btnSendLoBB_Click(object sender, EventArgs e)
-    {
-      //if (Properties.Settings.Default.LoBB != ucTextBoxLoBB.Texts)
-      //{
-      //  if (OnSendSaveLoBB != null)
-      //  {
-      //    OnSendSaveLoBB(this, this.ucTextBoxLoBB.Texts);
-      //  }
-      //  Properties.Settings.Default.LoBB = this.ucTextBoxLoBB.Texts;
-      //  Properties.Settings.Default.Save();
-      //  isLoBBSendPLC = true;
-      //}
-
-      //new FrmInformation().ShowMessage($"Lô bao bì: {this.ucTextBoxLoBB.Texts} đã được thay đổi !", eImage.Information);
-      //AppCore.Ins.LogActiveAppToFileLog($"Thay đổi lô BB: {this.ucTextBoxLoBB.Texts}");
-    }
-
-
-    private void label9_Click(object sender, EventArgs e)
-    {
-
     }
 
     private void btnChangeOperator_Click(object sender, EventArgs e)

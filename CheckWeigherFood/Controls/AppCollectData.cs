@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static CheckWeigherFood.Controls.AppCore;
 using static Database.Enum;
@@ -61,7 +62,68 @@ namespace CheckWeigherFood.Controls
       _modbusLine04.Error += _modbus_Error_Line04;
       _modbusLine04.OnSendDebug += _modbus_OnSendDebug_Line04;
       _modbusLine04.Start(200);
+
+      InitWatchdog();
     }
+
+    private System.Threading.Timer _watchdogTimer03;
+    private readonly object _lockObj03 = new object();
+    public EnumStatusMachine _enumStatusMachine03  = EnumStatusMachine.Stop;
+
+    private System.Threading.Timer _watchdogTimer04;
+    private readonly object _lockObj04 = new object();
+    public EnumStatusMachine _enumStatusMachine04 = EnumStatusMachine.Stop;
+
+    public void InitWatchdog()
+    {
+      _watchdogTimer03 = new System.Threading.Timer(
+          WatchdogTimeout03,
+          null,
+          Timeout.Infinite,
+          Timeout.Infinite);
+
+      _watchdogTimer04 = new System.Threading.Timer(
+          WatchdogTimeout04,
+          null,
+          Timeout.Infinite,
+          Timeout.Infinite);
+    }
+
+    private void ResetWatchdog03()
+    {
+      lock (_lockObj03)
+      {
+        _watchdogTimer03?.Change(
+            TimeSpan.FromSeconds(60),
+            Timeout.InfiniteTimeSpan);
+
+        _enumStatusMachine03 = EnumStatusMachine.Run;
+      }
+    }
+    private void ResetWatchdog04()
+    {
+      lock (_lockObj04)
+      {
+        _watchdogTimer04?.Change(
+            TimeSpan.FromSeconds(60),
+            Timeout.InfiniteTimeSpan);
+
+        _enumStatusMachine04 = EnumStatusMachine.Run;
+      }
+    }
+
+    private void WatchdogTimeout03(object state)
+    {
+      _enumStatusMachine03 = EnumStatusMachine.Stop;
+    }
+    private void WatchdogTimeout04(object state)
+    {
+      _enumStatusMachine04 = EnumStatusMachine.Stop;
+    }
+
+
+
+
 
     private void _modbus_OnSendDebug_Line03(object sender, string e)
     {
@@ -93,22 +155,23 @@ namespace CheckWeigherFood.Controls
 
       if (firstApp03)
       {
-        previous03 = value;
+        previous03 = valueWeight;
         firstApp03 = false;
       }
 
-      if (previous03 != value)
+      if (previous03 != valueWeight)
       {
-        previous03 = value;
+        previous03 = valueWeight;
         double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {
           if (_productCurrent03?.Id > 0 && _machineCurrent03?.ChangeOverId > 0)
           {
-            var rs = await SaveDatalog03(value, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
+            var rs = await SaveDatalog03(valueWeight, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
             if (rs != null)
             {
               _datalogsInShiftCurrent_Line3.Add(rs);
+              ResetWatchdog03();
             }
           }
         }
@@ -126,22 +189,23 @@ namespace CheckWeigherFood.Controls
 
       if (firstApp04)
       {
-        previous04 = value;
+        previous04 = valueWeight;
         firstApp04 = false;
       }
 
-      if (previous04 != value)
+      if (previous04 != valueWeight)
       {
-        previous04 = value;
+        previous04 = valueWeight;
         double valueFilter = (_productCurrent04?.LSL ?? 0.0) * 0.5;
         if (valueWeight > valueFilter)
         {
           if (_productCurrent04?.Id > 0 && _machineCurrent04?.ChangeOverId > 0)
           {
-            var rs = await SaveDatalog04(value, _productCurrent04.Id, _machineCurrent04.ChangeOverId);
+            var rs = await SaveDatalog04(valueWeight, _productCurrent04.Id, _machineCurrent04.ChangeOverId);
             if (rs != null)
             {
               _datalogsInShiftCurrent_Line4.Add(rs);
+              ResetWatchdog04();
             }
           }
         }

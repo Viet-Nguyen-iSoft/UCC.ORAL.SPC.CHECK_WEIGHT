@@ -2,6 +2,7 @@
 using CheckWeigherFood.FrmChild;
 using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
+using CheckWeigherFood.RJControl;
 using CheckWeigherFood.UC;
 using Database.DTO;
 using Database.Models;
@@ -28,6 +29,7 @@ namespace CheckWeigherFood.FormUI
     public FrmOverview()
     {
       InitializeComponent();
+      CustomUI();
       RegisterService();
       ucOverviewLine3.SetKeyMachine(3);
       ucOverviewLine4.SetKeyMachine(4);
@@ -35,6 +37,16 @@ namespace CheckWeigherFood.FormUI
 
       ucOverviewLine3.OnSendChangeProduct += UcOverview_OnSendChangeProduct;
       ucOverviewLine4.OnSendChangeProduct += UcOverview_OnSendChangeProduct;
+    }
+    private void CustomUI()
+    {
+      ElipseControl elipseControl0 = new ElipseControl();
+      elipseControl0.TargetControl = tableLayoutPanel3;
+      elipseControl0.CornerRadius = 20;
+
+      ElipseControl elipseControl1 = new ElipseControl();
+      elipseControl1.TargetControl = tableLayoutPanel4;
+      elipseControl1.CornerRadius = 20;
     }
 
     private void UcOverview_OnSendChangeProduct(long obj)
@@ -44,7 +56,7 @@ namespace CheckWeigherFood.FormUI
       popupChangeFGs.ShowDialog();
     }
 
-    private async void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
+    private void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
     {
       try
       {
@@ -166,6 +178,15 @@ namespace CheckWeigherFood.FormUI
       ucOverviewLine3.ChartLine(AppCore.Ins._sumaryDTOLine3, dataChartline03);
       ucOverviewLine3.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
       ucOverviewLine3.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
+      ucOverviewLine3.SetStatusMachine(AppCore.Ins._enumStatusMachine03);
+      if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Run)
+      {
+        tableLayoutPanel3.BackColor = Color.Lime;
+      }
+      else if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Stop)
+      {
+        tableLayoutPanel3.BackColor = Color.Tomato;
+      }  
 
       //lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine3.DatalogReject.Count().ToString();
       //ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
@@ -184,7 +205,16 @@ namespace CheckWeigherFood.FormUI
       ucOverviewLine4.ChartLine(AppCore.Ins._sumaryDTOLine4, dataChartline04);
       ucOverviewLine4.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
       ucOverviewLine4.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
+      ucOverviewLine4.SetStatusMachine(AppCore.Ins._enumStatusMachine04);
 
+      if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Run)
+      {
+        tableLayoutPanel4.BackColor = Color.Lime;
+      }
+      else if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Stop)
+      {
+        tableLayoutPanel4.BackColor = Color.Tomato;
+      }
     }
    
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

@@ -284,7 +284,7 @@
       this.btnDashBoard.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
       this.btnDashBoard.Size = new System.Drawing.Size(170, 51);
       this.btnDashBoard.TabIndex = 22;
-      this.btnDashBoard.Text = "          TRANG CHÍNH";
+      this.btnDashBoard.Text = "          CHI TIẾT";
       this.btnDashBoard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       this.btnDashBoard.UseVisualStyleBackColor = false;
       // 

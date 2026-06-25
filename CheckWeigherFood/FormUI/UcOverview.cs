@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Database.Enum;
 using Color = System.Drawing.Color;
 
 namespace CheckWeigherFood.FormUI
@@ -47,9 +48,9 @@ namespace CheckWeigherFood.FormUI
       elipseControl4.TargetControl = tableLayoutPanel5;
       elipseControl4.CornerRadius = 20;
 
-      ElipseControl elipseControl5 = new ElipseControl();
-      elipseControl5.TargetControl = tableLayoutPanel10;
-      elipseControl5.CornerRadius = 20;
+      //ElipseControl elipseControl5 = new ElipseControl();
+      //elipseControl5.TargetControl = tableLayoutPanel10;
+      //elipseControl5.CornerRadius = 20;
 
       ElipseControl elipseControl6 = new ElipseControl();
       elipseControl6.TargetControl = tableLayoutPanel24;
@@ -244,5 +245,42 @@ namespace CheckWeigherFood.FormUI
       ucInformationDataSumary1.SetValueWeightRealtime(value);
     }
 
+    public void SetStatusMachine(EnumStatusMachine enumStatusMachine)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetStatusMachine(enumStatusMachine);
+        }));
+        return;
+      }
+
+      if (enumStatusMachine == EnumStatusMachine.Run)
+      {
+        lbStatusMachine.Text = "MÁY CHẠY";
+        lbStatusMachine.ForeColor = Color.LightGreen;
+      }
+      else if (enumStatusMachine == EnumStatusMachine.Stop)
+      {
+        lbStatusMachine.Text = "MÁY DỪNG";
+        lbStatusMachine.ForeColor = Color.Tomato;
+      }
+      else if (enumStatusMachine == EnumStatusMachine.Disconnect)
+      {
+        lbStatusMachine.Text = "MẤT KẾT NỐI";
+        lbStatusMachine.ForeColor = Color.Gray;
+      }
+    }
+
+    private void btnSettingTareAndLot_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void btnChangeLot_Click(object sender, EventArgs e)
+    {
+
+    }
   }
 }
