@@ -23,6 +23,9 @@ namespace CheckWeigherFood.FormUI
   {
     private long KeyMachine {  get; set; }
     public event Action<long> OnSendChangeProduct;
+    public event Action<long> OnSendClickDetail;
+    public event Action<long> OnSendSettingTare;
+    public event Action<long> OnSendChangeLot;
     public UcOverview()
     {
       InitializeComponent();
@@ -273,14 +276,54 @@ namespace CheckWeigherFood.FormUI
       }
     }
 
-    private void btnSettingTareAndLot_Click(object sender, EventArgs e)
+    public void SetInforTare(TareSetting tareSetting)
     {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetInforTare(tareSetting); }));
+        return;
+      }
 
+      lbTube.ValueStr = tareSetting?.Tube.ToString() ?? string.Empty;
+      lbTailTube.ValueStr = tareSetting?.TailTube.ToString() ?? string.Empty;
+      lbCarton.ValueStr = tareSetting?.Carton.ToString() ?? string.Empty;
+    }
+
+    public void SetInforLot(TareSetting tareSetting)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetInforLot(tareSetting); }));
+        return;
+      }
+
+      lbLotTube.ValueStr = tareSetting?.LotTube ?? string.Empty;
+      lbLotCarton.ValueStr = tareSetting?.LotCarton ?? string.Empty;
+    }
+
+    private void btnSettingTare_Click(object sender, EventArgs e)
+    {
+      OnSendSettingTare?.Invoke(KeyMachine);
     }
 
     private void btnChangeLot_Click(object sender, EventArgs e)
     {
+      OnSendChangeLot?.Invoke(KeyMachine);
+    }
 
+    private void lbLine_Click(object sender, EventArgs e)
+    {
+      OnSendClickDetail?.Invoke(KeyMachine);
+    }
+
+    private void label3_Click(object sender, EventArgs e)
+    {
+      OnSendClickDetail?.Invoke(KeyMachine);
+    }
+
+    private void lbStatusMachine_Click(object sender, EventArgs e)
+    {
+      OnSendClickDetail?.Invoke(KeyMachine);
     }
   }
 }

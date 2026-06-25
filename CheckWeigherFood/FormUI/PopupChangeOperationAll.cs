@@ -26,6 +26,18 @@ namespace CheckWeigherFood.FormUI
       this.Load += PopupChangeOperator_Load;
     }
 
+    private string _op3 {  get; set; }
+    private string _op4 {  get; set; }
+    private string _qc {  get; set; }
+    private string _shitLeader {  get; set; }
+    public PopupChangeOperationAll(string op03, string op04, string qc, string shiftleader):this()
+    {
+      _op3 = op03;
+      _op4 = op04;
+      _qc = qc;
+      _shitLeader = shiftleader;
+    }
+
     private EmployeeService _employeeService { get; set; }
     private void RegisterService()
     {
@@ -48,6 +60,27 @@ namespace CheckWeigherFood.FormUI
 
       var tc = _employeeList?.Where(x => x.EnumTypeEmployee == EnumTypeEmployee.ShiftLeader).ToList();
       ShowCbb(cbbShiftLeader, tc);
+
+      if (!string.IsNullOrEmpty(_op3))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _op3);
+        cbbOP03.SelectedItem = rs;
+      }
+      if (!string.IsNullOrEmpty(_op4))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _op4);
+        cbbOP04.SelectedItem = rs;
+      }
+      if (!string.IsNullOrEmpty(_qc))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _qc);
+        cbbQC.SelectedItem = rs;
+      }
+      if (!string.IsNullOrEmpty(_shitLeader))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _shitLeader);
+        cbbShiftLeader.SelectedItem = rs;
+      }
     }
 
     private async Task<List<Employee>> LoadData(EnumTypeEmployee enumTypeEmployee)

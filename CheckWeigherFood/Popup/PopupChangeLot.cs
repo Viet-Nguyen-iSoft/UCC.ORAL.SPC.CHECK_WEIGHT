@@ -17,7 +17,7 @@ namespace CheckWeigherFood.Popup
 {
   public partial class PopupChangeLot : Form
   {
-    public event Action<TareSetting> OnChangeTareSetting;
+    public event Action<TareSetting, long> OnChangeTareSetting;
     public PopupChangeLot()
     {
       InitializeComponent();
@@ -84,7 +84,7 @@ namespace CheckWeigherFood.Popup
 
         await _tareSettingService.AddAsync(tareSetting);
 
-        OnChangeTareSetting?.Invoke(tareSetting);
+        OnChangeTareSetting?.Invoke(tareSetting, _keyMachine);
         this.Close();
       }
       catch (Exception ex)

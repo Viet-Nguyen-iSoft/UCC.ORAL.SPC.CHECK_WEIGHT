@@ -25,6 +25,12 @@ namespace CheckWeigherFood.FormUI
 {
   public partial class FrmOverview : Form
   {
+    public event Action<long> OnSendChangeProduct;
+    public event Action<long> OnSendChangeTare;
+    public event Action<long> OnSendChangeLot;
+    public event Action OnSendChangeOperator;
+    public event Action<long> OnSendClickDetail;
+
     private OperationSettingService _operationSettingService { get; set; }
     public FrmOverview()
     {
@@ -37,7 +43,153 @@ namespace CheckWeigherFood.FormUI
 
       ucOverviewLine3.OnSendChangeProduct += UcOverview_OnSendChangeProduct;
       ucOverviewLine4.OnSendChangeProduct += UcOverview_OnSendChangeProduct;
+
+      ucOverviewLine3.OnSendSettingTare += UcOverviewLine_OnSendSettingTare;
+      ucOverviewLine4.OnSendSettingTare += UcOverviewLine_OnSendSettingTare;
+
+      ucOverviewLine3.OnSendChangeLot += UcOverviewLine_OnSendChangeLot;
+      ucOverviewLine4.OnSendChangeLot += UcOverviewLine_OnSendChangeLot;
+
+      ucOverviewLine3.OnSendClickDetail += UcOverviewLine_OnSendClickDetail;
+      ucOverviewLine4.OnSendClickDetail += UcOverviewLine_OnSendClickDetail;
+
+      FrmDashboard.Instance.OnSendChangeProduct += Instance_OnSendChangeProduct;
+      FrmDashboard.Instance.OnSendChangeTare += Instance_OnSendChangeTare;
+      FrmDashboard.Instance.OnSendChangeLot += Instance_OnSendChangeLot;
+      FrmDashboard.Instance.OnSendChangeOperator += Instance_OnSendChangeOperator;
     }
+
+    private void Instance_OnSendChangeLot(long keyMachine)
+    {
+      if (keyMachine == 3)
+      {
+        ucOverviewLine3.SetInforLot(AppCore.Ins._tareSettingCurrent03);
+      }
+      else if (keyMachine == 4)
+      {
+        ucOverviewLine4.SetInforLot(AppCore.Ins._tareSettingCurrent04);
+      }
+    }
+
+    private void UcOverviewLine_OnSendChangeLot(long keyMachine)
+    {
+      if (keyMachine == 3)
+      {
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent03, keyMachine);
+        popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
+        popupChangeLot.ShowDialog();
+      }
+      else if (keyMachine == 4)
+      {
+        PopupChangeLot popupChangeLot = new PopupChangeLot(AppCore.Ins._tareSettingCurrent04, keyMachine);
+        popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
+        popupChangeLot.ShowDialog();
+      }
+    }
+
+    private void PopupChangeLot_OnChangeTareSetting(TareSetting obj, long keyMachine)
+    {
+      try
+      {
+        if (keyMachine == 3)
+        {
+          AppCore.Ins._tareSettingCurrent03 = obj;
+          ucOverviewLine3.SetInforLot(obj);
+        }
+        else if (keyMachine == 4)
+        {
+          AppCore.Ins._tareSettingCurrent04 = obj;
+          ucOverviewLine4.SetInforLot(obj);
+        }
+
+        OnSendChangeLot?.Invoke(keyMachine);
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
+    }
+
+    private void UcOverviewLine_OnSendSettingTare(long obj)
+    {
+      if (obj == 3)
+      {
+        PopupChangeTare popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent03, obj);
+        popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
+        popupChangeTare.ShowDialog();
+      }
+      else if (obj == 4)
+      {
+        PopupChangeTare popupChangeTare = new PopupChangeTare(AppCore.Ins._tareSettingCurrent04, obj);
+        popupChangeTare.OnChangeTareSetting += PopupChangeTare_OnChangeTareSetting;
+        popupChangeTare.ShowDialog();
+      }
+    }
+
+    private void PopupChangeTare_OnChangeTareSetting(TareSetting obj, long keyMachine)
+    {
+      try
+      {
+        if (keyMachine == 3)
+        {
+          AppCore.Ins._tareSettingCurrent03 = obj;
+          ucOverviewLine3.SetInforLot(AppCore.Ins._tareSettingCurrent03);
+          ucOverviewLine3.ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03);
+        }
+        else if (keyMachine == 4)
+        {
+          AppCore.Ins._tareSettingCurrent04 = obj;
+          ucOverviewLine4.SetInforLot(AppCore.Ins._tareSettingCurrent04);
+          ucOverviewLine4.ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+        }
+
+        OnSendChangeTare?.Invoke(keyMachine);
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
+    }
+
+
+
+    private void Instance_OnSendChangeTare(long keyMachine)
+    {
+      if (keyMachine == 3)
+      {
+        ucOverviewLine3.SetInforTare(AppCore.Ins._tareSettingCurrent03);
+        ShowInforProduct(AppCore.Ins._productCurrent03,
+                          AppCore.Ins._tareSettingCurrent03, 3);
+      }
+      else if (keyMachine == 4)
+      {
+        ucOverviewLine4.SetInforTare(AppCore.Ins._tareSettingCurrent04);
+        ShowInforProduct(AppCore.Ins._productCurrent04,
+                          AppCore.Ins._tareSettingCurrent04, 4);
+      }
+    }
+
+    private void UcOverviewLine_OnSendClickDetail(long obj)
+    {
+      OnSendClickDetail?.Invoke(obj);
+    }
+
+    private void Instance_OnSendChangeOperator(long obj)
+    {
+      ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.QC ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.ShiftLeader ?? string.Empty
+        );
+    }
+
+    private void Instance_OnSendChangeProduct(long obj)
+    {
+      ReloadProduction(obj);
+    }
+
+    
+
     private void CustomUI()
     {
       ElipseControl elipseControl0 = new ElipseControl();
@@ -49,39 +201,64 @@ namespace CheckWeigherFood.FormUI
       elipseControl1.CornerRadius = 20;
     }
 
-    private void UcOverview_OnSendChangeProduct(long obj)
+    private void UcOverview_OnSendChangeProduct(long keyMachine)
     {
-      PopupChangeFGs popupChangeFGs = new PopupChangeFGs();
+      PopupChangeFGs popupChangeFGs = new PopupChangeFGs(keyMachine);
       popupChangeFGs.OnSelectedProduct += PopupChangeFGs_OnSelectedProduct;
       popupChangeFGs.ShowDialog();
     }
 
-    private void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
+    private async void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
     {
       try
       {
-        //if (line == 3)
-        //{
-        //  AppCore.Ins._productCurrent03 = obj;
+        if (line == 3)
+        {
+          AppCore.Ins._productCurrent03 = obj;
 
-        //  AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
-        //  AppCore.Ins._machineCurrent03.ProductId = obj.Id;
-        //  AppCore.Ins._machineCurrent03.UpdatedAt = DateTime.UtcNow;
-        //  await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent03);
-        //  AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
-        //  ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
-        //}
-        //else if (line == 4)
-        //{
-        //  AppCore.Ins._productCurrent04 = obj;
-        //  AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+          AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+          AppCore.Ins._machineCurrent03.ProductId = obj.Id;
+          AppCore.Ins._machineCurrent03.UpdatedAt = DateTime.UtcNow;
+          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent03);
 
-        //  AppCore.Ins._machineCurrent04.ProductId = obj.Id;
-        //  AppCore.Ins._machineCurrent04.UpdatedAt = DateTime.UtcNow;
-        //  await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent04);
-        //  AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
-        //  ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
-        //}
+          AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
+          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03, 3);
+
+          OnSendChangeProduct?.Invoke(3);
+        }
+        else if (line == 4)
+        {
+          AppCore.Ins._productCurrent04 = obj;
+
+          AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
+          AppCore.Ins._machineCurrent04.ProductId = obj.Id;
+          AppCore.Ins._machineCurrent04.UpdatedAt = DateTime.UtcNow;
+
+          await AppCore.Ins.UpdateMachine(AppCore.Ins._machineCurrent04);
+          AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
+          ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04, 4);
+
+          OnSendChangeProduct?.Invoke(4);
+        }
+      }
+      catch (Exception)
+      {
+        new FrmInformation().ShowMessage("Lưu thất bại !", eImage.Warning);
+      }
+    }
+
+    private void ReloadProduction(long keyMachine)
+    {
+      try
+      {
+        if (keyMachine == 3)
+        {
+          ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03, 3);
+        }
+        else if (keyMachine == 4)
+        {
+          ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04, 4);
+        }
       }
       catch (Exception)
       {
@@ -170,50 +347,57 @@ namespace CheckWeigherFood.FormUI
         return;
       }
 
-      var dt03 = ucOverviewLine3.GetDt();
-      dataChartline03 = AppCore.Ins._sumaryDTOLine3.DatalogPass
-                      .Where(x => x.CreatedAt >= dt03.From && x.CreatedAt <= dt03.To)
-                      .OrderBy(x => x.CreatedAt)
-                      .ToList();
-      ucOverviewLine3.ChartLine(AppCore.Ins._sumaryDTOLine3, dataChartline03);
-      ucOverviewLine3.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
-      ucOverviewLine3.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
-      ucOverviewLine3.SetStatusMachine(AppCore.Ins._enumStatusMachine03);
-      if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Run)
+      try
       {
-        tableLayoutPanel3.BackColor = Color.Lime;
+        var dt03 = ucOverviewLine3.GetDt();
+        dataChartline03 = AppCore.Ins._sumaryDTOLine3.DatalogPass
+                        .Where(x => x.CreatedAt >= dt03.From && x.CreatedAt <= dt03.To)
+                        .OrderBy(x => x.CreatedAt)
+                        .ToList();
+        ucOverviewLine3.ChartLine(AppCore.Ins._sumaryDTOLine3, dataChartline03);
+        ucOverviewLine3.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
+        ucOverviewLine3.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
+        ucOverviewLine3.SetStatusMachine(AppCore.Ins._enumStatusMachine03);
+        if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Run)
+        {
+          tableLayoutPanel3.BackColor = Color.Lime;
+        }
+        else if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Stop)
+        {
+          tableLayoutPanel3.BackColor = Color.Tomato;
+        }
+
+        //lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine3.DatalogReject.Count().ToString();
+        //ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
+        //SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
+        //UpdateInforLoss(AppCore.Ins._sumaryDTOLine3);
+
+        //SetContent(3);
+
+
+
+        var dt04 = ucOverviewLine4.GetDt();
+        dataChartline04 = AppCore.Ins._sumaryDTOLine4.DatalogPass
+                        .Where(x => x.CreatedAt >= dt04.From && x.CreatedAt <= dt04.To)
+                        .OrderBy(x => x.CreatedAt)
+                        .ToList();
+        ucOverviewLine4.ChartLine(AppCore.Ins._sumaryDTOLine4, dataChartline04);
+        ucOverviewLine4.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
+        ucOverviewLine4.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
+        ucOverviewLine4.SetStatusMachine(AppCore.Ins._enumStatusMachine04);
+
+        if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Run)
+        {
+          tableLayoutPanel4.BackColor = Color.Lime;
+        }
+        else if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Stop)
+        {
+          tableLayoutPanel4.BackColor = Color.Tomato;
+        }
       }
-      else if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Stop)
+      catch (Exception ex)
       {
-        tableLayoutPanel3.BackColor = Color.Tomato;
-      }  
 
-      //lbDataNumberReject.ValueStr = AppCore.Ins._sumaryDTOLine3.DatalogReject.Count().ToString();
-      //ucInformationDataSumary1.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
-      //SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
-      //UpdateInforLoss(AppCore.Ins._sumaryDTOLine3);
-
-      //SetContent(3);
-
-
-
-      var dt04 = ucOverviewLine4.GetDt();
-      dataChartline04 = AppCore.Ins._sumaryDTOLine4.DatalogPass
-                      .Where(x => x.CreatedAt >= dt04.From && x.CreatedAt <= dt04.To)
-                      .OrderBy(x => x.CreatedAt)
-                      .ToList();
-      ucOverviewLine4.ChartLine(AppCore.Ins._sumaryDTOLine4, dataChartline04);
-      ucOverviewLine4.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
-      ucOverviewLine4.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
-      ucOverviewLine4.SetStatusMachine(AppCore.Ins._enumStatusMachine04);
-
-      if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Run)
-      {
-        tableLayoutPanel4.BackColor = Color.Lime;
-      }
-      else if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Stop)
-      {
-        tableLayoutPanel4.BackColor = Color.Tomato;
       }
     }
    
@@ -289,7 +473,11 @@ namespace CheckWeigherFood.FormUI
     }
     private void btnChangeOperator_Click(object sender, EventArgs e)
     {
-      PopupChangeOperationAll popupChangeOperationAll = new PopupChangeOperationAll();
+      PopupChangeOperationAll popupChangeOperationAll = new PopupChangeOperationAll(AppCore.Ins._operationSettingCurrent03?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.QC ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.ShiftLeader ?? string.Empty
+        );
       popupChangeOperationAll.OnSelectedEmployees += PopupChangeOperationAll_OnSelectedEmployees;
       popupChangeOperationAll.ShowDialog();
     }
@@ -315,7 +503,13 @@ namespace CheckWeigherFood.FormUI
         AppCore.Ins._operationSettingCurrent03 = await _operationSettingService.AddAsync(operationSetting03);
         AppCore.Ins._operationSettingCurrent04 = await _operationSettingService.AddAsync(operationSetting04);
 
-        FrmDashboard.Instance.ResfreshOperation();
+        ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.OP ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.QC ?? string.Empty,
+                        AppCore.Ins._operationSettingCurrent04?.ShiftLeader ?? string.Empty
+        );
+
+        OnSendChangeOperator?.Invoke();
       }
       catch (Exception ex)
       {

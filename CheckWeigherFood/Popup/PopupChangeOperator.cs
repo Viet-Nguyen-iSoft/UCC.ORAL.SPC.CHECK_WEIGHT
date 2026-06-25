@@ -30,6 +30,17 @@ namespace CheckWeigherFood.Popup
       this.Load += PopupChangeOperator_Load;
     }
 
+    private string _op { get; set; }
+    private string _qc { get; set; }
+    private string _shitLeader { get; set; }
+    public PopupChangeOperator(OperationSetting operationSetting) :this()
+    {
+      _op = operationSetting?.OP??string.Empty;
+      _shitLeader = operationSetting?.ShiftLeader ?? string.Empty;
+      _qc = operationSetting?.QC ?? string.Empty;
+    }
+
+
     private EmployeeService _employeeService { get; set; }
     private void RegisterService()
     {
@@ -50,6 +61,22 @@ namespace CheckWeigherFood.Popup
 
       var tc = _employeeList?.Where(x => x.EnumTypeEmployee == EnumTypeEmployee.ShiftLeader).ToList();
       ShowCbb(cbbShiftLeader, tc);
+
+      if (!string.IsNullOrEmpty(_op))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _op);
+        cbbOP.SelectedItem = rs;
+      }
+      if (!string.IsNullOrEmpty(_qc))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _qc);
+        cbbQC.SelectedItem = rs;
+      }
+      if (!string.IsNullOrEmpty(_shitLeader))
+      {
+        var rs = _employeeList?.FirstOrDefault(x => x.FullName == _shitLeader);
+        cbbShiftLeader.SelectedItem = rs;
+      }
     }
 
     private void ShowCbb(ComboBox comboBox, List<Employee> employees)

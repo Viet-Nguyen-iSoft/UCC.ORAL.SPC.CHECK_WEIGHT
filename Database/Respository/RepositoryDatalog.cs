@@ -36,13 +36,14 @@ namespace Database.Respository
       }
     }
 
-    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to)
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long lineId)
     {
       try
       {
         return await this.Context.Set<Datalog>()
              .Where(x =>
                  x.DeletedFlag == false &&
+                 x.MachineId == lineId &&
                  x.CreatedAt >= from &&
                  x.CreatedAt <= to)
              .ToListAsync();

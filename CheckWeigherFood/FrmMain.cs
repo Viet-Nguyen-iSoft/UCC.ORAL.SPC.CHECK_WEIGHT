@@ -171,8 +171,15 @@ namespace CheckWeigherFood
       this.picLogo.Visible = false;
       this.picLogoVule.Visible = false;
       this.btnOverview.PerformClick();
+
+      FrmOverview.Instance.OnSendClickDetail += Instance_OnSendClickDetail;
     }
 
+    private void Instance_OnSendClickDetail(long obj)
+    {
+      this.btnDashBoard.PerformClick();
+      FrmDashboard.Instance.SetLine(obj);
+    }
 
     private System.Timers.Timer timer_UpdateUI = new System.Timers.Timer();
     private void FrmMain_Shown(object sender, EventArgs e)
@@ -214,7 +221,8 @@ namespace CheckWeigherFood
         this.picLogo.Visible = true;
         this.picLogoVule.Visible = true;
 
-        this.btnDashBoard.Text = "          TRANG CHÍNH";
+        this.btnOverview.Text = "          TỔNG QUAN";
+        this.btnDashBoard.Text = "          CHI TIẾT";
         this.btnMasterData.Text = "          SẢN PHẨM";
         this.btnSetting.Text = "          CÀI ĐẶT";
         this.btnReport.Text = "          BÁO CÁO";

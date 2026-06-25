@@ -313,8 +313,10 @@ namespace CheckWeigherFood.InitChart
         }
 
         List<double> histogramValueNet = dataWeigher.OrderBy(x => x).ToList();
-        histogramValueNet = histogramValueNet.Where(x => x < (sumaryDTO.USL * 1.01)).ToList();
+        //histogramValueNet = histogramValueNet.Where(x => x < (sumaryDTO.USL * 1.01)).ToList();
         sumaryDTO.Max = (sumaryDTO.Max > sumaryDTO.USL) ? (sumaryDTO.USL * 1.01) : sumaryDTO.Max;
+
+        if (histogramValueNet?.Count() <= 0) return;
 
         double DonViNhoNhatChoPhep = 0.1;
         int numbersCol = (int)Math.Round(Math.Sqrt(histogramValueNet.Count), MidpointRounding.AwayFromZero);

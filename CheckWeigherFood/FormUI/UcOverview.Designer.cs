@@ -154,7 +154,7 @@
       this.tableLayoutPanel23.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel23.Name = "tableLayoutPanel23";
       this.tableLayoutPanel23.RowCount = 3;
-      this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+      this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
       this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel23.Size = new System.Drawing.Size(1251, 379);
@@ -344,7 +344,7 @@
       legend2.Enabled = false;
       legend2.Name = "Legend1";
       this.chartControl.Legends.Add(legend2);
-      this.chartControl.Location = new System.Drawing.Point(5, 45);
+      this.chartControl.Location = new System.Drawing.Point(5, 40);
       this.chartControl.Margin = new System.Windows.Forms.Padding(0);
       this.chartControl.Name = "chartControl";
       series7.ChartArea = "ChartArea1";
@@ -377,7 +377,7 @@
       this.chartControl.Series.Add(series10);
       this.chartControl.Series.Add(series11);
       this.chartControl.Series.Add(series12);
-      this.chartControl.Size = new System.Drawing.Size(1241, 304);
+      this.chartControl.Size = new System.Drawing.Size(1241, 309);
       this.chartControl.TabIndex = 17;
       this.chartControl.Text = "chart1";
       // 
@@ -399,7 +399,7 @@
       this.tableLayoutPanel15.Name = "tableLayoutPanel15";
       this.tableLayoutPanel15.RowCount = 1;
       this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel15.Size = new System.Drawing.Size(1241, 45);
+      this.tableLayoutPanel15.Size = new System.Drawing.Size(1241, 40);
       this.tableLayoutPanel15.TabIndex = 18;
       // 
       // picFilterChart
@@ -410,7 +410,7 @@
       this.picFilterChart.Image = ((System.Drawing.Image)(resources.GetObject("picFilterChart.Image")));
       this.picFilterChart.Location = new System.Drawing.Point(1181, 3);
       this.picFilterChart.Name = "picFilterChart";
-      this.picFilterChart.Size = new System.Drawing.Size(57, 39);
+      this.picFilterChart.Size = new System.Drawing.Size(57, 34);
       this.picFilterChart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picFilterChart.TabIndex = 20;
       this.picFilterChart.TabStop = false;
@@ -427,7 +427,7 @@
       this.label28.Location = new System.Drawing.Point(0, 0);
       this.label28.Margin = new System.Windows.Forms.Padding(0);
       this.label28.Name = "label28";
-      this.label28.Size = new System.Drawing.Size(584, 45);
+      this.label28.Size = new System.Drawing.Size(584, 40);
       this.label28.TabIndex = 18;
       this.label28.Text = "Kiểm soát số lượng qua cân";
       this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -439,7 +439,7 @@
       this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
       this.ucFilterTime1.Location = new System.Drawing.Point(750, 3);
       this.ucFilterTime1.Name = "ucFilterTime1";
-      this.ucFilterTime1.Size = new System.Drawing.Size(415, 39);
+      this.ucFilterTime1.Size = new System.Drawing.Size(415, 34);
       this.ucFilterTime1.TabIndex = 19;
       this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
       // 
@@ -495,14 +495,15 @@
       this.lbStatusMachine.BackColor = System.Drawing.Color.Transparent;
       this.lbStatusMachine.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbStatusMachine.ForeColor = System.Drawing.Color.IndianRed;
-      this.lbStatusMachine.Location = new System.Drawing.Point(1081, 0);
+      this.lbStatusMachine.Location = new System.Drawing.Point(1091, 0);
       this.lbStatusMachine.Margin = new System.Windows.Forms.Padding(0);
       this.lbStatusMachine.Name = "lbStatusMachine";
-      this.lbStatusMachine.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-      this.lbStatusMachine.Size = new System.Drawing.Size(160, 32);
+      this.lbStatusMachine.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+      this.lbStatusMachine.Size = new System.Drawing.Size(150, 32);
       this.lbStatusMachine.TabIndex = 20;
       this.lbStatusMachine.Text = "MÁY DỪNG";
       this.lbStatusMachine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.lbStatusMachine.Click += new System.EventHandler(this.lbStatusMachine_Click);
       // 
       // label4
       // 
@@ -516,7 +517,7 @@
       this.label4.Location = new System.Drawing.Point(0, 0);
       this.label4.Margin = new System.Windows.Forms.Padding(0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(1081, 32);
+      this.label4.Size = new System.Drawing.Size(1091, 32);
       this.label4.TabIndex = 19;
       this.label4.Text = "Thông tin sản phẩm";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -716,8 +717,7 @@
       this.btnSettingTareAndLot.Text = "Thay đổi";
       this.btnSettingTareAndLot.TextColor = System.Drawing.Color.White;
       this.btnSettingTareAndLot.UseVisualStyleBackColor = false;
-      this.btnSettingTareAndLot.Visible = false;
-      this.btnSettingTareAndLot.Click += new System.EventHandler(this.btnSettingTareAndLot_Click);
+      this.btnSettingTareAndLot.Click += new System.EventHandler(this.btnSettingTare_Click);
       // 
       // label2
       // 
@@ -775,8 +775,8 @@
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.78627F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
       this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
       this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
       this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
@@ -821,14 +821,13 @@
       this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeLot.ForeColor = System.Drawing.Color.White;
-      this.btnChangeLot.Location = new System.Drawing.Point(1084, 3);
+      this.btnChangeLot.Location = new System.Drawing.Point(1082, 3);
       this.btnChangeLot.Name = "btnChangeLot";
-      this.btnChangeLot.Size = new System.Drawing.Size(154, 28);
+      this.btnChangeLot.Size = new System.Drawing.Size(156, 28);
       this.btnChangeLot.TabIndex = 27;
       this.btnChangeLot.Text = "Thay đổi";
       this.btnChangeLot.TextColor = System.Drawing.Color.White;
       this.btnChangeLot.UseVisualStyleBackColor = false;
-      this.btnChangeLot.Visible = false;
       this.btnChangeLot.Click += new System.EventHandler(this.btnChangeLot_Click);
       // 
       // label1
@@ -975,6 +974,7 @@
       this.lbLine.TabIndex = 22;
       this.lbLine.Text = "03";
       this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.lbLine.Click += new System.EventHandler(this.lbLine_Click);
       // 
       // label3
       // 
@@ -992,6 +992,7 @@
       this.label3.TabIndex = 21;
       this.label3.Text = "Line";
       this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.label3.Click += new System.EventHandler(this.label3_Click);
       // 
       // UcOverview
       // 

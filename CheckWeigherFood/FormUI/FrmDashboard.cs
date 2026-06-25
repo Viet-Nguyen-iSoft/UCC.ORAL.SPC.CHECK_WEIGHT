@@ -1,4 +1,5 @@
 ﻿using CheckWeigherFood.Controls;
+using CheckWeigherFood.FormUI;
 using CheckWeigherFood.InitChart;
 using CheckWeigherFood.Popup;
 using CheckWeigherFood.RJControl;
@@ -28,6 +29,10 @@ namespace CheckWeigherFood.FrmChild
     public delegate void SendChangeOver(object sender, string FGs, string Name, double normalSpeed);
     public event SendChangeOver OnSendChangeOver;
 
+    public event Action<long> OnSendChangeProduct;
+    public event Action<long> OnSendChangeTare;
+    public event Action<long> OnSendChangeLot;
+    public event Action<long> OnSendChangeOperator;
     public FrmDashboard()
     {
       InitializeComponent();
@@ -118,8 +123,6 @@ namespace CheckWeigherFood.FrmChild
       lbNameProduct.SetForeColor = Color.Black;
       lbLotCarton.SetForeColor = Color.Black;
     }
-
-
     private OperationSettingService _operationSettingService { get; set; }
     private TareSettingService _tareSettingService { get; set; }
     private void RegisterService()
@@ -181,6 +184,114 @@ namespace CheckWeigherFood.FrmChild
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
       AppCore.Ins.OnSendMsgRead += Ins_OnSendMsgRead;
       AppCore.Ins.OnSendDebug += Ins_OnSendDebug;
+
+      FrmOverview.Instance.OnSendChangeProduct += Instance_OnSendChangeProduct;
+      FrmOverview.Instance.OnSendChangeTare += Instance_OnSendChangeTare;
+      FrmOverview.Instance.OnSendChangeLot += Instance_OnSendChangeLot;
+      FrmOverview.Instance.OnSendChangeOperator += Instance_OnSendChangeOperator;
+    }
+
+    private void Instance_OnSendChangeLot(long obj)
+    {
+      try
+      {
+        if (obj == 3)
+        {
+          ShowInforLot(AppCore.Ins._tareSettingCurrent03);
+        }
+        else if (obj == 4)
+        {
+          ShowInforLot(AppCore.Ins._tareSettingCurrent04);
+        }
+      }
+      catch (Exception)
+      {
+
+      }
+    }
+
+    private void Instance_OnSendChangeTare(long obj)
+    {
+      try
+      {
+        if (obj == 3)
+        {
+          ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+        }
+        else if (obj == 4)
+        {
+          ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+        }
+      }
+      catch (Exception)
+      {
+
+      }
+    }
+
+    private void Instance_OnSendChangeOperator()
+    {
+      ResfreshOperation();
+    }
+
+    private void Instance_OnSendChangeProduct(long obj)
+    {
+      try
+      {
+        if (obj == 3)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent03?.OP,
+            AppCore.Ins._operationSettingCurrent03?.QC,
+            AppCore.Ins._operationSettingCurrent03?.ShiftLeader);
+
+          ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+
+          
+        }
+        else if (obj == 4)
+        {
+          //Show thông tin cài đặt
+          ShowInforOperator(AppCore.Ins._operationSettingCurrent04?.OP,
+            AppCore.Ins._operationSettingCurrent04?.QC,
+            AppCore.Ins._operationSettingCurrent04?.ShiftLeader);
+
+          ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+          ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+
+          
+        }
+
+        _numberRejectLast03 = -1;
+        _numberRejectLast04 = -1;
+        LoadDataDashBoard();
+      }
+      catch (Exception)
+      {
+
+      }
+    }
+
+    public void SetLine(long obj)
+    {
+      try
+      {
+        if (obj == 3)
+        {
+          cbbLine.SelectedIndex = 0;
+        }
+        else if (obj == 4)
+        {
+          cbbLine.SelectedIndex = 1;
+        }
+      }
+      catch (Exception)
+      {
+        //TODO
+      }
     }
 
     private void CbbLine_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,7 +330,7 @@ namespace CheckWeigherFood.FrmChild
       }
     }
 
-    public void ResfreshOperation()
+    private void ResfreshOperation()
     {
       if (cbbLine.SelectedIndex!=-1)
       {
@@ -876,9 +987,26 @@ namespace CheckWeigherFood.FrmChild
 
     private void btnChangeOperator_Click(object sender, EventArgs e)
     {
-      PopupChangeOperator popupChangeOperator = new PopupChangeOperator();
-      popupChangeOperator.OnSelectedEmployees += PopupChangeOperator_OnSelectedEmployees;
-      popupChangeOperator.ShowDialog();
+      if (cbbLine.SelectedIndex != -1)
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == 3)
+        {
+          PopupChangeOperator popupChangeOperator = new PopupChangeOperator(AppCore.Ins._operationSettingCurrent03);
+          popupChangeOperator.OnSelectedEmployees += PopupChangeOperator_OnSelectedEmployees;
+          popupChangeOperator.ShowDialog();
+        }
+        else if (line == 4)
+        {
+          PopupChangeOperator popupChangeOperator = new PopupChangeOperator(AppCore.Ins._operationSettingCurrent04);
+          popupChangeOperator.OnSelectedEmployees += PopupChangeOperator_OnSelectedEmployees;
+          popupChangeOperator.ShowDialog();
+        }
+      }
+      else
+      {
+        new FrmInformation().ShowMessage("Vui lòng chọn line !", eImage.Information);
+      }
     }
 
     private async void PopupChangeOperator_OnSelectedEmployees(Employee arg1, Employee arg2, Employee arg3)
@@ -922,6 +1050,8 @@ namespace CheckWeigherFood.FrmChild
 
           ShowInforOperator(arg1.FullName, arg2.FullName, arg3.FullName);
         }
+
+        OnSendChangeOperator?.Invoke(line);
       }
       catch (Exception)
       {
@@ -950,11 +1080,11 @@ namespace CheckWeigherFood.FrmChild
       popupChangeFGs.ShowDialog();
     }
 
-    private async void PopupChangeFGs_OnSelectedProduct(long line, Product obj)
+    private async void PopupChangeFGs_OnSelectedProduct(long keyMachine, Product obj)
     {
       try
       {
-        if (line == 3)
+        if (keyMachine == 3)
         {
           AppCore.Ins._productCurrent03 = obj;
           AppCore.Ins._machineCurrent03.ChangeOverId = AppCore.Ins._machineCurrent03.ChangeOverId + 1;
@@ -965,7 +1095,7 @@ namespace CheckWeigherFood.FrmChild
           AppCore.Ins._datalogsInShiftCurrent_Line3 = new List<Datalog>();
           ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
         }
-        else if (line == 4)
+        else if (keyMachine == 4)
         {
           AppCore.Ins._productCurrent04 = obj;
           AppCore.Ins._machineCurrent04.ChangeOverId = AppCore.Ins._machineCurrent04.ChangeOverId + 1;
@@ -976,6 +1106,8 @@ namespace CheckWeigherFood.FrmChild
           AppCore.Ins._datalogsInShiftCurrent_Line4 = new List<Datalog>();
           ShowInforProduct(obj, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
         }
+
+        OnSendChangeProduct?.Invoke(keyMachine);
       }
       catch (Exception)
       {
@@ -1020,14 +1152,11 @@ namespace CheckWeigherFood.FrmChild
       }
     }
 
-    private void PopupChangeTare_OnChangeTareSetting(TareSetting obj)
+    private void PopupChangeTare_OnChangeTareSetting(TareSetting obj, long keyMachine)
     {
       try
       {
-        //Save cài đặt
-        int line = int.Parse(cbbLine.SelectedItem.ToString());
-
-        if (line == 3)
+        if (keyMachine == 3)
         {
           AppCore.Ins._tareSettingCurrent03 = obj;
           ShowInforTare(AppCore.Ins._tareSettingCurrent03);
@@ -1037,7 +1166,7 @@ namespace CheckWeigherFood.FrmChild
                             AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0,
                             AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
         }
-        else if (line == 4)
+        else if (keyMachine == 4)
         {
           AppCore.Ins._tareSettingCurrent04 = obj;
           ShowInforTare(AppCore.Ins._tareSettingCurrent04);
@@ -1047,6 +1176,8 @@ namespace CheckWeigherFood.FrmChild
                             AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0,
                             AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
         }
+
+        OnSendChangeTare?.Invoke(keyMachine);
       }
       catch (Exception)
       {
@@ -1150,22 +1281,20 @@ namespace CheckWeigherFood.FrmChild
         popupChangeLot.OnChangeTareSetting += PopupChangeLot_OnChangeTareSetting;
         popupChangeLot.ShowDialog();
       }
-     
+
+      OnSendChangeLot?.Invoke(line);
     }
 
-    private void PopupChangeLot_OnChangeTareSetting(TareSetting obj)
+    private void PopupChangeLot_OnChangeTareSetting(TareSetting obj, long keyMachine)
     {
       try
       {
-        //Save cài đặt
-        int line = int.Parse(cbbLine.SelectedItem.ToString());
-
-        if (line == 3)
+        if (keyMachine == 3)
         {
           AppCore.Ins._tareSettingCurrent03 = obj;
           ShowInforLot(obj);
         }
-        else if (line == 4)
+        else if (keyMachine == 4)
         {
           AppCore.Ins._tareSettingCurrent04 = obj;
           ShowInforLot(obj);

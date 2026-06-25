@@ -6,7 +6,6 @@ using Database.DTO;
 using Database.DtoHelper;
 using Database.Models;
 using Database.Service;
-using Opc.Ua.Security.Certificates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +13,6 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using static CheckWeigherFood.eNum.eNumUI;
 using static Database.Enum;
@@ -124,6 +121,7 @@ namespace CheckWeigherFood.FrmChild
 
     private DatalogService _datalogService { get; set; }
     private DataChart _dataChart = new DataChart();
+    private int _lineIndexCurrent { get; set; } = 0;
     private void ResgisterService()
     {
       _datalogService = AppFactory.CreateDatalogService();
@@ -133,8 +131,15 @@ namespace CheckWeigherFood.FrmChild
       this.dtp.Value = DateTime.Now;
       this.cbbShift.SelectedIndex = 0;
       this.flowLayoutPanelProductReport.Visible = false;
+
+      this.cbbLine.SelectedIndexChanged += CbbLine_SelectedIndexChanged;
+      this.cbbLine.SelectedIndex = 0;
     }
 
+    private void CbbLine_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      _lineIndexCurrent = cbbLine.SelectedIndex;
+    }
 
     private DateTime _selectedDate;
     private int _selectedShift;
@@ -142,11 +147,20 @@ namespace CheckWeigherFood.FrmChild
     private System.Timers.Timer timerLoading = new System.Timers.Timer();
     private void btnPreview_Click(object sender, EventArgs e)
     {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          btnPreview_Click(sender, e);
+        }));
+        return;
+      }
+
       frmLoading.ShowLoading("Loading Data ...");
 
       _selectedDate = dtp.Value;
       _selectedShift = cbbShift.SelectedIndex + 1;
-
+      
       if (!backgroundWorker1.IsBusy)
       {
         this.btnPreview.Visible = false;
@@ -208,21 +222,45 @@ namespace CheckWeigherFood.FrmChild
     }
     private async void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
     {
-      var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
-      var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to);
-      _resultGroups = dataLogs
-                  .GroupBy(x => new
-                  {
-                    x.ProductId,
-                    x.ChangeOverId
-                  })
-                  .Select(g => new DatalogGroup
-                  {
-                    ProductId = g.Key.ProductId,
-                    ChangeOverId = g.Key.ChangeOverId,
-                    Datalogs = g.ToList()
-                  })
-                  .ToList();
+      if (_lineIndexCurrent == 0)
+      {
+        Machine machine = AppCore.Ins._machineCurrent03;
+        var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
+        var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
+        _resultGroups = dataLogs
+                    .GroupBy(x => new
+                    {
+                      x.ProductId,
+                      x.ChangeOverId
+                    })
+                    .Select(g => new DatalogGroup
+                    {
+                      ProductId = g.Key.ProductId,
+                      ChangeOverId = g.Key.ChangeOverId,
+                      Datalogs = g.ToList()
+                    })
+                    .ToList();
+      }  
+      else if (_lineIndexCurrent == 1)
+      {
+        Machine machine = AppCore.Ins._machineCurrent04;
+        var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
+        var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
+        _resultGroups = dataLogs
+                    .GroupBy(x => new
+                    {
+                      x.ProductId,
+                      x.ChangeOverId
+                    })
+                    .Select(g => new DatalogGroup
+                    {
+                      ProductId = g.Key.ProductId,
+                      ChangeOverId = g.Key.ChangeOverId,
+                      Datalogs = g.ToList()
+                    })
+                    .ToList();
+      }  
+      
     }
 
     public static (DateTime From, DateTime To) GetShiftRange(DateTime date, int shift)
@@ -294,7 +332,7 @@ namespace CheckWeigherFood.FrmChild
             btn.BackColor = Color.FromArgb(49, 68, 108);
             btn.Font = new Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular);
 
-            Product product = AppCore.Ins._products?.Where(x=>x.Id == group.ProductId).FirstOrDefault();
+            Product product = AppCore.Ins._products?.Where(x => x.Id == group.ProductId).FirstOrDefault();
             btn.Text = $"{no++} - FGs: {product?.Code}";
             btn.Tag = group;
 
@@ -316,7 +354,7 @@ namespace CheckWeigherFood.FrmChild
         else
         {
           flowLayoutPanelProductReport.Visible = false;
-        }  
+        }
       }
       catch (Exception)
       {
@@ -351,7 +389,7 @@ namespace CheckWeigherFood.FrmChild
       // Data của nhóm được chọn
       List<Datalog> data = group.Datalogs;
 
-      if (data?.Count()>0)
+      if (data?.Count() > 0)
       {
         GetDt();
 
@@ -366,8 +404,8 @@ namespace CheckWeigherFood.FrmChild
 
         //Thông tin sản phẩm
         var product = AppCore.Ins._products?.FirstOrDefault(x => x.Id == group.ProductId);
-       
-        double tareTube = Math.Round( data.Average(x => x.TareTube),2);
+
+        double tareTube = Math.Round(data.Average(x => x.TareTube), 2);
         double tareTailTube = Math.Round(data.Average(x => x.TareTailTube), 2);
         double tareCarton = Math.Round(data.Average(x => x.TareCarton), 2);
 
@@ -444,7 +482,7 @@ namespace CheckWeigherFood.FrmChild
       else
       {
         //Clear
-      }  
+      }
     }
 
     private void CheckShowColor()
