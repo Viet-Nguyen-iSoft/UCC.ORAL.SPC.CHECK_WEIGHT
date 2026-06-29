@@ -112,6 +112,10 @@ namespace CheckWeigherFood.Popup
     {
       try
       {
+        _numberSam = 0;
+        _numberNew = 0;
+        _numberRemove = 0;
+
         _excelImport = PareXlsxByAspose(fileName, 1);
         _productNew = new List<Product>();
         if (_excelImport?.Count > 0)
@@ -178,10 +182,10 @@ namespace CheckWeigherFood.Popup
     private EnumProductCheck CheckExits(ProductDTO productDTO, List<Product> products)
     {
       var listData = products?.Where(x => x.Code == productDTO.Code).ToList();
-      if (listData?.Count() > 1)
-      {
-        return EnumProductCheck.Sam;
-      }
+      //if (listData?.Count() > 1)
+      //{
+      //  return EnumProductCheck.Sam;
+      //}
 
       var exits = listData.FirstOrDefault();
       if (exits != null)
