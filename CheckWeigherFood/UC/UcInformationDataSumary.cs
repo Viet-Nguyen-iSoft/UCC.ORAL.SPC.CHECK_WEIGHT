@@ -62,7 +62,16 @@ namespace CheckWeigherFood.UC
           this.lbLower.Text = $"{product.LSL + tube + carton - tailTube}";
         }
       }
+      else
+      {
+        this.lbUpper.Text = $"-";
+        this.lbUpperControl.Text = $"-";
+        this.lbTarget.Text = $"-";
 
+        this.lbGroup.Text = "N/A";
+        this.lbLowerControl.Text = $"-";
+        this.lbLower.Text = $"-";
+      }  
     }
 
     public void SetWeightRealtime(double weight)
@@ -116,7 +125,17 @@ namespace CheckWeigherFood.UC
             break;
         }
       }
+      else
+      {
+        this.lbMax.Text = $"0.0";
+        this.lbMin.Text = $"0.0";
+        this.lbCp.Text = $"0.0";
+        this.lbCpk.Text = $"0.0";
+        this.lbSample.Text = $"0.0";
 
+        this.lbResult.Text = "N/A";
+        this.lbResult.BackColor = Color.Gray;
+      }  
     }
 
     public void SetValueWeightRealtime(double value)

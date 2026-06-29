@@ -35,11 +35,21 @@ namespace CheckWeigherFood.UC
     #region Chart Pie
     public void SetDataChartPie(SumaryDTO  sumaryDTO)
     {
+      chartPie.Series[0].Points.Clear();
+
+      if (sumaryDTO== null)
+      {
+        chartPie.Series[0].Points.AddXY($"No Data", 100);
+        chartPie.Series[0].Points[0].Color = Color.Gray;
+        chartPie.Series[0].Points[0].LabelForeColor = Color.White;
+        return;
+      }
+
       double accept = (double) sumaryDTO.DatalogAccept.Count();
       double over = (double) sumaryDTO.DatalogOver.Count();
       double reject = (double) sumaryDTO.DatalogReject.Count();
       double total = accept + over + reject;
-      chartPie.Series[0].Points.Clear();
+      
       try
       {
         if (accept == 0 && over == 0 && reject == 0)

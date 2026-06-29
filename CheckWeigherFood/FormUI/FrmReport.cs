@@ -13,6 +13,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Windows;
 using System.Windows.Forms;
 using static CheckWeigherFood.eNum.eNumUI;
 using static Database.Enum;
@@ -145,7 +146,7 @@ namespace CheckWeigherFood.FrmChild
     private int _selectedShift;
     private FrmLoading frmLoading = new FrmLoading();
     private System.Timers.Timer timerLoading = new System.Timers.Timer();
-    private void btnPreview_Click(object sender, EventArgs e)
+    private async void btnPreview_Click(object sender, EventArgs e)
     {
       if (this.InvokeRequired)
       {
@@ -156,15 +157,61 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      frmLoading.ShowLoading("Loading Data ...");
-
-      _selectedDate = dtp.Value;
-      _selectedShift = cbbShift.SelectedIndex + 1;
-      
-      if (!backgroundWorker1.IsBusy)
+      try
       {
+        frmLoading.ShowLoading("Loading Data ...");
+
+        _selectedDate = dtp.Value;
+        _selectedShift = cbbShift.SelectedIndex + 1;
+
         this.btnPreview.Visible = false;
-        backgroundWorker1.RunWorkerAsync();
+
+        if (_lineIndexCurrent == 0)
+        {
+          Machine machine = AppCore.Ins._machineCurrent03;
+          var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
+          var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
+          _resultGroups = dataLogs
+                      .GroupBy(x => new
+                      {
+                        x.ProductId,
+                        x.ChangeOverId
+                      })
+                      .Select(g => new DatalogGroup
+                      {
+                        ProductId = g.Key.ProductId,
+                        ChangeOverId = g.Key.ChangeOverId,
+                        Datalogs = g.ToList()
+                      })
+                      .ToList();
+        }
+        else if (_lineIndexCurrent == 1)
+        {
+          Machine machine = AppCore.Ins._machineCurrent04;
+          var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
+          var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
+          _resultGroups = dataLogs
+                      .GroupBy(x => new
+                      {
+                        x.ProductId,
+                        x.ChangeOverId
+                      })
+                      .Select(g => new DatalogGroup
+                      {
+                        ProductId = g.Key.ProductId,
+                        ChangeOverId = g.Key.ChangeOverId,
+                        Datalogs = g.ToList()
+                      })
+                      .ToList();
+        }
+
+        //Time chart
+        SetTimeFilterChart(_selectedShift);
+        LoadDataUI();
+      }
+      catch (Exception ex)
+      {
+
       }
     }
 
@@ -199,8 +246,8 @@ namespace CheckWeigherFood.FrmChild
         TimeSpan timeSpanFrom = ucFilterTime1.From;
         TimeSpan timeSpanTo = ucFilterTime1.To;
 
-        _from = DateTime.Today.Add(timeSpanFrom);
-        _to = DateTime.Today.Add(timeSpanTo);
+        _from = dtp.Value.Date + timeSpanFrom;
+        _to = dtp.Value.Date + (timeSpanTo);
 
         if (timeSpanTo < timeSpanFrom)
         {
@@ -220,48 +267,7 @@ namespace CheckWeigherFood.FrmChild
 
       }
     }
-    private async void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-    {
-      if (_lineIndexCurrent == 0)
-      {
-        Machine machine = AppCore.Ins._machineCurrent03;
-        var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
-        var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
-        _resultGroups = dataLogs
-                    .GroupBy(x => new
-                    {
-                      x.ProductId,
-                      x.ChangeOverId
-                    })
-                    .Select(g => new DatalogGroup
-                    {
-                      ProductId = g.Key.ProductId,
-                      ChangeOverId = g.Key.ChangeOverId,
-                      Datalogs = g.ToList()
-                    })
-                    .ToList();
-      }  
-      else if (_lineIndexCurrent == 1)
-      {
-        Machine machine = AppCore.Ins._machineCurrent04;
-        var (from, to) = GetShiftRange(_selectedDate, _selectedShift);
-        var dataLogs = await _datalogService.GetAllDataByTimeAsync(from, to, machine.Id);
-        _resultGroups = dataLogs
-                    .GroupBy(x => new
-                    {
-                      x.ProductId,
-                      x.ChangeOverId
-                    })
-                    .Select(g => new DatalogGroup
-                    {
-                      ProductId = g.Key.ProductId,
-                      ChangeOverId = g.Key.ChangeOverId,
-                      Datalogs = g.ToList()
-                    })
-                    .ToList();
-      }  
-      
-    }
+
 
     public static (DateTime From, DateTime To) GetShiftRange(DateTime date, int shift)
     {
@@ -297,13 +303,6 @@ namespace CheckWeigherFood.FrmChild
       }
 
       return (from, to);
-    }
-
-    private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-    {
-      //Time chart
-      SetTimeFilterChart(_selectedShift);
-      LoadDataUI();
     }
 
     private void LoadDataUI()
@@ -354,6 +353,16 @@ namespace CheckWeigherFood.FrmChild
         else
         {
           flowLayoutPanelProductReport.Visible = false;
+          //Clear
+          ucInformationDataSumary1.SetSumaryDTO(null);
+          dgvData.DataSource = null;
+          ucInformationDataSumary1.SetInforProduct(null, 0, 0, 0);
+          _dataChart.AddChartControlDashboard(chartControl, null, null, 0);
+          _dataChart.AddChartHistogram(chartHistogram, null);
+          ucChartPie1.SetDataChartPie(null);
+          SetDataOW_Mean(null);
+          UpdateInforLoss(null);
+          UpdateDataReject(null);
         }
       }
       catch (Exception)
@@ -482,6 +491,15 @@ namespace CheckWeigherFood.FrmChild
       else
       {
         //Clear
+        ucInformationDataSumary1.SetSumaryDTO(null);
+        dgvData.DataSource = null;
+        ucInformationDataSumary1.SetInforProduct(null, 0, 0, 0);
+        _dataChart.AddChartControlDashboard(chartControl, null, null, 0);
+        _dataChart.AddChartHistogram(chartHistogram, null);
+        ucChartPie1.SetDataChartPie(null);
+        SetDataOW_Mean(null);
+        UpdateInforLoss(null);
+        UpdateDataReject(null);
       }
     }
 
@@ -524,6 +542,14 @@ namespace CheckWeigherFood.FrmChild
           return;
         }
 
+        if (sumaryDTO==null)
+        {
+          lbOverWeight.ValueData = "0.0";
+          lbTLTB.ValueData = "0.0";
+          lbOverWeight.SetColor = Color.DarkGreen;
+          return;
+        }  
+
         lbOverWeight.ValueData = sumaryDTO.OW.ToString();
         lbTLTB.ValueData = sumaryDTO.Mean.ToString();
 
@@ -543,6 +569,12 @@ namespace CheckWeigherFood.FrmChild
         {
           UpdateInforLoss(sumaryDTO);
         }));
+        return;
+      }
+      if (sumaryDTO == null)
+      {
+        ucInformationLoss1.ValueLossReject = "0.0";
+        ucInformationLoss1.ValueLossOW = "0.0";
         return;
       }
 
@@ -626,7 +658,7 @@ namespace CheckWeigherFood.FrmChild
       try
       {
         this.btnExport.Visible = false;
-
+        string line = $"Line {cbbLine.SelectedItem.ToString()}";
         // Load file template
         string templatePath = $@"{Application.StartupPath}\Template\FormatExcel.xlsx";
         XLWorkbook workbook = new XLWorkbook(templatePath);
@@ -636,7 +668,7 @@ namespace CheckWeigherFood.FrmChild
         worksheet.Cell("C4").Value = _selectedShift.ToString();
         worksheet.Cell("C5").Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-        worksheet.Cell("F3").Value = "4";
+        worksheet.Cell("F3").Value = $"{cbbLine.SelectedItem.ToString()}";
         worksheet.Cell("F4").Value = _sumaryDTO.Product.Code;
         worksheet.Cell("F5").Value = _sumaryDTO.Product.ProName;
 
@@ -714,7 +746,7 @@ namespace CheckWeigherFood.FrmChild
           saveFD.Filter = "Excel|*.xlsx|All files|*.*";
           saveFD.Title = "Save report to excel file";
           //saveFD.FileName = $"DataReport{fromDate.ToString("_dd_MM_yyyy")}_{cbShift.SelectedItem.ToString().Trim()}";
-          saveFD.FileName = $"Report_{_sumaryDTO.Product.Code}_{_selectedDate.ToString("_dd_MM_yyyy")}_Shift{_selectedShift}";
+          saveFD.FileName = $"Report_{line}_{_sumaryDTO.Product.Code}_{_selectedDate.ToString("_dd_MM_yyyy")}_Shift{_selectedShift}";
           DialogResult dialogResult = saveFD.ShowDialog();
           if (dialogResult == DialogResult.OK) fileName = saveFD.FileName; //lay duong dan luu file
           else return; //huy report neu chon cancel

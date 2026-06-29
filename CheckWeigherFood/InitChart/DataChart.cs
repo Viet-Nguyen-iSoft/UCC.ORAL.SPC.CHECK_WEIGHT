@@ -144,6 +144,17 @@ namespace CheckWeigherFood.InitChart
     {
       try
       {
+        if (chartName == null || sumaryDTO == null || datalogs == null)
+        {
+          chartName.Series[0].Points.Clear();
+          chartName.Series[1].Points.Clear();
+          chartName.Series[2].Points.Clear();
+          chartName.Series[3].Points.Clear();
+          chartName.Series[4].Points.Clear();
+          chartName.Series[5].Points.Clear();
+          return;
+        }
+
         //List<double> dataY = sumaryDTO.DatalogPass.Select(x=>x.Net).ToList();
         List<double> dataY = datalogs.Select(x=>x.Gross).ToList();
         List<string> dataX = datalogs.Select(x => ((DateTime)(x.CreatedAt)).ToString("HH:mm:ss")).ToList();
@@ -297,6 +308,19 @@ namespace CheckWeigherFood.InitChart
     {
       try
       {
+        if (sumaryDTO ==null)
+        {
+          nameChart.Series[0].Points.Clear();
+          nameChart.Series[1].Points.Clear();
+          nameChart.Series[2].Points.Clear();
+          nameChart.Series[3].Points.Clear();
+          nameChart.Series[4].Points.Clear();
+          nameChart.Series[5].Points.Clear();
+          nameChart.Series[6].Points.Clear();
+          nameChart.Series[7].Points.Clear();
+          return;
+        }
+
         List<double> dataWeigher = sumaryDTO.DatalogPass.Select(x => x.Gross).ToList();
 
         if (dataWeigher.Count()<=0)
