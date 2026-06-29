@@ -649,9 +649,6 @@ namespace CheckWeigherFood.FrmChild
     }
 
 
-
-
-
     private string fileName = "";
     private void btnExport_Click(object sender, EventArgs e)
     {

@@ -1,15 +1,18 @@
 ﻿using CheckWeigherFood.Controls;
 using CheckWeigherFood.InitChart;
 using ClosedXML.Excel;
+using Database.DTO;
+using Database.DtoHelper;
 using Database.Models;
+using Database.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Color = System.Drawing.Color;
+using static CheckWeigherFood.eNum.eNumUI;
 
 namespace CheckWeigherFood.FrmChild
 {
@@ -18,297 +21,586 @@ namespace CheckWeigherFood.FrmChild
     public FrmAutoReport()
     {
       InitializeComponent();
+      ResgisterService();
+      this.Shown += FrmAutoReport_Shown;
     }
 
-    private int IdProduct = 0;
-    private int ShiftId = 0;
+    private DatalogService _datalogService { get; set; }
     private DataChart _dataChart = new DataChart();
-    public FrmAutoReport(int shiftId, int idProduct)
+    private void ResgisterService()
     {
-      InitializeComponent();
-      IdProduct = idProduct;
-      ShiftId = shiftId;
+      _datalogService = AppFactory.CreateDatalogService();
     }
 
-    private void FrmAutoReport_Load(object sender, EventArgs e)
+    private List<Datalog> datalogsLine3 = new List<Datalog>();
+    private List<Datalog> datalogsLine4 = new List<Datalog>();
+    private List<DatalogGroup> _resultGroups03 { get; set; }
+    private List<DatalogGroup> _resultGroups04 { get; set; }
+    private DateTime dateTime;
+    private int shift;
+    private async void FrmAutoReport_Shown(object sender, EventArgs e)
     {
-      _dataChart.ChartControlInit(chartControl);
-      _dataChart.ChartHistogramInit(chartHistogram);
-      LoadDatalog();
+      var rs = GetPreviousShift(DateTime.Now);
+      dateTime = DateTime.Now.AddDays(-1);
+      shift = 1;
+      var (from, to) = GetShiftRange(dateTime, shift);
+      datalogsLine3 = await _datalogService.GetAllDataByTimeAsync(from, to, AppCore.Ins._machineCurrent03.Id);
+      datalogsLine4 = await _datalogService.GetAllDataByTimeAsync(from, to, AppCore.Ins._machineCurrent04.Id);
+
+      _resultGroups03 = datalogsLine3
+                      .GroupBy(x => new
+                      {
+                        x.ProductId,
+                        x.ChangeOverId
+                      })
+                      .Select(g => new DatalogGroup
+                      {
+                        ProductId = g.Key.ProductId,
+                        ChangeOverId = g.Key.ChangeOverId,
+                        Datalogs = g.ToList()
+                      })
+                      .ToList();
+
+      _resultGroups04 = datalogsLine4
+                      .GroupBy(x => new
+                      {
+                        x.ProductId,
+                        x.ChangeOverId
+                      })
+                      .Select(g => new DatalogGroup
+                      {
+                        ProductId = g.Key.ProductId,
+                        ChangeOverId = g.Key.ChangeOverId,
+                        Datalogs = g.ToList()
+                      })
+                      .ToList();
+
+      ExportAuto();
     }
 
-
-    private DateTime dt = new DateTime();
-    private async void LoadDatalog()
+    private void ExportAuto()
     {
-      //try
-      //{
-      //  dt = (ShiftId == 3) ? DateTime.Now.AddDays(-1) : DateTime.Now;
-      //  datalogs = new List<Datalog>();
+      if (_resultGroups03?.Count()>0)
+      {
+        foreach (var item in _resultGroups03)
+        {
+          if (item.Datalogs.Count()>10)
+          {
+            // Data của nhóm được chọn
+            List<Datalog> data = item.Datalogs;
 
-      //  string path = Application.StartupPath + $"\\DataBase\\";
-      //  string fileDB = dt.ToString("yyMMdd");
-      //  if (dt.Hour >= 0 && dt.Hour < 6)
-      //  {
-      //    fileDB = dt.AddDays(-1).ToString();
-      //  }
+            if (data?.Count() > 0)
+            {
+              //Thông tin vận hành
+              string op = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeOP;
+              string qc = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeQC;
+              string tc = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeShiftLeader;
 
-      //  string pathFull = path + fileDB + ".sqlite";
-      //  if (File.Exists(pathFull))
-      //  {
-      //    datalogs = await AppCore.Ins.GetDataReportByFilter(-1, fileDB);
-      //    datalogs = datalogs?.Where(s => s.ShiftId == ShiftId).ToList();
-      //  }
+              lbOP.ValueStr = op;
+              lbQC.ValueStr = qc;
+              lbShiftLeader.ValueStr = tc;
 
-      //  if (datalogs.Count > 0)
-      //  {
-      //    string OP_Sure = datalogs.LastOrDefault().OP;
-      //    string QC_Sure = datalogs.LastOrDefault().QC;
-      //    string TC_Sure = datalogs.LastOrDefault().TC;
-      //    string LoBB_Sure = datalogs.LastOrDefault().LoBB;
-      //    datalogs.ForEach(x => x.OP = OP_Sure);
-      //    datalogs.ForEach(x => x.QC = QC_Sure);
-      //    datalogs.ForEach(x => x.OP = TC_Sure);
-      //    datalogs.ForEach(x => x.LoBB = LoBB_Sure);
+              //Thông tin sản phẩm
+              var product = AppCore.Ins._products?.FirstOrDefault(x => x.Id == item.ProductId);
 
-      //    CalDatalog(datalogs);
-      //  }
-      //  else
-      //  {
-      //    this.Close();
-      //  }
-      //}
-      //catch (Exception)
-      //{
-      //}
+              double tareTube = Math.Round(data.Average(x => x.TareTube), 2);
+              double tareTailTube = Math.Round(data.Average(x => x.TareTailTube), 2);
+              double tareCarton = Math.Round(data.Average(x => x.TareCarton), 2);
+
+              lbTube.ValueStr = tareTube.ToString();
+              lbTailTube.ValueStr = tareTailTube.ToString();
+              lbCarton.ValueStr = tareCarton.ToString();
+
+              string lotTube = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().LotTube;
+              string loCarton = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().LotCarton;
+              lbLotTube.ValueStr = lotTube;
+              lbLotCarton.ValueStr = loCarton;
+
+              //
+              TareSetting tareSetting = new TareSetting();
+              tareSetting.Tube = tareTube;
+              tareSetting.TailTube = tareTailTube;
+              tareSetting.Carton = tareCarton;
+              var _sumaryDTO = AppCore.Ins.SumaryDTOData(data, product, tareSetting);
+
+
+              if (product != null)
+              {
+                lbFGs.ValueStr = product.Code;
+                lbNameProduct.ValueStr = product.Description;
+                ucInformationDataSumary1.SetInforProduct(product, tareTube, tareTailTube, tareCarton);
+
+              }
+
+              //Data time
+              var dataChartline = _sumaryDTO.DatalogPass
+                              .OrderBy(x => x.CreatedAt)
+                              .ToList();
+
+              //Reject
+              var reject = new List<DataRejectDTO>();
+              if (_sumaryDTO.DatalogReject?.Count() > 0)
+              {
+                foreach (var rj in _sumaryDTO.DatalogReject)
+                {
+                  DataRejectDTO dataReject = new DataRejectDTO();
+                  dataReject.DateTime = (DateTime)rj.CreatedAt;
+                  dataReject.FGs = product?.Code;
+                  dataReject.Actual = rj.Gross;
+                  dataReject.Target = _sumaryDTO.Target;
+                  reject.Add(dataReject);
+                }
+              }
+
+              _dataChart.AddChartControlDashboard(chartControl, _sumaryDTO, dataChartline, 0);
+              _dataChart.AddChartHistogram(chartHistogram, _sumaryDTO);
+              ucChartPie1.SetDataChartPie(_sumaryDTO);
+
+
+              lbDataNumberReject.ValueStr = _sumaryDTO.DatalogReject.Count().ToString();
+              ucInformationDataSumary1.SetSumaryDTO(_sumaryDTO);
+              SetDataOW_Mean(_sumaryDTO);
+              UpdateInforLoss(_sumaryDTO);
+              UpdateDataReject(reject);
+
+              var dtoDto = HelperDTO.ConvertDatalogDTO(data);
+              dgvData.DataSource = dtoDto;
+              dgvData.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              //dgvData.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              //dgvData.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+              string path = AppCore.Ins._machineCurrent03.PathReport;
+              Export(path, 3, dateTime, shift, _sumaryDTO);
+            }
+            else
+            {
+              //Clear
+              ucInformationDataSumary1.SetSumaryDTO(null);
+              dgvData.DataSource = null;
+              ucInformationDataSumary1.SetInforProduct(null, 0, 0, 0);
+              _dataChart.AddChartControlDashboard(chartControl, null, null, 0);
+              _dataChart.AddChartHistogram(chartHistogram, null);
+              ucChartPie1.SetDataChartPie(null);
+              SetDataOW_Mean(null);
+              UpdateInforLoss(null);
+              UpdateDataReject(null);
+            }
+          }  
+        }
+      }
+
+
+      if (_resultGroups04?.Count() > 0)
+      {
+        foreach (var item in _resultGroups04)
+        {
+          if (item.Datalogs.Count() > 10)
+          {
+            // Data của nhóm được chọn
+            List<Datalog> data = item.Datalogs;
+
+            if (data?.Count() > 0)
+            {
+              //Thông tin vận hành
+              string op = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeOP;
+              string qc = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeQC;
+              string tc = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().NameEmployeeShiftLeader;
+
+              lbOP.ValueStr = op;
+              lbQC.ValueStr = qc;
+              lbShiftLeader.ValueStr = tc;
+
+              //Thông tin sản phẩm
+              var product = AppCore.Ins._products?.FirstOrDefault(x => x.Id == item.ProductId);
+
+              double tareTube = Math.Round(data.Average(x => x.TareTube), 2);
+              double tareTailTube = Math.Round(data.Average(x => x.TareTailTube), 2);
+              double tareCarton = Math.Round(data.Average(x => x.TareCarton), 2);
+
+              lbTube.ValueStr = tareTube.ToString();
+              lbTailTube.ValueStr = tareTailTube.ToString();
+              lbCarton.ValueStr = tareCarton.ToString();
+
+              string lotTube = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().LotTube;
+              string loCarton = data.OrderByDescending(x => x.CreatedAt).FirstOrDefault().LotCarton;
+              lbLotTube.ValueStr = lotTube;
+              lbLotCarton.ValueStr = loCarton;
+
+              //
+              TareSetting tareSetting = new TareSetting();
+              tareSetting.Tube = tareTube;
+              tareSetting.TailTube = tareTailTube;
+              tareSetting.Carton = tareCarton;
+              var _sumaryDTO = AppCore.Ins.SumaryDTOData(data, product, tareSetting);
+
+
+              if (product != null)
+              {
+                lbFGs.ValueStr = product.Code;
+                lbNameProduct.ValueStr = product.Description;
+                ucInformationDataSumary1.SetInforProduct(product, tareTube, tareTailTube, tareCarton);
+
+              }
+
+              //Data time
+              var dataChartline = _sumaryDTO.DatalogPass
+                              .OrderBy(x => x.CreatedAt)
+                              .ToList();
+
+              //Reject
+              var reject = new List<DataRejectDTO>();
+              if (_sumaryDTO.DatalogReject?.Count() > 0)
+              {
+                foreach (var rj in _sumaryDTO.DatalogReject)
+                {
+                  DataRejectDTO dataReject = new DataRejectDTO();
+                  dataReject.DateTime = (DateTime)rj.CreatedAt;
+                  dataReject.FGs = product?.Code;
+                  dataReject.Actual = rj.Gross;
+                  dataReject.Target = _sumaryDTO.Target;
+                  reject.Add(dataReject);
+                }
+              }
+
+              _dataChart.AddChartControlDashboard(chartControl, _sumaryDTO, dataChartline, 0);
+              _dataChart.AddChartHistogram(chartHistogram, _sumaryDTO);
+              ucChartPie1.SetDataChartPie(_sumaryDTO);
+
+
+              lbDataNumberReject.ValueStr = _sumaryDTO.DatalogReject.Count().ToString();
+              ucInformationDataSumary1.SetSumaryDTO(_sumaryDTO);
+              SetDataOW_Mean(_sumaryDTO);
+              UpdateInforLoss(_sumaryDTO);
+              UpdateDataReject(reject);
+
+              var dtoDto = HelperDTO.ConvertDatalogDTO(data);
+              dgvData.DataSource = dtoDto;
+              dgvData.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              //dgvData.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              //dgvData.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+              dgvData.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+              string path = AppCore.Ins._machineCurrent04.PathReport;
+              Export(path, 4, dateTime, shift, _sumaryDTO);
+            }
+            else
+            {
+              //Clear
+              ucInformationDataSumary1.SetSumaryDTO(null);
+              dgvData.DataSource = null;
+              ucInformationDataSumary1.SetInforProduct(null, 0, 0, 0);
+              _dataChart.AddChartControlDashboard(chartControl, null, null, 0);
+              _dataChart.AddChartHistogram(chartHistogram, null);
+              ucChartPie1.SetDataChartPie(null);
+              SetDataOW_Mean(null);
+              UpdateInforLoss(null);
+              UpdateDataReject(null);
+            }
+          }
+        }
+      }
+
+      this.Close();
     }
 
+    private void Export(string path,int line, DateTime dt, int shift, SumaryDTO sumaryDTO)
+    {
+      try
+      {
+        string fileName = path +   $"\\Report_{line}_{sumaryDTO.Product.Code}_{dt.ToString("_dd_MM_yyyy")}_Shift{shift}.xlsx";
+        this.btnExport.Visible = false;
+        // Load file template
+        string templatePath = $@"{Application.StartupPath}\Template\FormatExcel.xlsx";
+        XLWorkbook workbook = new XLWorkbook(templatePath);
+        IXLWorksheet worksheet = workbook.Worksheet("Report");
 
-    private double ProductMin = 0;
-    private double ProductMax = 0;
-    private double ProductLowerControl = 0;
-    private double ProductUpperControl = 0;
-    private double ProductTarget;
-    private double ProductValueT;
-    private string SKU;
+        worksheet.Cell("C3").Value = dt.ToString("yyyy-MM-dd");
+        worksheet.Cell("C4").Value = shift.ToString();
+        worksheet.Cell("C5").Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-    private int Sample = 0;
-    private int NumbersOk = 0;
-    private int NumbersOver = 0;
-    private int NumbersReject = 0;
-    private double Mean = 0;
-    private double Std = 0;
-    private double MinValue = 0;
-    private double MaxValue = 0;
-    private double Cp = 0;
-    private double Cpk = 0;
-    private double OW = 0;
+        worksheet.Cell("F3").Value = $"{line}";
+        worksheet.Cell("F4").Value = sumaryDTO.Product.Code;
+        worksheet.Cell("F5").Value = sumaryDTO.Product.Description;
 
-    private List<Datalog> datalogs = new List<Datalog>();
-    private List<double> valueNetPass = new List<double>();
-    private List<double> valueNetOk = new List<double>();
-    private List<double> valueNetOver = new List<double>();
-    private List<double> valueNetReject = new List<double>();
-    private List<string> dataTimeData = new List<string>();
-    private List<Datalog> listDataReport = new List<Datalog>();
+        //Sumary
+        worksheet.Cell("C7").Value = sumaryDTO.EnumResult == EnumResult.Pass ? "ĐẠT" : "KHÔNG ĐẠT";
+        worksheet.Cell("C8").Value = sumaryDTO.Sample;
+        worksheet.Cell("C9").Value = sumaryDTO.Cpk;
+        worksheet.Cell("C10").Value = sumaryDTO.Cp;
+        worksheet.Cell("C11").Value = sumaryDTO.Min;
+        worksheet.Cell("C12").Value = sumaryDTO.Max;
 
-    private void CalDatalog(List<Datalog> DataIn)
+
+        double accept = (double)sumaryDTO.DatalogAccept.Count();
+        double over = (double)sumaryDTO.DatalogOver.Count();
+        double reject = (double)sumaryDTO.DatalogReject.Count();
+        double total = accept + over + reject;
+
+        double accept_P = Math.Round((accept * 100) / total, 2);
+        double over_P = Math.Round((over * 100) / total, 2);
+        double reject_P = Math.Round((reject * 100) / total, 2);
+
+        worksheet.Cell("C13").Value = $"{over}  ({over_P} %)";
+        worksheet.Cell("C14").Value = $"{accept}  ({accept_P} %)";
+        worksheet.Cell("C15").Value = $"{reject}  ({reject_P} %)";
+
+        //INfor Product
+        worksheet.Cell("F7").Value = sumaryDTO.Target;
+        worksheet.Cell("F8").Value = sumaryDTO.USL;
+        worksheet.Cell("F9").Value = sumaryDTO.UCL;
+        worksheet.Cell("F10").Value = sumaryDTO.LCL;
+        worksheet.Cell("F11").Value = sumaryDTO.LSL;
+
+        //// Lấy dữ liệu từ DataGridView
+        DataTable dataTable = new DataTable();
+        foreach (DataGridViewColumn column in dgvData.Columns)
+        {
+          dataTable.Columns.Add(column.HeaderText);
+        }
+        foreach (DataGridViewRow row in dgvData.Rows)
+        {
+          DataRow dataRow = dataTable.NewRow();
+          foreach (DataGridViewCell cell in row.Cells)
+          {
+            dataRow[cell.ColumnIndex] = cell.Value;
+          }
+          dataTable.Rows.Add(dataRow);
+        }
+        worksheet.Cell("A33").InsertTable(dataTable);
+
+        string imagePath = "";
+        // Chart Control
+        Bitmap bitmap = new Bitmap(tableLayoutPanel23.Width, tableLayoutPanel23.Height);
+        tableLayoutPanel23.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel23.Width, tableLayoutPanel23.Height));
+
+        imagePath = "chart1.png";
+        bitmap.Save(imagePath);
+        var pictureChartControl = worksheet.Pictures.Add(imagePath);
+        pictureChartControl.MoveTo(worksheet.Cell(17, 1));
+        pictureChartControl.WithSize(1405, 300);
+
+
+        //tableLayoutPanel24
+        //bitmap = new Bitmap(tableLayoutPanel24.Width, tableLayoutPanel24.Height);
+        //tableLayoutPanel24.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel24.Width, tableLayoutPanel24.Height));
+        //imagePath = "chart2.png";
+        //bitmap.Save(imagePath);
+        //var pictureChartPie = worksheet.Pictures.Add(imagePath);
+        //pictureChartPie.MoveTo(worksheet.Cell(10, 1));
+        //pictureChartPie.WithSize(1930, 300);
+
+        workbook.SaveAs(fileName);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      finally
+      {
+        this.btnExport.Visible = true;
+      }
+    }
+
+    private void UpdateInforLoss(SumaryDTO sumaryDTO)
     {
       if (this.InvokeRequired)
       {
         this.Invoke(new Action(() =>
         {
-          CalDatalog(DataIn);
+          UpdateInforLoss(sumaryDTO);
         }));
         return;
       }
-
-      //if (DataIn == null) return;
-
-      //MasterData dataProduct = (AppCore.Ins._listMasterData != null) ? AppCore.Ins._listMasterData.Where(x => x.Id == DataIn[0].ProductId).FirstOrDefault() : null;
-      //if (dataProduct == null) return;
-
-      //ProductTarget = dataProduct.Target;
-      //SKU = dataProduct.SKU;
-      //ProductValueT = dataProduct.ValueT;
-      //ProductMax = dataProduct.Max;
-      //ProductUpperControl = dataProduct.UpperControl;
-      //ProductLowerControl = dataProduct.LowerControl;
-      //ProductMin = dataProduct.Min;
-
-      //listDataReport = DataIn.Where(s => s.Status == "Ok" || s.Status == "Over").ToList();
-      //valueNetPass = DataIn.Where(s => s.Status == "Ok" || s.Status == "Over").Select(x => x.Net).ToList();
-      //valueNetOk = DataIn.Where(s => s.Status == "Ok").Select(x => x.Net).ToList();
-      //valueNetOver = DataIn.Where(s => s.Status == "Over").Select(x => x.Net).ToList();
-      //valueNetReject = DataIn.Where(s => s.Status == "Reject").Select(x => x.Net).ToList();
-      //dataTimeData = DataIn.Where(s => s.Status == "Ok" || s.Status == "Over").Select(x => x.CreatedAt.ToString()).ToList();
-
-      //NumbersOk = valueNetOk.Count;
-      //NumbersOver = valueNetOver.Count;
-      //NumbersReject = valueNetReject.Count;
-
-      //Sample = valueNetPass.Count;
-      //Mean = CalMean(valueNetPass);
-      //Std = CalStdDev(valueNetPass);
-      //MinValue = valueNetPass.Min();
-      //MaxValue = valueNetPass.Max();
-
-      //Cp = (Std != 0) ? Math.Round(((MaxValue - MinValue) / (6 * Std)), 3) : 0;
-      //double hcpk = (Std != 0) ? ((MaxValue - Mean) / (3 * Std)) : 0;
-      //double lcpk = (Std != 0) ? ((Mean - MinValue) / (3 * Std)) : 0;
-      //Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
-      //OW = (ProductTarget != 0) ? Math.Round(((Mean - ProductTarget) / ProductTarget) * 100, 2) : 0;
-
-
-      //listDataReport = DataIn;
-      //List<ListDataLogs> DataOut = new List<ListDataLogs>();
-      //for (int i = 0; i < listDataReport.Count; i++)
-      //{
-      //  ListDataLogs data = new ListDataLogs();
-      //  data.STT = i + 1;
-      //  data.DateTime = (DateTime)listDataReport[i].CreatedAt;
-      //  data.Shift = $"Shift {listDataReport[i].ShiftId}";
-      //  data.OP = listDataReport[i].OP;
-      //  data.QC = listDataReport[i].QC;
-      //  data.TC = listDataReport[i].TC;
-      //  data.CodeFGs = dataProduct.FGs;
-      //  data.Description = dataProduct.Description;
-      //  data.LoBB = listDataReport[i].LoBB;
-      //  data.Net = listDataReport[i].Gross;
-      //  data.Target = dataProduct.Target;
-      //  //data.OW = OW;
-      //  //data.Cp = Cp;
-      //  //data.Cpk= Cpk;
-      //  //data.In = DataIn.Count();
-      //  //data.Out = listDataReport.Count();
-      //  data.Reject = (listDataReport[i].Gross < ProductMin) ? 1 : 0;
-      //  data.Over = (listDataReport[i].Gross > ProductMax) ? 1 : 0;
-      //  DataOut.Add(data);
-      //}
-
-      //UpdateUI(DataOut);
-    }
-
-
-    #region Cal Tính toán Mean, Std
-    private double CalMean(List<double> list_data)
-    {
-      double x_tb = 0;
-      foreach (var item in list_data)
+      if (sumaryDTO == null)
       {
-        x_tb += item;
+        ucInformationLoss1.ValueLossReject = "0.0";
+        ucInformationLoss1.ValueLossOW = "0.0";
+        return;
       }
-      return Math.Round(x_tb / list_data.Count, 2);
+
+      double cnt = (double)(sumaryDTO.DatalogAccept.Count());
+      double lossByReject = sumaryDTO.DatalogReject.Sum(x => x.Gross);
+      double lossByOW = (sumaryDTO.OW / 100.0) * sumaryDTO.targetSrc * cnt;
+
+      ucInformationLoss1.ValueLossReject = Math.Round((lossByReject / 1000.0), 2).ToString();
+      ucInformationLoss1.ValueLossOW = Math.Round((lossByOW / 1000.0), 2).ToString();
     }
 
-    private double CalStdDev(List<double> list_data)
+    private void UpdateDataReject(List<DataRejectDTO> dataRejects)
     {
-      double mean_x_tb = CalMean(list_data);
-      double sumOfSquares = 0;
-      foreach (double data_x in list_data)
-        sumOfSquares += Math.Pow(data_x - mean_x_tb, 2);
-      double stdDev = Math.Sqrt(sumOfSquares / (list_data.Count - 1));
-      return Math.Round(stdDev, 2);
-    }
-
-    #endregion
-
-    //private void UpdateUI(List<ListDataLogs> datas)
-    //{
-    //  if (this.InvokeRequired)
-    //  {
-    //    this.Invoke(new Action(() =>
-    //    {
-    //      UpdateUI(datas);
-    //    }));
-    //    return;
-    //  }
-    //  this.lbKhoiLuongTinh_report.Text = SKU;
-    //  this.lb1T_report.Text = ProductValueT.ToString();
-
-    //  this.lbUpper2T_report.Text = ProductMax.ToString();
-    //  this.lbUpper1T_report.Text = ProductUpperControl.ToString();
-    //  this.lbLower1T_report.Text = ProductLowerControl.ToString();
-    //  this.lbLower2T_report.Text = ProductMin.ToString();
-    //  this.lbTarget_report.Text = ProductTarget.ToString();
-
-    //  this.lbSample_report.Text = Sample.ToString();
-    //  this.lbXtb_report.Text = Mean.ToString();
-    //  this.lbMax_report.Text = MaxValue.ToString();
-    //  this.lbMin_report.Text = MinValue.ToString();
-    //  this.lbCpk_report.Text = Cpk.ToString();
-    //  this.lbCp_report.Text = Cp.ToString();
-    //  this.lbOw_report.Text = OW.ToString();
-    //  this.lbTLTB_report.Text = Mean.ToString();
-
-    //  this.lbOw_report.BackColor = (OW >= 0.5) ? Color.Red : Color.FromArgb(40, 167, 68);
-    //  this.lbResult_report.BackColor = (Mean < ProductTarget) ? Color.Red : Color.FromArgb(40, 167, 68);
-    //  this.lbResult_report.Text = (Mean < ProductTarget) ? "FAIL" : "PASS";
-
-    //  _dataChart.AddChartControlDashboard(chartControl, valueNetPass, dataTimeData, ProductMax, ProductUpperControl, ProductTarget, ProductLowerControl, ProductMin, MaxValue);
-    //  _dataChart.AddChartHistogram(chartHistogram, valueNetPass, ProductMax, ProductUpperControl, Mean, Std, ProductLowerControl, ProductMin, MinValue, MaxValue, ProductTarget);
-    //  _dataChart.SetDataChartPie(chartPie, NumbersOk, NumbersOver, NumbersReject);
-
-    //  this.dgvData.DataSource = null;
-    //  this.dgvData.DataSource = datas;
-    //  //SetDgvTitle();
-    //  Report();
-    //}
-
-    private void Report()
-    {
-      // Load file template
-      string templatePath = $@"{Application.StartupPath}\Template\FormatExcel.xlsx";
-      XLWorkbook workbook = new XLWorkbook(templatePath);
-      IXLWorksheet worksheet = workbook.Worksheet("Report");
-
-      string imagePath = "";
-      Bitmap bitmap = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Height);
-      bitmap = new Bitmap(tableLayoutPanel1.Width, tableLayoutPanel1.Height);
-      tableLayoutPanel1.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
-      imagePath = "chart2.png";
-      bitmap.Save(imagePath);
-      var pictureChartPie = worksheet.Pictures.Add(imagePath);
-      pictureChartPie.MoveTo(worksheet.Cell(10, 1));
-      pictureChartPie.WithSize(1930, 830);
-
-
-      // Lấy dữ liệu từ DataGridView
-      DataTable dataTable = new DataTable();
-      foreach (DataGridViewColumn column in dgvData.Columns)
+      try
       {
-        dataTable.Columns.Add(column.HeaderText);
-      }
-      foreach (DataGridViewRow row in dgvData.Rows)
-      {
-        DataRow dataRow = dataTable.NewRow();
-        foreach (DataGridViewCell cell in row.Cells)
+        if (this.InvokeRequired)
         {
-          dataRow[cell.ColumnIndex] = cell.Value;
+          this.Invoke(new Action(() =>
+          {
+            UpdateDataReject(dataRejects);
+          }));
+          return;
         }
-        dataTable.Rows.Add(dataRow);
-      }
-      worksheet.Cell("A50").InsertTable(dataTable);
 
-      //try
-      //{
-      //  string path = AppCore.Ins._lineCurrent.PathReport;
-      //  string fileName = $@"{path}\DataReport{dt.ToString("_dd_MM_yyyy")}_Shift{ShiftId}.xlsx";
-      //  if (dt.Hour >= 0 && dt.Hour < 6)
-      //  {
-      //    fileName = $@"{path}\DataReport{dt.AddDays(-1).ToString("_dd_MM_yyyy")}_Shift{ShiftId}.xlsx";
-      //  }
-      //  workbook.SaveAs(fileName);
-      //}
-      //catch (Exception ex)
-      //{
-      //  AppCore.Ins.LogErrorToFileLog(ex.ToString());
-      //}
-      //finally { this.Close(); }
+        if (dataRejects == null)
+        {
+          dgvReject.Rows.Clear();
+          return;
+        }
+
+        dataRejects = dataRejects.OrderByDescending(x => x.DateTime).ToList();
+        dgvReject.Rows.Clear();
+        int noReject = dataRejects.Count();
+        foreach (var item in dataRejects)
+        {
+          int indexOfFirstSpace = item.DateTime.ToString().IndexOf(' ');
+          string timeOnly = item.DateTime.ToString().Substring(indexOfFirstSpace + 1);
+
+          dgvReject.Rows.Add(noReject--, timeOnly, item.FGs, item.Target, item.Actual);
+        }
+      }
+      catch (Exception ex)
+      {
+        Debug.WriteLine(ex.Message);
+      }
+    }
+
+
+    private void SetDataOW_Mean(SumaryDTO sumaryDTO)
+    {
+      try
+      {
+        if (this.InvokeRequired)
+        {
+          this.Invoke(new Action(() =>
+          {
+            SetDataOW_Mean(sumaryDTO);
+          }));
+          return;
+        }
+
+        if (sumaryDTO == null)
+        {
+          lbOverWeight.ValueData = "0.0";
+          lbTLTB.ValueData = "0.0";
+          lbOverWeight.SetColor = Color.DarkGreen;
+          return;
+        }
+
+        lbOverWeight.ValueData = sumaryDTO.OW.ToString();
+        lbTLTB.ValueData = sumaryDTO.Mean.ToString();
+
+        lbOverWeight.SetColor = (sumaryDTO.OW > 0.5) ? Color.Tomato : Color.DarkGreen;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+      }
+    }
+
+    public static (DateTime From, DateTime To) GetShiftRange(DateTime date, int shift)
+    {
+      DateTime from;
+      DateTime to;
+
+      switch (shift)
+      {
+        case 1:
+          from = date.Date.AddHours(6); // 06:00:00
+          to = date.Date.AddHours(13)
+                        .AddMinutes(59)
+                        .AddSeconds(59); // 13:59:59
+          break;
+
+        case 2:
+          from = date.Date.AddHours(14); // 14:00:00
+          to = date.Date.AddHours(21)
+                        .AddMinutes(59)
+                        .AddSeconds(59); // 21:59:59
+          break;
+
+        case 3:
+          from = date.Date.AddHours(22); // 22:00:00
+          to = date.Date.AddDays(1)
+                        .AddHours(5)
+                        .AddMinutes(59)
+                        .AddSeconds(59); // 05:59:59 ngày hôm sau
+          break;
+
+        default:
+          throw new ArgumentException("Shift phải là 1, 2 hoặc 3.");
+      }
+
+      return (from, to);
+    }
+
+    public static (DateTime Date, int Shift) GetPreviousShift(DateTime now)
+    {
+      DateTime shiftDate;
+      int currentShift;
+
+      TimeSpan time = now.TimeOfDay;
+
+      if (time >= TimeSpan.FromHours(6) && time < TimeSpan.FromHours(14))
+      {
+        // Ca 1
+        shiftDate = now.Date;
+        currentShift = 1;
+      }
+      else if (time >= TimeSpan.FromHours(14) && time < TimeSpan.FromHours(22))
+      {
+        // Ca 2
+        shiftDate = now.Date;
+        currentShift = 2;
+      }
+      else
+      {
+        // Ca 3
+        currentShift = 3;
+
+        // 00:00~05:59 thuộc ca 3 của ngày hôm trước
+        shiftDate = time < TimeSpan.FromHours(6)
+            ? now.Date.AddDays(-1)
+            : now.Date;
+      }
+
+      // Tính ca trước
+      switch (currentShift)
+      {
+        case 1:
+          return (shiftDate.AddDays(-1), 3);
+
+        case 2:
+          return (shiftDate, 1);
+
+        case 3:
+          return (shiftDate, 2);
+
+        default:
+          throw new InvalidOperationException();
+      }
+    }
+
+    private void FrmAutoReport_Load(object sender, EventArgs e)
+    {
+
     }
 
 
     private void timerTimeOutReport_Tick(object sender, EventArgs e)
+    {
+      this.Close();
+    }
+
+    private void btnExport_Click(object sender, EventArgs e)
     {
       this.Close();
     }

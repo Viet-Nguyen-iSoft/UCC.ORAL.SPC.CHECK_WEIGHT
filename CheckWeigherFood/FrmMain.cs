@@ -173,6 +173,16 @@ namespace CheckWeigherFood
       this.btnOverview.PerformClick();
 
       FrmOverview.Instance.OnSendClickDetail += Instance_OnSendClickDetail;
+      AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport;
+    }
+
+    private void Ins_OnSendAutoReport(object sender, int shiftId, int productId)
+    {
+      FrmAutoReport frmAutoReport = new FrmAutoReport();
+      frmAutoReport.FormBorderStyle = FormBorderStyle.None;
+      frmAutoReport.WindowState = FormWindowState.Maximized;
+      frmAutoReport.StartPosition = FormStartPosition.Manual;
+      frmAutoReport.ShowDialog();
     }
 
     private void Instance_OnSendClickDetail(long obj)
@@ -247,6 +257,15 @@ namespace CheckWeigherFood
     private void lbLine_Click(object sender, EventArgs e)
     {
       keyMachine = keyMachine == 3 ? 4 : 3;
+    }
+
+    private void label2_Click(object sender, EventArgs e)
+    {
+      //FrmAutoReport frmAutoReport = new FrmAutoReport();
+      //frmAutoReport.FormBorderStyle = FormBorderStyle.None;
+      //frmAutoReport.WindowState = FormWindowState.Maximized;
+      //frmAutoReport.StartPosition = FormStartPosition.Manual;
+      //frmAutoReport.ShowDialog();
     }
   }
 }

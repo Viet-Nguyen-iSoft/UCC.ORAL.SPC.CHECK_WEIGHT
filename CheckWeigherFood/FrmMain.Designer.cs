@@ -430,6 +430,7 @@
       this.label2.TabIndex = 0;
       this.label2.Text = "DASHBOARD MONITORING WEIGHT";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.label2.Click += new System.EventHandler(this.label2_Click);
       // 
       // lbPage
       // 

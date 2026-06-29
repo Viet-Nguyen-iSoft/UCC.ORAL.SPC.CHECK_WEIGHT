@@ -43,7 +43,6 @@
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.lbNumberDataRemove = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
-      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel4.SuspendLayout();
@@ -338,11 +337,6 @@
       this.label4.Text = "Số dữ liệu cần xóa:";
       this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // backgroundWorker1
-      // 
-      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-      this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-      // 
       // openFileDialog1
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
@@ -378,7 +372,6 @@
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     private System.Windows.Forms.Label lbNumberDataAdd;
     private System.Windows.Forms.Label label1;
-    private System.ComponentModel.BackgroundWorker backgroundWorker1;
     private System.Windows.Forms.OpenFileDialog openFileDialog1;
     private RJControl.RJButton btnConfirm;
     private RJControl.RJButton btnImport;

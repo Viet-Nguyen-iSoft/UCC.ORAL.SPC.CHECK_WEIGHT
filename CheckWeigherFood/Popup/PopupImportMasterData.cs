@@ -46,15 +46,78 @@ namespace CheckWeigherFood.Popup
       this.Close();
     }
 
-    private void BtnImport_Click(object sender, EventArgs e)
+    private async void BtnImport_Click(object sender, EventArgs e)
     {
       DialogResult result = this.openFileDialog1.ShowDialog();
       if (result == DialogResult.OK)
       {
-        if (backgroundWorker1.IsBusy == false)
+        LockUI(true);
+
+        try
         {
-          LockUI(true);
-          this.backgroundWorker1.RunWorkerAsync();
+          _numberSam = 0;
+          _numberNew = 0;
+          _numberRemove = 0;
+
+          _excelImport = PareXlsxByAspose(fileName, 1);
+          _productNew = new List<Product>();
+          if (_excelImport?.Count > 0)
+          {
+            _productDB = await LoadData();
+            foreach (var item in _excelImport)
+            {
+              EnumProductCheck isUpdate = CheckExits(item, _productDB);
+
+              if (isUpdate == EnumProductCheck.New)
+              {
+                Product product = new Product();
+                product.ProName = item.ProName;
+                product.Code = item.Code;
+                product.Description = item.Description;
+                product.Type = item.Type;
+                product.WeightOnPack = item.WeightOnPack;
+                product.Unit = item.Unit;
+                product.USL = item.USL;
+                product.UCL = item.UCL;
+                product.Target = item.Target;
+                product.LCL = item.LCL;
+                product.LSL = item.LSL;
+                product.Density = item.Density;
+                product.T = item.T;
+                product.Tare = item.Tare;
+                product.Note = item.Note;
+                product.IsAbsolute = item.IsAbsolute;
+                product.CreatedAt = DateTime.UtcNow;
+                product.UpdatedAt = DateTime.UtcNow;
+
+                _productNew.Add(product);
+                _numberNew++;
+              }
+              else if (isUpdate == EnumProductCheck.Sam)
+              {
+                _numberSam++;
+              }
+            }
+          }
+
+          //Check xóa
+          _productRemove = GetNotExistInB(_productDB, _excelImport);
+          if (_productRemove?.Count() > 0)
+          {
+            _numberRemove = _productRemove.Count();
+          }
+
+          ShowNumberData();
+          ShowStatus("Tải xong");
+        }
+        catch (Exception)
+        {
+          new FrmInformation().ShowMessage("Không load được File Excel MasterData !", eNumUI.eImage.Warning);
+          ShowStatus("Lỗi khi tải");
+        }
+        finally
+        {
+          LockUI(false);
         }
       }
     }
@@ -106,77 +169,6 @@ namespace CheckWeigherFood.Popup
     {
       fileName = openFileDialog1.FileName;
       ShowStatus("Đang tải ...");
-    }
-
-    private async void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-    {
-      try
-      {
-        _numberSam = 0;
-        _numberNew = 0;
-        _numberRemove = 0;
-
-        _excelImport = PareXlsxByAspose(fileName, 1);
-        _productNew = new List<Product>();
-        if (_excelImport?.Count > 0)
-        {
-          _productDB = await LoadData();
-          foreach (var item in _excelImport)
-          {
-            EnumProductCheck isUpdate = CheckExits(item, _productDB);
-
-            if (isUpdate == EnumProductCheck.New)
-            {
-              Product product = new Product();
-              product.ProName = item.ProName;
-              product.Code = item.Code;
-              product.Description = item.Description;
-              product.Type = item.Type;
-              product.WeightOnPack = item.WeightOnPack;
-              product.Unit = item.Unit;
-              product.USL = item.USL;
-              product.UCL = item.UCL;
-              product.Target = item.Target;
-              product.LCL = item.LCL;
-              product.LSL = item.LSL;
-              product.Density = item.Density;
-              product.T = item.T;
-              product.Tare = item.Tare;
-              product.Note = item.Note;
-              product.IsAbsolute = item.IsAbsolute;
-              product.CreatedAt = DateTime.UtcNow;
-              product.UpdatedAt = DateTime.UtcNow;
-
-              _productNew.Add(product);
-              _numberNew++;
-            }
-            else if (isUpdate == EnumProductCheck.Sam)
-            {
-              _numberSam++;
-            }
-          }
-        }
-
-        //Check xóa
-        _productRemove = GetNotExistInB(_productDB, _excelImport);
-        if (_productRemove?.Count() > 0)
-        {
-          _numberRemove = _productRemove.Count();
-        }
-
-        ShowNumberData();
-        ShowStatus("Tải xong");
-      }
-      catch (Exception)
-      {
-        new FrmInformation().ShowMessage("Không load được File Excel MasterData !", eNumUI.eImage.Warning);
-        ShowStatus("Lỗi khi tải");
-      }
-    }
-
-    private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-    {
-      LockUI(false);
     }
 
     private EnumProductCheck CheckExits(ProductDTO productDTO, List<Product> products)
