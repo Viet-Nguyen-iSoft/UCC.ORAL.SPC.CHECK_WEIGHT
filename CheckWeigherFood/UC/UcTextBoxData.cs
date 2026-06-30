@@ -38,6 +38,7 @@ namespace CheckWeigherFood.UC
         lbData.BackColor = value;
       }
     }
+
     public Color SetForeColor
     {
       set

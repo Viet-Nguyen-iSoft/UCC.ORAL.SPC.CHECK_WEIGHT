@@ -175,7 +175,39 @@ namespace CheckWeigherFood.InitChart
         //chartName.ChartAreas[0].AxisY.Minimum = sumaryDTO.LSL - 5;
 
         double minChart = sumaryDTO.LSL - offsetY;
-        double maxChart = (max < sumaryDTO.USL) ? sumaryDTO.USL + offsetY : sumaryDTO.USL * 1.01;
+        double maxChart = (max < sumaryDTO.USL) ? sumaryDTO.USL + offsetY : sumaryDTO.USL * 1.21;
+
+        double maxData = 0.0;
+        if (sumaryDTO.DatalogAccept?.Count() > 0)
+        {
+          double max1 = sumaryDTO.DatalogAccept.Max(s => s.Gross);
+          if (maxData < max1)
+          {
+            maxData = max1;
+          }
+        }
+
+        if (sumaryDTO.DatalogOver?.Count() > 0)
+        {
+          double max1 = sumaryDTO.DatalogOver.Max(s => s.Gross);
+          if (maxData < max1)
+          {
+            maxData = max1;
+          }
+        }
+
+        double maxCheck = sumaryDTO.Mean * 1.03;
+        if (maxData> maxCheck)
+        {
+          maxChart = maxCheck;
+        }  
+        else
+        {
+          maxChart = maxData * 1.03;
+        }
+
+        //maxChart = sumaryDTO.Mean * 1.1;
+        //maxChart = 700;
         chartName.ChartAreas[0].AxisY.Maximum = maxChart;
         chartName.ChartAreas[0].AxisY.Minimum = minChart;
 

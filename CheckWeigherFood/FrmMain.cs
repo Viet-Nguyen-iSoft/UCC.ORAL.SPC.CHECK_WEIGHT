@@ -266,6 +266,8 @@ namespace CheckWeigherFood
       //frmAutoReport.WindowState = FormWindowState.Maximized;
       //frmAutoReport.StartPosition = FormStartPosition.Manual;
       //frmAutoReport.ShowDialog();
+
+      //AppCore.Ins._testChangeShift = true;
     }
   }
 }

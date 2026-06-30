@@ -178,22 +178,27 @@ namespace CheckWeigherFood.Controls
       //_shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
       //OnSendAutoReport(this, _shiftLast, _shiftCurrent);
     }
+
+    public bool _testChangeShift = false;
     private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       timerCheckChangeShift.Stop();
       try
       {
         _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
-        if (_shiftCurrent != _shiftLast)
+        if (_shiftCurrent != _shiftLast || _testChangeShift == true)
         {
           _shiftLast = _shiftCurrent;
           if (OnSendAutoReport != null)
           {
             //OnSendAutoReport(this, shift_last, _masterDataCurrent.Id);
+            ResetOperator();
             OnSendReSetInforShift?.Invoke();
           }
 
           //_datalogsInShiftCurrent.Clear();
+
+          _testChangeShift = false;
         }
       }
       catch (Exception)
@@ -202,6 +207,24 @@ namespace CheckWeigherFood.Controls
       finally { timerCheckChangeShift.Start(); }
     }
 
+    private async void ResetOperator()
+    {
+      OperationSetting operationSetting03 = new OperationSetting();
+      operationSetting03.OP = "";
+      operationSetting03.QC = "";
+      operationSetting03.ShiftLeader = "";
+      operationSetting03.KeyMachine = 3;
+      operationSetting03.CreatedAt = DateTime.UtcNow;
+      AppCore.Ins._operationSettingCurrent03 = await _operationSettingService.AddAsync(operationSetting03);
+
+      OperationSetting operationSetting04 = new OperationSetting();
+      operationSetting04.OP = "";
+      operationSetting04.QC = "";
+      operationSetting04.ShiftLeader = "";
+      operationSetting04.KeyMachine = 4;
+      operationSetting04.CreatedAt = DateTime.UtcNow;
+      AppCore.Ins._operationSettingCurrent04 = await _operationSettingService.AddAsync(operationSetting04);
+    }
 
 
     private void InitEvent()
@@ -315,6 +338,9 @@ namespace CheckWeigherFood.Controls
         sumaryDTO.LCL = LCL;
         sumaryDTO.LSL = LSL;
 
+        double dataFilter = target * 1.5;
+        datalogs = datalogs?.Where(x => x.Gross <= dataFilter).ToList();
+
         sumaryDTO.DatalogPass = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept || s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
         sumaryDTO.DatalogOver = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Over).ToList();
         sumaryDTO.DatalogAccept = datalogs.Where(s => s.EnumStatusRecord == EnumStatusRecord.Accept).ToList();
@@ -335,7 +361,8 @@ namespace CheckWeigherFood.Controls
         double lcpk = (Std != 0) ? ((sumaryDTO.Mean - LSL) / (3 * Std)) : 0;
         sumaryDTO.Cpk = Math.Round(Math.Min(hcpk, lcpk), 3);
 
-        sumaryDTO.OW = (target != 0 && sumaryDTO.Mean > target) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
+        //sumaryDTO.OW = (target != 0 && sumaryDTO.Mean > target) ? Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2) : 0;
+        sumaryDTO.OW = Math.Round(((sumaryDTO.Mean - target) / target) * 100, 2);
 
         if (sumaryDTO.Mean >= target)
         {

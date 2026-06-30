@@ -63,9 +63,9 @@ namespace CheckWeigherFood.FormUI
       elipseControl7.TargetControl = tableLayoutPanel7;
       elipseControl7.CornerRadius = 20;
 
-      //ElipseControl elipseControl8 = new ElipseControl();
-      //elipseControl8.TargetControl = panelContent;
-      //elipseControl8.CornerRadius = 20;
+      ElipseControl elipseControl8 = new ElipseControl();
+      elipseControl8.TargetControl = panelContent;
+      elipseControl8.CornerRadius = 20;
 
       lbOverWeight.ValueTilte = "OW (%)";
       lbTLTB.ValueTilte = "TL trung bình (g)";
@@ -85,6 +85,9 @@ namespace CheckWeigherFood.FormUI
       lbFGs.SetForeColor = Color.Black;
       lbNameProduct.SetForeColor = Color.Black;
       lbLotCarton.SetForeColor = Color.Black;
+
+      lbContent.AutoSize = true;
+      lbContent.Left = panel1.Width;
     }
 
 
@@ -212,7 +215,7 @@ namespace CheckWeigherFood.FormUI
         lbOverWeight.ValueData = sumaryDTO.OW.ToString();
         lbTLTB.ValueData = sumaryDTO.Mean.ToString();
 
-        lbOverWeight.SetColor = (sumaryDTO.OW > 0.5) ? Color.Tomato : Color.DarkGreen;
+        lbOverWeight.SetColor = (sumaryDTO.OW > 0.5 || sumaryDTO.OW<0) ? Color.Tomato : Color.DarkGreen;
       }
       catch (Exception ex)
       {
@@ -324,6 +327,72 @@ namespace CheckWeigherFood.FormUI
     private void lbStatusMachine_Click(object sender, EventArgs e)
     {
       OnSendClickDetail?.Invoke(KeyMachine);
+    }
+
+    public void SetContent(SumaryDTO sumaryDTO)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          SetContent(sumaryDTO);
+        }));
+        return;
+      }
+
+      if (sumaryDTO.OW > 0.5)
+      {
+        double value = Math.Round(sumaryDTO.Mean - sumaryDTO.Target, 2);
+        string msg = $"OW cao cần giảm trọng lượng {value}g";
+        lbContent.Text = msg;
+        lbContent.ForeColor = Color.Red;
+        panelContent.Visible = true;
+      }
+      else
+      {
+        //Kết quả
+        if (sumaryDTO.EnumResult == EnumResult.Pass)
+        {
+          panelContent.Visible = false;
+        }
+        else if (sumaryDTO.EnumResult == EnumResult.Fail)
+        {
+          string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+          lbContent.ForeColor = Color.Red;
+          lbContent.Text = mgs;
+
+          panelContent.Visible = true;
+        }
+        else
+        {
+          panelContent.Visible = false;
+        }
+      }
+
+      
+    }
+
+
+    public void ShowMsg()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() =>
+        {
+          ShowMsg();
+        }));
+        return;
+      }
+
+      lbContent.Left -= 5;
+
+      // Khi chạy hết bên trái thì quay lại bên phải
+      if (lbContent.Right < 20)
+      {
+        lbContent.Left = panel1.Width;
+      }
+
+      picAlarm.Visible = !picAlarm.Visible;
     }
   }
 }

@@ -7,6 +7,7 @@ using CheckWeigherFood.UC;
 using Database.DTO;
 using Database.Models;
 using Database.Service;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using static CheckWeigherFood.eNum.eNumUI;
 
@@ -32,6 +34,10 @@ namespace CheckWeigherFood.FormUI
     public event Action<long> OnSendClickDetail;
 
     private OperationSettingService _operationSettingService { get; set; }
+
+    private Timer timerMarquee = new Timer();
+    private Timer timerBlinkStatus = new Timer();
+    private Timer timerBlinkStatusInforline = new Timer();
     public FrmOverview()
     {
       InitializeComponent();
@@ -57,6 +63,66 @@ namespace CheckWeigherFood.FormUI
       FrmDashboard.Instance.OnSendChangeTare += Instance_OnSendChangeTare;
       FrmDashboard.Instance.OnSendChangeLot += Instance_OnSendChangeLot;
       FrmDashboard.Instance.OnSendChangeOperator += Instance_OnSendChangeOperator;
+
+      timerMarquee.Interval = 100;
+      timerMarquee.Tick += TimerMarquee_Tick;
+      timerMarquee.Start();
+
+      timerBlinkStatus.Interval = 500;
+      timerBlinkStatus.Tick += TimerBlinkStatus_Tick;
+      timerBlinkStatus.Start();
+    }
+
+    private void TimerBlinkStatus_Tick(object sender, EventArgs e)
+    {
+      try
+      {
+        timerBlinkStatus.Stop();
+        //BlinkStatusMachine();
+
+        if (string.IsNullOrEmpty(lbOP03.ValueStr))
+        {
+          lbOP03.Visible = !lbOP03.Visible;
+        }
+        if (string.IsNullOrEmpty(lbOP04.ValueStr))
+        {
+          lbOP04.Visible = !lbOP04.Visible;
+        }
+        if (string.IsNullOrEmpty(lbQC.ValueStr))
+        {
+          lbQC.Visible = !lbQC.Visible;
+        }
+        if (string.IsNullOrEmpty(lbShiftLeader.ValueStr))
+        {
+          lbShiftLeader.Visible = !lbShiftLeader.Visible;
+        }
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timerBlinkStatus.Start();
+      }
+    }
+
+    private void TimerMarquee_Tick(object sender, EventArgs e)
+    {
+      try
+      {
+        timerMarquee.Stop();
+        ucOverviewLine3.ShowMsg();
+        ucOverviewLine4.ShowMsg();
+      }
+      catch (Exception)
+      {
+
+      }
+      finally
+      {
+        timerMarquee.Start();
+      }
     }
 
     private void Instance_OnSendChangeLot(long keyMachine)
@@ -312,6 +378,16 @@ namespace CheckWeigherFood.FormUI
       timer_UpdateUI.Start();
 
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
+      AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
+    }
+
+    private void Ins_OnSendReSetInforShift()
+    {
+      ShowInforOperator(string.Empty,
+                        string.Empty,
+                        string.Empty,
+                        string.Empty
+        );
     }
 
     private void Ins_OnSendValueWeight(double value, bool statusMachine, long machineKey)
@@ -358,6 +434,7 @@ namespace CheckWeigherFood.FormUI
         ucOverviewLine3.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine3);
         ucOverviewLine3.SetSumaryDTO(AppCore.Ins._sumaryDTOLine3);
         ucOverviewLine3.SetStatusMachine(AppCore.Ins._enumStatusMachine03);
+        ucOverviewLine3.SetContent(AppCore.Ins._sumaryDTOLine3);
         if (AppCore.Ins._enumStatusMachine03 == Database.Enum.EnumStatusMachine.Run)
         {
           tableLayoutPanel3.BackColor = Color.Lime;
@@ -385,7 +462,7 @@ namespace CheckWeigherFood.FormUI
         ucOverviewLine4.SetDataOW_Mean(AppCore.Ins._sumaryDTOLine4);
         ucOverviewLine4.SetSumaryDTO(AppCore.Ins._sumaryDTOLine4);
         ucOverviewLine4.SetStatusMachine(AppCore.Ins._enumStatusMachine04);
-
+        ucOverviewLine4.SetContent(AppCore.Ins._sumaryDTOLine4);
         if (AppCore.Ins._enumStatusMachine04 == Database.Enum.EnumStatusMachine.Run)
         {
           tableLayoutPanel4.BackColor = Color.Lime;
