@@ -71,15 +71,16 @@ namespace CheckWeigherFood.Controls
     public TareSetting _tareSettingCurrent03 { get; set; }
     public TareSetting _tareSettingCurrent04 { get; set; }
 
+    public List<Machine> _machines { get; set; }
     public Machine _machineCurrent03 { get; set; }
     public Machine _machineCurrent04 { get; set; }
 
 
     private async Task InitLoadDataStartApp()
     {
-      var listMachine = await _machineService.GetDataAsync();
-      _machineCurrent03 = listMachine?.FirstOrDefault(x => x.KeyMachine == 3);
-      _machineCurrent04 = listMachine?.FirstOrDefault(x => x.KeyMachine == 4);
+      _machines = await _machineService.GetDataAsync();
+      _machineCurrent03 = _machines?.FirstOrDefault(x => x.KeyMachine == 3);
+      _machineCurrent04 = _machines?.FirstOrDefault(x => x.KeyMachine == 4);
 
       _operationSettingCurrent03 = await _operationSettingService.GetFirstDataAsync(3);
       _operationSettingCurrent04 = await _operationSettingService.GetFirstDataAsync(4);
@@ -172,12 +173,7 @@ namespace CheckWeigherFood.Controls
     private int _shiftLast = 0;
     public int _shiftCurrent = 0;
     private bool testChangeShift = false;
-    public void ChangeShiftTest()
-    {
-      //_datalogsInShiftCurrent = new List<Datalog>();
-      //_shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
-      //OnSendAutoReport(this, _shiftLast, _shiftCurrent);
-    }
+
 
     public bool _testChangeShift = false;
     private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

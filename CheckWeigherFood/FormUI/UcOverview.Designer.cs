@@ -28,14 +28,14 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+      System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcOverview));
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,43 +53,43 @@
       this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
       this.picFilterChart = new System.Windows.Forms.PictureBox();
       this.label28 = new System.Windows.Forms.Label();
+      this.ucFilterTime1 = new CheckWeigherFood.UC.UcFilterTime();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
       this.lbStatusMachine = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+      this.btnChangeOver = new CheckWeigherFood.RJControl.RJButton();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
+      this.lbFGs = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbNameProduct = new CheckWeigherFood.UC.UcTextBoxData();
       this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
       this.label10 = new System.Windows.Forms.Label();
+      this.lbCarton = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbTube = new CheckWeigherFood.UC.UcTextBoxData();
+      this.btnSettingTareAndLot = new CheckWeigherFood.RJControl.RJButton();
       this.label2 = new System.Windows.Forms.Label();
+      this.lbTailTube = new CheckWeigherFood.UC.UcTextBoxData();
       this.label9 = new System.Windows.Forms.Label();
       this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
       this.label15 = new System.Windows.Forms.Label();
+      this.btnChangeLot = new CheckWeigherFood.RJControl.RJButton();
       this.label1 = new System.Windows.Forms.Label();
-      this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-      this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
-      this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-      this.lbLine = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
+      this.lbLotTube = new CheckWeigherFood.UC.UcTextBoxData();
+      this.lbLotCarton = new CheckWeigherFood.UC.UcTextBoxData();
       this.panelContent = new System.Windows.Forms.TableLayoutPanel();
       this.picAlarm = new System.Windows.Forms.PictureBox();
       this.panel1 = new System.Windows.Forms.Panel();
       this.lbContent = new System.Windows.Forms.Label();
-      this.ucFilterTime1 = new CheckWeigherFood.UC.UcFilterTime();
-      this.btnChangeOver = new CheckWeigherFood.RJControl.RJButton();
-      this.lbFGs = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbNameProduct = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbCarton = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbTube = new CheckWeigherFood.UC.UcTextBoxData();
-      this.btnSettingTareAndLot = new CheckWeigherFood.RJControl.RJButton();
-      this.lbTailTube = new CheckWeigherFood.UC.UcTextBoxData();
-      this.btnChangeLot = new CheckWeigherFood.RJControl.RJButton();
-      this.lbLotTube = new CheckWeigherFood.UC.UcTextBoxData();
-      this.lbLotCarton = new CheckWeigherFood.UC.UcTextBoxData();
+      this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.ucInformationDataSumary1 = new CheckWeigherFood.UC.UcInformationDataSumary();
+      this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
       this.lbOverWeight = new CheckWeigherFood.UC.UcData();
       this.lbTLTB = new CheckWeigherFood.UC.UcData();
+      this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+      this.lbLine = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel10.SuspendLayout();
       this.tableLayoutPanel23.SuspendLayout();
@@ -102,12 +102,12 @@
       this.tableLayoutPanel6.SuspendLayout();
       this.tableLayoutPanel8.SuspendLayout();
       this.tableLayoutPanel18.SuspendLayout();
-      this.tableLayoutPanel2.SuspendLayout();
-      this.tableLayoutPanel24.SuspendLayout();
-      this.tableLayoutPanel7.SuspendLayout();
       this.panelContent.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).BeginInit();
       this.panel1.SuspendLayout();
+      this.tableLayoutPanel2.SuspendLayout();
+      this.tableLayoutPanel24.SuspendLayout();
+      this.tableLayoutPanel7.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -210,7 +210,7 @@
       // 
       this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(51)))));
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(414, 10);
+      this.panel2.Location = new System.Drawing.Point(608, 10);
       this.panel2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(44, 5);
@@ -220,7 +220,7 @@
       // 
       this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(51)))));
       this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel3.Location = new System.Drawing.Point(258, 10);
+      this.panel3.Location = new System.Drawing.Point(452, 10);
       this.panel3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel3.Name = "panel3";
       this.panel3.Size = new System.Drawing.Size(44, 5);
@@ -234,7 +234,7 @@
       this.label30.AutoSize = true;
       this.label30.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label30.ForeColor = System.Drawing.Color.White;
-      this.label30.Location = new System.Drawing.Point(160, 0);
+      this.label30.Location = new System.Drawing.Point(354, 0);
       this.label30.Name = "label30";
       this.label30.Size = new System.Drawing.Size(72, 25);
       this.label30.TabIndex = 0;
@@ -249,7 +249,7 @@
       this.label31.AutoSize = true;
       this.label31.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label31.ForeColor = System.Drawing.Color.White;
-      this.label31.Location = new System.Drawing.Point(308, 0);
+      this.label31.Location = new System.Drawing.Point(502, 0);
       this.label31.Name = "label31";
       this.label31.Size = new System.Drawing.Size(80, 25);
       this.label31.TabIndex = 1;
@@ -264,18 +264,18 @@
       this.label32.AutoSize = true;
       this.label32.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label32.ForeColor = System.Drawing.Color.White;
-      this.label32.Location = new System.Drawing.Point(464, 0);
+      this.label32.Location = new System.Drawing.Point(658, 0);
       this.label32.Name = "label32";
-      this.label32.Size = new System.Drawing.Size(311, 25);
+      this.label32.Size = new System.Drawing.Size(103, 25);
       this.label32.TabIndex = 2;
-      this.label32.Text = "TL trên (Target + 1/3 T) & TL dưới (Target - 1/3 T)";
+      this.label32.Text = "TL UCL - LCL";
       this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel4
       // 
       this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
       this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel4.Location = new System.Drawing.Point(110, 10);
+      this.panel4.Location = new System.Drawing.Point(304, 10);
       this.panel4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel4.Name = "panel4";
       this.panel4.Size = new System.Drawing.Size(44, 5);
@@ -289,18 +289,18 @@
       this.label33.AutoSize = true;
       this.label33.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label33.ForeColor = System.Drawing.Color.White;
-      this.label33.Location = new System.Drawing.Point(851, 0);
+      this.label33.Location = new System.Drawing.Point(837, 0);
       this.label33.Name = "label33";
-      this.label33.Size = new System.Drawing.Size(279, 25);
+      this.label33.Size = new System.Drawing.Size(99, 25);
       this.label33.TabIndex = 6;
-      this.label33.Text = "TL trên (Target + 1T) & TL dưới (Target - 1T)";
+      this.label33.Text = "TL USL - LSL";
       this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel14
       // 
       this.panel14.BackColor = System.Drawing.Color.Red;
       this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel14.Location = new System.Drawing.Point(801, 10);
+      this.panel14.Location = new System.Drawing.Point(787, 10);
       this.panel14.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel14.Name = "panel14";
       this.panel14.Size = new System.Drawing.Size(44, 5);
@@ -312,81 +312,81 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.chartControl.BackColor = System.Drawing.Color.Transparent;
-      chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-      chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-      chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
-      chartArea1.AxisX.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-      chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
-      chartArea1.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
-      chartArea1.AxisX2.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisX2.MajorGrid.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisX2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-      chartArea1.AxisX2.TitleForeColor = System.Drawing.Color.White;
-      chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
-      chartArea1.AxisY.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY.MajorGrid.Enabled = false;
-      chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-      chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY.TitleForeColor = System.Drawing.Color.White;
-      chartArea1.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
-      chartArea1.AxisY2.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY2.MajorGrid.Enabled = false;
-      chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.White;
-      chartArea1.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-      chartArea1.AxisY2.TitleForeColor = System.Drawing.Color.White;
-      chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-      chartArea1.BorderColor = System.Drawing.Color.White;
-      chartArea1.InnerPlotPosition.Auto = false;
-      chartArea1.InnerPlotPosition.Height = 85F;
-      chartArea1.InnerPlotPosition.Width = 90F;
-      chartArea1.InnerPlotPosition.X = 8F;
-      chartArea1.InnerPlotPosition.Y = 5F;
-      chartArea1.Name = "ChartArea1";
-      chartArea1.Position.Auto = false;
-      chartArea1.Position.Height = 95F;
-      chartArea1.Position.Width = 100F;
-      this.chartControl.ChartAreas.Add(chartArea1);
-      legend1.Enabled = false;
-      legend1.Name = "Legend1";
-      this.chartControl.Legends.Add(legend1);
+      chartArea3.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+      chartArea3.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+      chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+      chartArea3.AxisX.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+      chartArea3.AxisX.TitleForeColor = System.Drawing.Color.White;
+      chartArea3.AxisX2.LabelStyle.ForeColor = System.Drawing.Color.White;
+      chartArea3.AxisX2.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisX2.MajorGrid.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisX2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+      chartArea3.AxisX2.TitleForeColor = System.Drawing.Color.White;
+      chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+      chartArea3.AxisY.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY.MajorGrid.Enabled = false;
+      chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+      chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY.TitleForeColor = System.Drawing.Color.White;
+      chartArea3.AxisY2.LabelStyle.ForeColor = System.Drawing.Color.White;
+      chartArea3.AxisY2.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY2.MajorGrid.Enabled = false;
+      chartArea3.AxisY2.MajorGrid.LineColor = System.Drawing.Color.White;
+      chartArea3.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+      chartArea3.AxisY2.TitleForeColor = System.Drawing.Color.White;
+      chartArea3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+      chartArea3.BorderColor = System.Drawing.Color.White;
+      chartArea3.InnerPlotPosition.Auto = false;
+      chartArea3.InnerPlotPosition.Height = 85F;
+      chartArea3.InnerPlotPosition.Width = 90F;
+      chartArea3.InnerPlotPosition.X = 8F;
+      chartArea3.InnerPlotPosition.Y = 5F;
+      chartArea3.Name = "ChartArea1";
+      chartArea3.Position.Auto = false;
+      chartArea3.Position.Height = 95F;
+      chartArea3.Position.Width = 100F;
+      this.chartControl.ChartAreas.Add(chartArea3);
+      legend3.Enabled = false;
+      legend3.Name = "Legend1";
+      this.chartControl.Legends.Add(legend3);
       this.chartControl.Location = new System.Drawing.Point(5, 40);
       this.chartControl.Margin = new System.Windows.Forms.Padding(0);
       this.chartControl.Name = "chartControl";
-      series1.ChartArea = "ChartArea1";
-      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-      series1.Legend = "Legend1";
-      series1.Name = "Series1";
-      series2.ChartArea = "ChartArea1";
-      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series2.Legend = "Legend1";
-      series2.Name = "Series2";
-      series3.ChartArea = "ChartArea1";
-      series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series3.Legend = "Legend1";
-      series3.Name = "Series3";
-      series4.ChartArea = "ChartArea1";
-      series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series4.Legend = "Legend1";
-      series4.Name = "Series4";
-      series5.ChartArea = "ChartArea1";
-      series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series5.Legend = "Legend1";
-      series5.Name = "Series5";
-      series6.ChartArea = "ChartArea1";
-      series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-      series6.Legend = "Legend1";
-      series6.Name = "Series6";
-      this.chartControl.Series.Add(series1);
-      this.chartControl.Series.Add(series2);
-      this.chartControl.Series.Add(series3);
-      this.chartControl.Series.Add(series4);
-      this.chartControl.Series.Add(series5);
-      this.chartControl.Series.Add(series6);
+      series13.ChartArea = "ChartArea1";
+      series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series13.Legend = "Legend1";
+      series13.Name = "Series1";
+      series14.ChartArea = "ChartArea1";
+      series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series14.Legend = "Legend1";
+      series14.Name = "Series2";
+      series15.ChartArea = "ChartArea1";
+      series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series15.Legend = "Legend1";
+      series15.Name = "Series3";
+      series16.ChartArea = "ChartArea1";
+      series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series16.Legend = "Legend1";
+      series16.Name = "Series4";
+      series17.ChartArea = "ChartArea1";
+      series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series17.Legend = "Legend1";
+      series17.Name = "Series5";
+      series18.ChartArea = "ChartArea1";
+      series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+      series18.Legend = "Legend1";
+      series18.Name = "Series6";
+      this.chartControl.Series.Add(series13);
+      this.chartControl.Series.Add(series14);
+      this.chartControl.Series.Add(series15);
+      this.chartControl.Series.Add(series16);
+      this.chartControl.Series.Add(series17);
+      this.chartControl.Series.Add(series18);
       this.chartControl.Size = new System.Drawing.Size(1241, 272);
       this.chartControl.TabIndex = 17;
       this.chartControl.Text = "chart1";
@@ -441,6 +441,17 @@
       this.label28.TabIndex = 18;
       this.label28.Text = "Kiểm soát số lượng qua cân";
       this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // ucFilterTime1
+      // 
+      this.ucFilterTime1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
+      this.ucFilterTime1.Location = new System.Drawing.Point(750, 3);
+      this.ucFilterTime1.Name = "ucFilterTime1";
+      this.ucFilterTime1.Size = new System.Drawing.Size(415, 34);
+      this.ucFilterTime1.TabIndex = 19;
+      this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
       // 
       // tableLayoutPanel5
       // 
@@ -547,6 +558,29 @@
       this.tableLayoutPanel6.Size = new System.Drawing.Size(1241, 32);
       this.tableLayoutPanel6.TabIndex = 3;
       // 
+      // btnChangeOver
+      // 
+      this.btnChangeOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnChangeOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOver.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeOver.BorderColor = System.Drawing.Color.PaleVioletRed;
+      this.btnChangeOver.BorderRadius = 5;
+      this.btnChangeOver.BorderSize = 0;
+      this.btnChangeOver.FlatAppearance.BorderSize = 0;
+      this.btnChangeOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnChangeOver.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnChangeOver.ForeColor = System.Drawing.Color.White;
+      this.btnChangeOver.Location = new System.Drawing.Point(1084, 3);
+      this.btnChangeOver.Name = "btnChangeOver";
+      this.btnChangeOver.Size = new System.Drawing.Size(154, 26);
+      this.btnChangeOver.TabIndex = 27;
+      this.btnChangeOver.Text = "Thay đổi";
+      this.btnChangeOver.TextColor = System.Drawing.Color.White;
+      this.btnChangeOver.UseVisualStyleBackColor = false;
+      this.btnChangeOver.Click += new System.EventHandler(this.btnChangeOver_Click);
+      // 
       // label5
       // 
       this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -580,6 +614,28 @@
       this.label6.TabIndex = 21;
       this.label6.Text = "Tên sản phẩm:";
       this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // lbFGs
+      // 
+      this.lbFGs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbFGs.Location = new System.Drawing.Point(133, 3);
+      this.lbFGs.Name = "lbFGs";
+      this.lbFGs.Size = new System.Drawing.Size(194, 26);
+      this.lbFGs.TabIndex = 23;
+      this.lbFGs.ValueStr = "";
+      // 
+      // lbNameProduct
+      // 
+      this.lbNameProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbNameProduct.Location = new System.Drawing.Point(493, 3);
+      this.lbNameProduct.Name = "lbNameProduct";
+      this.lbNameProduct.Size = new System.Drawing.Size(575, 26);
+      this.lbNameProduct.TabIndex = 24;
+      this.lbNameProduct.ValueStr = "";
       // 
       // tableLayoutPanel8
       // 
@@ -628,6 +684,51 @@
       this.label10.Text = "TL carton (g):";
       this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // lbCarton
+      // 
+      this.lbCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbCarton.Location = new System.Drawing.Point(133, 3);
+      this.lbCarton.Name = "lbCarton";
+      this.lbCarton.Size = new System.Drawing.Size(194, 26);
+      this.lbCarton.TabIndex = 24;
+      this.lbCarton.ValueStr = "";
+      // 
+      // lbTube
+      // 
+      this.lbTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbTube.Location = new System.Drawing.Point(493, 3);
+      this.lbTube.Name = "lbTube";
+      this.lbTube.Size = new System.Drawing.Size(194, 26);
+      this.lbTube.TabIndex = 23;
+      this.lbTube.ValueStr = "";
+      // 
+      // btnSettingTareAndLot
+      // 
+      this.btnSettingTareAndLot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnSettingTareAndLot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnSettingTareAndLot.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnSettingTareAndLot.BorderColor = System.Drawing.Color.PaleVioletRed;
+      this.btnSettingTareAndLot.BorderRadius = 5;
+      this.btnSettingTareAndLot.BorderSize = 0;
+      this.btnSettingTareAndLot.FlatAppearance.BorderSize = 0;
+      this.btnSettingTareAndLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnSettingTareAndLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnSettingTareAndLot.ForeColor = System.Drawing.Color.White;
+      this.btnSettingTareAndLot.Location = new System.Drawing.Point(1084, 3);
+      this.btnSettingTareAndLot.Name = "btnSettingTareAndLot";
+      this.btnSettingTareAndLot.Size = new System.Drawing.Size(154, 26);
+      this.btnSettingTareAndLot.TabIndex = 27;
+      this.btnSettingTareAndLot.Text = "Thay đổi";
+      this.btnSettingTareAndLot.TextColor = System.Drawing.Color.White;
+      this.btnSettingTareAndLot.UseVisualStyleBackColor = false;
+      this.btnSettingTareAndLot.Click += new System.EventHandler(this.btnSettingTare_Click);
+      // 
       // label2
       // 
       this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -644,6 +745,17 @@
       this.label2.TabIndex = 28;
       this.label2.Text = "TL đuôi tube (g):";
       this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      // 
+      // lbTailTube
+      // 
+      this.lbTailTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbTailTube.Location = new System.Drawing.Point(874, 3);
+      this.lbTailTube.Name = "lbTailTube";
+      this.lbTailTube.Size = new System.Drawing.Size(194, 26);
+      this.lbTailTube.TabIndex = 29;
+      this.lbTailTube.ValueStr = "";
       // 
       // label9
       // 
@@ -673,8 +785,8 @@
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.78627F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
       this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
       this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
       this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
@@ -705,6 +817,29 @@
       this.label15.Text = "Lô tube:";
       this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // btnChangeLot
+      // 
+      this.btnChangeLot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.btnChangeLot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeLot.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
+      this.btnChangeLot.BorderColor = System.Drawing.Color.PaleVioletRed;
+      this.btnChangeLot.BorderRadius = 5;
+      this.btnChangeLot.BorderSize = 0;
+      this.btnChangeLot.FlatAppearance.BorderSize = 0;
+      this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnChangeLot.ForeColor = System.Drawing.Color.White;
+      this.btnChangeLot.Location = new System.Drawing.Point(1084, 3);
+      this.btnChangeLot.Name = "btnChangeLot";
+      this.btnChangeLot.Size = new System.Drawing.Size(154, 28);
+      this.btnChangeLot.TabIndex = 27;
+      this.btnChangeLot.Text = "Thay đổi";
+      this.btnChangeLot.TextColor = System.Drawing.Color.White;
+      this.btnChangeLot.UseVisualStyleBackColor = false;
+      this.btnChangeLot.Click += new System.EventHandler(this.btnChangeLot_Click);
+      // 
       // label1
       // 
       this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -714,7 +849,7 @@
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(661, 0);
+      this.label1.Location = new System.Drawing.Point(660, 0);
       this.label1.Margin = new System.Windows.Forms.Padding(0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(130, 34);
@@ -722,98 +857,27 @@
       this.label1.Text = "Lô carton:";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // tableLayoutPanel2
+      // lbLotTube
       // 
-      this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.lbLotTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(31)))), ((int)(((byte)(73)))));
-      this.tableLayoutPanel2.ColumnCount = 1;
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel2.Controls.Add(this.ucInformationDataSumary1, 0, 2);
-      this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel24, 0, 0);
-      this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-      this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-      this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-      this.tableLayoutPanel2.RowCount = 3;
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.23346F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.76654F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(313, 514);
-      this.tableLayoutPanel2.TabIndex = 1;
+      this.lbLotTube.Location = new System.Drawing.Point(133, 3);
+      this.lbLotTube.Name = "lbLotTube";
+      this.lbLotTube.Size = new System.Drawing.Size(275, 28);
+      this.lbLotTube.TabIndex = 25;
+      this.lbLotTube.ValueStr = "";
       // 
-      // tableLayoutPanel24
+      // lbLotCarton
       // 
-      this.tableLayoutPanel24.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.lbLotCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
-      this.tableLayoutPanel24.ColumnCount = 3;
-      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel24.Controls.Add(this.lbOverWeight, 1, 0);
-      this.tableLayoutPanel24.Controls.Add(this.lbTLTB, 2, 0);
-      this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel7, 0, 0);
-      this.tableLayoutPanel24.Location = new System.Drawing.Point(0, 0);
-      this.tableLayoutPanel24.Margin = new System.Windows.Forms.Padding(0);
-      this.tableLayoutPanel24.Name = "tableLayoutPanel24";
-      this.tableLayoutPanel24.RowCount = 1;
-      this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel24.Size = new System.Drawing.Size(313, 102);
-      this.tableLayoutPanel24.TabIndex = 7;
-      // 
-      // tableLayoutPanel7
-      // 
-      this.tableLayoutPanel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(39)))), ((int)(((byte)(68)))));
-      this.tableLayoutPanel7.ColumnCount = 1;
-      this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel7.Controls.Add(this.lbLine, 0, 1);
-      this.tableLayoutPanel7.Controls.Add(this.label3, 0, 0);
-      this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
-      this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-      this.tableLayoutPanel7.RowCount = 2;
-      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel7.Size = new System.Drawing.Size(54, 92);
-      this.tableLayoutPanel7.TabIndex = 2;
-      // 
-      // lbLine
-      // 
-      this.lbLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLine.AutoSize = true;
-      this.lbLine.BackColor = System.Drawing.Color.Transparent;
-      this.lbLine.Font = new System.Drawing.Font("Times New Roman", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lbLine.ForeColor = System.Drawing.Color.White;
-      this.lbLine.Location = new System.Drawing.Point(0, 30);
-      this.lbLine.Margin = new System.Windows.Forms.Padding(0);
-      this.lbLine.Name = "lbLine";
-      this.lbLine.Size = new System.Drawing.Size(54, 62);
-      this.lbLine.TabIndex = 22;
-      this.lbLine.Text = "03";
-      this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-      this.lbLine.Click += new System.EventHandler(this.lbLine_Click);
-      // 
-      // label3
-      // 
-      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label3.AutoSize = true;
-      this.label3.BackColor = System.Drawing.Color.Transparent;
-      this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.ForeColor = System.Drawing.Color.White;
-      this.label3.Location = new System.Drawing.Point(0, 0);
-      this.label3.Margin = new System.Windows.Forms.Padding(0);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(54, 30);
-      this.label3.TabIndex = 21;
-      this.label3.Text = "Line";
-      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.label3.Click += new System.EventHandler(this.label3_Click);
+      this.lbLotCarton.Location = new System.Drawing.Point(793, 3);
+      this.lbLotCarton.Name = "lbLotCarton";
+      this.lbLotCarton.Size = new System.Drawing.Size(275, 28);
+      this.lbLotCarton.TabIndex = 29;
+      this.lbLotCarton.ValueStr = "";
       // 
       // panelContent
       // 
@@ -876,162 +940,26 @@
       this.lbContent.Text = "Nội dung";
       this.lbContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // ucFilterTime1
+      // tableLayoutPanel2
       // 
-      this.ucFilterTime1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.ucFilterTime1.From = System.TimeSpan.Parse("00:00:00");
-      this.ucFilterTime1.Location = new System.Drawing.Point(750, 3);
-      this.ucFilterTime1.Name = "ucFilterTime1";
-      this.ucFilterTime1.Size = new System.Drawing.Size(415, 34);
-      this.ucFilterTime1.TabIndex = 19;
-      this.ucFilterTime1.To = System.TimeSpan.Parse("00:00:00");
-      // 
-      // btnChangeOver
-      // 
-      this.btnChangeOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnChangeOver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOver.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeOver.BorderColor = System.Drawing.Color.PaleVioletRed;
-      this.btnChangeOver.BorderRadius = 5;
-      this.btnChangeOver.BorderSize = 0;
-      this.btnChangeOver.FlatAppearance.BorderSize = 0;
-      this.btnChangeOver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnChangeOver.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnChangeOver.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOver.Location = new System.Drawing.Point(1084, 3);
-      this.btnChangeOver.Name = "btnChangeOver";
-      this.btnChangeOver.Size = new System.Drawing.Size(154, 26);
-      this.btnChangeOver.TabIndex = 27;
-      this.btnChangeOver.Text = "Thay đổi";
-      this.btnChangeOver.TextColor = System.Drawing.Color.White;
-      this.btnChangeOver.UseVisualStyleBackColor = false;
-      this.btnChangeOver.Click += new System.EventHandler(this.btnChangeOver_Click);
-      // 
-      // lbFGs
-      // 
-      this.lbFGs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbFGs.Location = new System.Drawing.Point(133, 3);
-      this.lbFGs.Name = "lbFGs";
-      this.lbFGs.Size = new System.Drawing.Size(194, 26);
-      this.lbFGs.TabIndex = 23;
-      this.lbFGs.ValueStr = "";
-      // 
-      // lbNameProduct
-      // 
-      this.lbNameProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbNameProduct.Location = new System.Drawing.Point(493, 3);
-      this.lbNameProduct.Name = "lbNameProduct";
-      this.lbNameProduct.Size = new System.Drawing.Size(575, 26);
-      this.lbNameProduct.TabIndex = 24;
-      this.lbNameProduct.ValueStr = "";
-      // 
-      // lbCarton
-      // 
-      this.lbCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbCarton.Location = new System.Drawing.Point(133, 3);
-      this.lbCarton.Name = "lbCarton";
-      this.lbCarton.Size = new System.Drawing.Size(194, 26);
-      this.lbCarton.TabIndex = 24;
-      this.lbCarton.ValueStr = "";
-      // 
-      // lbTube
-      // 
-      this.lbTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbTube.Location = new System.Drawing.Point(493, 3);
-      this.lbTube.Name = "lbTube";
-      this.lbTube.Size = new System.Drawing.Size(194, 26);
-      this.lbTube.TabIndex = 23;
-      this.lbTube.ValueStr = "";
-      // 
-      // btnSettingTareAndLot
-      // 
-      this.btnSettingTareAndLot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnSettingTareAndLot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnSettingTareAndLot.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnSettingTareAndLot.BorderColor = System.Drawing.Color.PaleVioletRed;
-      this.btnSettingTareAndLot.BorderRadius = 5;
-      this.btnSettingTareAndLot.BorderSize = 0;
-      this.btnSettingTareAndLot.FlatAppearance.BorderSize = 0;
-      this.btnSettingTareAndLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnSettingTareAndLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnSettingTareAndLot.ForeColor = System.Drawing.Color.White;
-      this.btnSettingTareAndLot.Location = new System.Drawing.Point(1084, 3);
-      this.btnSettingTareAndLot.Name = "btnSettingTareAndLot";
-      this.btnSettingTareAndLot.Size = new System.Drawing.Size(154, 26);
-      this.btnSettingTareAndLot.TabIndex = 27;
-      this.btnSettingTareAndLot.Text = "Thay đổi";
-      this.btnSettingTareAndLot.TextColor = System.Drawing.Color.White;
-      this.btnSettingTareAndLot.UseVisualStyleBackColor = false;
-      this.btnSettingTareAndLot.Click += new System.EventHandler(this.btnSettingTare_Click);
-      // 
-      // lbTailTube
-      // 
-      this.lbTailTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbTailTube.Location = new System.Drawing.Point(874, 3);
-      this.lbTailTube.Name = "lbTailTube";
-      this.lbTailTube.Size = new System.Drawing.Size(194, 26);
-      this.lbTailTube.TabIndex = 29;
-      this.lbTailTube.ValueStr = "";
-      // 
-      // btnChangeLot
-      // 
-      this.btnChangeLot.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnChangeLot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeLot.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(108)))));
-      this.btnChangeLot.BorderColor = System.Drawing.Color.PaleVioletRed;
-      this.btnChangeLot.BorderRadius = 5;
-      this.btnChangeLot.BorderSize = 0;
-      this.btnChangeLot.FlatAppearance.BorderSize = 0;
-      this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnChangeLot.ForeColor = System.Drawing.Color.White;
-      this.btnChangeLot.Location = new System.Drawing.Point(1084, 3);
-      this.btnChangeLot.Name = "btnChangeLot";
-      this.btnChangeLot.Size = new System.Drawing.Size(154, 28);
-      this.btnChangeLot.TabIndex = 27;
-      this.btnChangeLot.Text = "Thay đổi";
-      this.btnChangeLot.TextColor = System.Drawing.Color.White;
-      this.btnChangeLot.UseVisualStyleBackColor = false;
-      this.btnChangeLot.Click += new System.EventHandler(this.btnChangeLot_Click);
-      // 
-      // lbLotTube
-      // 
-      this.lbLotTube.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLotTube.Location = new System.Drawing.Point(133, 3);
-      this.lbLotTube.Name = "lbLotTube";
-      this.lbLotTube.Size = new System.Drawing.Size(275, 28);
-      this.lbLotTube.TabIndex = 25;
-      this.lbLotTube.ValueStr = "";
-      // 
-      // lbLotCarton
-      // 
-      this.lbLotCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbLotCarton.Location = new System.Drawing.Point(794, 3);
-      this.lbLotCarton.Name = "lbLotCarton";
-      this.lbLotCarton.Size = new System.Drawing.Size(275, 28);
-      this.lbLotCarton.TabIndex = 29;
-      this.lbLotCarton.ValueStr = "";
+      this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(31)))), ((int)(((byte)(73)))));
+      this.tableLayoutPanel2.ColumnCount = 1;
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel2.Controls.Add(this.ucInformationDataSumary1, 0, 2);
+      this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel24, 0, 0);
+      this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+      this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+      this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+      this.tableLayoutPanel2.RowCount = 3;
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.23346F));
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+      this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.76654F));
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(313, 514);
+      this.tableLayoutPanel2.TabIndex = 1;
       // 
       // ucInformationDataSumary1
       // 
@@ -1043,6 +971,27 @@
       this.ucInformationDataSumary1.Name = "ucInformationDataSumary1";
       this.ucInformationDataSumary1.Size = new System.Drawing.Size(313, 407);
       this.ucInformationDataSumary1.TabIndex = 0;
+      // 
+      // tableLayoutPanel24
+      // 
+      this.tableLayoutPanel24.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(23)))), ((int)(((byte)(55)))));
+      this.tableLayoutPanel24.ColumnCount = 3;
+      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+      this.tableLayoutPanel24.Controls.Add(this.lbOverWeight, 1, 0);
+      this.tableLayoutPanel24.Controls.Add(this.lbTLTB, 2, 0);
+      this.tableLayoutPanel24.Controls.Add(this.tableLayoutPanel7, 0, 0);
+      this.tableLayoutPanel24.Location = new System.Drawing.Point(0, 0);
+      this.tableLayoutPanel24.Margin = new System.Windows.Forms.Padding(0);
+      this.tableLayoutPanel24.Name = "tableLayoutPanel24";
+      this.tableLayoutPanel24.RowCount = 1;
+      this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel24.Size = new System.Drawing.Size(313, 102);
+      this.tableLayoutPanel24.TabIndex = 7;
       // 
       // lbOverWeight
       // 
@@ -1064,6 +1013,57 @@
       this.lbTLTB.Name = "lbTLTB";
       this.lbTLTB.Size = new System.Drawing.Size(121, 96);
       this.lbTLTB.TabIndex = 0;
+      // 
+      // tableLayoutPanel7
+      // 
+      this.tableLayoutPanel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(39)))), ((int)(((byte)(68)))));
+      this.tableLayoutPanel7.ColumnCount = 1;
+      this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel7.Controls.Add(this.lbLine, 0, 1);
+      this.tableLayoutPanel7.Controls.Add(this.label3, 0, 0);
+      this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+      this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+      this.tableLayoutPanel7.RowCount = 2;
+      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+      this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+      this.tableLayoutPanel7.Size = new System.Drawing.Size(54, 92);
+      this.tableLayoutPanel7.TabIndex = 2;
+      // 
+      // lbLine
+      // 
+      this.lbLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.lbLine.AutoSize = true;
+      this.lbLine.BackColor = System.Drawing.Color.Transparent;
+      this.lbLine.Font = new System.Drawing.Font("Times New Roman", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lbLine.ForeColor = System.Drawing.Color.White;
+      this.lbLine.Location = new System.Drawing.Point(0, 30);
+      this.lbLine.Margin = new System.Windows.Forms.Padding(0);
+      this.lbLine.Name = "lbLine";
+      this.lbLine.Size = new System.Drawing.Size(54, 62);
+      this.lbLine.TabIndex = 22;
+      this.lbLine.Text = "03";
+      this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.lbLine.Click += new System.EventHandler(this.lbLine_Click);
+      // 
+      // label3
+      // 
+      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label3.AutoSize = true;
+      this.label3.BackColor = System.Drawing.Color.Transparent;
+      this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.ForeColor = System.Drawing.Color.White;
+      this.label3.Location = new System.Drawing.Point(0, 0);
+      this.label3.Margin = new System.Windows.Forms.Padding(0);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(54, 30);
+      this.label3.TabIndex = 21;
+      this.label3.Text = "Line";
+      this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.label3.Click += new System.EventHandler(this.label3_Click);
       // 
       // UcOverview
       // 
@@ -1090,14 +1090,14 @@
       this.tableLayoutPanel8.PerformLayout();
       this.tableLayoutPanel18.ResumeLayout(false);
       this.tableLayoutPanel18.PerformLayout();
-      this.tableLayoutPanel2.ResumeLayout(false);
-      this.tableLayoutPanel24.ResumeLayout(false);
-      this.tableLayoutPanel7.ResumeLayout(false);
-      this.tableLayoutPanel7.PerformLayout();
       this.panelContent.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.picAlarm)).EndInit();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      this.tableLayoutPanel2.ResumeLayout(false);
+      this.tableLayoutPanel24.ResumeLayout(false);
+      this.tableLayoutPanel7.ResumeLayout(false);
+      this.tableLayoutPanel7.PerformLayout();
       this.ResumeLayout(false);
 
     }

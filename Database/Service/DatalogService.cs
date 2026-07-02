@@ -37,6 +37,22 @@ namespace Database.Service
       }
     }
 
+    public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to)
+    {
+      using (var db = new PgDbContext())
+      {
+        try
+        {
+          _repositoryDatalog = new RepositoryDatalog(db);
+          return await _repositoryDatalog.GetAllDataByTimeAsync(from, to);
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+      }
+    }
+
     public async Task<List<Datalog>> GetAllDataByTimeAsync(DateTime from, DateTime to, long lineId)
     {
       using (var db = new PgDbContext())

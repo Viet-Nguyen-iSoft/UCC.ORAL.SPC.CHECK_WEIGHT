@@ -142,6 +142,7 @@
     <Compile Include="DtoHelper\HelperDTO.cs" />
     <Compile Include="DTO\DatalogDTO.cs" />
     <Compile Include="DTO\DatalogGroup.cs" />
+    <Compile Include="DTO\DatalogOWDTO.cs" />
     <Compile Include="DTO\DataRejectDTO.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />

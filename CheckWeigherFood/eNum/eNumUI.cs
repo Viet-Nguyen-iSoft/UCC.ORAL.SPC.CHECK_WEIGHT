@@ -15,6 +15,7 @@ namespace CheckWeigherFood.eNum
       MasterData,
       Synthetic,
       Report,
+      ReportOW,
       Setting,
       Employee,
       Synchronized,

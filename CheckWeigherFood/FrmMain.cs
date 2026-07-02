@@ -29,9 +29,12 @@ namespace CheckWeigherFood
       this.btnSetting.Click += BtnSetting_Click;
       this.btnReport.Click += BtnReport_Click;
       this.btnMasterData.Click += BtnMasterData_Click;
+      this.btnReportOW.Click += BtnReportOW_Click;
     }
 
    
+
+
 
     #region Singleton parttern
     private static FrmMain _Instance = null;
@@ -96,6 +99,10 @@ namespace CheckWeigherFood
     {
       ChangeButton(AppModulSupport.Report);
     }
+    private void BtnReportOW_Click(object sender, EventArgs e)
+    {
+      ChangeButton(AppModulSupport.ReportOW);
+    }
 
     private void BtnSetting_Click(object sender, EventArgs e)
     {
@@ -127,6 +134,7 @@ namespace CheckWeigherFood
       this.btnDashBoard.ForeColor = NoSelect;
       this.btnMasterData.ForeColor = NoSelect;
       this.btnReport.ForeColor = NoSelect;
+      this.btnReportOW.ForeColor = NoSelect;
       this.btnSetting.ForeColor = NoSelect;
       this.btnEmployee.ForeColor = NoSelect;
 
@@ -147,6 +155,10 @@ namespace CheckWeigherFood
         case AppModulSupport.Report:
           this.btnReport.ForeColor = Select;
           OpenChildForm(button, FrmReport.Instance);
+          break;
+        case AppModulSupport.ReportOW:
+          this.btnReportOW.ForeColor = Select;
+          OpenChildForm(button, FrmReportLossOW.Instance);
           break;
         case AppModulSupport.Setting:
           this.btnSetting.ForeColor = Select;

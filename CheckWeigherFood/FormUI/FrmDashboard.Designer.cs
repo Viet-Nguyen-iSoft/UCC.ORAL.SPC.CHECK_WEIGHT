@@ -461,7 +461,7 @@
       this.tableLayoutPanel14.ColumnCount = 3;
       this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
       this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66667F));
-      this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+      this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
       this.tableLayoutPanel14.Controls.Add(this.label7, 0, 0);
       this.tableLayoutPanel14.Controls.Add(this.cbbLine, 1, 0);
       this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 0);
@@ -500,7 +500,7 @@
             "4"});
       this.cbbLine.Location = new System.Drawing.Point(126, 5);
       this.cbbLine.Name = "cbbLine";
-      this.cbbLine.Size = new System.Drawing.Size(242, 39);
+      this.cbbLine.Size = new System.Drawing.Size(240, 39);
       this.cbbLine.TabIndex = 3;
       // 
       // tableLayoutPanel10
@@ -831,7 +831,7 @@
       // 
       this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(51)))));
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel2.Location = new System.Drawing.Point(538, 10);
+      this.panel2.Location = new System.Drawing.Point(732, 10);
       this.panel2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(44, 5);
@@ -841,7 +841,7 @@
       // 
       this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(51)))));
       this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel3.Location = new System.Drawing.Point(382, 10);
+      this.panel3.Location = new System.Drawing.Point(576, 10);
       this.panel3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel3.Name = "panel3";
       this.panel3.Size = new System.Drawing.Size(44, 5);
@@ -855,7 +855,7 @@
       this.label30.AutoSize = true;
       this.label30.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label30.ForeColor = System.Drawing.Color.White;
-      this.label30.Location = new System.Drawing.Point(284, 0);
+      this.label30.Location = new System.Drawing.Point(478, 0);
       this.label30.Name = "label30";
       this.label30.Size = new System.Drawing.Size(72, 25);
       this.label30.TabIndex = 0;
@@ -870,7 +870,7 @@
       this.label31.AutoSize = true;
       this.label31.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label31.ForeColor = System.Drawing.Color.White;
-      this.label31.Location = new System.Drawing.Point(432, 0);
+      this.label31.Location = new System.Drawing.Point(626, 0);
       this.label31.Name = "label31";
       this.label31.Size = new System.Drawing.Size(80, 25);
       this.label31.TabIndex = 1;
@@ -885,18 +885,18 @@
       this.label32.AutoSize = true;
       this.label32.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label32.ForeColor = System.Drawing.Color.White;
-      this.label32.Location = new System.Drawing.Point(588, 0);
+      this.label32.Location = new System.Drawing.Point(782, 0);
       this.label32.Name = "label32";
-      this.label32.Size = new System.Drawing.Size(311, 25);
+      this.label32.Size = new System.Drawing.Size(103, 25);
       this.label32.TabIndex = 2;
-      this.label32.Text = "TL trên (Target + 1/3 T) & TL dưới (Target - 1/3 T)";
+      this.label32.Text = "TL UCL - LCL";
       this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel4
       // 
       this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(204)))), ((int)(((byte)(255)))));
       this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel4.Location = new System.Drawing.Point(234, 10);
+      this.panel4.Location = new System.Drawing.Point(428, 10);
       this.panel4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel4.Name = "panel4";
       this.panel4.Size = new System.Drawing.Size(44, 5);
@@ -910,18 +910,18 @@
       this.label33.AutoSize = true;
       this.label33.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label33.ForeColor = System.Drawing.Color.White;
-      this.label33.Location = new System.Drawing.Point(975, 0);
+      this.label33.Location = new System.Drawing.Point(961, 0);
       this.label33.Name = "label33";
-      this.label33.Size = new System.Drawing.Size(279, 25);
+      this.label33.Size = new System.Drawing.Size(99, 25);
       this.label33.TabIndex = 6;
-      this.label33.Text = "TL trên (Target + 1T) & TL dưới (Target - 1T)";
+      this.label33.Text = "TL USL - LSL";
       this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel14
       // 
       this.panel14.BackColor = System.Drawing.Color.Red;
       this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.panel14.Location = new System.Drawing.Point(925, 10);
+      this.panel14.Location = new System.Drawing.Point(911, 10);
       this.panel14.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
       this.panel14.Name = "panel14";
       this.panel14.Size = new System.Drawing.Size(44, 5);
@@ -1114,7 +1114,7 @@
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
       this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+      this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
       this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
       this.tableLayoutPanel2.Controls.Add(this.label12, 3, 0);
       this.tableLayoutPanel2.Controls.Add(this.label13, 6, 0);
@@ -1156,7 +1156,7 @@
       this.label12.BackColor = System.Drawing.Color.Transparent;
       this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label12.ForeColor = System.Drawing.Color.White;
-      this.label12.Location = new System.Drawing.Point(448, 0);
+      this.label12.Location = new System.Drawing.Point(447, 0);
       this.label12.Margin = new System.Windows.Forms.Padding(0);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(140, 40);
@@ -1173,7 +1173,7 @@
       this.label13.BackColor = System.Drawing.Color.Transparent;
       this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label13.ForeColor = System.Drawing.Color.White;
-      this.label13.Location = new System.Drawing.Point(917, 0);
+      this.label13.Location = new System.Drawing.Point(915, 0);
       this.label13.Margin = new System.Windows.Forms.Padding(0);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(91, 40);
@@ -1188,7 +1188,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lbOP.Location = new System.Drawing.Point(123, 3);
       this.lbOP.Name = "lbOP";
-      this.lbOP.Size = new System.Drawing.Size(302, 34);
+      this.lbOP.Size = new System.Drawing.Size(301, 34);
       this.lbOP.TabIndex = 23;
       this.lbOP.ValueStr = "";
       // 
@@ -1197,9 +1197,9 @@
       this.lbQC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbQC.Location = new System.Drawing.Point(591, 3);
+      this.lbQC.Location = new System.Drawing.Point(590, 3);
       this.lbQC.Name = "lbQC";
-      this.lbQC.Size = new System.Drawing.Size(303, 34);
+      this.lbQC.Size = new System.Drawing.Size(302, 34);
       this.lbQC.TabIndex = 24;
       this.lbQC.ValueStr = "";
       // 
@@ -1208,9 +1208,9 @@
       this.lbShiftLeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.lbShiftLeader.Location = new System.Drawing.Point(1011, 3);
+      this.lbShiftLeader.Location = new System.Drawing.Point(1009, 3);
       this.lbShiftLeader.Name = "lbShiftLeader";
-      this.lbShiftLeader.Size = new System.Drawing.Size(303, 34);
+      this.lbShiftLeader.Size = new System.Drawing.Size(302, 34);
       this.lbShiftLeader.TabIndex = 25;
       this.lbShiftLeader.ValueStr = "";
       // 
@@ -1228,9 +1228,9 @@
       this.btnChangeOperator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeOperator.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeOperator.ForeColor = System.Drawing.Color.White;
-      this.btnChangeOperator.Location = new System.Drawing.Point(1330, 3);
+      this.btnChangeOperator.Location = new System.Drawing.Point(1327, 3);
       this.btnChangeOperator.Name = "btnChangeOperator";
-      this.btnChangeOperator.Size = new System.Drawing.Size(156, 34);
+      this.btnChangeOperator.Size = new System.Drawing.Size(159, 34);
       this.btnChangeOperator.TabIndex = 26;
       this.btnChangeOperator.Text = "Thay đổi";
       this.btnChangeOperator.TextColor = System.Drawing.Color.White;
@@ -1590,8 +1590,8 @@
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.78627F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
       this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.60686F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
+      this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
       this.tableLayoutPanel18.Controls.Add(this.label15, 0, 0);
       this.tableLayoutPanel18.Controls.Add(this.btnChangeLot, 6, 0);
       this.tableLayoutPanel18.Controls.Add(this.label1, 3, 0);
@@ -1636,9 +1636,9 @@
       this.btnChangeLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnChangeLot.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnChangeLot.ForeColor = System.Drawing.Color.White;
-      this.btnChangeLot.Location = new System.Drawing.Point(1330, 3);
+      this.btnChangeLot.Location = new System.Drawing.Point(1331, 3);
       this.btnChangeLot.Name = "btnChangeLot";
-      this.btnChangeLot.Size = new System.Drawing.Size(156, 33);
+      this.btnChangeLot.Size = new System.Drawing.Size(155, 33);
       this.btnChangeLot.TabIndex = 27;
       this.btnChangeLot.Text = "Thay đổi";
       this.btnChangeLot.TextColor = System.Drawing.Color.White;

@@ -34,9 +34,11 @@
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
       this.panelMain = new System.Windows.Forms.Panel();
       this.panelMenu = new System.Windows.Forms.Panel();
-      this.btnEmployee = new System.Windows.Forms.Button();
-      this.panel7 = new System.Windows.Forms.Panel();
       this.btnSetting = new System.Windows.Forms.Button();
+      this.panel5 = new System.Windows.Forms.Panel();
+      this.btnEmployee = new System.Windows.Forms.Button();
+      this.panel2 = new System.Windows.Forms.Panel();
+      this.btnReportOW = new System.Windows.Forms.Button();
       this.panel8 = new System.Windows.Forms.Panel();
       this.btnReport = new System.Windows.Forms.Button();
       this.panel3 = new System.Windows.Forms.Panel();
@@ -140,9 +142,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(17)))), ((int)(((byte)(70)))));
-      this.panelMenu.Controls.Add(this.btnEmployee);
-      this.panelMenu.Controls.Add(this.panel7);
       this.panelMenu.Controls.Add(this.btnSetting);
+      this.panelMenu.Controls.Add(this.panel5);
+      this.panelMenu.Controls.Add(this.btnEmployee);
+      this.panelMenu.Controls.Add(this.panel2);
+      this.panelMenu.Controls.Add(this.btnReportOW);
       this.panelMenu.Controls.Add(this.panel8);
       this.panelMenu.Controls.Add(this.btnReport);
       this.panelMenu.Controls.Add(this.panel3);
@@ -159,33 +163,6 @@
       this.panelMenu.Size = new System.Drawing.Size(190, 940);
       this.panelMenu.TabIndex = 0;
       // 
-      // btnEmployee
-      // 
-      this.btnEmployee.BackColor = System.Drawing.Color.Transparent;
-      this.btnEmployee.Dock = System.Windows.Forms.DockStyle.Top;
-      this.btnEmployee.FlatAppearance.BorderSize = 0;
-      this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.btnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnEmployee.ForeColor = System.Drawing.Color.White;
-      this.btnEmployee.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployee.Image")));
-      this.btnEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnEmployee.Location = new System.Drawing.Point(10, 328);
-      this.btnEmployee.Name = "btnEmployee";
-      this.btnEmployee.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-      this.btnEmployee.Size = new System.Drawing.Size(170, 51);
-      this.btnEmployee.TabIndex = 30;
-      this.btnEmployee.Text = "          NHÂN VIÊN";
-      this.btnEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnEmployee.UseVisualStyleBackColor = false;
-      // 
-      // panel7
-      // 
-      this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel7.Location = new System.Drawing.Point(10, 311);
-      this.panel7.Name = "panel7";
-      this.panel7.Size = new System.Drawing.Size(170, 17);
-      this.panel7.TabIndex = 29;
-      // 
       // btnSetting
       // 
       this.btnSetting.BackColor = System.Drawing.Color.Transparent;
@@ -196,14 +173,68 @@
       this.btnSetting.ForeColor = System.Drawing.Color.White;
       this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
       this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btnSetting.Location = new System.Drawing.Point(10, 260);
+      this.btnSetting.Location = new System.Drawing.Point(10, 386);
       this.btnSetting.Name = "btnSetting";
       this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
       this.btnSetting.Size = new System.Drawing.Size(170, 51);
-      this.btnSetting.TabIndex = 28;
+      this.btnSetting.TabIndex = 35;
       this.btnSetting.Text = "          CÀI ĐẶT";
       this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       this.btnSetting.UseVisualStyleBackColor = false;
+      // 
+      // panel5
+      // 
+      this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+      this.panel5.Location = new System.Drawing.Point(10, 374);
+      this.panel5.Name = "panel5";
+      this.panel5.Size = new System.Drawing.Size(170, 12);
+      this.panel5.TabIndex = 34;
+      // 
+      // btnEmployee
+      // 
+      this.btnEmployee.BackColor = System.Drawing.Color.Transparent;
+      this.btnEmployee.Dock = System.Windows.Forms.DockStyle.Top;
+      this.btnEmployee.FlatAppearance.BorderSize = 0;
+      this.btnEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnEmployee.ForeColor = System.Drawing.Color.White;
+      this.btnEmployee.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployee.Image")));
+      this.btnEmployee.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnEmployee.Location = new System.Drawing.Point(10, 323);
+      this.btnEmployee.Name = "btnEmployee";
+      this.btnEmployee.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+      this.btnEmployee.Size = new System.Drawing.Size(170, 51);
+      this.btnEmployee.TabIndex = 33;
+      this.btnEmployee.Text = "          NHÂN VIÊN";
+      this.btnEmployee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnEmployee.UseVisualStyleBackColor = false;
+      // 
+      // panel2
+      // 
+      this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+      this.panel2.Location = new System.Drawing.Point(10, 311);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(170, 12);
+      this.panel2.TabIndex = 32;
+      // 
+      // btnReportOW
+      // 
+      this.btnReportOW.BackColor = System.Drawing.Color.Transparent;
+      this.btnReportOW.Dock = System.Windows.Forms.DockStyle.Top;
+      this.btnReportOW.FlatAppearance.BorderSize = 0;
+      this.btnReportOW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.btnReportOW.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnReportOW.ForeColor = System.Drawing.Color.White;
+      this.btnReportOW.Image = ((System.Drawing.Image)(resources.GetObject("btnReportOW.Image")));
+      this.btnReportOW.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnReportOW.Location = new System.Drawing.Point(10, 260);
+      this.btnReportOW.Name = "btnReportOW";
+      this.btnReportOW.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+      this.btnReportOW.Size = new System.Drawing.Size(170, 51);
+      this.btnReportOW.TabIndex = 31;
+      this.btnReportOW.Text = "          BÁO CÁO OW";
+      this.btnReportOW.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      this.btnReportOW.UseVisualStyleBackColor = false;
       // 
       // panel8
       // 
@@ -547,15 +578,17 @@
     private System.Windows.Forms.PictureBox picLogo;
     private System.Windows.Forms.Panel panel4;
     private System.Windows.Forms.Button btnOverview;
-    private System.Windows.Forms.Button btnEmployee;
-    private System.Windows.Forms.Panel panel7;
-    private System.Windows.Forms.Button btnSetting;
     private System.Windows.Forms.Panel panel8;
     private System.Windows.Forms.Button btnReport;
     private System.Windows.Forms.Panel panel3;
     private System.Windows.Forms.Button btnMasterData;
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Button btnDashBoard;
+    private System.Windows.Forms.Button btnSetting;
+    private System.Windows.Forms.Panel panel5;
+    private System.Windows.Forms.Button btnEmployee;
+    private System.Windows.Forms.Panel panel2;
+    private System.Windows.Forms.Button btnReportOW;
   }
 }
 

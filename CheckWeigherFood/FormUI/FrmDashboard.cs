@@ -1280,7 +1280,7 @@ namespace CheckWeigherFood.FrmChild
 
     private void label8_Click(object sender, EventArgs e)
     {
-      AppCore.Ins.ChangeShiftTest();
+      //AppCore.Ins.ChangeShiftTest();
     }
 
     private void btnChangeLot_Click(object sender, EventArgs e)

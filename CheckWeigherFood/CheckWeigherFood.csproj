@@ -381,6 +381,12 @@
     <Compile Include="FormUI\FrmOverview.Designer.cs">
       <DependentUpon>FrmOverview.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUI\FrmReportLossOW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUI\FrmReportLossOW.Designer.cs">
+      <DependentUpon>FrmReportLossOW.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUI\PopupChangeOperationAll.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -583,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUI\FrmOverview.resx">
       <DependentUpon>FrmOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUI\FrmReportLossOW.resx">
+      <DependentUpon>FrmReportLossOW.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUI\PopupChangeOperationAll.resx">
       <DependentUpon>PopupChangeOperationAll.cs</DependentUpon>

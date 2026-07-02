@@ -285,7 +285,7 @@ namespace CheckWeigherFood.Popup
 
               bool valid = (!string.IsNullOrEmpty(row_data.Code)) &&
                             (!string.IsNullOrEmpty(row_data.Description)) &&
-                            (!string.IsNullOrEmpty(row_data.Type)) &&
+                            //(!string.IsNullOrEmpty(row_data.Type)) &&
                             (row_data.USL > 0) &&
                             (row_data.UCL > 0) &&
                             (row_data.Target > 0) &&

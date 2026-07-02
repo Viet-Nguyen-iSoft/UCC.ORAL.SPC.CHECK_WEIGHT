@@ -30,7 +30,7 @@ namespace Database.Respository
       }
     }
 
-    public async Task<Product> GetDataByIdAsync(long id)
+    public async Task<Product> GetDataByIdAsync(long? id)
     {
       try
       {

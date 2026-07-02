@@ -36,14 +36,14 @@ namespace Database.Service
       }
     }
 
-    public async Task<Product> GetDataByIdAsync(long machineId)
+    public async Task<Product> GetDataByIdAsync(long? productId)
     {
       using (var db = new PgDbContext())
       {
         try
         {
           _repositoryProduct = new RepositoryProduct(db);
-          return await _repositoryProduct.GetDataByIdAsync(machineId);
+          return await _repositoryProduct.GetDataByIdAsync(productId);
         }
         catch (Exception ex)
         {

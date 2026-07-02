@@ -1296,3 +1296,4 @@ D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debu
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWei.9DAFB280.Up2Date
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.exe
 D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.pdb
+D:\Project\Unilever\UCC\Oral\UCC.ORAL.SPC.CHECK_WEIGHT\CheckWeigherFood\obj\Debug\CheckWeigherFood.FormUI.FrmReportLossOW.resources
