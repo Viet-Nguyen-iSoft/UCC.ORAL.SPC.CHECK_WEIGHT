@@ -39,6 +39,7 @@ namespace CheckWeigherFood.InitChart
 
       nameChart.ChartAreas[0].AxisX.Title = "Thời gian";
       nameChart.ChartAreas[0].AxisY.Title = "Giá trị cân (g)";
+      nameChart.ChartAreas[0].AxisY.LabelStyle.Format = "N2";
     }
 
     public void ChartHistogramInit(Chart nameChart)

@@ -186,16 +186,22 @@ namespace CheckWeigherFood.FormUI
       {
         ucFilterTime1.From = new TimeSpan(6, 0, 0);
         ucFilterTime1.To = new TimeSpan(14, 0, 0);
+        ucFilterTime1.RangeFrom(6, 14);
+        ucFilterTime1.RangeTo(6, 14);
       }
       else if (shift == 2)
       {
         ucFilterTime1.From = new TimeSpan(14, 0, 0);
         ucFilterTime1.To = new TimeSpan(22, 0, 0);
+        ucFilterTime1.RangeFrom(14, 22);
+        ucFilterTime1.RangeTo(14, 22);
       }
       else if (shift == 3)
       {
         ucFilterTime1.From = new TimeSpan(22, 0, 0);
         ucFilterTime1.To = new TimeSpan(6, 0, 0);
+        ucFilterTime1.RangeFrom(0, 23);
+        ucFilterTime1.RangeTo(0, 6);
       }
     }
 
@@ -357,7 +363,8 @@ namespace CheckWeigherFood.FormUI
         }
         else if (sumaryDTO.EnumResult == EnumResult.Fail)
         {
-          string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+          double value = Math.Round(sumaryDTO.Target - sumaryDTO.Mean, 2);
+          string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
           lbContent.ForeColor = Color.Red;
           lbContent.Text = mgs;
 
@@ -368,8 +375,6 @@ namespace CheckWeigherFood.FormUI
           panelContent.Visible = false;
         }
       }
-
-      
     }
 
 

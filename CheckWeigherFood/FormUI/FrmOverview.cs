@@ -84,17 +84,36 @@ namespace CheckWeigherFood.FormUI
         {
           lbOP03.Visible = !lbOP03.Visible;
         }
+        else
+        {
+          lbOP03.Visible = true;
+        }
+
         if (string.IsNullOrEmpty(lbOP04.ValueStr))
         {
           lbOP04.Visible = !lbOP04.Visible;
         }
+        else
+        {
+          lbOP04.Visible = true;
+        }
+
         if (string.IsNullOrEmpty(lbQC.ValueStr))
         {
           lbQC.Visible = !lbQC.Visible;
         }
+        else
+        {
+          lbQC.Visible = true;
+        }
+
         if (string.IsNullOrEmpty(lbShiftLeader.ValueStr))
         {
           lbShiftLeader.Visible = !lbShiftLeader.Visible;
+        }
+        else
+        {
+          lbShiftLeader.Visible = true;
         }
       }
       catch (Exception)
@@ -383,6 +402,9 @@ namespace CheckWeigherFood.FormUI
 
     private void Ins_OnSendReSetInforShift()
     {
+      ucOverviewLine3.SetTimeFilterChart(AppCore.Ins._shiftCurrent);
+      ucOverviewLine4.SetTimeFilterChart(AppCore.Ins._shiftCurrent);
+
       ShowInforOperator(string.Empty,
                         string.Empty,
                         string.Empty,

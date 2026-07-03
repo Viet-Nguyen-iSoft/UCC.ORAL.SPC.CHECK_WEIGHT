@@ -166,17 +166,14 @@ namespace CheckWeigherFood.Controls
       _shiftCurrent = GetShiftByHour(DateTime.Now.Hour);
       _shiftLast = _shiftCurrent;
       timerCheckChangeShift.Interval = 1000;
-      timerCheckChangeShift.Elapsed += Timer_Report_Auto_Elapsed; ;
+      timerCheckChangeShift.Elapsed += Timer_Change_Shift_Elapsed; ;
       timerCheckChangeShift.Start();
     }
 
     private int _shiftLast = 0;
     public int _shiftCurrent = 0;
-    private bool testChangeShift = false;
-
-
     public bool _testChangeShift = false;
-    private void Timer_Report_Auto_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void Timer_Change_Shift_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       timerCheckChangeShift.Stop();
       try
@@ -185,14 +182,10 @@ namespace CheckWeigherFood.Controls
         if (_shiftCurrent != _shiftLast || _testChangeShift == true)
         {
           _shiftLast = _shiftCurrent;
-          if (OnSendAutoReport != null)
-          {
-            //OnSendAutoReport(this, shift_last, _masterDataCurrent.Id);
-            ResetOperator();
-            OnSendReSetInforShift?.Invoke();
-          }
-
-          //_datalogsInShiftCurrent.Clear();
+          _datalogsInShiftCurrent_Line3 = new List<Datalog>();
+          _datalogsInShiftCurrent_Line4 = new List<Datalog>();
+          ResetOperator();
+          OnSendReSetInforShift?.Invoke();
 
           _testChangeShift = false;
         }

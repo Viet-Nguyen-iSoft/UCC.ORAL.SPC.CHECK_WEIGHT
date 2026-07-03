@@ -256,8 +256,8 @@ namespace CheckWeigherFood
     private long keyMachine = 3;
     private void picLogoVule_Click(object sender, EventArgs e)
     {
-      return;
-      keyMachine = 4;
+      //return;
+      keyMachine = 3;
       enableTime = !enableTime;
       if (enableTime)
         timer_UpdateUI.Start();
@@ -279,7 +279,7 @@ namespace CheckWeigherFood
       //frmAutoReport.StartPosition = FormStartPosition.Manual;
       //frmAutoReport.ShowDialog();
 
-      //AppCore.Ins._testChangeShift = true;
+      AppCore.Ins._testChangeShift = true;
     }
   }
 }

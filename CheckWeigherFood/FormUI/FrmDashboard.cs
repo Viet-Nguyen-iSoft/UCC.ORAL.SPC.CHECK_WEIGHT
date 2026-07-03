@@ -489,13 +489,27 @@ namespace CheckWeigherFood.FrmChild
         {
           lbOP.Visible = !lbOP.Visible;
         }
+        else
+        {
+          lbOP.Visible = true;
+        }
+
         if (string.IsNullOrEmpty(lbQC.ValueStr))
         {
           lbQC.Visible = !lbQC.Visible;
         }
+        else
+        {
+          lbQC.Visible = true;
+        }
+
         if (string.IsNullOrEmpty(lbShiftLeader.ValueStr))
         {
           lbShiftLeader.Visible = !lbShiftLeader.Visible;
+        }
+        else
+        {
+          lbShiftLeader.Visible = true;
         }
       }
       catch (Exception)
@@ -848,7 +862,8 @@ namespace CheckWeigherFood.FrmChild
           }
           else if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Fail)
           {
-            string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+            double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Target - AppCore.Ins._sumaryDTOLine3.Mean, 2);
+            string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
             lbContent.ForeColor = Color.Red;
             lbContent.Text = mgs;
 
@@ -888,7 +903,8 @@ namespace CheckWeigherFood.FrmChild
           }
           else if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Fail)
           {
-            string mgs = "Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn";
+            double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Target - AppCore.Ins._sumaryDTOLine4.Mean, 2);
+            string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
             lbContent.ForeColor = Color.Red;
             lbContent.Text = mgs;
 
@@ -1265,16 +1281,22 @@ namespace CheckWeigherFood.FrmChild
       {
         ucFilterTime1.From = new TimeSpan(6, 0, 0);
         ucFilterTime1.To = new TimeSpan(14, 0, 0);
+        ucFilterTime1.RangeFrom(6, 14);
+        ucFilterTime1.RangeTo(6, 14);
       }
       else if (shift == 2)
       {
         ucFilterTime1.From = new TimeSpan(14, 0, 0);
         ucFilterTime1.To = new TimeSpan(22, 0, 0);
+        ucFilterTime1.RangeFrom(14, 22);
+        ucFilterTime1.RangeTo(14, 22);
       }
       else if (shift == 3)
       {
         ucFilterTime1.From = new TimeSpan(22, 0, 0);
         ucFilterTime1.To = new TimeSpan(6, 0, 0);
+        ucFilterTime1.RangeFrom(0, 23);
+        ucFilterTime1.RangeTo(0, 6);
       }
     }
 

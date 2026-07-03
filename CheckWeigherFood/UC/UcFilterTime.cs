@@ -31,6 +31,18 @@ namespace CheckWeigherFood.UC
       }
     }
 
+    public void RangeFrom(int min, int max)
+    {
+      hourStart.Minimum = min;
+      hourStart.Maximum = max;
+    }
+
+    public void RangeTo(int min, int max)
+    {
+      hourEnd.Minimum = min;
+      hourEnd.Maximum = max;
+    }
+
     public TimeSpan To
     {
       set
