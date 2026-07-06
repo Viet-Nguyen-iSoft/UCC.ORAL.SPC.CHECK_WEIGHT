@@ -58,6 +58,7 @@
       this.btnMenu = new System.Windows.Forms.Button();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
       this.tableLayoutPanel6.SuspendLayout();
@@ -69,6 +70,7 @@
       this.tableLayoutPanel4.SuspendLayout();
       this.tableLayoutPanel5.SuspendLayout();
       this.tableLayoutPanel7.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -366,17 +368,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
-      this.tableLayoutPanel3.ColumnCount = 5;
+      this.tableLayoutPanel3.ColumnCount = 6;
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.69127F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.94629F));
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.36244F));
-      this.tableLayoutPanel3.Controls.Add(this.lbLine, 3, 0);
+      this.tableLayoutPanel3.Controls.Add(this.pictureBox3, 2, 0);
+      this.tableLayoutPanel3.Controls.Add(this.lbLine, 4, 0);
       this.tableLayoutPanel3.Controls.Add(this.picLogo, 1, 0);
-      this.tableLayoutPanel3.Controls.Add(this.pictureBox3, 4, 0);
-      this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 2, 0);
+      this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 3, 0);
       this.tableLayoutPanel3.Controls.Add(this.btnMenu, 0, 0);
+      this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 5, 0);
       this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -393,9 +397,9 @@
       this.lbLine.AutoSize = true;
       this.lbLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lbLine.ForeColor = System.Drawing.Color.White;
-      this.lbLine.Location = new System.Drawing.Point(677, 0);
+      this.lbLine.Location = new System.Drawing.Point(720, 0);
       this.lbLine.Name = "lbLine";
-      this.lbLine.Size = new System.Drawing.Size(1114, 60);
+      this.lbLine.Size = new System.Drawing.Size(1074, 60);
       this.lbLine.TabIndex = 6;
       this.lbLine.Text = "ORAL  PACKING - CHECK WEIGHT ";
       this.lbLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -421,10 +425,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-      this.pictureBox3.Location = new System.Drawing.Point(1799, 5);
+      this.pictureBox3.Location = new System.Drawing.Point(199, 5);
       this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
       this.pictureBox3.Name = "pictureBox3";
-      this.pictureBox3.Size = new System.Drawing.Size(64, 50);
+      this.pictureBox3.Size = new System.Drawing.Size(50, 50);
       this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.pictureBox3.TabIndex = 2;
       this.pictureBox3.TabStop = false;
@@ -439,13 +443,13 @@
       this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
       this.tableLayoutPanel4.Controls.Add(this.lbPage, 0, 1);
-      this.tableLayoutPanel4.Location = new System.Drawing.Point(194, 0);
+      this.tableLayoutPanel4.Location = new System.Drawing.Point(254, 0);
       this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
       this.tableLayoutPanel4.Name = "tableLayoutPanel4";
       this.tableLayoutPanel4.RowCount = 2;
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54F));
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46F));
-      this.tableLayoutPanel4.Size = new System.Drawing.Size(480, 60);
+      this.tableLayoutPanel4.Size = new System.Drawing.Size(463, 60);
       this.tableLayoutPanel4.TabIndex = 4;
       // 
       // label2
@@ -531,6 +535,20 @@
       this.tableLayoutPanel7.Size = new System.Drawing.Size(1878, 1015);
       this.tableLayoutPanel7.TabIndex = 2;
       // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+      this.pictureBox1.Location = new System.Drawing.Point(1800, 3);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(65, 54);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox1.TabIndex = 7;
+      this.pictureBox1.TabStop = false;
+      this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,6 +572,7 @@
       this.tableLayoutPanel4.PerformLayout();
       this.tableLayoutPanel5.ResumeLayout(false);
       this.tableLayoutPanel7.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -589,6 +608,7 @@
     private System.Windows.Forms.Button btnEmployee;
     private System.Windows.Forms.Panel panel2;
     private System.Windows.Forms.Button btnReportOW;
+    private System.Windows.Forms.PictureBox pictureBox1;
   }
 }
 

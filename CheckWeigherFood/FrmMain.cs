@@ -281,5 +281,10 @@ namespace CheckWeigherFood
 
       AppCore.Ins._testChangeShift = true;
     }
+
+    private void pictureBox1_Click(object sender, EventArgs e)
+    {
+      this.WindowState = FormWindowState.Minimized;
+    }
   }
 }
