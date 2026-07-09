@@ -13,9 +13,17 @@ namespace CheckWeigherFood.UC
 {
   public partial class UcFilterTime : UserControl
   {
+    public event Action<TimeSpan, TimeSpan> OnSendChangTime;
     public UcFilterTime()
     {
       InitializeComponent();
+      this.hourStart.ValueChanged += Time_ValueChanged;
+      this.minuteStart.ValueChanged += Time_ValueChanged;
+    }
+
+    private void Time_ValueChanged(object sender, EventArgs e)
+    {
+      OnSendChangTime?.Invoke(From, To);
     }
 
     public TimeSpan From

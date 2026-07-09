@@ -1,20 +1,8 @@
 ﻿using CheckWeigherFood.Modbus;
 using Database.Models;
-using Database.Service;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Newtonsoft.Json;
-using Opc.Ua;
-using OpcUaHelper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static CheckWeigherFood.Controls.AppCore;
 using static Database.Enum;
 
 namespace CheckWeigherFood.Controls
@@ -68,7 +56,7 @@ namespace CheckWeigherFood.Controls
 
     private System.Threading.Timer _watchdogTimer03;
     private readonly object _lockObj03 = new object();
-    public EnumStatusMachine _enumStatusMachine03  = EnumStatusMachine.Stop;
+    public EnumStatusMachine _enumStatusMachine03 = EnumStatusMachine.Stop;
 
     private System.Threading.Timer _watchdogTimer04;
     private readonly object _lockObj04 = new object();
@@ -136,7 +124,7 @@ namespace CheckWeigherFood.Controls
 
     private void _modbus_Error_Line03(object sender, Exception e)
     {
-       
+
     }
     private void _modbus_Error_Line04(object sender, Exception e)
     {
@@ -175,7 +163,7 @@ namespace CheckWeigherFood.Controls
             }
           }
         }
-      }  
+      }
     }
 
     private async void _modbus_DataReceived_Line04(object sender, ModbusDataEventArgs e)
@@ -237,15 +225,15 @@ namespace CheckWeigherFood.Controls
       double value = random.NextDouble() * (max - min) + min;
       value = Math.Round(value, 2);
       OnSendValueWeight?.Invoke(value, true, 3);
-      if (_productCurrent03?.Id>0 && _machineCurrent03?.ChangeOverId>0)
+      if (_productCurrent03?.Id > 0 && _machineCurrent03?.ChangeOverId > 0)
       {
         var rs = await SaveDatalog03(value, _productCurrent03.Id, _machineCurrent03.ChangeOverId);
         if (rs != null)
         {
           _datalogsInShiftCurrent_Line3.Add(rs);
         }
-      }  
-        
+      }
+
     }
 
     public async void RandomDataWeight04()
@@ -262,12 +250,12 @@ namespace CheckWeigherFood.Controls
         if (rs != null)
         {
           _datalogsInShiftCurrent_Line4.Add(rs);
-        }  
-      }  
+        }
+      }
     }
 
 
-    private async Task<Datalog> SaveDatalog03(double value,long productId, long changeOverId)
+    private async Task<Datalog> SaveDatalog03(double value, long productId, long changeOverId)
     {
       try
       {

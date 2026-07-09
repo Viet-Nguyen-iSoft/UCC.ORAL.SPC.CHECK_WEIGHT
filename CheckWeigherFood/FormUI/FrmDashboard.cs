@@ -24,6 +24,8 @@ namespace CheckWeigherFood.FrmChild
     public delegate void SendChangeOver(object sender, string FGs, string Name, double normalSpeed);
     public event SendChangeOver OnSendChangeOver;
 
+    public event Action<int, TimeSpan, TimeSpan> OnSendChangTime;
+
     public event Action<long> OnSendChangeProduct;
     public event Action<long> OnSendChangeTare;
     public event Action<long> OnSendChangeLot;
@@ -174,7 +176,6 @@ namespace CheckWeigherFood.FrmChild
       cbbLine.SelectedIndex = 0;
 
       //Sự kiện
-      AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport1;
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
       AppCore.Ins.OnSendMsgRead += Ins_OnSendMsgRead;
@@ -184,6 +185,58 @@ namespace CheckWeigherFood.FrmChild
       FrmOverview.Instance.OnSendChangeTare += Instance_OnSendChangeTare;
       FrmOverview.Instance.OnSendChangeLot += Instance_OnSendChangeLot;
       FrmOverview.Instance.OnSendChangeOperator += Instance_OnSendChangeOperator;
+
+      FrmOverview.Instance.OnSendChangTime += Instance_OnSendChangTime;
+      ucFilterTime1.OnSendChangTime += UcFilterTime1_OnSendChangTime;
+
+      try
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == 3)
+        {
+          ucFilterTime1.From = FrmOverview.Instance._fromLine3.TimeOfDay;
+          ucFilterTime1.To = FrmOverview.Instance._toLine3.TimeOfDay;
+        }
+        else if (line == 4)
+        {
+          ucFilterTime1.From = FrmOverview.Instance._fromLine4.TimeOfDay;
+          ucFilterTime1.To = FrmOverview.Instance._toLine4.TimeOfDay;
+        }
+      }
+      catch (Exception)
+      {
+
+      }
+    }
+
+    private void UcFilterTime1_OnSendChangTime(TimeSpan arg1, TimeSpan arg2)
+    {
+      try
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        OnSendChangTime?.Invoke(line, ucFilterTime1.From, ucFilterTime1.To);
+      }
+      catch (Exception)
+      {
+
+      }
+    }
+
+    private void Instance_OnSendChangTime(int arg1, TimeSpan arg2, TimeSpan arg3)
+    {
+      try
+      {
+        int line = int.Parse(cbbLine.SelectedItem.ToString());
+        if (line == arg1)
+        {
+          ucFilterTime1.From = arg2;
+          ucFilterTime1.To = arg3;
+        }
+      }
+      catch (Exception)
+      {
+
+      }
     }
 
     private void Instance_OnSendChangeLot(long obj)
@@ -303,6 +356,9 @@ namespace CheckWeigherFood.FrmChild
 
           ShowInforProduct(AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent03?.Carton ?? 0.0);
           ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent03);
+
+          ucFilterTime1.From = FrmOverview.Instance._fromLine3.TimeOfDay;
+          ucFilterTime1.To = FrmOverview.Instance._toLine3.TimeOfDay;
         }
         else if (line == 4)
         {
@@ -313,6 +369,9 @@ namespace CheckWeigherFood.FrmChild
 
           ShowInforProduct(AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
           ShowInforLotAndTare(AppCore.Ins._tareSettingCurrent04);
+
+          ucFilterTime1.From = FrmOverview.Instance._fromLine4.TimeOfDay;
+          ucFilterTime1.To = FrmOverview.Instance._toLine4.TimeOfDay;
         }
 
         _numberRejectLast03 = -1;
@@ -596,34 +655,6 @@ namespace CheckWeigherFood.FrmChild
       picAlarm.Visible = !picAlarm.Visible;
     }
 
-    private void Ins_OnSendAutoReport1(object sender, int shiftId, int productId)
-    {
-      ResetDashboard();
-    }
-
-    private void ResetDashboard()
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new Action(() =>
-        {
-          ResetDashboard();
-        }));
-        return;
-      }
-
-      try
-      {
-        //sumaryDTO = new SumaryDTO();
-        //reject = new List<DataRejectDTO>();
-        //UpdateDataUI(true);
-      }
-      catch (Exception ex)
-      {
-        Debug.WriteLine(ex);
-      }
-    }
-
     private void Timer_UpdateUI_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
       this.timer_UpdateUI.Stop();
@@ -842,84 +873,98 @@ namespace CheckWeigherFood.FrmChild
 
       if (keyMachine == 3)
       {
-        if (AppCore.Ins._sumaryDTOLine3.OW > 0.5)
+        if (AppCore.Ins._sumaryDTOLine3.Sample > 0)
         {
-          double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Mean - AppCore.Ins._sumaryDTOLine3.Target, 2);
-          string msg = $"OW cao cần giảm trọng lượng {value}g";
-          lbContent.Text = msg;
-          lbContent.ForeColor = Color.Red;
-          panelContent.Visible = true;
-        }
-        else
-        {
-          //Kết quả
-          if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Pass)
+          if (AppCore.Ins._sumaryDTOLine3.OW > 0.5)
           {
-            //lbContent.ForeColor = Color.DarkGreen;
-            //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
-            //lbContent.Visible = true;
-            panelContent.Visible = false;
-          }
-          else if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Fail)
-          {
-            double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Target - AppCore.Ins._sumaryDTOLine3.Mean, 2);
-            string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+            double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Mean - AppCore.Ins._sumaryDTOLine3.Target, 2);
+            string msg = $"OW cao cần giảm trọng lượng {value}g";
+            lbContent.Text = msg;
             lbContent.ForeColor = Color.Red;
-            lbContent.Text = mgs;
-
             panelContent.Visible = true;
-            //lbContent.Visible = true;
           }
           else
           {
-            //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
-            //lbContent.ForeColor = Color.Black;
-            //lbContent.Text = mgs;
+            //Kết quả
+            if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Pass)
+            {
+              //lbContent.ForeColor = Color.DarkGreen;
+              //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+              //lbContent.Visible = true;
+              panelContent.Visible = false;
+            }
+            else if (AppCore.Ins._sumaryDTOLine3.EnumResult == EnumResult.Fail)
+            {
+              double value = Math.Round(AppCore.Ins._sumaryDTOLine3.Target - AppCore.Ins._sumaryDTOLine3.Mean, 2);
+              string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+              lbContent.ForeColor = Color.Red;
+              lbContent.Text = mgs;
 
-            panelContent.Visible = false;
-            //lbContent.Visible = false;
+              panelContent.Visible = true;
+              //lbContent.Visible = true;
+            }
+            else
+            {
+              //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+              //lbContent.ForeColor = Color.Black;
+              //lbContent.Text = mgs;
+
+              panelContent.Visible = false;
+              //lbContent.Visible = false;
+            }
           }
         }
+        else
+        {
+          panelContent.Visible = false;
+        }  
       }
       else
       {
-        if (AppCore.Ins._sumaryDTOLine4.OW > 0.5)
+        if (AppCore.Ins._sumaryDTOLine4.Sample > 0)
         {
-          double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Mean - AppCore.Ins._sumaryDTOLine4.Target, 2);
-          string msg = $"OW cao cần giảm trọng lượng {value}g";
-          lbContent.Text = msg;
-          lbContent.ForeColor = Color.Red;
-          panelContent.Visible = true;
-        }
-        else
-        {
-          //Kết quả
-          if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Pass)
+          if (AppCore.Ins._sumaryDTOLine4.OW > 0.5)
           {
-            //lbContent.ForeColor = Color.DarkGreen;
-            //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
-            //lbContent.Visible = true;
-            panelContent.Visible = false;
-          }
-          else if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Fail)
-          {
-            double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Target - AppCore.Ins._sumaryDTOLine4.Mean, 2);
-            string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+            double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Mean - AppCore.Ins._sumaryDTOLine4.Target, 2);
+            string msg = $"OW cao cần giảm trọng lượng {value}g";
+            lbContent.Text = msg;
             lbContent.ForeColor = Color.Red;
-            lbContent.Text = mgs;
-
             panelContent.Visible = true;
-            //lbContent.Visible = true;
           }
           else
           {
-            //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
-            //lbContent.ForeColor = Color.Black;
-            //lbContent.Text = mgs;
+            //Kết quả
+            if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Pass)
+            {
+              //lbContent.ForeColor = Color.DarkGreen;
+              //lbContent.Text = "Line sản xuất ĐẠT trọng lượng tiêu chuẩn";
+              //lbContent.Visible = true;
+              panelContent.Visible = false;
+            }
+            else if (AppCore.Ins._sumaryDTOLine4.EnumResult == EnumResult.Fail)
+            {
+              double value = Math.Round(AppCore.Ins._sumaryDTOLine4.Target - AppCore.Ins._sumaryDTOLine4.Mean, 2);
+              string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+              lbContent.ForeColor = Color.Red;
+              lbContent.Text = mgs;
 
-            panelContent.Visible = false;
-            //lbContent.Visible = false;
+              panelContent.Visible = true;
+              //lbContent.Visible = true;
+            }
+            else
+            {
+              //string mgs = "   KHÔNG CÓ MẪU CỦA SẢN PHẨM TRONG CA HIỆN TẠI";
+              //lbContent.ForeColor = Color.Black;
+              //lbContent.Text = mgs;
+
+              panelContent.Visible = false;
+              //lbContent.Visible = false;
+            }
           }
+        }
+        else
+        {
+          panelContent.Visible = false;
         }
       }
     }
@@ -1277,26 +1322,39 @@ namespace CheckWeigherFood.FrmChild
         return;
       }
 
-      if (shift == 1)
+      try
       {
-        ucFilterTime1.From = new TimeSpan(6, 0, 0);
-        ucFilterTime1.To = new TimeSpan(14, 0, 0);
-        ucFilterTime1.RangeFrom(6, 14);
-        ucFilterTime1.RangeTo(6, 14);
+        if (shift == 1)
+        {
+          ucFilterTime1.RangeFrom(0, 23);
+          ucFilterTime1.RangeTo(0, 23);
+          ucFilterTime1.From = new TimeSpan(6, 0, 0);
+          ucFilterTime1.To = new TimeSpan(14, 0, 0);
+          ucFilterTime1.RangeFrom(6, 14);
+          ucFilterTime1.RangeTo(6, 14);
+        }
+        else if (shift == 2)
+        {
+          ucFilterTime1.RangeFrom(0, 23);
+          ucFilterTime1.RangeTo(0, 23);
+          ucFilterTime1.From = new TimeSpan(14, 0, 0);
+          ucFilterTime1.To = new TimeSpan(22, 0, 0);
+          ucFilterTime1.RangeFrom(14, 22);
+          ucFilterTime1.RangeTo(14, 22);
+        }
+        else if (shift == 3)
+        {
+          ucFilterTime1.RangeFrom(0, 23);
+          ucFilterTime1.RangeTo(0, 23);
+          ucFilterTime1.From = new TimeSpan(22, 0, 0);
+          ucFilterTime1.To = new TimeSpan(6, 0, 0);
+          ucFilterTime1.RangeFrom(0, 23);
+          ucFilterTime1.RangeTo(0, 6);
+        }
       }
-      else if (shift == 2)
+      catch (Exception ex)
       {
-        ucFilterTime1.From = new TimeSpan(14, 0, 0);
-        ucFilterTime1.To = new TimeSpan(22, 0, 0);
-        ucFilterTime1.RangeFrom(14, 22);
-        ucFilterTime1.RangeTo(14, 22);
-      }
-      else if (shift == 3)
-      {
-        ucFilterTime1.From = new TimeSpan(22, 0, 0);
-        ucFilterTime1.To = new TimeSpan(6, 0, 0);
-        ucFilterTime1.RangeFrom(0, 23);
-        ucFilterTime1.RangeTo(0, 6);
+
       }
     }
 

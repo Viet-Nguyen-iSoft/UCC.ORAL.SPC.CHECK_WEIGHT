@@ -33,6 +33,8 @@ namespace CheckWeigherFood.FormUI
     public event Action OnSendChangeOperator;
     public event Action<long> OnSendClickDetail;
 
+    public event Action<int ,TimeSpan, TimeSpan> OnSendChangTime;
+
     private OperationSettingService _operationSettingService { get; set; }
 
     private Timer timerMarquee = new Timer();
@@ -63,6 +65,7 @@ namespace CheckWeigherFood.FormUI
       FrmDashboard.Instance.OnSendChangeTare += Instance_OnSendChangeTare;
       FrmDashboard.Instance.OnSendChangeLot += Instance_OnSendChangeLot;
       FrmDashboard.Instance.OnSendChangeOperator += Instance_OnSendChangeOperator;
+      FrmDashboard.Instance.OnSendChangTime += Instance_OnSendChangTime;
 
       timerMarquee.Interval = 100;
       timerMarquee.Tick += TimerMarquee_Tick;
@@ -71,6 +74,18 @@ namespace CheckWeigherFood.FormUI
       timerBlinkStatus.Interval = 500;
       timerBlinkStatus.Tick += TimerBlinkStatus_Tick;
       timerBlinkStatus.Start();
+    }
+
+    private void Instance_OnSendChangTime(int arg1, TimeSpan arg2, TimeSpan arg3)
+    {
+      if (arg1==3)
+      {
+        ucOverviewLine3.SetTimeFilterChart(arg2, arg3);
+      }
+      else if (arg1 == 4)
+      {
+        ucOverviewLine4.SetTimeFilterChart(arg2, arg3);
+      }  
     }
 
     private void TimerBlinkStatus_Tick(object sender, EventArgs e)
@@ -398,6 +413,18 @@ namespace CheckWeigherFood.FormUI
 
       AppCore.Ins.OnSendValueWeight += Ins_OnSendValueWeight;
       AppCore.Ins.OnSendReSetInforShift += Ins_OnSendReSetInforShift;
+
+      ucOverviewLine3.OnSendChangTime += UcOverviewLine3_OnSendChangTime;
+      ucOverviewLine4.OnSendChangTime += UcOverviewLine4_OnSendChangTime;
+    }
+
+    private void UcOverviewLine3_OnSendChangTime(TimeSpan arg1, TimeSpan arg2)
+    {
+      OnSendChangTime?.Invoke(3, arg1, arg2);
+    }
+    private void UcOverviewLine4_OnSendChangTime(TimeSpan arg1, TimeSpan arg2)
+    {
+      OnSendChangTime?.Invoke(4, arg1, arg2);
     }
 
     private void Ins_OnSendReSetInforShift()
@@ -433,7 +460,11 @@ namespace CheckWeigherFood.FormUI
 
     private List<Datalog> dataChartline03 = new List<Datalog>();
     private List<Datalog> dataChartline04 = new List<Datalog>();
+    public DateTime _fromLine3 { get; set; }
+    public DateTime _toLine3 { get; set; }
 
+    public DateTime _fromLine4 { get; set; }
+    public DateTime _toLine4 { get; set; }
     private void LoadDataDashBoard()
     {
       if (this.InvokeRequired)
@@ -448,6 +479,9 @@ namespace CheckWeigherFood.FormUI
       try
       {
         var dt03 = ucOverviewLine3.GetDt();
+        _fromLine3 = dt03.From;
+        _toLine3 = dt03.To;
+
         dataChartline03 = AppCore.Ins._sumaryDTOLine3.DatalogPass
                         .Where(x => x.CreatedAt >= dt03.From && x.CreatedAt <= dt03.To)
                         .OrderBy(x => x.CreatedAt)
@@ -476,6 +510,8 @@ namespace CheckWeigherFood.FormUI
 
 
         var dt04 = ucOverviewLine4.GetDt();
+        _fromLine4 = dt04.From;
+        _toLine4 = dt04.To;
         dataChartline04 = AppCore.Ins._sumaryDTOLine4.DatalogPass
                         .Where(x => x.CreatedAt >= dt04.From && x.CreatedAt <= dt04.To)
                         .OrderBy(x => x.CreatedAt)

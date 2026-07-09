@@ -21,6 +21,8 @@ namespace CheckWeigherFood.FormUI
 {
   public partial class UcOverview : UserControl
   {
+    public event Action<TimeSpan, TimeSpan> OnSendChangTime;
+
     private long KeyMachine {  get; set; }
     public event Action<long> OnSendChangeProduct;
     public event Action<long> OnSendClickDetail;
@@ -30,6 +32,13 @@ namespace CheckWeigherFood.FormUI
     {
       InitializeComponent();
       CustomUI();
+
+      ucFilterTime1.OnSendChangTime += UcFilterTime1_OnSendChangTime;
+    }
+
+    private void UcFilterTime1_OnSendChangTime(TimeSpan arg1, TimeSpan arg2)
+    {
+      OnSendChangTime?.Invoke(arg1, arg2);
     }
 
     private DataChart _dataChart = new DataChart();
@@ -184,6 +193,8 @@ namespace CheckWeigherFood.FormUI
 
       if (shift == 1)
       {
+        ucFilterTime1.RangeFrom(0, 23);
+        ucFilterTime1.RangeTo(0, 23);
         ucFilterTime1.From = new TimeSpan(6, 0, 0);
         ucFilterTime1.To = new TimeSpan(14, 0, 0);
         ucFilterTime1.RangeFrom(6, 14);
@@ -191,6 +202,8 @@ namespace CheckWeigherFood.FormUI
       }
       else if (shift == 2)
       {
+        ucFilterTime1.RangeFrom(0, 23);
+        ucFilterTime1.RangeTo(0, 23);
         ucFilterTime1.From = new TimeSpan(14, 0, 0);
         ucFilterTime1.To = new TimeSpan(22, 0, 0);
         ucFilterTime1.RangeFrom(14, 22);
@@ -198,11 +211,25 @@ namespace CheckWeigherFood.FormUI
       }
       else if (shift == 3)
       {
+        ucFilterTime1.RangeFrom(0, 23);
+        ucFilterTime1.RangeTo(0, 23);
         ucFilterTime1.From = new TimeSpan(22, 0, 0);
         ucFilterTime1.To = new TimeSpan(6, 0, 0);
         ucFilterTime1.RangeFrom(0, 23);
         ucFilterTime1.RangeTo(0, 6);
       }
+    }
+
+    public void SetTimeFilterChart(TimeSpan from, TimeSpan to)
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new Action(() => { SetTimeFilterChart(from, to); }));
+        return;
+      }
+
+      ucFilterTime1.From = from;
+      ucFilterTime1.To = to;
     }
 
     public void SetDataOW_Mean(SumaryDTO sumaryDTO)
@@ -346,35 +373,42 @@ namespace CheckWeigherFood.FormUI
         return;
       }
 
-      if (sumaryDTO.OW > 0.5)
+      if (sumaryDTO.Sample >0)
       {
-        double value = Math.Round(sumaryDTO.Mean - sumaryDTO.Target, 2);
-        string msg = $"OW cao cần giảm trọng lượng {value}g";
-        lbContent.Text = msg;
-        lbContent.ForeColor = Color.Red;
-        panelContent.Visible = true;
-      }
-      else
-      {
-        //Kết quả
-        if (sumaryDTO.EnumResult == EnumResult.Pass)
+        if (sumaryDTO.OW > 0.5)
         {
-          panelContent.Visible = false;
-        }
-        else if (sumaryDTO.EnumResult == EnumResult.Fail)
-        {
-          double value = Math.Round(sumaryDTO.Target - sumaryDTO.Mean, 2);
-          string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+          double value = Math.Round(sumaryDTO.Mean - sumaryDTO.Target, 2);
+          string msg = $"OW cao cần giảm trọng lượng {value}g";
+          lbContent.Text = msg;
           lbContent.ForeColor = Color.Red;
-          lbContent.Text = mgs;
-
           panelContent.Visible = true;
         }
         else
         {
-          panelContent.Visible = false;
+          //Kết quả
+          if (sumaryDTO.EnumResult == EnumResult.Pass)
+          {
+            panelContent.Visible = false;
+          }
+          else if (sumaryDTO.EnumResult == EnumResult.Fail)
+          {
+            double value = Math.Round(sumaryDTO.Target - sumaryDTO.Mean, 2);
+            string mgs = $"Line sản xuất KHÔNG ĐẠT trọng lượng tiêu chuẩn. Cần tăng thêm {value} g";
+            lbContent.ForeColor = Color.Red;
+            lbContent.Text = mgs;
+
+            panelContent.Visible = true;
+          }
+          else
+          {
+            panelContent.Visible = false;
+          }
         }
       }
+      else
+      {
+        panelContent.Visible = false;
+      }  
     }
 
 

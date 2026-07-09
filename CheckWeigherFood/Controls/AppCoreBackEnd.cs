@@ -1,4 +1,5 @@
-﻿using CheckWeigherFood.FrmChild;
+﻿using CheckWeigherFood.FormUI;
+using CheckWeigherFood.FrmChild;
 using CheckWeigherFood.PLC;
 using Database.DTO;
 using Database.Models;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using static CheckWeigherFood.Controls.AppCore;
 using static Database.Enum;
 using Application = System.Windows.Forms.Application;
 using DateTime = System.DateTime;
@@ -32,7 +34,7 @@ namespace CheckWeigherFood.Controls
     public delegate void SendStatusPLC(object sender, bool isConnect);
     public event SendStatusPLC OnSendStatus;
 
-    public delegate void SendAutoReport(object sender, int shiftId, int productId);
+    public delegate void SendAutoReport();
     public event SendAutoReport OnSendAutoReport;
 
     public delegate void SendReSetInforShift();
@@ -186,6 +188,7 @@ namespace CheckWeigherFood.Controls
           _datalogsInShiftCurrent_Line4 = new List<Datalog>();
           ResetOperator();
           OnSendReSetInforShift?.Invoke();
+          OnSendAutoReport?.Invoke();
 
           _testChangeShift = false;
         }
@@ -236,7 +239,11 @@ namespace CheckWeigherFood.Controls
         timerCheckData.Stop();
         if (AppCore.Ins._datalogsInShiftCurrent_Line3?.Count() > 0)
         {
-          _sumaryDTOLine3 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line3, AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03);
+          var data03 = _datalogsInShiftCurrent_Line3
+                        .Where(x => x.CreatedAt >= FrmOverview.Instance._fromLine3 && x.CreatedAt <= FrmOverview.Instance._toLine3)
+                        .OrderBy(x => x.CreatedAt)
+                        .ToList();
+          _sumaryDTOLine3 = AppCore.Ins.SumaryDTOData(data03, AppCore.Ins._productCurrent03, AppCore.Ins._tareSettingCurrent03);
         }
         else
         {
@@ -245,7 +252,11 @@ namespace CheckWeigherFood.Controls
 
         if (AppCore.Ins._datalogsInShiftCurrent_Line4?.Count() > 0)
         {
-          _sumaryDTOLine4 = AppCore.Ins.SumaryDTOData(_datalogsInShiftCurrent_Line4, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
+          var data04 = _datalogsInShiftCurrent_Line4
+                        .Where(x => x.CreatedAt >= FrmOverview.Instance._fromLine4 && x.CreatedAt <= FrmOverview.Instance._toLine4)
+                        .OrderBy(x => x.CreatedAt)
+                        .ToList();
+          _sumaryDTOLine4 = AppCore.Ins.SumaryDTOData(data04, AppCore.Ins._productCurrent04, AppCore.Ins._tareSettingCurrent04);
         }
         else
         {

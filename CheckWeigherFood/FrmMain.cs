@@ -94,7 +94,6 @@ namespace CheckWeigherFood
     private static Color Select = Color.FromArgb(255, 255, 255);
     private static Color NoSelect = Color.FromArgb(49, 67, 107);
 
-
     private void BtnReport_Click(object sender, EventArgs e)
     {
       ChangeButton(AppModulSupport.Report);
@@ -188,7 +187,7 @@ namespace CheckWeigherFood
       AppCore.Ins.OnSendAutoReport += Ins_OnSendAutoReport;
     }
 
-    private void Ins_OnSendAutoReport(object sender, int shiftId, int productId)
+    private void Ins_OnSendAutoReport()
     {
       FrmAutoReport frmAutoReport = new FrmAutoReport();
       frmAutoReport.FormBorderStyle = FormBorderStyle.None;
