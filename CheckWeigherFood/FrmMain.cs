@@ -255,7 +255,7 @@ namespace CheckWeigherFood
     private long keyMachine = 3;
     private void picLogoVule_Click(object sender, EventArgs e)
     {
-      //return;
+      return;
       keyMachine = 3;
       enableTime = !enableTime;
       if (enableTime)
