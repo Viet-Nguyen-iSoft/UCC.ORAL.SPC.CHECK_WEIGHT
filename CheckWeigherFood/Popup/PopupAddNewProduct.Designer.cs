@@ -44,12 +44,12 @@
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       this.btnConfig = new CheckWeigherFood.RJControl.RJButton();
       this.btnExit = new CheckWeigherFood.RJControl.RJButton();
-      this.label19 = new System.Windows.Forms.Label();
-      this.cbbGroup = new System.Windows.Forms.ComboBox();
       this.label17 = new System.Windows.Forms.Label();
       this.txtTarget = new CustomControls.RJControls.RJTextBox();
       this.label1 = new System.Windows.Forms.Label();
       this.txtT = new CustomControls.RJControls.RJTextBox();
+      this.cbbGroup = new System.Windows.Forms.ComboBox();
+      this.label19 = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel4.SuspendLayout();
       this.SuspendLayout();
@@ -60,8 +60,6 @@
       this.tableLayoutPanel1.ColumnCount = 2;
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-      this.tableLayoutPanel1.Controls.Add(this.txtT, 1, 3);
-      this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
       this.tableLayoutPanel1.Controls.Add(this.txtLSL, 1, 8);
       this.tableLayoutPanel1.Controls.Add(this.txtUSL, 1, 7);
       this.tableLayoutPanel1.Controls.Add(this.txtLCL, 1, 6);
@@ -75,10 +73,12 @@
       this.tableLayoutPanel1.Controls.Add(this.t, 0, 1);
       this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 10);
-      this.tableLayoutPanel1.Controls.Add(this.label19, 0, 4);
-      this.tableLayoutPanel1.Controls.Add(this.cbbGroup, 1, 4);
       this.tableLayoutPanel1.Controls.Add(this.label17, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.txtTarget, 1, 2);
+      this.tableLayoutPanel1.Controls.Add(this.label1, 0, 4);
+      this.tableLayoutPanel1.Controls.Add(this.txtT, 1, 4);
+      this.tableLayoutPanel1.Controls.Add(this.cbbGroup, 1, 3);
+      this.tableLayoutPanel1.Controls.Add(this.label19, 0, 3);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -408,38 +408,6 @@
       this.btnExit.UseVisualStyleBackColor = false;
       this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
       // 
-      // label19
-      // 
-      this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label19.AutoSize = true;
-      this.label19.BackColor = System.Drawing.Color.Transparent;
-      this.label19.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label19.ForeColor = System.Drawing.Color.White;
-      this.label19.Location = new System.Drawing.Point(15, 252);
-      this.label19.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(342, 63);
-      this.label19.TabIndex = 44;
-      this.label19.Text = "Luật trọng lượng";
-      this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // cbbGroup
-      // 
-      this.cbbGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-      this.cbbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.cbbGroup.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.cbbGroup.FormattingEnabled = true;
-      this.cbbGroup.Items.AddRange(new object[] {
-            "TL tuyệt đối",
-            "TL trung bình"});
-      this.cbbGroup.Location = new System.Drawing.Point(365, 264);
-      this.cbbGroup.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
-      this.cbbGroup.Name = "cbbGroup";
-      this.cbbGroup.Size = new System.Drawing.Size(341, 39);
-      this.cbbGroup.TabIndex = 54;
-      // 
       // label17
       // 
       this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -454,7 +422,7 @@
       this.label17.Name = "label17";
       this.label17.Size = new System.Drawing.Size(342, 63);
       this.label17.TabIndex = 42;
-      this.label17.Text = "Trong luong net weigh (không bì) (g)";
+      this.label17.Text = "Trọng lượng Net (không bì) (g)";
       this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // txtTarget
@@ -489,7 +457,7 @@
       this.label1.BackColor = System.Drawing.Color.Transparent;
       this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(15, 189);
+      this.label1.Location = new System.Drawing.Point(15, 252);
       this.label1.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(342, 63);
@@ -505,9 +473,10 @@
       this.txtT.BorderFocusColor = System.Drawing.Color.HotPink;
       this.txtT.BorderRadius = 5;
       this.txtT.BorderSize = 2;
+      this.txtT.Enabled = false;
       this.txtT.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.txtT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-      this.txtT.Location = new System.Drawing.Point(361, 200);
+      this.txtT.Location = new System.Drawing.Point(361, 263);
       this.txtT.Margin = new System.Windows.Forms.Padding(4);
       this.txtT.Multiline = false;
       this.txtT.Name = "txtT";
@@ -519,6 +488,38 @@
       this.txtT.TabIndex = 57;
       this.txtT.Texts = "0";
       this.txtT.UnderlinedStyle = false;
+      // 
+      // cbbGroup
+      // 
+      this.cbbGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+      this.cbbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.cbbGroup.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.cbbGroup.FormattingEnabled = true;
+      this.cbbGroup.Items.AddRange(new object[] {
+            "TL tuyệt đối",
+            "TL trung bình"});
+      this.cbbGroup.Location = new System.Drawing.Point(365, 201);
+      this.cbbGroup.Margin = new System.Windows.Forms.Padding(8, 3, 8, 3);
+      this.cbbGroup.Name = "cbbGroup";
+      this.cbbGroup.Size = new System.Drawing.Size(341, 39);
+      this.cbbGroup.TabIndex = 54;
+      // 
+      // label19
+      // 
+      this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.label19.AutoSize = true;
+      this.label19.BackColor = System.Drawing.Color.Transparent;
+      this.label19.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label19.ForeColor = System.Drawing.Color.White;
+      this.label19.Location = new System.Drawing.Point(15, 189);
+      this.label19.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(342, 63);
+      this.label19.TabIndex = 44;
+      this.label19.Text = "Luật trọng lượng";
+      this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // PopupAddNewProduct
       // 

@@ -82,7 +82,7 @@ namespace CheckWeigherFood.Controls
       lock (_lockObj03)
       {
         _watchdogTimer03?.Change(
-            TimeSpan.FromSeconds(60),
+            TimeSpan.FromSeconds(10),
             Timeout.InfiniteTimeSpan);
 
         _enumStatusMachine03 = EnumStatusMachine.Run;
@@ -93,7 +93,7 @@ namespace CheckWeigherFood.Controls
       lock (_lockObj04)
       {
         _watchdogTimer04?.Change(
-            TimeSpan.FromSeconds(60),
+            TimeSpan.FromSeconds(10),
             Timeout.InfiniteTimeSpan);
 
         _enumStatusMachine04 = EnumStatusMachine.Run;

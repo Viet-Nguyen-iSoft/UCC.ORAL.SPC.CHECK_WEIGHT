@@ -47,8 +47,7 @@ namespace CheckWeigherFood.Popup
     {
       bool isAbsolute = cbbGroup.SelectedIndex == 0;
       double net = double.Parse(txtTarget.Texts);
-      double t = double.Parse(txtT.Texts);
-      CheckCal(isAbsolute, net, t);
+      CheckCal(isAbsolute, net);
     }
 
     private void TextBox_PositiveDecimalOnly(object sender, KeyPressEventArgs e)
@@ -114,18 +113,49 @@ namespace CheckWeigherFood.Popup
       return (note.Trim().ToLower() == "TL tuyệt đối".Trim().ToLower());
     }
 
-    private void CheckCal(bool isAbsolute, double net, double t)
+    private void CheckCal(bool isAbsolute, double net)
     {
+      double t = GetTolerance(net, isAbsolute);
       double usl = isAbsolute ? Math.Round( net*1.05,2) : Math.Round(net + t, 2);
       double lsl = Math.Round(net - t, 2);
 
       double ucl = isAbsolute ? Math.Round( net*1.03,2) : Math.Round(net + t/3.0, 2);
       double lcl = isAbsolute ? Math.Round( net*1.01,2) : Math.Round(net - t/3.0, 2);
 
+      txtT.Texts = t.ToString();
       txtUSL.Texts = usl.ToString();
       txtLSL.Texts = lsl.ToString();
       txtUCL.Texts = ucl.ToString();
       txtLCL.Texts = lcl.ToString();
+    }
+
+    public static double GetTolerance(double net, bool isAbsolute)
+    {
+      if (isAbsolute)
+        return 0;
+
+      if (net < 5)
+        return 0;
+
+      if (net < 50)
+        return net * 0.09;
+
+      if (net < 100)
+        return 4.5;
+
+      if (net < 200)
+        return net * 0.045;
+
+      if (net < 300)
+        return 9;
+
+      if (net < 500)
+        return net * 0.03;
+
+      if (net < 1000)
+        return 15;
+
+      return 0;
     }
   }
 }

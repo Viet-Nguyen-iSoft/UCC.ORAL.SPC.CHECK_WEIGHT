@@ -667,7 +667,7 @@ namespace CheckWeigherFood.FrmChild
 
         worksheet.Cell("F3").Value = $"{cbbLine.SelectedItem.ToString()}";
         worksheet.Cell("F4").Value = _sumaryDTO.Product.Code;
-        worksheet.Cell("F5").Value = _sumaryDTO.Product.ProName;
+        worksheet.Cell("F5").Value = _sumaryDTO.Product.Description;
 
         //Sumary
         worksheet.Cell("C7").Value = _sumaryDTO.EnumResult == EnumResult.Pass ? "ĐẠT" : "KHÔNG ĐẠT";
@@ -678,18 +678,18 @@ namespace CheckWeigherFood.FrmChild
         worksheet.Cell("C12").Value = _sumaryDTO.Max;
 
 
-        double accept = (double)_sumaryDTO.DatalogAccept.Count();
-        double over = (double)_sumaryDTO.DatalogOver.Count();
-        double reject = (double)_sumaryDTO.DatalogReject.Count();
-        double total = accept + over + reject;
+        //double accept = (double)_sumaryDTO.DatalogAccept.Count();
+        //double over = (double)_sumaryDTO.DatalogOver.Count();
+        //double reject = (double)_sumaryDTO.DatalogReject.Count();
+        //double total = accept + over + reject;
 
-        double accept_P = Math.Round((accept * 100) / total, 2);
-        double over_P = Math.Round((over * 100) / total, 2);
-        double reject_P = Math.Round((reject * 100) / total, 2);
+        //double accept_P = Math.Round((accept * 100) / total, 2);
+        //double over_P = Math.Round((over * 100) / total, 2);
+        //double reject_P = Math.Round((reject * 100) / total, 2);
 
-        worksheet.Cell("C13").Value = $"{over}  ({over_P} %)";
-        worksheet.Cell("C14").Value = $"{accept}  ({accept_P} %)";
-        worksheet.Cell("C15").Value = $"{reject}  ({reject_P} %)";
+        //worksheet.Cell("C13").Value = $"{over}  ({over_P} %)";
+        //worksheet.Cell("C14").Value = $"{accept}  ({accept_P} %)";
+        //worksheet.Cell("C15").Value = $"{reject}  ({reject_P} %)";
 
         //INfor Product
         worksheet.Cell("F7").Value = _sumaryDTO.Target;
@@ -713,7 +713,7 @@ namespace CheckWeigherFood.FrmChild
           }
           dataTable.Rows.Add(dataRow);
         }
-        worksheet.Cell("A33").InsertTable(dataTable);
+        worksheet.Cell("A30").InsertTable(dataTable);
 
         string imagePath = "";
         // Chart Control
@@ -723,7 +723,7 @@ namespace CheckWeigherFood.FrmChild
         imagePath = "chart1.png";
         bitmap.Save(imagePath);
         var pictureChartControl = worksheet.Pictures.Add(imagePath);
-        pictureChartControl.MoveTo(worksheet.Cell(17, 1));
+        pictureChartControl.MoveTo(worksheet.Cell(14, 1));
         pictureChartControl.WithSize(1405, 300);
 
 

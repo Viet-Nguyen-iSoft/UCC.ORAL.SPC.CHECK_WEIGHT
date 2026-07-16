@@ -203,7 +203,7 @@ namespace CheckWeigherFood.FrmChild
           ucFilterTime1.To = FrmOverview.Instance._toLine4.TimeOfDay;
         }
       }
-      catch (Exception)
+      catch (Exception ex)
       {
 
       }
@@ -1203,7 +1203,7 @@ namespace CheckWeigherFood.FrmChild
 
       lbFGs.ValueStr = product?.Code ?? string.Empty;
       lbNameProduct.ValueStr = product?.Description ?? string.Empty;
-      ucInformationDataSumary1.SetInforProduct(product, AppCore.Ins._tareSettingCurrent04?.Tube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.TailTube ?? 0.0, AppCore.Ins._tareSettingCurrent04?.Carton ?? 0.0);
+      ucInformationDataSumary1.SetInforProduct(product, tube, tailTube, carton);
     }
 
     private void btnSettingTareAndLot_Click(object sender, EventArgs e)
